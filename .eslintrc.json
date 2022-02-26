@@ -1,0 +1,12 @@
+{
+	"env": {
+		"es6": true,
+		"node": true
+	},
+	"extends": ["@codeyourfuture/standard"],
+	"parser": "@babel/eslint-parser",
+	"rules": {
+		"indent": "off",
+		"operator-linebreak": "off"
+	}
+}
