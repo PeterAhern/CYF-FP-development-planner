@@ -1,7 +1,7 @@
-const About = () => (
+const MyPlan = () => (
 	<main role="main">
 		<div>
-			<h1>About</h1>
+			<h1>Home</h1>
 			<p>
 				Starter kit for full-stack JavaScript projects. For more information,
 				see the wiki:
@@ -11,4 +11,4 @@ const About = () => (
 	</main>
 );
 
-export default About;
+export default MyPlan;

@@ -1,7 +1,6 @@
 import { Route, Routes } from "react-router-dom";
-
-import About from "./pages/About";
-import Home from "./pages/Home";
+import MyPlan from "./pages/MyPlan";
+import Landing from "./pages/Landing";
 
 // Importing components
 import Navbar from "./Components/Navbar/Navbar";
@@ -13,6 +12,7 @@ import developmentSvg from "./Assets/svg/devPlanner.svg";
 import navOptions from "./Assets/svg/selectDropdown.svg";
 
 const App = () => (
+
 	<>
 		<Navbar>
 			<NavItem href="/about/this/site" icon={developmentSvg} />
@@ -21,10 +21,11 @@ const App = () => (
 			</NavItem>
 		</Navbar>
 		<Routes>
-			<Route path="/" element={<Home />} />
-			<Route path="/about/this/site" element={<About />} />
-		</Routes>
+      <Route path="/" element={<Landing />} />
+      <Route path="/myPlan" element={<MyPlan />} />
+	  </Routes>
 	</>
+
 );
 
 export default App;
