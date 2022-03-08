@@ -1,0 +1,5 @@
+[
+	{ "user_email": "test1@gmail.com", "user_access": "grad" },
+	{ "user_email": "test2@gmail.com", "user_access": "grad" },
+	{ "user_email": "mentor@gmail.com", "user_access": "mentor" }
+]
