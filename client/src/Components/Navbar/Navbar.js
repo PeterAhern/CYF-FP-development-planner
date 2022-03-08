@@ -15,7 +15,6 @@ const Navbar = () => {
     return (
 			<nav className={classes.navbar}>
 				<ul className={classes.navbarNav}>
-					{/* {props.children} */}
 					<NavItem href="/about/this/site" icon={developmentSvg} />
 					<NavItem icon={navOptions}>
 						<DropdownMenu />
