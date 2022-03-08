@@ -1,12 +1,11 @@
 import { Route, Routes } from "react-router-dom";
-
-import About from "./pages/About";
-import Home from "./pages/Home";
+import MyPlan from "./pages/MyPlan";
+import Landing from "./pages/Landing";
 
 const App = () => (
 	<Routes>
-		<Route path="/" element={<Home />} />
-		<Route path="/about/this/site" element={<About />} />
+		<Route path="/" element={<Landing />} />
+		<Route path="/myPlan" element={<MyPlan />} />
 	</Routes>
 );
 
