@@ -3,7 +3,7 @@ import MyPlan from "./pages/MyPlan";
 import Landing from "./pages/Landing";
 
 // Importing components
-import Navbar from "./Components/Navbar/Navbar";
+import Navbar from "./Components/Header/Navbar/Navbar";
 
 const App = () => (
 	<>

@@ -3,7 +3,7 @@ import classes from "./DropdownItem.module.css";
 const DropdownItem = (props) => {
 
 	return (
-		<a href="/" className={classes.menuItem}>
+		<a href={props.href} className={classes.menuItem}>
 			<span className={classes.iconButton}>
 				{props.leftIcon && (
 					<img className={classes.navIcon} src={props.leftIcon} alt="dev" />
