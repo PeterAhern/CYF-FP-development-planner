@@ -2,9 +2,10 @@
     position: absolute;
     top: 65px;
     width: 200px;
-    transform: translateX(-45%);
+    transform: translateX(-30%);
     background-color: var(--bg);
-    border: var(--border);
+    /* border: var(--border); */
+    border:none;
     border-radius: var(--border-radius);
     padding: 1rem;
     overflow: hidden;
