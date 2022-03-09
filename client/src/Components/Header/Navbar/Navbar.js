@@ -1,7 +1,6 @@
 import classes from "./Navbar.module.css";
 
 // import NavItem from "./NavItem";
-import Card from "../../UI/Card/Card";
 
 import NavItem from "../Navbar/NavItem";
 import DropdownMenu from "../Navbar/DropdownMenu";

@@ -1,11 +1,11 @@
 .dropdown {
     position: absolute;
     top: 65px;
-    width: 200px;
-    transform: translateX(-30%);
+    /* width: 200px; */
+    transform: translateX(-70%);
     background-color: var(--bg);
     /* border: var(--border); */
-    border:none;
+    /* border:none; */
     border-radius: var(--border-radius);
     padding: 1rem;
     overflow: hidden;
