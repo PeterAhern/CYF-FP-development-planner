@@ -1,6 +1,7 @@
 .navItem {
     width: calc(var(--nav-size));
     display: flex;
+    flex-flow: row wrap;
     align-items: center;
     justify-content: center;
 }
@@ -21,8 +22,16 @@
     
 }
 
-.iconButton:hover {
+.iconButton:hover, .navText:hover {
     filter: brightness(1.4);
+}
+
+.navText {
+    font-size: .75rem;
+    color:rgb(248, 244, 244);
+    background-color: rgb(209, 46, 46);
+    
+    
 }
 
 

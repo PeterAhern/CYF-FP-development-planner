@@ -15,7 +15,7 @@ const Navbar = () => {
     return (
 			<nav className={classes.navbar}>
 				<ul className={classes.navbarNav}>
-					<NavItem href="/about/this/site" icon={developmentSvg} />
+					<NavItem href="/about/this/site" navText="Dev Planner" icon={developmentSvg} />
 					<NavItem icon={navOptions}>
 						<DropdownMenu />
 					</NavItem>
