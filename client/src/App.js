@@ -3,11 +3,14 @@ import MyPlan from "./pages/MyPlan";
 import Landing from "./pages/Landing";
 import Card from "./Components/UI/Card/Card";
 
+import DateSelector from "./Components/TaskForm/DateSelector";
+
 // Importing components
 import Navbar from "./Components/Header/Navbar/Navbar";
 
 const App = () => (
 	<>
+
 		<Navbar />
 		<Routes>
 			<Route path="/" element={<Landing />} />
