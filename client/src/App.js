@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import MyPlan from "./pages/MyPlan";
 import Landing from "./pages/Landing";
-import Card from "./Components/UI/Card/Card";
+
 
 // Importing components
 import Navbar from "./Components/Header/Navbar/Navbar";
