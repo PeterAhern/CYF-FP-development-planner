@@ -6,7 +6,7 @@ const Card = (props) => {
 
 	const toggleMode = () => setDarkMode(()=> !darkMode);
 
-	return <div className={darkMode ? classes.cardDark : classes.card} onClick={toggleMode}>{props.children}</div>;
+	return <div className={darkMode && props.toggle ? classes.cardDark : classes.card} onClick={toggleMode}>{props.children}</div>;
 };
 
 export default Card;
