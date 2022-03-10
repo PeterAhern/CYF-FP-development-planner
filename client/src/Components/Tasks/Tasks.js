@@ -11,7 +11,6 @@ const Tasks = () => {
 		setIsLoading(true);
 		setError(null);
 		try {
-			// must change route as per the full stack assignment
 			const response = await fetch("http://localhost:3000/api/tasks");
 			if (!response.ok) {
 				throw new Error("Something went wrong!");
