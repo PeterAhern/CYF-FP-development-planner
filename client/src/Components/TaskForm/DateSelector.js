@@ -11,7 +11,7 @@ const DateSelector = () => {
 		<DatePicker
 			selected={startDate}
 			onChange={(date) => setStartDate(date)}
-			dateFormat="dd/mm/yyyy"
+			dateFormat="dd/MM/yyyy"
 		/>
 	);
 };

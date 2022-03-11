@@ -1,50 +1,33 @@
-
 // Styling
-import "./Task.css";
-
-
+// import "./Task.css";
 import useInput from "../../hooks/useInput";
+import { useState } from "react";
 
 
 // Add verifications here
 const isNotEmpty = (value) => value.trim() !== "";
-const isEmail = (value) => value.includes("@");
+// const isEmail = (value) => value.includes("@");
 
 // Card for general styling from UI
 import Card from "../UI/Card/Card";
+import DateSelector from "./DateSelector";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import DropdownItem from "react-bootstrap/esm/DropdownItem";
 
-const TaskForm = (props) => {
+const TaskForm = ({ onSubmit }) => {
 
     const {
 			value: taskTitleValue,
-			isValid: firstNameIsValid,
+			isValid: taskTitleIsValid,
 			hasError: taskTitleHasError,
 			valueChangeHandler: taskTitleChangeHandler,
 			inputBlurHandler: taskTitleBlurHandler,
-			reset: resetFirstName,
+			reset: resetTaskTitle,
 		} = useInput(isNotEmpty);
-
-		const {
-			value: lastNameValue,
-			isValid: lastNameIsValid,
-			hasError: lastNameHasError,
-			valueChangeHandler: lastNameChangeHandler,
-			inputBlurHandler: lastNameBlurHandler,
-			reset: resetLastName,
-		} = useInput(isNotEmpty);
-
-		const {
-			value: emailValue,
-			isValid: emailIsValid,
-			hasError: emailHasError,
-			valueChangeHandler: emailChangeHandler,
-			inputBlurHandler: emailBlurHandler,
-			reset: resetEmail,
-		} = useInput(isEmail);
 
 		let formIsValid = false;
 
-		if (firstNameIsValid && lastNameIsValid && emailIsValid) {
+		if (taskTitleIsValid) {
 			formIsValid = true;
 		}
 
@@ -54,34 +37,31 @@ const TaskForm = (props) => {
 			if (!formIsValid) {
 				return;
 			}
-
+			//need to post the task details
 			console.log("Submitted");
-			console.log(taskTitleValue, lastNameValue, emailValue);
+			console.log(taskTitleValue);
 
-			resetFirstName();
-			resetLastName();
-			resetEmail();
+			resetTaskTitle();
+			// resetLastName();
+			// resetEmail();
 		};
 
 		const taskTitleClasses = taskTitleHasError
 			? "form-control invalid"
 			: "form-control";
 
-		const lastNameClasses = lastNameHasError
-			? "form-control invalid"
-			: "form-control";
+			const [buttonText, setButtonText] = useState("Status");
 
-		const emailClasses = emailHasError
-			? "form-control invalid"
-			: "form-control";
-
+			function doChanges(text) {
+				setButtonText(text);
+			}
 
     return (
 			<Card>
 				<form onSubmit={submitHandler}>
 					<div className="control-group">
 						<div className={taskTitleClasses}>
-							<label htmlFor="taskTitle">Task Title</label>
+							<label htmlFor="taskTitle">Task Title: </label>
 							<input
 								type="text"
 								id="taskTitle"
@@ -93,35 +73,57 @@ const TaskForm = (props) => {
 								<p className="error-text">Please Enter a Task Name...</p>
 							)}
 						</div>
-						<div className={lastNameClasses}>
-							<label htmlFor="name">Last Name</label>
+						<div>
+							<p>
+								Due Date (optional): <DateSelector />
+							</p>
+						</div>
+						<div>
+							Progress: <DropdownButton title={buttonText}>
+								<DropdownItem
+									onClick={() => {
+										doChanges("N/A");
+									}}
+								>
+									N/A
+								</DropdownItem>
+								<DropdownItem
+									onClick={() => {
+										doChanges("Not Started");
+									}}
+								>
+									Not Started
+								</DropdownItem>
+								<DropdownItem
+									onClick={() => {
+										doChanges("In Progress");
+									}}
+								>
+									In Progress
+								</DropdownItem>
+								<DropdownItem
+									onClick={() => {
+										doChanges("Complete");
+									}}
+								>
+									Complete
+								</DropdownItem>
+							</DropdownButton>
+						</div>
+						<div>
+							{/* evidence input option only given when status set to complete */}
+							<label htmlFor="evidence">Evidence link: </label>
 							<input
 								type="text"
-								id="name"
-								value={lastNameValue}
-								onChange={lastNameChangeHandler}
-								onBlur={lastNameBlurHandler}
+								id="evidence"
+								// value={taskTitleValue}
+								// onChange={taskTitleChangeHandler}
+								// onBlur={taskTitleBlurHandler}
 							/>
-							{lastNameHasError && (
-								<p className="error-text">Please Enter a Last Name...</p>
-							)}
 						</div>
 					</div>
-					<div className={emailClasses}>
-						<label htmlFor="name">E-Mail Address</label>
-						<input
-							type="text"
-							id="name"
-							value={emailValue}
-							onChange={emailChangeHandler}
-							onBlur={emailBlurHandler}
-						/>
-						{emailHasError && (
-							<p className="error-text">Please Enter a Valid Email...</p>
-						)}
-					</div>
 					<div className="form-actions">
-						<button disabled={!formIsValid}>Submit</button>
+						<button disabled={!formIsValid}>Add Task</button>
 					</div>
 				</form>
 			</Card>
