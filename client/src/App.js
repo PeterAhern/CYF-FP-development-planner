@@ -8,6 +8,7 @@ import Navbar from "./Components/Header/Navbar/Navbar";
 
 const App = () => (
 	<>
+
 		<Navbar />
 		<Routes>
 			<Route path="/" element={<Landing />} />
