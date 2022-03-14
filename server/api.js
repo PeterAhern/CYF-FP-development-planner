@@ -63,112 +63,9 @@ router.get("/tasks", (req, res) => {
 		});
 });
 
-// //Add a task
-router.post("/task", (req, res) => {
-	const {
-		due_date,
-		evidence,
-		status_title,
-		element_title,
-		task_title,
-		user_email,
-	} = req.body;
-	let params = [];
-	// params.push(evidence);
-	// params.push(due_date);
-	if (!user_email) {
-		res.status(404).send({ message: "User email can not be empty " });
-	}
-	params.push(user_email);
-	if (!task_title) {
-		res.status(404).send({ message: "Task title can not be empty " });
-	}
-	params.push(task_title);
-	if (!status_title) {
-		res.status(404).send({ message: "Status title can not be empty " });
-	} else {
-		pool
-			.query("SELECT  status_id FROM status WHERE status_title = $1", [
-				status_title,
-			])
-			.then((result) => {
-				const statusId = result.rows[0].status_id;
-				params.push(statusId);
-			})
-			.catch((err) => console.log(err));
-	}
 
-	if (!element_title) {
-		res.status(404).send({ message: "Element title can not be empty " });
-	} else {
-		pool
-			.query("SELECT  element_id FROM elements WHERE element_title = $1", [
-				element_title,
-			])
-			.then((result) => {
-				const elementId = result.rows[0].elementId;
-				params.push(elementId);
-			})
-			.catch((err) => console.log(err));
-	}
-	pool
-		.query(
-			"INSERT INTO tasks (user_email,task_title,status_id,element_id, evidence, due_date) VALUES ($1,$2,$3,$4,COALESCE($5,null), COALESCE($6,null))",
-			[...params, evidence, due_date]
-		)
-		.then(() =>
-			pool
-				.query("SELECT * FROM tasks")
-				.then((result) => res.send(result.rows))
-				.catch((err) => console.log(err))
-		)
-		.catch((err) => console.log(err));
-});
 
-/////////////////////////////////////
-router.post("/tasks", (req, res) => {
-	const { task_title, due_date, evidence, status_title, element_title } =
-		req.body;
-	let params = [];
 
-	if (!task_title) {
-		return res
-			.status(404)
-			.send({ success: false, message: "Task title cannot be empty" });
-	} else {
-		params.push(task_title);
-	}
-	if (status_title.length > 0) {
-		pool
-			.query("SELECT status_id FROM status WHERE status_title = $1", [
-				status_title,
-			])
-			.then((result) => {
-				params.push(result.rows[0]);
-			})
-			.catch((err) => console.log(err));
-	}
-	if (element_title.length > 0) {
-		pool
-			.query("SELECT element_id FROM elements WHERE element_title = $1", [
-				element_title,
-			])
-			.then((result) => {
-				params.push(result.rows[0]);
-			})
-			.catch((err) => console.log(err));
-		pool
-			.query(
-				"INSERT INTO tasks (task_title,status_id,element_id, evidence, due_date) VALUES ($1,$2,$3,COALESCE($4,' ' ),COALESCE($5,$6))",
-				[...params, evidence, due_date, new Date()]
-			)
-			.then(() => {
-				pool
-					.query("SELECT * FORM tasks")
-					.then((result) => res.send(result.rows));
-			});
-	}
-});
 
 //Delete a task
 router.delete("/tasks/:id", async (req, res) => {
@@ -229,6 +126,56 @@ router.get("/users/:user", async (req, res) => {
 		res.status(500).send(error);
 	}
 });
+
+router.post("/tasks", (req, res) => {
+	const { taskTitle, userEmail, dueDate, evidence, elementId, statusId } =
+		req.body;
+	if (!userEmail) {
+		res.status(404).send({ message: "User email can not be empty " });
+	}
+	if (!taskTitle) {
+		res.status(404).send({ message: "Task title can not be empty " });
+	}
+
+	if (!statusId) {
+		res.status(404).send({ message: "Status Id can not be empty " });
+	}
+
+	if (!elementId) {
+		res.status(404).send({ message: "Element Id can not be empty " });
+	}
+
+	pool
+		.query(
+			"INSERT INTO tasks (task_title, user_email,due_date, evidence,element_id, status_id) VALUES ($1,$2,$3,$4,$5,$6)",
+			[taskTitle, userEmail, dueDate, evidence, elementId, statusId]
+		)
+		.then(() =>
+			pool
+				.query("SELECT * FROM tasks")
+				.then((result) => res.send(result.rows))
+				.catch((err) => console.log(err))
+		)
+		.catch((err) => console.log(err));
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
