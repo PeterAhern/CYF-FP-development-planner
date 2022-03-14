@@ -21,8 +21,7 @@ return (
 			</p>
 
 			<div>
-			{/* <PopUpContainer triggerText={triggerText} onSubmit={onSubmit} /> */}
-			<TaskForm />
+			<TaskForm onSubmit={onSubmit} />
 			</div>
 		</Card>
 	</main>
