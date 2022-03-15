@@ -3,10 +3,6 @@ import TaskForm from "../Components/TaskForm/TaskForm";
 import Tasks from "../Components/Tasks/Tasks";
 
 const MyPlan = () => {
-let formChange;
-const reFetch = (formReFetch) => {
-	formChange = formReFetch;
-};
 return (
 	<main role="main">
 		<Card>
@@ -17,11 +13,11 @@ return (
 			</p>
 
 			<div>
-			<TaskForm reFetch={reFetch} />
+			<TaskForm />
 			</div>
 
 			<h1>Tasks</h1>
-			<Tasks formChange={formChange} />
+			<Tasks />
 		</Card>
 	</main>
 );

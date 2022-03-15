@@ -1,21 +1,17 @@
 import { useState } from "react";
-// import DateSelector from "./DateSelector";
-import DropdownButton from "react-bootstrap/DropdownButton";
-import DropdownItem from "react-bootstrap/esm/DropdownItem";
 
-const TaskForm = (props) => {
+
+const TaskForm = () => {
 	const [task, setTask] = useState({
 		taskTitle: "",
 		userEmail: "test1@gmail.com",
 		dueDate: "",
 		evidence: "",
 		elementId: 1,
-		statusId: 0,
- });
+		statusId: 1,
+	});
 	console.log(task);
-	const [formReFetch, setFormReFetch] = useState(false);
-	const [buttonText, setButtonText] = useState("Status");
-	const { reFetch }  = props;
+
 	const changeHandler = (e) => {
 		console.log(e.target.name);
 		console.log(e.target.value);
@@ -44,41 +40,22 @@ const TaskForm = (props) => {
 	};
 	const submitHandler = (event) => {
 		event.preventDefault();
-		// if (buttonText === "Not Started") {
-		// 	setTask({ ...task, statusId: 1 });
-		// } else if(buttonText === "In Progress") {
-		// 	setTask({ ...task, statusId: 2 });
-		// } else if(buttonText === "Complete"){
-		// 	setTask({ ...task, statusId: 3 });
-		// } else {
-		// 	setTask({ ...task, statusId: 4 });
-		// }
 		addTask();
-		setFormReFetch(!formReFetch);
-		reFetch(formReFetch);
+		
 		setTask({
-			taskTitle: " ",
+			taskTitle: "",
+			userEmail: "",
+			dueDate: "",
+			evidence: "",
+			elementId: 1,
+			statusId: 1,
 		});
 	};
 
-	// const dueDateValue = (date) => {
-	// 	setTask({ ...task, dueDate: date });
-
-	// };
-
-	// const getStatusId = (buttonText) => {
-	// 	if (buttonText === "Not Started") {
-	// 		setTask({ ...task, statusId: 1 });
-	// 	} else if(buttonText === "In Progress") {
-	// 		setTask({ ...task, statusId: 2 });
-	// 	} else if(buttonText === "Complete"){
-	// 		setTask({ ...task, statusId: 3 });
-	// 	} else {
-	// 		setTask({ ...task, statusId: 4 });
-	// 	}
-	// };
-
-	const progressChangeHandler = () => setDueDate();
+	const statusChangeHandler = (e) =>{
+		const statusIdValue = e.target.value;
+		setTask({ ...task, statusId: statusIdValue });
+	};
 
 	return (
 		<form onSubmit={submitHandler}>
@@ -108,7 +85,7 @@ const TaskForm = (props) => {
 					<select
 						name="Progress Status"
 						id="statusDropDown"
-						onChange={progressChangeHandler}
+						onChange={statusChangeHandler}
 					>
 						<option name="1" value="1">
 							Not Started
@@ -124,48 +101,15 @@ const TaskForm = (props) => {
 						</option>
 					</select>
 				</div>
-
-				{/* <div>
-					<p>
-						Due Date (optional): <DateSelector dueDateValue={dueDateValue} />
-					</p>
-				</div> */}
-				{/* <div>
-					Progress:{" "}
-					<DropdownButton title={buttonText}>
-						<DropdownItem
-							onClick={() => {
-								setButtonText("N/A");
-							}}
-						>
-							N/A
-						</DropdownItem>
-						<DropdownItem
-							onClick={() => {
-								setButtonText("Not Started");
-							}}
-						>
-							Not Started
-						</DropdownItem>
-						<DropdownItem
-							onClick={() => {
-								setButtonText("In Progress");
-							}}
-						>
-							In Progress
-						</DropdownItem>
-						<DropdownItem
-							onClick={() => {
-								setButtonText("Complete");
-							}}
-						>
-							Complete
-						</DropdownItem>
-					</DropdownButton>
-				</div> */}
 				<div>
 					<label htmlFor="evidence">Evidence link: </label>
-					<input type="text" id="evidence" />
+					<input
+						type="text"
+						id="evidence"
+						name="evidence"
+						value={task.evidence}
+						onChange={changeHandler}
+					/>
 				</div>
 			</div>
 			<button>Add Task</button>

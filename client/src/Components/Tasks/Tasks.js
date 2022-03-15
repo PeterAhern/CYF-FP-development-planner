@@ -2,11 +2,10 @@ import React, { useState, useEffect, useCallback } from "react";
 
 import Card from "../UI/Card/Card";
 
-const Tasks = (props) => {
+const Tasks = () => {
 	const [tasks, setTasks] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState(null);
-	let formChange = props.formChange;
 
 	const fetchTasksHandler = useCallback(async () => {
 		setIsLoading(true);
@@ -44,16 +43,21 @@ const Tasks = (props) => {
 
 	useEffect(() => {
 		fetchTasksHandler();
-	}, [fetchTasksHandler, formChange]);
+	}, [fetchTasksHandler]);
 
     let content = <p>Found no tasks.</p>;
 
     if (tasks.length > 0) {
-        //   to be added when task form is completed
-        // content = tasks.map((task) => <TasksList key={task.id} title={task.title} due_date={task.due_date} evidence={task.evidence} status_id={task.status_id}/>);
         content = tasks.map((task) => (
 					<Card key={task.id} toggle={true}>
-						{task.title}
+						<h1>{task.title}</h1>
+						<div>
+							{task.evidence && (
+								<h4>
+									<a href={task.evidence} target="_blank" rel="noreferrer">Evidence</a>
+								</h4>
+							)}
+						</div>
 					</Card>
 				));
     }
