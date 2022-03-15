@@ -2,17 +2,18 @@ import React, { useState, useEffect, useCallback } from "react";
 
 import Card from "../UI/Card/Card";
 
-const Tasks = () => {
+const Tasks = (props) => {
 	const [tasks, setTasks] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState(null);
+	let formChange = props.formChange;
 
 	const fetchTasksHandler = useCallback(async () => {
 		setIsLoading(true);
 		setError(null);
 		try {
 			const response = await fetch(
-				"https://elemental-planner.herokuapp.com/api/tasks"
+				"http://localhost:3000/api/tasks"
 			);
 			if (!response.ok) {
 				throw new Error("Something went wrong!");
@@ -43,7 +44,7 @@ const Tasks = () => {
 
 	useEffect(() => {
 		fetchTasksHandler();
-	}, [fetchTasksHandler]);
+	}, [fetchTasksHandler, formChange]);
 
     let content = <p>Found no tasks.</p>;
 
