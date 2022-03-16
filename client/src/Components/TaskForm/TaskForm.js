@@ -1,21 +1,16 @@
 import { useState } from "react";
 
-
-const TaskForm = () => {
+const TaskForm = ({ elementId }) => {
 	const [task, setTask] = useState({
 		taskTitle: "",
 		userEmail: "test1@gmail.com",
 		dueDate: "",
 		evidence: "",
-		elementId: 1,
+		elementId: elementId,
 		statusId: 1,
 	});
-	console.log(task);
 
 	const changeHandler = (e) => {
-		console.log(e.target.name);
-		console.log(e.target.value);
-
 		const inputName = e.target.name;
 		const inputValue = e.target.value;
 		setTask({ ...task, [inputName]: inputValue });
@@ -24,7 +19,7 @@ const TaskForm = () => {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
-			Accept: "application/json",
+			"Accept": "application/json",
 		},
 		body: JSON.stringify(task),
 	};
@@ -41,7 +36,6 @@ const TaskForm = () => {
 	const submitHandler = (event) => {
 		event.preventDefault();
 		addTask();
-		
 		setTask({
 			taskTitle: "",
 			userEmail: "",
@@ -52,7 +46,7 @@ const TaskForm = () => {
 		});
 	};
 
-	const statusChangeHandler = (e) =>{
+	const statusChangeHandler = (e) => {
 		const statusIdValue = e.target.value;
 		setTask({ ...task, statusId: statusIdValue });
 	};
