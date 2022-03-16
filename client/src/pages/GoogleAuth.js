@@ -28,7 +28,7 @@ const GoogleAuth = (props) => {
 			}),
 		};
 		const response = await fetch(
-			"http://localhost:3000/api/users",
+			"https://elemental-planner.herokuapp.com/api/users",
 			requestOptions
 		);
 		if (!response.ok) {
