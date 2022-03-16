@@ -1,30 +1,26 @@
 import Card from "../Components/UI/Card/Card";
-import TaskForm from "../Components/TaskForm/TaskForm";
-import Tasks from "../Components/Tasks/Tasks";
-
-import Navbar from "../Components/Header/Navbar/Navbar";
-
-const MyPlan = () => {
+import Element from "../Components/Element/Element";
+import "./MyPlan.css";
+import Navbar from "../Components/Header/Navbar/Navbar";		
+const MyPlan = (props) => {
 return (
-	<>
-		<Navbar />
-		<main role="main">
-			<Card>
-				<h1>Home</h1>
-				<p>
-					Welcome to your planning center, from here, you can view and add new
-					tasks to be done.
-				</p>
-
-				<div>
-					<TaskForm />
-				</div>
-
-				<h1>Tasks</h1>
-				<Tasks />
-			</Card>
-		</main>
-	</>
+  <>
+  <Navbar />
+	<main role="main">
+		<Card>
+			<h1>Home</h1>
+			<p>
+				Welcome to your planning center, from here, you can view and add new
+				tasks to be done.
+			</p>
+			<div className="elements">
+				<Element id={1} name={"Technical"} user={props.user} />
+				<Element id={2} name={"Job Search"} user={props.user} />
+				<Element id={3} name={"Soft Skills"} user={props.user} />
+			</div>
+		</Card>
+	</main>
+</>
 );
 };
 
