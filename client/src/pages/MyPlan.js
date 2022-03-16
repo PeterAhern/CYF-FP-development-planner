@@ -1,16 +1,8 @@
 import Card from "../Components/UI/Card/Card";
-
 import TaskForm from "../Components/TaskForm/TaskForm";
-
 import Tasks from "../Components/Tasks/Tasks";
 
 const MyPlan = () => {
-	const triggerText = "Add New Task";
-	const onSubmit = (event) => {
-		event.preventDefault(event);
-		//here we add the post details
-	};
-
 return (
 	<main role="main">
 		<Card>
@@ -21,7 +13,7 @@ return (
 			</p>
 
 			<div>
-			<TaskForm onSubmit={onSubmit} />
+			<TaskForm />
 			</div>
 
 			<h1>Tasks</h1>

@@ -48,11 +48,16 @@ const Tasks = () => {
     let content = <p>Found no tasks.</p>;
 
     if (tasks.length > 0) {
-        //   to be added when task form is completed
-        // content = tasks.map((task) => <TasksList key={task.id} title={task.title} due_date={task.due_date} evidence={task.evidence} status_id={task.status_id}/>);
         content = tasks.map((task) => (
 					<Card key={task.id} toggle={true}>
-						{task.title}
+						<h1>{task.title}</h1>
+						<div>
+							{task.evidence && (
+								<h4>
+									<a href={task.evidence} target="_blank" rel="noreferrer">Evidence</a>
+								</h4>
+							)}
+						</div>
 					</Card>
 				));
     }
