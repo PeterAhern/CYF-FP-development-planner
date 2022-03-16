@@ -1,6 +1,4 @@
 import Card from "../Components/UI/Card/Card";
-import TaskForm from "../Components/TaskForm/TaskForm";
-import Tasks from "../Components/Tasks/Tasks";
 import Element from "../Components/Element/Element";
 import "./MyPlan.css";
 
@@ -19,12 +17,6 @@ return (
 				<Element id={3} name={"Soft Skills"} />
 			</div>
 
-			{/* <div>
-			<TaskForm />
-			</div>
-
-			<h1>Tasks</h1>
-			<Tasks /> */}
 		</Card>
 	</main>
 );

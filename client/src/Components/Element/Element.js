@@ -1,4 +1,3 @@
-import { element } from "prop-types";
 import { useState } from "react";
 import TaskForm from "../TaskForm/TaskForm";
 import Tasks from "../Tasks/Tasks";
@@ -6,9 +5,6 @@ import "./Element.css";
 
 const Element = (props) => {
 	const [clicked, setClicked] = useState(false);
-	// const clickHandler = () => {
-	// 	setClicked(!clicked);
-	// };
 	return (
 		<div className="element">
 			<button
