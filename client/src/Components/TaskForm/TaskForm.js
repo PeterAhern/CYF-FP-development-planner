@@ -1,15 +1,15 @@
 import { useState } from "react";
 
-const TaskForm = ({ elementId }) => {
+const TaskForm = ({ elementId, user }) => {
 	const [task, setTask] = useState({
 		taskTitle: "",
-		userEmail: "test1@gmail.com",
+		userEmail: user,
 		dueDate: "",
 		evidence: "",
 		elementId: elementId,
 		statusId: 1,
 	});
-
+console.log(user);
 	const changeHandler = (e) => {
 		const inputName = e.target.name;
 		const inputValue = e.target.value;
@@ -52,7 +52,7 @@ const TaskForm = ({ elementId }) => {
 	};
 
 	return (
-		<form onSubmit={submitHandler}>
+		<form onSubmit={submitHandler} className="form-align">
 			<div className="control-group">
 				<div>
 					<label htmlFor="taskTitle">Task Title: </label>

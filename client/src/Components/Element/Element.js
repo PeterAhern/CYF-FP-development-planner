@@ -10,11 +10,13 @@ const Element = (props) => {
 			<button
 				type="button"
 				className="btn btn-danger"
-				onClick={() =>setClicked(!clicked)}
-			>{props.name}</button>
+				onClick={() => setClicked(!clicked)}
+			>
+				{props.name}
+			</button>
 			{clicked && (
 				<div className="form">
-					<TaskForm elementId ={props.id}  />
+					<TaskForm elementId={props.id} user={props.user} />
 					<Tasks />
 				</div>
 			)}

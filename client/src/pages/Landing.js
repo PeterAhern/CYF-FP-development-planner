@@ -6,7 +6,7 @@ import SignOutButton from "../SignOutButton";
 import "./Landing.css";
 import logo from "./logo.svg";
 
-export function Landing() {
+export function Landing(props) {
 	const [user, setUser] = useState(null);
 
 	// useEffect(() => {
@@ -46,7 +46,7 @@ export function Landing() {
 	if (user) {
 		return (
 			<div>
-				<h1>Hello, {user.email}</h1>
+				<h1>Hello, { props.user(user.email) }</h1>
 				<SignOutButton signout={signOut} />
 				<Link to="/myPlan">
 					<button>Take me to my plan</button>
