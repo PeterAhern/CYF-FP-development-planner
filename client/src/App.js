@@ -3,6 +3,10 @@ import MyPlan from "./pages/MyPlan";
 import Landing from "./pages/Landing";
 import { useState } from "react";
 
+const App = () => {
+	// pass the value of the user email from Landing to My Plan
+	const userEmail = (email) => email;
+
 
 // Importing components
 import Navbar from "./Components/Header/Navbar/Navbar";
@@ -20,5 +24,6 @@ const App = () => {
 		</>
 	);
 };
+
 
 export default App;

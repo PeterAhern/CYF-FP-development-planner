@@ -80,6 +80,7 @@
 		"morgan": "^1.10.0",
 		"pg": "^8.7.3",
 		"react-bootstrap-date-picker": "^5.1.0",
+		"react-google-login": "^5.2.2",
 		"react-transition-group": "^4.4.2"
 	},
 	"engines": {

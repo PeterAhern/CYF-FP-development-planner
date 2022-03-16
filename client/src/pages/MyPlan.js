@@ -1,9 +1,11 @@
 import Card from "../Components/UI/Card/Card";
 import Element from "../Components/Element/Element";
 import "./MyPlan.css";
-
+import Navbar from "../Components/Header/Navbar/Navbar";		
 const MyPlan = (props) => {
 return (
+  <>
+  <Navbar />
 	<main role="main">
 		<Card>
 			<h1>Home</h1>
@@ -18,6 +20,7 @@ return (
 			</div>
 		</Card>
 	</main>
+</>
 );
 };
 
