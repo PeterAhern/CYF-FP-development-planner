@@ -26,10 +26,7 @@ console.log(user);
 	};
 
 	const addTask = async () => {
-		const response = await fetch(
-			"/api/tasks",
-			requestOptions
-		);
+		const response = await fetch("/api/tasks",requestOptions);
 		if (!response.ok) {
 			throw new Error("Something went wrong!");
 		}
