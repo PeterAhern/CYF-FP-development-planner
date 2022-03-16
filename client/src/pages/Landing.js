@@ -4,32 +4,17 @@ import { supabase } from "../client";
 import SignOutButton from "../SignOutButton";
 
 import "./Landing.css";
-import logo from "./logo.svg";
 
-export function Landing() {
+export function Landing(props) {
 	const [user, setUser] = useState(null);
 
-	// useEffect(() => {
-	// 	fetch("/api")
-	// 		.then((res) => {
-	// 			if (!res.ok) {
-	// 				throw new Error(res.statusText);
-	// 			}
-	// 			return res.json();
-	// 		})
-	// 		.then((body) => {
-	// 			setMessage(body.message);
-	// 		})
-	// 		.catch((err) => {
-	// 			console.error(err);
-	// 		});
-	// }, []);
 	useEffect(() => {
 		checkUser();
 		window.addEventListener("hashchange", function () {
 			checkUser();
 		});
 	}, []);
+	
 	async function checkUser() {
 		const user = supabase.auth.user();
 		setUser(user);
@@ -46,7 +31,7 @@ export function Landing() {
 	if (user) {
 		return (
 			<div>
-				<h1>Hello, {user.email}</h1>
+				<h1>Hello, { props.user(user.email) }</h1>
 				<SignOutButton signout={signOut} />
 				<Link to="/myPlan">
 					<button>Take me to my plan</button>

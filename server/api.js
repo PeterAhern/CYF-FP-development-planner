@@ -88,6 +88,11 @@ router.delete("/tasks/:id", async (req, res) => {
 	}
 });
 
+
+
+
+
+
 // // //Add a new user
 router.post("/users", async (req, res) => {
 	try {
@@ -126,6 +131,11 @@ router.get("/users/:user", async (req, res) => {
 		res.status(500).send(error);
 	}
 });
+
+
+
+
+//Add a task
 
 router.post("/tasks", (req, res) => {
 	const { taskTitle, userEmail, dueDate, evidence, elementId, statusId } =
