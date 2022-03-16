@@ -11,7 +11,7 @@ const GoogleAuth = (props) => {
     const [showLogoutButton, setShowLogoutButton] = useState(false);
 
     const [currClient, setCurrClient] = useState({});
-	console.log(currClient);
+	console.log("look here: ",currClient.imageUrl);
 	props.userEmail(currClient.email);
 
 	const addUser = useCallback(async () => {
@@ -45,6 +45,7 @@ const GoogleAuth = (props) => {
 
     const onLoginSuccess = (res) => {
         console.log("Login Success: ", res.profileObj);
+
         setShowLoginButton(false);
         setShowLogoutButton(true);
         setCurrClient(()=>res.profileObj);
@@ -79,7 +80,7 @@ const GoogleAuth = (props) => {
 
 				{showLogoutButton && (
 					<main>
-                        <Navbar />
+						<Navbar />
 						<div>
 							<h1>
 								Hello, {`${currClient.givenName} ${currClient.familyName}`}
@@ -89,7 +90,7 @@ const GoogleAuth = (props) => {
 							<img
 								className="clientProfileImage"
 								src={`${currClient.imageUrl}`}
-								alt="client google account display"
+								alt="profile for member"
 							/>
 							<GoogleLogout
 								clientId={clientId}
