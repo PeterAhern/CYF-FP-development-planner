@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 
 import Card from "../UI/Card/Card";
 
-const Tasks = () => {
+const Tasks = ( { refresh }) => {
 	const [tasks, setTasks] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState(null);
@@ -12,7 +12,7 @@ const Tasks = () => {
 		setError(null);
 		try {
 
-			const response = await fetch("https://elemental-planner.herokuapp.com/api/tasks");
+			const response = await fetch("/api/tasks");
 
 			if (!response.ok) {
 				throw new Error("Something went wrong!");
@@ -43,7 +43,7 @@ const Tasks = () => {
 
 	useEffect(() => {
 		fetchTasksHandler();
-	}, [fetchTasksHandler]);
+	}, [fetchTasksHandler, refresh]);
 
     let content = <p>Found no tasks.</p>;
 
