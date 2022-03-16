@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
 import { Link } from "react-router-dom";
 import Navbar from "../Components/Header/Navbar/Navbar";
-
 import "./GoogleAuth.css";
 
 const GoogleAuth = (props) => {
@@ -14,8 +13,8 @@ const GoogleAuth = (props) => {
 	console.log("look here: ",currClient.imageUrl);
 	props.userEmail(currClient.email);
 
-	const addUser = useCallback(async () => {
-
+	const addUser = useCallback(async (email) => {
+		console.log(email);
 		const requestOptions = {
 			method: "POST",
 			headers: {
@@ -23,34 +22,35 @@ const GoogleAuth = (props) => {
 				Accept: "application/json",
 			},
 			body: JSON.stringify({
-				user_email: currClient.email,
+				user_email: email,
 				mentor_access: false,
 			}),
 		};
+		console.log(requestOptions);
 		const response = await fetch(
-			"http://localhost:3000/api/users",
+			"/api/users",
 			requestOptions
 		);
 		if (!response.ok) {
 			throw new Error("Something went wrong!");
 		}
-	}, [currClient]);
+	}, []);
 
-	useEffect(() => {
-		addUser();
-	}, [addUser]);
+		// useEffect( () => {
+		// 	if (currClient.email !== undefined) {
+		// 		addUser(currClient.email);
+		// 	}
+		// }, [addUser, currClient.email]);
 
     const clientId =
 			"95684876551-fj4hnag0icgcv1eue8laeugstgjln26c.apps.googleusercontent.com";
 
     const onLoginSuccess = (res) => {
         console.log("Login Success: ", res.profileObj);
-
         setShowLoginButton(false);
         setShowLogoutButton(true);
         setCurrClient(()=>res.profileObj);
-		addUser();
-		console.log(currClient);
+		addUser(res.profileObj.email);
     };
 
     const onLoginFailure = (res) => {
@@ -67,10 +67,10 @@ const GoogleAuth = (props) => {
 			<div>
 				{showLoginButton && (
 					<div>
-						<h1>Sign in !</h1>
+						<h3>Login with your Google Account</h3>
 						<GoogleLogin
 							clientId={clientId}
-							buttonText="Login"
+							buttonText="Sign In"
 							onSuccess={onLoginSuccess}
 							onFailure={onLoginFailure}
 							cookiePolicy={"single_host_origin"}

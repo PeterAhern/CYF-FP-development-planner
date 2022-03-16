@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const TaskForm = ({ elementId, user }) => {
+const TaskForm = ({ elementId, user, refresh }) => {
 	const [task, setTask] = useState({
 		taskTitle: "",
 		// userEmail: user,
@@ -27,19 +27,20 @@ console.log(user);
 
 	const addTask = async () => {
 		const response = await fetch(
-			"http://localhost:3000/api/tasks",
+			"/api/tasks",
 			requestOptions
 		);
 		if (!response.ok) {
 			throw new Error("Something went wrong!");
 		}
 	};
-	const submitHandler = (event) => {
+	const submitHandler = async (event) => {
 		event.preventDefault();
-		addTask();
+		await addTask();
+		refresh();
 		setTask({
 			taskTitle: "",
-			userEmail: "",
+			userEmail: "test1@gmail.com",
 			dueDate: "",
 			evidence: "",
 			elementId: 1,
