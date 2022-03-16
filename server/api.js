@@ -92,6 +92,7 @@ router.delete("/tasks/:id", async (req, res) => {
 router.post("/users", async (req, res) => {
 	try {
 		const userEmail = req.body.user_email;
+		console.log(userEmail);
 		let result = await pool.query(
 			"SELECT user_email FROM users WHERE user_email = $1",
 			[userEmail]

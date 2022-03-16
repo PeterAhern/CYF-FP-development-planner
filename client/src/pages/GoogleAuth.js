@@ -1,19 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
 import { Link } from "react-router-dom";
 import Navbar from "../Components/Header/Navbar/Navbar";
 
 import "./GoogleAuth.css";
 
-const GoogleAuth = () => {
+const GoogleAuth = (props) => {
     const [showLoginButton, setShowLoginButton] = useState(true);
 
     const [showLogoutButton, setShowLogoutButton] = useState(false);
 
     const [currClient, setCurrClient] = useState({});
+	console.log(currClient);
+	props.userEmail(currClient.email);
 
+	const addUser = useCallback(async () => {
 
+		const requestOptions = {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Accept: "application/json",
+			},
+			body: JSON.stringify({
+				user_email: currClient.email,
+				mentor_access: false,
+			}),
+		};
+		const response = await fetch(
+			"http://localhost:3000/api/users",
+			requestOptions
+		);
+		if (!response.ok) {
+			throw new Error("Something went wrong!");
+		}
+	}, [currClient]);
 
+	useEffect(() => {
+		addUser();
+	}, [addUser]);
 
     const clientId =
 			"95684876551-fj4hnag0icgcv1eue8laeugstgjln26c.apps.googleusercontent.com";
@@ -23,6 +48,8 @@ const GoogleAuth = () => {
         setShowLoginButton(false);
         setShowLogoutButton(true);
         setCurrClient(()=>res.profileObj);
+		addUser();
+		console.log(currClient);
     };
 
     const onLoginFailure = (res) => {

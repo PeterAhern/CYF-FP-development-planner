@@ -31,7 +31,7 @@ const TaskForm = () => {
 
 	const addTask = async () => {
 		const response = await fetch(
-			"https://elemental-planner.herokuapp.com/api/tasks",
+			"http://localhost:3000/api/tasks",
 			requestOptions
 		);
 		if (!response.ok) {

@@ -11,9 +11,7 @@ const Tasks = () => {
 		setIsLoading(true);
 		setError(null);
 		try {
-			const response = await fetch(
-				"https://elemental-planner.herokuapp.com/api/tasks"
-			);
+			const response = await fetch("http://localhost:3000/api/tasks");
 			if (!response.ok) {
 				throw new Error("Something went wrong!");
 			}

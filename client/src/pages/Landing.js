@@ -6,9 +6,12 @@ import "./Landing.css";
 
 
 const Landing = () => {
-	return (<div className="g-signin">
-		<GoogleAuth />
-	</div>);
+	const userEmail = (email) => email;
+	return (
+		<div className="g-signin">
+			<GoogleAuth userEmail={userEmail} />
+		</div>
+	);
 };
 
 export default Landing;
