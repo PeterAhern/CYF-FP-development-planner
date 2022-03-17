@@ -92,11 +92,11 @@ const GoogleAuth = (props) => {
 								src={`${currClient.imageUrl}`}
 								alt="profile for member"
 							/>
-							<GoogleLogout
+							{/* <GoogleLogout
 								clientId={clientId}
 								buttonText="Logout"
 								onLogoutSuccess={onSignoutSuccess}
-							></GoogleLogout>
+							></GoogleLogout> */}
 							<Link to="/myPlan">
 								<button>Take me to my plan</button>
 							</Link>

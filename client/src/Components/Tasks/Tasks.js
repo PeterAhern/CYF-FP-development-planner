@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
-
 import Card from "../UI/Card/Card";
 
-const Tasks = ( { refresh }) => {
+const Tasks = ( { refresh, refreshFunc }) => {
 	const [tasks, setTasks] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState(null);
@@ -41,20 +40,43 @@ const Tasks = ( { refresh }) => {
 		setIsLoading(false);
 	}, []);
 
+
 	useEffect(() => {
 		fetchTasksHandler();
 	}, [fetchTasksHandler, refresh]);
 
-    let content = <p>Found no tasks.</p>;
+	//deleteTaskHandler
+
+	const deleteTask = async (id) => {
+		const response = await fetch(`/api/tasks/${id}`, {
+			method: "DELETE",
+		});
+		refreshFunc();
+		if (!response.ok) {
+			throw new Error("Something went wrong!");
+		}
+	};
+
+
+	let content = <p>Found no tasks.</p>;
 
     if (tasks.length > 0) {
         content = tasks.map((task) => (
 					<Card key={task.id} toggle={true}>
 						<h1>{task.title}</h1>
+						<button
+							className="btn btn-danger"
+							onClick={() => {
+							deleteTask(task.id);
+							}}>
+							Delete
+						</button>
 						<div>
 							{task.evidence && (
 								<h4>
-									<a href={task.evidence} target="_blank" rel="noreferrer">Evidence</a>
+									<a href={task.evidence} target="_blank" rel="noreferrer">
+										Evidence
+									</a>
 								</h4>
 							)}
 						</div>

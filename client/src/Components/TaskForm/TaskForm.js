@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const TaskForm = ({ elementId, user, refresh }) => {
+const TaskForm = ({ elementId, user, refreshFunc }) => {
 	const [task, setTask] = useState({
 		taskTitle: "",
 		// userEmail: user,
@@ -34,7 +34,7 @@ console.log(user);
 	const submitHandler = async (event) => {
 		event.preventDefault();
 		await addTask();
-		refresh();
+		refreshFunc();
 		setTask({
 			taskTitle: "",
 			userEmail: "test1@gmail.com",

@@ -17,8 +17,8 @@ const Element = (props) => {
 			</button>
 			{clicked && (
 				<div className="form">
-					<TaskForm elementId={props.id} user={props.user} refresh={()=>setRefresh(!refresh)} />
-					<Tasks refresh={refresh} />
+					<TaskForm elementId={props.id} user={props.user} refreshFunc={()=>setRefresh(!refresh)} />
+					<Tasks refresh={refresh} refreshFunc={()=>setRefresh(!refresh)} />
 				</div>
 			)}
 		</div>
