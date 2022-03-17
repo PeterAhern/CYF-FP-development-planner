@@ -1,28 +1,30 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Card from "../UI/Card/Card";
+import PopUpForm from "./PopUpForm";
+import TaskForm from "../TaskForm/TaskForm";
+
 
 const Tasks = ( { refresh, refreshFunc }) => {
 	const [tasks, setTasks] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState(null);
+	//states for pop up edit task form
+	const [isOpen, setIsOpen] = useState(false);
+	const togglePopup = () => {
+		setIsOpen(!isOpen);
+	};
 
 	const fetchTasksHandler = useCallback(async () => {
 		setIsLoading(true);
 		setError(null);
 		try {
-
 			const response = await fetch("/api/tasks");
 
 			if (!response.ok) {
 				throw new Error("Something went wrong!");
 			}
-
 			const data = await response.json();
-
 			const loadedTasks = [];
-
-			// writing data transformation logic for the data I am getting back from firebase
-
 			for (const key in data) {
 				loadedTasks.push({
 					id: data[key].task_id,
@@ -32,7 +34,6 @@ const Tasks = ( { refresh, refreshFunc }) => {
 					status_id: data[key].status_id,
 				});
 			}
-
 			setTasks(loadedTasks);
 		} catch (error) {
 			setError(error.message);
@@ -40,13 +41,11 @@ const Tasks = ( { refresh, refreshFunc }) => {
 		setIsLoading(false);
 	}, []);
 
-
 	useEffect(() => {
 		fetchTasksHandler();
 	}, [fetchTasksHandler, refresh]);
 
 	//deleteTaskHandler
-
 	const deleteTask = async (id) => {
 		const response = await fetch(`/api/tasks/${id}`, {
 			method: "DELETE",
@@ -57,20 +56,46 @@ const Tasks = ( { refresh, refreshFunc }) => {
 		}
 	};
 
+	//editTaskHandler
+	// const editTask = async (id) => {
+	// 		// const response = await fetch(`/api/tasks/${id}`, {
+	// 		// 	method: "PUT",
+	// 		// });
+	// 		// refreshFunc();
+	// 		// if (!response.ok) {
+	// 		// 	throw new Error("Something went wrong!");
+	// 		// }
+	// };
 
 	let content = <p>Found no tasks.</p>;
 
     if (tasks.length > 0) {
         content = tasks.map((task) => (
-					<Card key={task.id} toggle={true}>
+					<Card key={task.id} >
 						<h1>{task.title}</h1>
 						<button
 							className="btn btn-danger"
 							onClick={() => {
-							deleteTask(task.id);
-							}}>
+								window.confirm("Are you sure you want to delete?") &&
+									deleteTask(task.id);
+							}}
+						>
 							Delete
 						</button>
+						<div>
+							<input type="button" className="btn btn-danger" value="Edit Task" onClick={togglePopup} />
+							{isOpen && (
+								<PopUpForm
+									content={
+										<>
+											<b>Edit your task</b>
+											<TaskForm props={task.id} />
+										</>
+									}
+									handleClose={togglePopup}
+								/>
+							)}
+						</div>
 						<div>
 							{task.evidence && (
 								<h4>

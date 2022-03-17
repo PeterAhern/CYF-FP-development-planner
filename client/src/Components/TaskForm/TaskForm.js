@@ -1,8 +1,9 @@
 import { useState } from "react";
 
-const TaskForm = ({ elementId, user, refreshFunc }) => {
+const TaskForm = ({ elementId, user, refreshFunc }, props) => {
+	console.log(props);
 	const [task, setTask] = useState({
-		taskTitle: "",
+		taskTitle: "", //pass in the props from tasks edit button
 		// userEmail: user,
 		userEmail:"test1@gmail.com",
 		dueDate: "",
@@ -10,7 +11,6 @@ const TaskForm = ({ elementId, user, refreshFunc }) => {
 		elementId: elementId,
 		statusId: 1,
 	});
-console.log(user);
 	const changeHandler = (e) => {
 		const inputName = e.target.name;
 		const inputValue = e.target.value;
