@@ -64,9 +64,6 @@ router.get("/tasks", (req, res) => {
 });
 
 
-
-
-
 //Delete a task
 router.delete("/tasks/:id", async (req, res) => {
 	try {
@@ -87,9 +84,6 @@ router.delete("/tasks/:id", async (req, res) => {
 		res.status(500).send(error);
 	}
 });
-
-
-
 
 
 
@@ -142,18 +136,18 @@ router.post("/tasks", (req, res) => {
 	const { taskTitle, userEmail, dueDate, evidence, elementId, statusId } =
 		req.body;
 	if (!userEmail) {
-		res.status(404).send({ message: "User email can not be empty " });
+		res.status(400).send({ message: "User email can not be empty " });
 	}
 	if (!taskTitle) {
-		res.status(404).send({ message: "Task title can not be empty " });
+		res.status(400).send({ message: "Task title can not be empty " });
 	}
 
 	if (!statusId) {
-		res.status(404).send({ message: "Status Id can not be empty " });
+		res.status(400).send({ message: "Status Id can not be empty " });
 	}
 
 	if (!elementId) {
-		res.status(404).send({ message: "Element Id can not be empty " });
+		res.status(400).send({ message: "Element Id can not be empty " });
 	}
 
 	pool
