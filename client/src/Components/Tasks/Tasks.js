@@ -56,17 +56,6 @@ const Tasks = ( { refresh, refreshFunc }) => {
 		}
 	};
 
-	//editTaskHandler
-	// const editTask = async (id) => {
-	// 		// const response = await fetch(`/api/tasks/${id}`, {
-	// 		// 	method: "PUT",
-	// 		// });
-	// 		// refreshFunc();
-	// 		// if (!response.ok) {
-	// 		// 	throw new Error("Something went wrong!");
-	// 		// }
-	// };
-
 	let content = <p>Found no tasks.</p>;
 
     if (tasks.length > 0) {
@@ -89,7 +78,7 @@ const Tasks = ( { refresh, refreshFunc }) => {
 									content={
 										<>
 											<b>Edit your task</b>
-											<TaskForm props={task.id} />
+											<TaskForm props={task.id} elementId={task.element_id} />
 										</>
 									}
 									handleClose={togglePopup}
