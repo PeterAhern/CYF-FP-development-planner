@@ -4,42 +4,42 @@ import pool from "./db";
 
 const router = Router();
 
-router.get("/tasks", (req, res) => {
-	pool
-		.query("SELECT * FROM tasks ")
-		.then((result) => res.send(result.rows))
-		.catch((err) => console.log(err));
-});
+
 
 // Edit a task
-router.put("/tasks/:id", (req, res) => {
-	const ID = req.params.id;
-	const status = req.body.status_title;
-	const date = req.body;
-	const evidence = req.body.evidence;
+// UPDATE/PUT /api/users/:userEmail/elements/:elementId/tasks/:taskId
+router.put(
+	"/users/:userEmail/elements/:elementId/tasks/:taskId",
+	(req, res) => {
+		const { userEmail, elementId, taskId } = req.params;
 
-	pool
-		.query("SELECT status_id FROM status WHERE status_title = $1", [status])
-		.then((result) => {
-			const newStatusId = result.rows[0].status_id;
-			console.log(newStatusId);
-			return pool
-				.query("SELECT * FROM tasks WHERE task_id= $1", [ID])
+		const { taskTitle, statusId, date, evidence } = req.body;
+
+		if (userEmail.length > 0 && elementId.length > 0 && taskId.length > 0) {
+			pool
+				.query(
+					"SELECT * FROM tasks WHERE user_email=$1 AND element_id=$2 AND task_id= $3",
+					[userEmail, elementId, taskId]
+				)
 				.then((result) => {
 					const originalValues = result.rows[0];
 					console.log(originalValues);
 
 					return pool
 						.query(
-							"UPDATE tasks SET due_date=$1,status_id =$2,evidence = $3 WHERE task_id=$4",
+							"UPDATE tasks SET task_title=$1, due_date=$2, status_id =$3,evidence = $4 WHERE tasks.element_id=$5 AND task_id=$6",
 							[
-								originalValues.due_date || date,
-								originalValues.status_id || newStatusId,
-								originalValues.evidence || evidence,
-								ID,
+								taskTitle || originalValues.task_title ,
+								date || originalValues.due_date,
+								statusId || originalValues.status_id,
+								evidence || originalValues.evidence,
+								elementId,
+								taskId,
 							]
 						)
-						.then((result) => res.send(result))
+						.then(() =>
+							res.send({ success: true, message: "updated successfully" })
+						)
 						.catch((error) => {
 							console.error(error);
 							res.status(500).json(error);
@@ -49,44 +49,150 @@ router.put("/tasks/:id", (req, res) => {
 					console.error(error);
 					res.status(500).json(error);
 				});
-		});
-});
-
-//Get all the tasks
-router.get("/tasks", (req, res) => {
-	pool
-		.query("SELECT * FROM tasks")
-		.then((result) => res.send(result.rows))
-		.catch((error) => {
-			console.error(error);
-			res.status(500).json(error);
-		});
-});
-
+		} else {
+			res.status(400).send({ success: false, message: "something is wrong" });
+		}
+	}
+);
 
 //Delete a task
-router.delete("/tasks/:id", async (req, res) => {
-	try {
-		const Id = req.params.id;
-		const selectQuery = "SELECT task_id FROM tasks WHERE task_id =$1";
-		let selectResult = await pool.query(selectQuery, [Id]);
-		if (selectResult.rows.length === 0) {
-			return res.status(404).send("Not found.");
+// DELETE /api/users/:userEmail/elements/:elementId/tasks/:taskId
+router.delete(
+	"/users/:userEmail/elements/:elementId/tasks/:taskId",
+	async (req, res) => {
+		const { userEmail, elementId, taskId } = req.params;
+		if (userEmail.length > 0 && elementId.length > 0 && taskId.length > 0) {
+			try {
+				const selectQuery =
+					"SELECT task_id FROM tasks WHERE user_email=$1 AND element_id=$2 AND task_id =$3";
+				let selectResult = await pool.query(selectQuery, [
+					userEmail,
+					elementId,
+					taskId,
+				]);
+				if (selectResult.rows.length === 0) {
+					return res.status(404).send("Not found.");
+				} else {
+					await pool.query(
+						"DELETE  FROM tasks WHERE user_email=$1 AND element_id=$2 AND task_id =$3",
+						[userEmail, elementId, taskId]
+					);
+					const data =
+						"SELECT * FROM tasks WHERE user_email=$1 AND element_id=$2";
+					await pool.query(data, [userEmail, elementId]).then((result) => {
+						if (result.rows.length > 0) {
+							return res.send(result.rows);
+						} else {
+							return res.send({
+								success: true,
+								message:
+									"it appears you have no tasks under this particular element, why not add some!",
+							});
+						}
+					});
+				}
+			} catch (error) {
+				console.error(error);
+				res.status(500).send(error);
+			}
 		} else {
-			await pool.query("DELETE  FROM tasks WHERE task_id = $1", [Id]);
-			const data = "SELECT * FROM tasks";
-			let remainedTasks = await pool.query(data);
-
-			return res.send(remainedTasks.rows);
+			return res
+				.status(400)
+				.send({
+					success: false,
+					message: "Something went wrong while deleting your task",
+				});
 		}
+	}
+);
+
+
+//Get all the tasks for a user element
+// GET /api/users/:userEmail/elements/:elementId/tasks
+router.get("/users/:userEmail/elements/:elementId/tasks", (req, res) => {
+	const { userEmail, elementId } = req.params;
+
+	pool
+		.query("SELECT * FROM tasks WHERE user_email=$1 AND element_id=$2", [
+			userEmail,
+			elementId,
+		])
+		.then((result) => {
+			if (result.rows.length > 0) {
+				return res.send(result.rows);
+			} else {
+				return res.send({
+					success: true,
+					message:
+						"it appears you have no tasks in this element, why not add some!",
+				});
+			}
+		})
+		.catch((error) => {
+			console.error(error);
+			console.log(userEmail);
+			return res.status(500).json(error);
+		});
+});
+
+// // User's tasks per element with status title and milestone title => inner join per element for user
+// Will use this to quickly display task details in front end when mapping tasks
+// GET /api/users/:userEmail/elements/:elementId/tasks
+router.get("/users/:userEmail/elements/:elementId/detailedTasks", async (req, res) => {
+	try {
+		const { userEmail, elementId } = req.params;
+		const Query =
+			"SELECT task_title , due_date, evidence, element_title, status_title FROM tasks INNER JOIN elements ON tasks.element_id = elements.element_id INNER JOIN status ON tasks.status_id = status.status_id WHERE user_email = $1 AND elements.element_id=$2";
+		const result = await pool.query(Query, [userEmail, elementId]);
+		res.send(result.rows);
 	} catch (error) {
 		console.error(error);
 		res.status(500).send(error);
 	}
 });
 
+//Add a task under a particular element for a particular user
+// POST /api/users/:userEmail/elements/:elementId/tasks
+router.post("/users/:userEmail/elements/:elementId/tasks", (req, res) => {
+	const { taskTitle, dueDate, evidence, statusId } = req.body;
+
+	const { userEmail, elementId } = req.params;
+
+	if (userEmail.length > 0 && elementId.length > 0) {
+		if (!taskTitle || !statusId) {
+			return res
+				.status(400)
+				.send({
+					message:
+						"Task Title and Status cannot be empty, please edit and try again :D ",
+				});
+		} else {
+			return pool
+				.query(
+					"INSERT INTO tasks (task_title, user_email,due_date, evidence,element_id, status_id) VALUES ($1,$2,$3,$4,$5,$6)",
+					[taskTitle, userEmail, dueDate, evidence, elementId, statusId]
+				)
+				.then(() =>
+					pool
+						.query("SELECT * FROM tasks WHERE user_email=$1", [userEmail])
+						.then((result) => res.send(result.rows))
+						.catch((err) => console.log(err))
+				)
+				.catch((err) => console.log(err));
+		}
+	} else {
+		return res
+			.status(400)
+			.send({
+				success: false,
+				message:
+					"Something went wrong while trying to add this task under the specified element, please refresh and try again",
+			});
+	}
+});
 
 
+// Users Table:
 // // //Add a new user
 router.post("/users", async (req, res) => {
 	try {
@@ -97,7 +203,9 @@ router.post("/users", async (req, res) => {
 			[userEmail]
 		);
 		if (result.rows.length > 0) {
-			return res.send({ message: "user already existed" });
+			pool
+				.query("SELECT mentor_access FROM users WHERE user_email=$1", userEmail)
+				.then((result) => res.send({ message: "user already existed", mentorAccess: result.rows[0] }));
 		} else {
 			const mentor = req.body.mentor_access;
 			result = await pool.query(
@@ -112,79 +220,16 @@ router.post("/users", async (req, res) => {
 	}
 });
 
-// // User's tasks
 
-router.get("/users/:user", async (req, res) => {
-	try {
-		const User = req.params.user;
-		const Query =
-			"SELECT task_title , due_date, evidence, element_title, status_title FROM tasks INNER JOIN elements ON tasks.element_id = elements.element_id INNER JOIN status ON tasks.status_id = status.status_id WHERE user_email = $1";
-		const result = await pool.query(Query, [User]);
-		res.send(result.rows);
-	} catch (error) {
-		console.error(error);
-		res.status(500).send(error);
-	}
-});
-
-
-
-
-//Add a task
-
-router.post("/tasks", (req, res) => {
-	const { taskTitle, userEmail, dueDate, evidence, elementId, statusId } =
-		req.body;
-	if (!userEmail) {
-		res.status(400).send({ message: "User email can not be empty " });
-	}
-	if (!taskTitle) {
-		res.status(400).send({ message: "Task title can not be empty " });
-	}
-
-	if (!statusId) {
-		res.status(400).send({ message: "Status Id can not be empty " });
-	}
-
-	if (!elementId) {
-		res.status(400).send({ message: "Element Id can not be empty " });
-	}
-
+// ___________________________________________________________________________________
+// 						Production Routes - Testing
+// ___________________________________________________________________________________
+router.get("/tasks", (req, res) => {
 	pool
-		.query(
-			"INSERT INTO tasks (task_title, user_email,due_date, evidence,element_id, status_id) VALUES ($1,$2,$3,$4,$5,$6)",
-			[taskTitle, userEmail, dueDate, evidence, elementId, statusId]
-		)
-		.then(() =>
-			pool
-				.query("SELECT * FROM tasks")
-				.then((result) => res.send(result.rows))
-				.catch((err) => console.log(err))
-		)
+		.query("SELECT * FROM tasks ")
+		.then((result) => res.send(result.rows))
 		.catch((err) => console.log(err));
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // All users
 router.get("/users", async (req, res) => {

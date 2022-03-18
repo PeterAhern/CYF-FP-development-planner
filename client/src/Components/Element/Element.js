@@ -6,6 +6,7 @@ import "./Element.css";
 const Element = (props) => {
 	const [refresh, setRefresh] = useState(true);
 	const [clicked, setClicked] = useState(false);
+	console.log(props.currUser);
 	return (
 		<div className="element">
 			<button
@@ -17,8 +18,19 @@ const Element = (props) => {
 			</button>
 			{clicked && (
 				<div className="form">
-					<TaskForm elementId={props.id} user={props.user} refreshFunc={()=>setRefresh(!refresh)} />
-					<Tasks refresh={refresh} refreshFunc={()=>setRefresh(!refresh)} />
+					<TaskForm
+						elementId={props.id}
+						// userEmail={props.currUser.email}
+						userEmail="test1@gmail.com"
+						refreshFunc={() => setRefresh(!refresh)}
+					/>
+					<Tasks
+						elementId={props.id}
+						refresh={refresh}
+						refreshFunc={() => setRefresh(!refresh)}
+						// userEmail={props.currUser.email}
+						userEmail="test1@gmail.com"
+					/>
 				</div>
 			)}
 		</div>

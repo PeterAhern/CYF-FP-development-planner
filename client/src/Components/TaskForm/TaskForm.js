@@ -1,16 +1,17 @@
 import { useState } from "react";
 
-const TaskForm = ({ elementId, user, refreshFunc }) => {
-	const [task, setTask] = useState({
+const TaskForm = ({ elementId, refreshFunc, editingTask, currTaskState }) => {
+	// should be receiving userEmail as props here from Element.js, for now keeping it as test1@gmail.com
+	const [task, setTask] = useState(editingTask ? currTaskState : {
 		taskTitle: "",
-		// userEmail: user,
-		userEmail:"test1@gmail.com",
+		// userEmail:userEmail,
+		userEmail: "test1@gmail.com",
 		dueDate: "",
 		evidence: "",
 		elementId: elementId,
 		statusId: 1,
 	});
-console.log(user);
+// console.log(userEmail);
 	const changeHandler = (e) => {
 		const inputName = e.target.name;
 		const inputValue = e.target.value;
@@ -26,23 +27,31 @@ console.log(user);
 	};
 
 	const addTask = async () => {
-		const response = await fetch("/api/tasks",requestOptions);
+		const response = await fetch(`/api/users/${task.userEmail}/elements/${task.elementId}/tasks`,requestOptions);
 		if (!response.ok) {
 			throw new Error("Something went wrong!");
 		}
 	};
+
+	// const updateTask = await fetch("/api")
 	const submitHandler = async (event) => {
 		event.preventDefault();
-		await addTask();
-		refreshFunc();
-		setTask({
-			taskTitle: "",
-			userEmail: "test1@gmail.com",
-			dueDate: "",
-			evidence: "",
-			elementId: 1,
-			statusId: 1,
-		});
+		if (!editingTask) {
+			await addTask();
+			refreshFunc();
+			return setTask({
+				taskTitle: "",
+				// userEmail: userEmail,
+				userEmail: "test1@gmail.com",
+				dueDate: "",
+				evidence: "",
+				elementId: elementId,
+				statusId: 1,
+			});
+		} else {
+			// await updateTask(currTaskState.taskId);
+			// refreshFunc();
+		}
 	};
 
 	const statusChangeHandler = (e) => {
@@ -105,7 +114,7 @@ console.log(user);
 					/>
 				</div>
 			</div>
-			<button>Add Task</button>
+			{editingTask ? <button>Update</button> : <button>Add Task</button>}
 		</form>
 	);
 };
