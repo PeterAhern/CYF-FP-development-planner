@@ -3,6 +3,18 @@ import Card from "../UI/Card/Card";
 import PopUpForm from "./PopUpForm";
 import TaskForm from "../TaskForm/TaskForm";
 
+/*
+	{
+		taskTitle: "",
+		// userEmail: user,
+		userEmail:"test1@gmail.com",
+		dueDate: "",
+		evidence: "",
+		elementId: elementId,
+		statusId: 1,
+	}
+*/
+
 
 const Tasks = ( { refresh, refreshFunc }) => {
 	const [tasks, setTasks] = useState([]);
@@ -29,6 +41,7 @@ const Tasks = ( { refresh, refreshFunc }) => {
 				loadedTasks.push({
 					id: data[key].task_id,
 					title: data[key].task_title,
+					user_email: data[key].user_email,
 					due_date: data[key].due_date,
 					evidence: data[key].evidence,
 					status_id: data[key].status_id,
@@ -60,7 +73,7 @@ const Tasks = ( { refresh, refreshFunc }) => {
 
     if (tasks.length > 0) {
         content = tasks.map((task) => (
-					<Card key={task.id} >
+					<Card key={task.id}>
 						<h1>{task.title}</h1>
 						<button
 							className="btn btn-danger"
@@ -72,13 +85,29 @@ const Tasks = ( { refresh, refreshFunc }) => {
 							Delete
 						</button>
 						<div>
-							<input type="button" className="btn btn-danger" value="Edit Task" onClick={togglePopup} />
+							<input
+								type="button"
+								className="btn btn-danger"
+								value="Edit Task"
+								onClick={togglePopup}
+							/>
 							{isOpen && (
 								<PopUpForm
 									content={
 										<>
 											<b>Edit your task</b>
-											<TaskForm props={task.id} elementId={task.element_id} />
+											<TaskForm
+												props={task.id}
+												elementId={task.element_id}
+												initialFormState={{
+													taskTitle: task.title,
+													userEmail: task.user_email,
+													dueDate: task.due_date,
+													evidence: task.evidence,
+													elementId: task.element_id,
+													statusId: task.status_id,
+												}}
+											/>
 										</>
 									}
 									handleClose={togglePopup}

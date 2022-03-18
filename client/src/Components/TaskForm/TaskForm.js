@@ -1,15 +1,7 @@
 import { useState } from "react";
 
-const TaskForm = ({ elementId, refreshFunc }) => {
-	const [task, setTask] = useState({
-		taskTitle: "",
-		// userEmail: user,
-		userEmail:"test1@gmail.com",
-		dueDate: "",
-		evidence: "",
-		elementId: elementId,
-		statusId: 1,
-	});
+const TaskForm = ({ elementId, refreshFunc, initialFormState }) => {
+	const [task, setTask] = useState(initialFormState);
 	console.log(elementId);
 	const changeHandler = (e) => {
 		const inputName = e.target.name;
