@@ -4,13 +4,12 @@ const TaskForm = ({ elementId, user, refreshFunc }) => {
 	const [task, setTask] = useState({
 		taskTitle: "",
 		// userEmail: user,
-		userEmail:"test1@gmail.com",
+		userEmail: "test1@gmail.com",
 		dueDate: "",
 		evidence: "",
 		elementId: elementId,
 		statusId: 1,
 	});
-console.log(user);
 	const changeHandler = (e) => {
 		const inputName = e.target.name;
 		const inputValue = e.target.value;
