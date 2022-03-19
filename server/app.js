@@ -15,6 +15,16 @@ const staticDir = path.join(__dirname, "static");
 
 const app = express();
 
+app.use(function (req, res, next) {
+	res.setHeader(
+		"Content-Security-Policy",
+		"script-src 'self' https://apis.google.com"
+	);
+	return next();
+});
+
+app.use(express.static(__dirname + "/"));
+
 app.use(express.json());
 app.use(configuredHelmet());
 app.use(morgan("dev"));
