@@ -23,7 +23,7 @@ app.use(function (req, res, next) {
 	return next();
 });
 
-app.use(express.static(__dirname + "/"));
+// app.use(express.static(__dirname + "/"));
 
 app.use(express.json());
 app.use(configuredHelmet());
