@@ -15,14 +15,17 @@ const staticDir = path.join(__dirname, "static");
 
 const app = express();
 
-app.use(function (req, res, next) {
-	res.setHeader(
-		"Content-Security-Policy",
-		"script-src 'self' https://apis.google.com",
-		"script-src-elem 'self' https://apis.google.com/js/api.js"
-	);
-	return next();
-});
+app.use(
+  helmet.contentSecurityPolicy({
+    useDefaults: false,
+    directives: {
+      defaultSrc: ["'self'", "https://cdnjs.cloudflare.com", "https://fonts.gstatic.com"],
+      scriptSrc: ["'self'", "unpkg.com", "polyfill.io", "http://*", "https://*"],
+      objectSrc: ["'none'"],
+      upgradeInsecureRequests: [],
+    },
+  })
+);
 
 // app.use(express.static(__dirname + "/"));
 
