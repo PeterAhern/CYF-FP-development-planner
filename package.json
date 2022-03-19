@@ -3,7 +3,7 @@
 	"version": "0.0.1",
 	"description": "Starter kit for full-stack JavaScript projects",
 	"private": true,
-	"proxy": "https://elemental-planner.herokuapp.com",
+	"proxy": "https://elemental-planner.herokuapp.com/api",
 	"scripts": {
 		"prebuild": "npm run cleanup",
 		"build": "npm run build:server && npm run build:client",
