@@ -12,8 +12,8 @@ const GoogleAuth = ({ userChange }) => {
 	const [currClient, setCurrClient] = useState({});
 	console.log("look here: ", currClient.imageUrl);
 
-	const addUser = useCallback(async (email) => {
-		console.log(email);
+	const addUser = useCallback(async (currClient) => {
+		console.log(currClient.email);
 		const requestOptions = {
 			method: "POST",
 			headers: {
@@ -21,7 +21,8 @@ const GoogleAuth = ({ userChange }) => {
 				Accept: "application/json",
 			},
 			body: JSON.stringify({
-				user_email: email,
+				user_email: currClient.email,
+				googleClientId: currClient.googleId,
 				mentor_access: false,
 			}),
 		};

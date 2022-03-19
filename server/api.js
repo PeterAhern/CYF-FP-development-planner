@@ -65,11 +65,7 @@ router.delete(
 			try {
 				const selectQuery =
 					"SELECT task_id FROM tasks WHERE user_email=$1 AND element_id=$2 AND task_id =$3";
-				let selectResult = await pool.query(selectQuery, [
-					userEmail,
-					elementId,
-					taskId,
-				]);
+				let selectResult = await pool.query(selectQuery, [userEmail,elementId,taskId]);
 				if (selectResult.rows.length === 0) {
 					return res.status(404).send("Not found.");
 				} else {
@@ -195,6 +191,7 @@ router.post("/users/:userEmail/elements/:elementId/tasks", (req, res) => {
 // Users Table:
 // // //Add a new user
 router.post("/users", async (req, res) => {
+	const useGoogleClientAuth = this.useGoogleClientAuth();
 	try {
 		const userEmail = req.body.user_email;
 		console.log(userEmail);
@@ -208,11 +205,21 @@ router.post("/users", async (req, res) => {
 				.then((result) => res.send({ message: "user already existed", mentorAccess: result.rows[0] }));
 		} else {
 			const mentor = req.body.mentor_access;
+			const { googleClientId } = req.body;
 			result = await pool.query(
 				"INSERT INTO users (user_email,mentor_access) VALUES ($1,$2)",
 				[userEmail, mentor]
 			);
 			res.send(" A user is added");
+			res.set(
+					"Content-Security-Policy",
+					"default-src 'unsafe-inline' https://apis.google.com/"
+				)
+				.send(
+					result
+						.replace(/GOOGLE_CLIENT_ID/g, googleClientId)
+						.replace(/USE_GOOGLE_LOGIN/g, "" + useGoogleClientAuth)
+				);
 		}
 	} catch (error) {
 		console.error(error);
