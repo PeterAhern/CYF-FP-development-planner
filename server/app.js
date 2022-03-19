@@ -18,7 +18,8 @@ const app = express();
 app.use(function (req, res, next) {
 	res.setHeader(
 		"Content-Security-Policy",
-		"script-src 'self' https://apis.google.com/js/api.js"
+		"script-src 'self' https://apis.google.com",
+		"script-src-elem 'self' https://apis.google.com/js/api.js"
 	);
 	return next();
 });
