@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import MyPlan from "./pages/MyPlan";
 import Landing from "./pages/Landing";
 import { useState } from "react";
+import MentorsHome from "./pages/MentorsHome";
 
 
 
@@ -12,7 +13,8 @@ const App = () => {
 		<>
 			<Routes>
 				<Route path="/" element={<Landing user={userChange} />} />
-				<Route path="/myPlan" element={<MyPlan user = { user } />} />
+				<Route path="/myPlan" element={<MyPlan user={user} />} />
+				<Route path="/mentors" element={<MentorsHome user={user} />} />
 			</Routes>
 		</>
 	);

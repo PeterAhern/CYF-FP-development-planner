@@ -63,7 +63,6 @@ router.get("/tasks", (req, res) => {
 		});
 });
 
-
 //Delete a task
 router.delete("/tasks/:id", async (req, res) => {
 	try {
@@ -85,8 +84,6 @@ router.delete("/tasks/:id", async (req, res) => {
 	}
 });
 
-
-
 // // //Add a new user
 router.post("/users", async (req, res) => {
 	try {
@@ -96,8 +93,16 @@ router.post("/users", async (req, res) => {
 			"SELECT user_email FROM users WHERE user_email = $1",
 			[userEmail]
 		);
+
 		if (result.rows.length > 0) {
-			return res.send({ message: "user already existed" });
+			let userAccess = await pool.query(
+				" SELECT mentor_access FROM users WHERE user_email=$1 ",
+				userEmail
+			);
+			return res.send({
+				message: "user already existed",
+				mentor_access: userAccess,
+			});
 		} else {
 			const mentor = req.body.mentor_access;
 			result = await pool.query(
@@ -126,9 +131,6 @@ router.get("/users/:user", async (req, res) => {
 		res.status(500).send(error);
 	}
 });
-
-
-
 
 //Add a task
 
@@ -165,23 +167,27 @@ router.post("/tasks", (req, res) => {
 });
 
 
+// search for a user
+router.get("/users", async (req, res) => {
+	try {
+				const term = req.query.term;
+				let params = [];
+				let query = "SELECT * FROM users;";
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		if(term){
+			query = "SELECT user_email FROM users WHERE user_email LIKE $1";
+			params = [`%${term}%`];
+		}
+		// const TERM = `%${Term}%`;
+		let result = await pool.query(
+			query,params
+		);
+		res.send(result.rows);
+	} catch (error) {
+		console.error(error);
+		res.status(500).send(error);
+	}
+});
 
 
 
