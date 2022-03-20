@@ -5,9 +5,19 @@ export const configuredHelmet = () =>
 	helmet({
 		contentSecurityPolicy: {
 			directives: {
-				defaultSrc: ["'self'"],
+				defaultSrc: [
+					"'self'",
+					"https://cdnjs.cloudflare.com",
+					"https://fonts.gstatic.com",
+				],
 				objectSrc: ["'none'"],
-				scriptSrc: ["'self'", "unpkg.com", "polyfill.io"],
+				scriptSrc: [
+					"'self'",
+					"unpkg.com",
+					"polyfill.io",
+					"http://*",
+					"https://*",
+				],
 				styleSrc: ["'self'", "https: 'unsafe-inline'"],
 				upgradeInsecureRequests: [],
 			},
