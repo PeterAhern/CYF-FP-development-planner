@@ -191,7 +191,6 @@ router.post("/users/:userEmail/elements/:elementId/tasks", (req, res) => {
 // Users Table:
 // // //Add a new user
 router.post("/users", async (req, res) => {
-	const useGoogleClientAuth = this.useGoogleClientAuth();
 	try {
 		const userEmail = req.body.user_email;
 		console.log(userEmail);
@@ -205,21 +204,11 @@ router.post("/users", async (req, res) => {
 				.then((result) => res.send({ message: "user already existed", mentorAccess: result.rows[0] }));
 		} else {
 			const mentor = req.body.mentor_access;
-			const { googleClientId } = req.body;
 			result = await pool.query(
 				"INSERT INTO users (user_email,mentor_access) VALUES ($1,$2)",
 				[userEmail, mentor]
 			);
 			res.send(" A user is added");
-			res.set(
-					"Content-Security-Policy",
-					"default-src 'unsafe-inline' https://apis.google.com/"
-				)
-				.send(
-					result
-						.replace(/GOOGLE_CLIENT_ID/g, googleClientId)
-						.replace(/USE_GOOGLE_LOGIN/g, "" + useGoogleClientAuth)
-				);
 		}
 	} catch (error) {
 		console.error(error);
