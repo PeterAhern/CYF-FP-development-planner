@@ -31,10 +31,9 @@ const TaskForm = ({
 		body: JSON.stringify(task),
 	};
 	const updateTaskOptions = {
-		method: "UPDATE",
+		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",
-			// Accept: "application/json",
 		},
 		body: JSON.stringify(task),
 	};

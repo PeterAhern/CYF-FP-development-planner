@@ -15,7 +15,7 @@ router.get("/tasks", (req, res) => {
 router.put("/tasks/:taskId", (req, res) => {
 	const { taskId } = req.params;
 
-	const { id, taskTitle, userEmail, dueDate, evidence, elementId, statusId } =
+	const { taskTitle, userEmail, dueDate, evidence, elementId, statusId } =
 		req.body;
 
 	// making sure that the we have the params before we do anything
@@ -30,33 +30,29 @@ router.put("/tasks/:taskId", (req, res) => {
 				const originalValues = result.rows[0];
 
 				// updating the task in question by checking if any value was provided in the request body for the specific field, else, we are keeping the one in the original values, not to lose any data the graduate did not want to edit
-				return pool
+				pool
 					.query(
-						"UPDATE tasks SET task_title=$1, due_date=$2, evidence = $3, status_id =$4, WHERE element_id=$5 AND task_id=$6",
+						"UPDATE tasks SET task_title=$1, due_date=$2, evidence = $3, status_id =$4 WHERE element_id=$5 AND task_id=$6",
 						[
 							taskTitle || originalValues.task_title,
 							dueDate || originalValues.due_date,
 							evidence || originalValues.evidence,
 							statusId || originalValues.status_id,
 							elementId,
-							id,
+							taskId,
 						]
 					)
 					.then(() =>
 						res.send({ success: true, message: "updated successfully" })
-					)
-					.catch((error) => {
-						console.error(error);
-						res.status(500).json(error);
-					});
+					);
 			})
 			.catch((error) => {
 				console.error(error);
-				res.status(500).json(error);
+				return res.status(400).json(error);
 			});
 	} else {
 		// if any of the params were not provided we are returning back a 400 request error
-		res.status(400).send({ success: false, message: "something is wrong" });
+		return res.status(400).send({ success: false, message: "something is wrong" });
 	}
 });
 
