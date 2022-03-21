@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
-import "./AllUsers.css";
+import "./ AllGraduates.css";
 
-const AllUsers = () => {
+const AllGraduates = () => {
 	const [users, setUsers] = useState([]);
 	const [search, setSearch] = useState([]);
 	const [term, setTerm] = useState("");
@@ -9,7 +9,7 @@ const AllUsers = () => {
 	const [graduate, setGraduate] = useState([]);
 	const fetchUsersHandler = useCallback(async () => {
 		try {
-			const response = await fetch("/api/users");
+			const response = await fetch("/api/graduates");
 
 			if (!response.ok) {
 				throw new Error("Something went wrong!");
@@ -71,4 +71,4 @@ const AllUsers = () => {
 		</>
 	);
 };
-export default AllUsers;
+export default AllGraduates;

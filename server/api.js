@@ -198,22 +198,12 @@ router.get("/users", async (req, res) => {
 	}
 });
 
-//post mentees
 
-router.get("/users/:user/graduates", async (req, res) => {
-	try {
-		const params = req.body.params;
-		// const mentor = "t";
-		const Query =
-			"SELECT user_email,graduate_1, graduate_2,graduate_3 FROM users WHERE user_email =$1;";
-		const result = await pool.query(Query, [params]);
-		res.send(result.rows);
-	} catch (error) {
-		console.error(error);
-		res.status(500).send(error);
-	}
-});
 
+
+
+
+//Get the graduates for a mentor
 router.get("/users/mentors/:mentor", async (req, res) => {
 	try {
 		const params = req.params.mentor;
@@ -222,13 +212,13 @@ router.get("/users/mentors/:mentor", async (req, res) => {
 			"SELECT user_email,graduate_1, graduate_2,graduate_3 FROM users WHERE user_email =$1;";
 		const result = await pool.query(Query, [params]);
 		res.send(result.rows);
-		console.log(result.rows[0].graduate_2 !== null);
 	} catch (error) {
 		console.error(error);
 		res.status(500).send(error);
 	}
 });
 
+//Add a mentee
 router.put("/users/mentors/:mentor", async (req, res) => {
 	try {
 		const params = req.params.mentor;
@@ -265,6 +255,19 @@ router.put("/users/mentors/:mentor", async (req, res) => {
 			}
 		}
 		console.log(result.rows[0].graduate_2);
+	} catch (error) {
+		console.error(error);
+		res.status(500).send(error);
+	}
+});
+
+//Get all graduates
+router.get("/graduates", async (req, res) => {
+	try {
+		const mentor = "f";
+		const Query = "SELECT user_email FROM users WHERE mentor_access =$1;";
+		const result = await pool.query(Query, [mentor]);
+		res.send(result.rows);
 	} catch (error) {
 		console.error(error);
 		res.status(500).send(error);
