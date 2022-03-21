@@ -8,10 +8,30 @@ const Tasks = ( { refresh, refreshFunc }) => {
 	const [tasks, setTasks] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState(null);
+	const [editingTask, setEditingTask] = useState( { editing: false, initialFormState: {} });
 	//states for pop up edit task form
 	const [isOpen, setIsOpen] = useState(false);
 	const togglePopup = () => {
 		setIsOpen(!isOpen);
+	};
+
+
+	const editTaskHandler = (e, index) => {
+		e.persist();
+		setEditingTask({
+			...editingTask,
+			editing: true,
+			initialFormState: {
+				id: tasks[index].id,
+				taskTitle: tasks[index].title,
+				userEmail: tasks[index].user_email,
+				dueDate: tasks[index].due_date,
+				evidence: tasks[index].evidence,
+				elementId: tasks[index].element_id,
+				statusId: tasks[index].status_id,
+			},
+		});
+			togglePopup();
 	};
 
 	const fetchTasksHandler = useCallback(async () => {
@@ -30,7 +50,9 @@ const Tasks = ( { refresh, refreshFunc }) => {
 					id: data[key].task_id,
 					title: data[key].task_title,
 					due_date: data[key].due_date,
+					user_email: data[key].user_email,
 					evidence: data[key].evidence,
+					element_id: data[key].element_id,
 					status_id: data[key].status_id,
 				});
 			}
@@ -59,8 +81,8 @@ const Tasks = ( { refresh, refreshFunc }) => {
 	let content = <p>Found no tasks.</p>;
 
     if (tasks.length > 0) {
-        content = tasks.map((task) => (
-					<Card key={task.id} >
+        content = tasks.map((task, index) => (
+					<Card key={task.id}>
 						<h1>{task.title}</h1>
 						<button
 							className="btn btn-danger"
@@ -72,13 +94,22 @@ const Tasks = ( { refresh, refreshFunc }) => {
 							Delete
 						</button>
 						<div>
-							<input type="button" className="btn btn-danger" value="Edit Task" onClick={togglePopup} />
+							<input
+								type="button"
+								className="btn btn-danger"
+								value="Edit Task"
+								// onClick={editTaskHandler}
+								onClick={(e) => editTaskHandler(e, index)}
+							/>
 							{isOpen && (
 								<PopUpForm
 									content={
 										<>
 											<b>Edit your task</b>
-											<TaskForm props={task.id} elementId={task.element_id} />
+											<TaskForm
+												editingTask={editingTask}
+												setEditingTask = {setEditingTask}
+											/>
 										</>
 									}
 									handleClose={togglePopup}

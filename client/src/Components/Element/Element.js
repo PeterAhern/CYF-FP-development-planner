@@ -8,10 +8,17 @@ const Element = (props) => {
 	//states for pop up edit task form
 	const [isOpen, setIsOpen] = useState(false);
 	const togglePopup = () => {
+		if(props.user!==" "){
+			setUserPasser(props.user);
+		}
+		// console.log(userPasser);
+		// console.log(props.user);
 		setIsOpen(!isOpen);
 	};
 	const [refresh, setRefresh] = useState(true);
 	const [clicked, setClicked] = useState(false);
+	const [userPasser, setUserPasser] = useState("test1@gmail.com");
+
 	return (
 		<div className="element">
 			<button
@@ -33,9 +40,15 @@ const Element = (props) => {
 						<>
 							<b>Fill in task details</b>
 							<TaskForm
-								elementId={props.id}
-								user={props.user}
 								refreshFunc={() => setRefresh(!refresh)}
+								addNewTaskForm={{
+									taskTitle: "",
+									userEmail: userPasser,
+									dueDate: "",
+									evidence: "",
+									elementId: props.id,
+									statusId: 1,
+								}}
 							/>
 						</>
 					}
