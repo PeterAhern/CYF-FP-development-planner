@@ -132,7 +132,7 @@ router.get("/users/:userEmail/elements/:elementId/tasks", (req, res) => {
 	const { userEmail, elementId } = req.params;
 
 	// if the params where provided, then we go ahead
-	if (userEmail.length > 0 || elementId.length > 0) {
+	if (userEmail.length > 0 && elementId.length > 0) {
 		try {
 			// querying for the requested tasks in the specified element for the graduate
 			pool
@@ -176,26 +176,50 @@ router.get("/users/:userEmail/elements/:elementId/tasks", (req, res) => {
 // Will use this to quickly display task details in front end when mapping tasks
 // GET /api/users/:userEmail/elements/:elementId/tasks
 router.get("/users/:userEmail/elements/:elementId/detailedTasks", async (req, res) => {
-	try {
-		const { userEmail, elementId } = req.params;
-		const Query =
-			"SELECT task_title , due_date, evidence, element_title, status_title FROM tasks INNER JOIN elements ON tasks.element_id = elements.element_id INNER JOIN status ON tasks.status_id = status.status_id WHERE user_email = $1 AND elements.element_id=$2";
-		const result = await pool.query(Query, [userEmail, elementId]);
-		res.send(result.rows);
-	} catch (error) {
-		console.error(error);
-		res.status(500).send(error);
+	const { userEmail, elementId } = req.params;
+
+	if (userEmail.length > 0 && elementId.length > 0) {
+		try {
+			// querying for the requested tasks details in the specified element for the graduate
+			const Query =
+				"SELECT task_title , due_date, evidence, element_title, status_title FROM tasks INNER JOIN elements ON tasks.element_id = elements.element_id INNER JOIN status ON tasks.status_id = status.status_id WHERE user_email = $1 AND elements.element_id=$2";
+			const result = await pool.query(Query, [userEmail, elementId]);
+
+			if (result.rows.length > 0) {
+				return res.send(result.rows);
+			} else {
+				// else we are concluding that the user has no tasks in the specified element and we share this information with them
+				return res.send({
+					success: true,
+					message:
+						"it appears you have no tasks in this element, why not add some!",
+				});
+			}
+		} catch (error) {
+			console.error(error);
+			res.status(500).send(error);
+		}
+	} else {
+		// if any of the params were not provided we are returning back a 400 request error
+		return res.status(400).send({
+			success: false,
+			message: "Something went wrong while getting the details for your tasks under this Element",
+		});
 	}
 });
 
 //Add a task under a particular element for a particular Graduate
 // POST /api/users/:userEmail/elements/:elementId/tasks
 router.post("/users/:userEmail/elements/:elementId/tasks", (req, res) => {
+	// destructuring task information to be added from the request body
 	const { taskTitle, dueDate, evidence, statusId } = req.body;
 
+	// destructuring the required parameters to post a new task under a particular element for the graduate
 	const { userEmail, elementId } = req.params;
 
+	// checking that the required parameters are provided before we carry on
 	if (userEmail.length > 0 && elementId.length > 0) {
+		// checking if any of the non-null fields in the tasks table is not provided
 		if (!taskTitle || !statusId) {
 			return res
 				.status(400)
@@ -204,6 +228,8 @@ router.post("/users/:userEmail/elements/:elementId/tasks", (req, res) => {
 						"Task Title and Status cannot be empty, please edit and try again :D ",
 				});
 		} else {
+			// if the previous check clears, the else statement kicks in inserting a new task under the specified element for the graduate
+			// after inserting the new task, we are doing another query to display back all the tasks under a particular element for the graduate
 			return pool
 				.query(
 					"INSERT INTO tasks (task_title, user_email,due_date, evidence,element_id, status_id) VALUES ($1,$2,$3,$4,$5,$6)",
@@ -218,6 +244,7 @@ router.post("/users/:userEmail/elements/:elementId/tasks", (req, res) => {
 				.catch((err) => console.log(err));
 		}
 	} else {
+		// if any of the required parameters was not provided, we are returning an error message with a bad request status 400
 		return res
 			.status(400)
 			.send({
