@@ -6,25 +6,30 @@ const router = Router();
 
 
 
-// Edit a task
+// Edit a Graduate's task
 // UPDATE/PUT /api/users/:userEmail/elements/:elementId/tasks/:taskId
 router.put(
 	"/users/:userEmail/elements/:elementId/tasks/:taskId",
 	(req, res) => {
+		// destructuring the email, elementId and taskId from request params, to be used to match to the particular task we want to edit
 		const { userEmail, elementId, taskId } = req.params;
 
+		// we then destructure the task title, statusId, date and evidence from the request body, to use their values to update (edit) a specific graduate's task
 		const { taskTitle, statusId, date, evidence } = req.body;
 
+		// making sure that the we have the params before we do anything
 		if (userEmail.length > 0 && elementId.length > 0 && taskId.length > 0) {
+			// In case all 3 params are provided, we need to check that a task indeed exists with these params (same graduate email, elementId and taskId)
 			pool
 				.query(
 					"SELECT * FROM tasks WHERE user_email=$1 AND element_id=$2 AND task_id= $3",
 					[userEmail, elementId, taskId]
 				)
 				.then((result) => {
+					// saving the current task which we want to edit in a const
 					const originalValues = result.rows[0];
-					console.log(originalValues);
 
+					// updating the task in question by checking if any value was provided in the request body for the specific field, else, we are keeping the one in the original values, not to lose any data the graduate did not want to edit
 					return pool
 						.query(
 							"UPDATE tasks SET task_title=$1, due_date=$2, status_id =$3,evidence = $4 WHERE tasks.element_id=$5 AND task_id=$6",
@@ -50,12 +55,13 @@ router.put(
 					res.status(500).json(error);
 				});
 		} else {
+			// if any of the params were not provided we are returning back a 400 request error
 			res.status(400).send({ success: false, message: "something is wrong" });
 		}
 	}
 );
 
-//Delete a task
+//Delete a Graduate's task
 // DELETE /api/users/:userEmail/elements/:elementId/tasks/:taskId
 router.delete(
 	"/users/:userEmail/elements/:elementId/tasks/:taskId",
@@ -103,7 +109,7 @@ router.delete(
 );
 
 
-//Get all the tasks for a user element
+//Get all the tasks for a Graduate's element
 // GET /api/users/:userEmail/elements/:elementId/tasks
 router.get("/users/:userEmail/elements/:elementId/tasks", (req, res) => {
 	const { userEmail, elementId } = req.params;
@@ -131,7 +137,7 @@ router.get("/users/:userEmail/elements/:elementId/tasks", (req, res) => {
 		});
 });
 
-// // User's tasks per element with status title and milestone title => inner join per element for user
+// // Graduate's tasks per element with status title and milestone title => inner join per element for Graduate
 // Will use this to quickly display task details in front end when mapping tasks
 // GET /api/users/:userEmail/elements/:elementId/tasks
 router.get("/users/:userEmail/elements/:elementId/detailedTasks", async (req, res) => {
@@ -147,7 +153,7 @@ router.get("/users/:userEmail/elements/:elementId/detailedTasks", async (req, re
 	}
 });
 
-//Add a task under a particular element for a particular user
+//Add a task under a particular element for a particular Graduate
 // POST /api/users/:userEmail/elements/:elementId/tasks
 router.post("/users/:userEmail/elements/:elementId/tasks", (req, res) => {
 	const { taskTitle, dueDate, evidence, statusId } = req.body;
