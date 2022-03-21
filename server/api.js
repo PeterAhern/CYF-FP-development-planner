@@ -66,25 +66,42 @@ router.put(
 router.delete(
 	"/users/:userEmail/elements/:elementId/tasks/:taskId",
 	async (req, res) => {
+		// destructuring the email, elementId and taskId from request params, to be used to match to the particular task we want to delete
 		const { userEmail, elementId, taskId } = req.params;
+
+		// making sure that the we have the params before we do anything
 		if (userEmail.length > 0 && elementId.length > 0 && taskId.length > 0) {
 			try {
+				// querying for the requested task to be deleted, saving result of query in variable
 				const selectQuery =
 					"SELECT task_id FROM tasks WHERE user_email=$1 AND element_id=$2 AND task_id =$3";
-				let selectResult = await pool.query(selectQuery, [userEmail,elementId,taskId]);
+				let selectResult = await pool.query(selectQuery, [
+					userEmail,
+					elementId,
+					taskId,
+				]);
+
+				// if there were no returned results in the select query, it means there is not task to be deleted with the provided params for this graduate
+				// this was added in case there were any requests from postman or other similar apps, as from the front-end, the graduate cannot delete a task they do not have
 				if (selectResult.rows.length === 0) {
 					return res.status(404).send("Not found.");
 				} else {
+					// else we do have a task to be deleted, thus we run the delete query, passing in the specific task's params
 					await pool.query(
 						"DELETE  FROM tasks WHERE user_email=$1 AND element_id=$2 AND task_id =$3",
 						[userEmail, elementId, taskId]
 					);
+
+					// After deletion, we are selecting all the remaining tasks under the specific element of the graduate
 					const data =
 						"SELECT * FROM tasks WHERE user_email=$1 AND element_id=$2";
 					await pool.query(data, [userEmail, elementId]).then((result) => {
+
+						// In case the graduate has any remaining tasks, we are displaying them back to them, by sending them back
 						if (result.rows.length > 0) {
 							return res.send(result.rows);
 						} else {
+							// else, we conclude that the graduate deleted their last task in the specified Element and we return back this detail to the graduate
 							return res.send({
 								success: true,
 								message:
@@ -98,12 +115,11 @@ router.delete(
 				res.status(500).send(error);
 			}
 		} else {
-			return res
-				.status(400)
-				.send({
-					success: false,
-					message: "Something went wrong while deleting your task",
-				});
+			// if any of the params were not provided we are returning back a 400 request error
+			return res.status(400).send({
+				success: false,
+				message: "Something went wrong while deleting your task",
+			});
 		}
 	}
 );
@@ -112,32 +128,51 @@ router.delete(
 //Get all the tasks for a Graduate's element
 // GET /api/users/:userEmail/elements/:elementId/tasks
 router.get("/users/:userEmail/elements/:elementId/tasks", (req, res) => {
+	// destructuring the userEmail and element Id to use them to get all the tasks for the graduate under a specific element
 	const { userEmail, elementId } = req.params;
 
-	pool
-		.query("SELECT * FROM tasks WHERE user_email=$1 AND element_id=$2", [
-			userEmail,
-			elementId,
-		])
-		.then((result) => {
-			if (result.rows.length > 0) {
-				return res.send(result.rows);
-			} else {
-				return res.send({
-					success: true,
-					message:
-						"it appears you have no tasks in this element, why not add some!",
+	// if the params where provided, then we go ahead
+	if (userEmail.length > 0 || elementId.length > 0) {
+		try {
+			// querying for the requested tasks in the specified element for the graduate
+			pool
+				.query("SELECT * FROM tasks WHERE user_email=$1 AND element_id=$2", [
+					userEmail,
+					elementId,
+				])
+				.then((result) => {
+					// if the graduate has any tasks in the specified element, we are returning them back
+					if (result.rows.length > 0) {
+						return res.send(result.rows);
+					} else {
+						// else we are concluding that the user has no tasks in the specified element and we share this information with them
+						return res.send({
+							success: true,
+							message:
+								"it appears you have no tasks in this element, why not add some!",
+						});
+					}
+				})
+				.catch((error) => {
+					console.error(error);
+					console.log(userEmail);
+					return res.status(500).json(error);
 				});
-			}
-		})
-		.catch((error) => {
+		} catch (error) {
 			console.error(error);
-			console.log(userEmail);
-			return res.status(500).json(error);
+			res.status(500).send(error);
+		}
+	} else {
+		// if any of the params were not provided we are returning back a 400 request error
+		return res.status(400).send({
+			success: false,
+			message: "Something went wrong while getting your tasks for this Element",
 		});
+	}
+
 });
 
-// // Graduate's tasks per element with status title and milestone title => inner join per element for Graduate
+// // Graduate's tasks per element with status title and element title => inner join per element for Graduate
 // Will use this to quickly display task details in front end when mapping tasks
 // GET /api/users/:userEmail/elements/:elementId/tasks
 router.get("/users/:userEmail/elements/:elementId/detailedTasks", async (req, res) => {
