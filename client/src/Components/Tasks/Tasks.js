@@ -3,7 +3,6 @@ import Card from "../UI/Card/Card";
 import PopUpForm from "./PopUpForm";
 import TaskForm from "../TaskForm/TaskForm";
 
-
 const Tasks = ( { refresh, refreshFunc }) => {
 	const [tasks, setTasks] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
@@ -49,8 +48,8 @@ const Tasks = ( { refresh, refreshFunc }) => {
 				loadedTasks.push({
 					id: data[key].task_id,
 					title: data[key].task_title,
-					due_date: data[key].due_date,
 					user_email: data[key].user_email,
+					due_date: data[key].due_date,
 					evidence: data[key].evidence,
 					element_id: data[key].element_id,
 					status_id: data[key].status_id,
@@ -81,7 +80,9 @@ const Tasks = ( { refresh, refreshFunc }) => {
 	let content = <p>Found no tasks.</p>;
 
     if (tasks.length > 0) {
+
         content = tasks.map((task, index) => (
+
 					<Card key={task.id}>
 						<h1>{task.title}</h1>
 						<button
@@ -98,8 +99,10 @@ const Tasks = ( { refresh, refreshFunc }) => {
 								type="button"
 								className="btn btn-danger"
 								value="Edit Task"
+
 								// onClick={editTaskHandler}
 								onClick={(e) => editTaskHandler(e, index)}
+
 							/>
 							{isOpen && (
 								<PopUpForm
@@ -107,8 +110,10 @@ const Tasks = ( { refresh, refreshFunc }) => {
 										<>
 											<b>Edit your task</b>
 											<TaskForm
+
 												editingTask={editingTask}
 												setEditingTask = {setEditingTask}
+
 											/>
 										</>
 									}

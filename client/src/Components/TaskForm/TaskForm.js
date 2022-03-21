@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+
 const TaskForm = ({
 	refreshFunc,
 	editingTask,
@@ -15,6 +16,7 @@ const TaskForm = ({
 		}
 	};
 	const [task, setTask] = useState(initialState);
+
 	const changeHandler = (e) => {
 		const inputName = e.target.name;
 		const inputValue = e.target.value;
