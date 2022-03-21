@@ -166,22 +166,19 @@ router.post("/tasks", (req, res) => {
 		.catch((err) => console.log(err));
 });
 
-
 // search for a user
 router.get("/users", async (req, res) => {
 	try {
-				const term = req.query.term;
-				let params = [];
-				let query = "SELECT * FROM users;";
+		const term = req.query.term;
+		let params = [];
+		let query = "SELECT * FROM users;";
 
-		if(term){
+		if (term) {
 			query = "SELECT user_email FROM users WHERE user_email LIKE $1";
 			params = [`%${term}%`];
 		}
 		// const TERM = `%${Term}%`;
-		let result = await pool.query(
-			query,params
-		);
+		let result = await pool.query(query, params);
 		res.send(result.rows);
 	} catch (error) {
 		console.error(error);
@@ -189,15 +186,85 @@ router.get("/users", async (req, res) => {
 	}
 });
 
-
-
-
 // All users
 router.get("/users", async (req, res) => {
 	try {
 		const Query = "SELECT * FROM users ";
 		const result = await pool.query(Query);
 		res.send(result.rows);
+	} catch (error) {
+		console.error(error);
+		res.status(500).send(error);
+	}
+});
+
+//post mentees
+
+router.get("/users/:user/graduates", async (req, res) => {
+	try {
+		const params = req.body.params;
+		// const mentor = "t";
+		const Query =
+			"SELECT user_email,graduate_1, graduate_2,graduate_3 FROM users WHERE user_email =$1;";
+		const result = await pool.query(Query, [params]);
+		res.send(result.rows);
+	} catch (error) {
+		console.error(error);
+		res.status(500).send(error);
+	}
+});
+
+router.get("/users/mentors/:mentor", async (req, res) => {
+	try {
+		const params = req.params.mentor;
+		// const mentor = "t";
+		const Query =
+			"SELECT user_email,graduate_1, graduate_2,graduate_3 FROM users WHERE user_email =$1;";
+		const result = await pool.query(Query, [params]);
+		res.send(result.rows);
+		console.log(result.rows[0].graduate_2 !== null);
+	} catch (error) {
+		console.error(error);
+		res.status(500).send(error);
+	}
+});
+
+router.put("/users/mentors/:mentor", async (req, res) => {
+	try {
+		const params = req.params.mentor;
+		const graduate = req.body.graduate;
+		// const mentor = "t";
+		const Query =
+			"SELECT user_email,graduate_1, graduate_2,graduate_3 FROM users WHERE user_email =$1";
+		const result = await pool.query(Query, [params]);
+		if (!result.rows[0].graduate_1) {
+			const result = await pool.query(
+				"UPDATE users SET graduate_1=$1 WHERE user_email=$2",
+				[graduate, params]
+			);
+			res.send(result);
+		} else {
+			res.send({ msg: "value is not empty!" });
+			if (!result.rows[0].graduate_2) {
+				const result = await pool.query(
+					"UPDATE users SET graduate_2=$1 WHERE user_email=$2",
+					[graduate, params]
+				);
+				res.send(result);
+			} else {
+				res.send({ msg: "value is not empty!" });
+				if (!result.rows[0].graduate_3) {
+					const result = await pool.query(
+						"UPDATE users SET graduate_3=$1 WHERE user_email=$2",
+						[graduate, params]
+					);
+					res.send(result);
+				} else {
+					res.send("no empty values");
+				}
+			}
+		}
+		console.log(result.rows[0].graduate_2);
 	} catch (error) {
 		console.error(error);
 		res.status(500).send(error);
