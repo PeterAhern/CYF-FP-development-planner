@@ -4,7 +4,9 @@ import { useState } from "react";
 const TaskForm = ({
 	refreshFunc,
 	editingTask,
-	setEditingTask, addNewTaskForm,
+	setEditingTask,
+	addNewTaskForm,
+	// editRefreshFunc,
 }) => {
 	let initialState = () => {
 		if (editingTask) {
@@ -23,7 +25,7 @@ const TaskForm = ({
 		setTask({ ...task, [inputName]: inputValue });
 	};
 	const addTaskOptions = {
-		method: "POST", //if editingTask = true, method changes to PUT
+		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
 			Accept: "application/json",
@@ -31,10 +33,9 @@ const TaskForm = ({
 		body: JSON.stringify(task),
 	};
 	const updateTaskOptions = {
-		method: "UPDATE",
+		method: "PUT",
 		headers: {
 			"Content-Type": "application/json",
-			// Accept: "application/json",
 		},
 		body: JSON.stringify(task),
 	};
@@ -48,10 +49,7 @@ const TaskForm = ({
 	//editTask fetch request
 
 	const updateTask = async () => {
-		const response = await fetch(
-			`/api/tasks/${task.id}`,
-			updateTaskOptions
-		);
+		const response = await fetch(`/api/tasks/${task.id}`, updateTaskOptions);
 		if (!response.ok) {
 			throw new Error("Failed to update");
 		}
@@ -68,23 +66,23 @@ const TaskForm = ({
 				elementId: 1,
 				statusId: 1,
 			});
+			refreshFunc();
 		} else {
 			await updateTask();
 			setEditingTask({ ...editingTask, editing: false, initialFormState: {} });
+			refreshFunc();
 		}
-		refreshFunc();
-	};
 
+	};
 	const statusChangeHandler = (e) => {
 		const statusIdValue = e.target.value;
 		setTask({ ...task, statusId: statusIdValue });
 	};
 
-
 	let taskButton = <button>Add Task</button>;
-	if(editingTask){
-		if(editingTask.editing) {
-			taskButton =  <button>Update</button> ;
+	if (editingTask) {
+		if (editingTask.editing) {
+			taskButton = <button>Update</button>;
 		}
 	}
 	return (
