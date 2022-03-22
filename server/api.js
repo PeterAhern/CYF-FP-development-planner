@@ -12,44 +12,49 @@ router.get("/tasks", (req, res) => {
 });
 
 // Edit a task
-router.put("/tasks/:id", (req, res) => {
-	const ID = req.params.id;
-	const status = req.body.status_title;
-	const date = req.body;
-	const evidence = req.body.evidence;
+router.put("/tasks/:taskId", (req, res) => {
 
-	pool
-		.query("SELECT status_id FROM status WHERE status_title = $1", [status])
-		.then((result) => {
-			const newStatusId = result.rows[0].status_id;
-			console.log(newStatusId);
-			return pool
-				.query("SELECT * FROM tasks WHERE task_id= $1", [ID])
-				.then((result) => {
-					const originalValues = result.rows[0];
-					console.log(originalValues);
+	const { taskId } = req.params;
 
-					return pool
-						.query(
-							"UPDATE tasks SET due_date=$1,status_id =$2,evidence = $3 WHERE task_id=$4",
-							[
-								originalValues.due_date || date,
-								originalValues.status_id || newStatusId,
-								originalValues.evidence || evidence,
-								ID,
-							]
-						)
-						.then((result) => res.send(result))
-						.catch((error) => {
-							console.error(error);
-							res.status(500).json(error);
-						});
-				})
-				.catch((error) => {
-					console.error(error);
-					res.status(500).json(error);
-				});
-		});
+	const { taskTitle, userEmail, dueDate, evidence, elementId, statusId } =
+		req.body;
+	console.log(userEmail);
+	// making sure that the we have the params before we do anything
+	if (taskId.length > 0) {
+		pool
+			.query(
+				"SELECT * FROM tasks WHERE user_email=$1 AND element_id=$2 AND task_id= $3",
+				[userEmail, elementId, taskId]
+			)
+			.then((result) => {
+				// saving the current task which we want to edit in a const
+				const originalValues = result.rows[0];
+
+				// updating the task in question by checking if any value was provided in the request body for the specific field, else, we are keeping the one in the original values, not to lose any data the graduate did not want to edit
+				pool
+					.query(
+						"UPDATE tasks SET task_title=$1, due_date=$2, evidence = $3, status_id =$4 WHERE element_id=$5 AND task_id=$6",
+						[
+							taskTitle || originalValues.task_title,
+							dueDate || originalValues.due_date,
+							evidence || originalValues.evidence,
+							statusId || originalValues.status_id,
+							elementId,
+							taskId,
+						]
+					)
+					.then(() =>
+						res.send({ success: true, message: "updated successfully" })
+					);
+			})
+			.catch((error) => {
+				console.error(error);
+				return res.status(400).json(error);
+			});
+	} else {
+		// if any of the params were not provided we are returning back a 400 request error
+		return res.status(400).send({ success: false, message: "something is wrong" });
+	}
 });
 
 //Get all the tasks

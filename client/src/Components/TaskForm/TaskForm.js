@@ -1,54 +1,103 @@
 import { useState } from "react";
 
-const TaskForm = ({ elementId, user, refreshFunc }) => {
-	const [task, setTask] = useState({
-		taskTitle: "",
-		// userEmail: user,
-		userEmail: "halla@gmail",
-		dueDate: "",
-		evidence: "",
-		elementId: elementId,
-		statusId: 1,
-	});
+
+const TaskForm = ({
+	refreshFunc,
+	editingTask,
+	setEditingTask,
+	addNewTaskForm,
+}) => {
+	let initialState = () => {
+		if (editingTask) {
+			if (editingTask.editing) {
+				return editingTask.initialFormState;
+			}
+		} else {
+			return addNewTaskForm;
+		}
+	};
+	const [task, setTask] = useState(initialState);
+
 	const changeHandler = (e) => {
 		const inputName = e.target.name;
 		const inputValue = e.target.value;
 		setTask({ ...task, [inputName]: inputValue });
 	};
-	const requestOptions = {
+	const addTaskOptions = {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
-			"Accept": "application/json",
+			Accept: "application/json",
 		},
 		body: JSON.stringify(task),
 	};
-
+	const updateTaskOptions = {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(task),
+	};
+	//addTask fetch request
 	const addTask = async () => {
-		const response = await fetch("/api/tasks",requestOptions);
+		const response = await fetch("/api/tasks", addTaskOptions);
 		if (!response.ok) {
-			throw new Error("Something went wrong!");
+			throw new Error("Failed to add new task");
+		}
+	};
+	//editTask fetch request
+
+	const updateTask = async () => {
+		const response = await fetch(`/api/tasks/${task.id}`, updateTaskOptions);
+		if (!response.ok) {
+			throw new Error("Failed to update");
 		}
 	};
 	const submitHandler = async (event) => {
 		event.preventDefault();
-		await addTask();
-		refreshFunc();
-		setTask({
-			taskTitle: "",
-			userEmail: "halla@gmail",
-			dueDate: "",
-			evidence: "",
-			elementId: 1,
-			statusId: 1,
-		});
-	};
 
+		if (addNewTaskForm) {
+			await addTask();
+			setTask({
+				taskTitle: "",
+				userEmail: "test1@gmail.com",
+				dueDate: "",
+				evidence: "",
+				elementId: 1,
+				statusId: 1,
+			});
+			refreshFunc();
+		} else {
+			await updateTask();
+			setEditingTask({
+				...editingTask,
+				editing: false,
+				initialFormState: {
+					taskTitle: "",
+					userEmail: "test1@gmail.com",
+					dueDate: "",
+					evidence: "",
+					elementId: 1,
+					statusId: 1,
+				},
+			});
+			refreshFunc();
+
+
+		}
+
+	};
 	const statusChangeHandler = (e) => {
 		const statusIdValue = e.target.value;
 		setTask({ ...task, statusId: statusIdValue });
 	};
 
+	let taskButton = <button>Add Task</button>;
+	if (editingTask) {
+		if (editingTask.editing) {
+			taskButton = <button>Update</button>;
+		}
+	}
 	return (
 		<form onSubmit={submitHandler} className="form-align">
 			<div className="control-group">
@@ -58,7 +107,7 @@ const TaskForm = ({ elementId, user, refreshFunc }) => {
 						type="text"
 						id="taskTitle"
 						name="taskTitle"
-						value={task.taskTitle}
+						value={task?.taskTitle}
 						onChange={changeHandler}
 					/>
 				</div>
@@ -69,7 +118,7 @@ const TaskForm = ({ elementId, user, refreshFunc }) => {
 						name="dueDate"
 						placeholder="Set due date"
 						onChange={changeHandler}
-						value={task.dueDate}
+						value={task?.dueDate}
 					/>
 				</div>
 				<div>
@@ -99,12 +148,12 @@ const TaskForm = ({ elementId, user, refreshFunc }) => {
 						type="text"
 						id="evidence"
 						name="evidence"
-						value={task.evidence}
+						value={task?.evidence}
 						onChange={changeHandler}
 					/>
 				</div>
 			</div>
-			<button>Add Task</button>
+			{taskButton}
 		</form>
 	);
 };
