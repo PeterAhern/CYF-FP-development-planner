@@ -4,7 +4,7 @@ const TaskForm = ({ elementId, user, refreshFunc }) => {
 	const [task, setTask] = useState({
 		taskTitle: "",
 		// userEmail: user,
-		userEmail: "test1@gmail.com",
+		userEmail: "halla@gmail",
 		dueDate: "",
 		evidence: "",
 		elementId: elementId,
@@ -36,7 +36,7 @@ const TaskForm = ({ elementId, user, refreshFunc }) => {
 		refreshFunc();
 		setTask({
 			taskTitle: "",
-			userEmail: "test1@gmail.com",
+			userEmail: "halla@gmail",
 			dueDate: "",
 			evidence: "",
 			elementId: 1,
