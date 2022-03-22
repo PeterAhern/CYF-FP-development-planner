@@ -203,20 +203,6 @@ router.get("/users", async (req, res) => {
 	}
 });
 
-//Get the graduates for a mentor
-router.get("/users/mentors/:mentor", async (req, res) => {
-	try {
-		const params = req.params.mentor;
-		// const mentor = "t";
-		const Query =
-			"SELECT user_email,graduate_1, graduate_2,graduate_3 FROM users WHERE user_email =$1;";
-		const result = await pool.query(Query, [params]);
-		res.send(result.rows);
-	} catch (error) {
-		console.error(error);
-		res.status(500).send(error);
-	}
-});
 
 //Add a mentee
 router.put("/users/mentors/:mentor", async (req, res) => {
@@ -278,5 +264,20 @@ router.get("/graduates", async (req, res) => {
 		res.status(500).send(error);
 	}
 });
+
+//get all graduates for specific mentor
+router.get("/graduates/:mentor", async (req, res) => {
+	try {
+		const mentor = req.params.mentor;
+		const Query =
+			"SELECT graduate_1,graduate_2,graduate_3 FROM users WHERE user_email  =$1 ";
+		const result = await pool.query(Query, [mentor]);
+		res.send(result.rows);
+	} catch (error) {
+		console.error(error);
+		res.status(500).send(error);
+	}
+});
+
 
 export default router;
