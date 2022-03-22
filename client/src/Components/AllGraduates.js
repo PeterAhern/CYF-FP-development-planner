@@ -41,7 +41,7 @@ const AllGraduates = () => {
 					type="text"
 					id="customerName"
 					className="searchBar"
-					placeholder="Search"
+					placeholder="Search all graduates"
 					value={term}
 					onChange={onChange}
 				/>

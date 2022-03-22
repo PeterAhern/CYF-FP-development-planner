@@ -24,7 +24,7 @@ const MentorGraduate = (props) => {
 	return (
 		<div>
 			<h4>
-				{props.user} <button onClick={addGraduate}>Add</button>
+				{props.user} <button onClick={addGraduate}>Connect</button>
 			</h4>
 		</div>
 	);

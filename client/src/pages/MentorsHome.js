@@ -1,13 +1,17 @@
 import Navbar from "../Components/Header/Navbar/Navbar";
 import Tasks from "../Components/Tasks/Tasks";
-// import Search from "../Components/Search";
 import AllGraduates from "../Components/AllGraduates";
+import MenteeList from "../Components/MenteeList";
+
 const MentorsHome = () => {
 	return (
 		<>
 			<Navbar />
+			<h1> Welcome Mentor!</h1>
+			<h3> Connect with graduates, give feedback, support growth!</h3>
 			<AllGraduates />
-			<h2> welcome mentor</h2>
+			<MenteeList />
+			<h1> All Tasks</h1>
 			<Tasks />
 		</>
 	);
