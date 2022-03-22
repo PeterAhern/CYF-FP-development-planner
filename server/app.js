@@ -9,12 +9,15 @@ import {
 	logErrors,
 	pushStateRouting,
 } from "./middleware";
-
+let cors = require("cors");
 const apiRoot = "/api";
 const staticDir = path.join(__dirname, "static");
-
 const app = express();
-
+app.use(
+	cors({
+		origin: "http://localhost:3000",
+	})
+);
 app.use(express.json());
 app.use(configuredHelmet());
 app.use(morgan("dev"));

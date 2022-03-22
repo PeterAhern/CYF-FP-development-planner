@@ -1,15 +1,15 @@
 import { useState, useEffect, useCallback } from "react";
-import "./AllUsers.css";
+import "./AllGraduates.css";
+import MentorGraduate from "./MentorGraduates";
 
-const AllUsers = () => {
+const AllGraduates = () => {
 	const [users, setUsers] = useState([]);
 	const [search, setSearch] = useState([]);
 	const [term, setTerm] = useState("");
 	const [clicked, setClicked] = useState(false);
-	const [graduate, setGraduate] = useState([]);
 	const fetchUsersHandler = useCallback(async () => {
 		try {
-			const response = await fetch("/api/users");
+			const response = await fetch("/api/graduates");
 
 			if (!response.ok) {
 				throw new Error("Something went wrong!");
@@ -30,10 +30,10 @@ const AllUsers = () => {
 		setSearch(users.filter((user) => user.user_email.includes(term)));
 		setClicked(false);
 	};
-	const addGraduate = (email) => {
-		setGraduate(graduate.concat(email));
-	};
-	console.log(graduate);
+	// const addGraduate = (email) => {
+	// 	setGraduate(graduate.concat(email));
+	// };
+	// console.log(graduate);
 	return (
 		<>
 			<div>
@@ -49,26 +49,28 @@ const AllUsers = () => {
 			<button onClick={() => setClicked(!clicked)}>All Graduates</button>
 			{clicked &&
 				users.map((user, index) => (
-					<h5 key={index}>
-						{user.user_email}{" "}
-						<button onClick={() => addGraduate(user.user_email)}>add</button>
-					</h5>
+					// <h5 key={index}>
+					// 	{user.user_email}{" "}
+					// 	<button onClick={() => addGraduate(user.user_email)}>add</button>
+					// </h5>
+					<MentorGraduate user = {user.user_email} key ={index} />
 				))}
 
 			{term.length > 0 &&
 				search.map((user, index) => (
-					<h5 key={index}>
-						Graduate {user.user_email}
-						<button>add</button>
-					</h5>
+					// <h5 key={index}>
+					// 	Graduate {user.user_email}
+					// 	<button>add</button>
+					// </h5>
+					<MentorGraduate user ={user.user_email} key ={index} />
 				))}
-			<div className="mentees">
-<h3>my mentees</h3>
-				{graduate.map((item, index) => (
-					<h5 key={index}>{item}<button>delete</button></h5>
-				))}
-			</div>
+{/* // 			<div className="mentees">
+// <h3>my mentees</h3>
+// 				{graduate.map((item, index) => ( */}
+{/* // 				))}
+					<h5 key={index}>{item}<button>delete</button></h5> */}
+			{/* </div> */}
 		</>
 	);
 };
-export default AllUsers;
+export default AllGraduates;

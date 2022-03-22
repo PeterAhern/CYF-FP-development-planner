@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+
 const TaskForm = ({
 	refreshFunc,
 	editingTask,
@@ -54,6 +55,7 @@ const TaskForm = ({
 	};
 	const submitHandler = async (event) => {
 		event.preventDefault();
+
 		if (addNewTaskForm) {
 			await addTask();
 			setTask({
@@ -80,6 +82,7 @@ const TaskForm = ({
 				},
 			});
 			refreshFunc();
+
 
 		}
 
