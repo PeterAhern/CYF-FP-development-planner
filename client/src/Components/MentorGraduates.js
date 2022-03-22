@@ -9,14 +9,13 @@ const MentorGraduate = (props) => {
 			"Content-Type": "application/json",
 			Accept: "application/json",
 		},
-		body: JSON.stringify({ graduate:props.user }),
+		body: JSON.stringify({ graduate: props.user }),
 	};
 
 	const addGraduate = async () => {
-		const response = await fetch(
-			"api/users/mentors/linda@gmail",
-			requestOptions
-		);
+		let mentor = "linda@gmail";
+		//just for testing
+		const response = await fetch(`api/users/mentors/${mentor}`, requestOptions);
 		if (!response.ok) {
 			throw new Error("Something went wrong!");
 		}

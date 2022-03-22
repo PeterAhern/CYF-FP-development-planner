@@ -7,7 +7,6 @@ const AllGraduates = () => {
 	const [search, setSearch] = useState([]);
 	const [term, setTerm] = useState("");
 	const [clicked, setClicked] = useState(false);
-	// const [graduate, setGraduate] = useState([]);
 	const fetchUsersHandler = useCallback(async () => {
 		try {
 			const response = await fetch("/api/graduates");
