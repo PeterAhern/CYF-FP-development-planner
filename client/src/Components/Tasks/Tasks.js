@@ -3,7 +3,7 @@ import Card from "../UI/Card/Card";
 import PopUpForm from "./PopUpForm";
 import TaskForm from "../TaskForm/TaskForm";
 
-const Tasks = ( { refresh, refreshFunc, setRefresh }) => {
+const Tasks = ( { refresh, refreshFunc }) => {
 	const [tasks, setTasks] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState(null);
@@ -97,7 +97,6 @@ const Tasks = ( { refresh, refreshFunc, setRefresh }) => {
 								type="button"
 								className="btn btn-danger"
 								value="Edit Task"
-								// onClick={editTaskHandler}
 								onClick={(e) => editTaskHandler(e, index)}
 							/>
 							{isOpen && (
@@ -106,7 +105,7 @@ const Tasks = ( { refresh, refreshFunc, setRefresh }) => {
 										<>
 											<b>Edit your task</b>
 											<TaskForm
-												refreshFunc={() => setRefresh(!refresh)}
+												refreshFunc={refreshFunc}
 												editingTask={editingTask}
 												setEditingTask={setEditingTask}
 											/>

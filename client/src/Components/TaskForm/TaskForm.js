@@ -6,7 +6,6 @@ const TaskForm = ({
 	editingTask,
 	setEditingTask,
 	addNewTaskForm,
-	// editRefreshFunc,
 }) => {
 	let initialState = () => {
 		if (editingTask) {
@@ -69,8 +68,20 @@ const TaskForm = ({
 			refreshFunc();
 		} else {
 			await updateTask();
-			setEditingTask({ ...editingTask, editing: false, initialFormState: {} });
+			setEditingTask({
+				...editingTask,
+				editing: false,
+				initialFormState: {
+					taskTitle: "",
+					userEmail: "test1@gmail.com",
+					dueDate: "",
+					evidence: "",
+					elementId: 1,
+					statusId: 1,
+				},
+			});
 			refreshFunc();
+
 		}
 
 	};
@@ -94,7 +105,7 @@ const TaskForm = ({
 						type="text"
 						id="taskTitle"
 						name="taskTitle"
-						value={task.taskTitle}
+						value={task?.taskTitle}
 						onChange={changeHandler}
 					/>
 				</div>
@@ -105,7 +116,7 @@ const TaskForm = ({
 						name="dueDate"
 						placeholder="Set due date"
 						onChange={changeHandler}
-						value={task.dueDate}
+						value={task?.dueDate}
 					/>
 				</div>
 				<div>
@@ -135,7 +146,7 @@ const TaskForm = ({
 						type="text"
 						id="evidence"
 						name="evidence"
-						value={task.evidence}
+						value={task?.evidence}
 						onChange={changeHandler}
 					/>
 				</div>

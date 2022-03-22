@@ -11,8 +11,6 @@ const Element = (props) => {
 		if(props.user!==" "){
 			setUserPasser(props.user);
 		}
-		// console.log(userPasser);
-		// console.log(props.user);
 		setIsOpen(!isOpen);
 	};
 	const [refresh, setRefresh] = useState(true);
