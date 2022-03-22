@@ -14,7 +14,7 @@ const MentorGraduate = (props) => {
 
 	const addGraduate = async () => {
 		const response = await fetch(
-			"http://localhost:3100/api/users/mentors/linda@gmail",
+			"api/users/mentors/linda@gmail",
 			requestOptions
 		);
 		if (!response.ok) {

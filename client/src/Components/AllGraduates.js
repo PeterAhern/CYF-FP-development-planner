@@ -10,7 +10,7 @@ const AllGraduates = () => {
 	// const [graduate, setGraduate] = useState([]);
 	const fetchUsersHandler = useCallback(async () => {
 		try {
-			const response = await fetch("/api/users");
+			const response = await fetch("/api/graduates");
 
 			if (!response.ok) {
 				throw new Error("Something went wrong!");
