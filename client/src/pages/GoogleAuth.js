@@ -31,6 +31,7 @@ const GoogleAuth = (props) => {
 			"/api/users",
 			requestOptions
 		);
+		console.log(response.body.mentor_access);
 		if (!response.ok) {
 			throw new Error("Something went wrong!");
 		}

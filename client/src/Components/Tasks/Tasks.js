@@ -3,7 +3,7 @@ import Card from "../UI/Card/Card";
 import PopUpForm from "./PopUpForm";
 import TaskForm from "../TaskForm/TaskForm";
 
-const Tasks = ( { refresh, refreshFunc }) => {
+const Tasks = ({ refresh, refreshFunc }) => {
 	const [tasks, setTasks] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState(null);
@@ -42,6 +42,7 @@ const Tasks = ( { refresh, refreshFunc }) => {
 				throw new Error("Something went wrong!");
 			}
 			const data = await response.json();
+      
 			const loadedTasks = [];
 			for (const key in data) {
 				loadedTasks.push({
@@ -55,6 +56,7 @@ const Tasks = ( { refresh, refreshFunc }) => {
 				});
 			}
 			setTasks(loadedTasks);
+
 		} catch (error) {
 			setError(error.message);
 		}
@@ -65,7 +67,7 @@ const Tasks = ( { refresh, refreshFunc }) => {
 		fetchTasksHandler();
 	}, [fetchTasksHandler, refresh]);
 
-	//deleteTaskHandler
+
 	const deleteTask = async (id) => {
 		const response = await fetch(`/api/tasks/${id}`, {
 			method: "DELETE",
@@ -141,6 +143,7 @@ const Tasks = ( { refresh, refreshFunc }) => {
 			{content}
 		</>
 	);
+
 };
 
 export default Tasks;
