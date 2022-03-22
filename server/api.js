@@ -198,7 +198,7 @@ router.get("/users", async (req, res) => {
 	}
 });
 
-//Get the graduates for a mentor
+// // Get the graduates for a mentor
 router.get("/users/mentors/:mentor", async (req, res) => {
 	try {
 		const params = req.params.mentor;
@@ -220,42 +220,50 @@ router.put("/users/mentors/:mentor", async (req, res) => {
 		const graduate = req.body.graduate;
 		// const mentor = "t";
 		const Query =
-			"SELECT user_email,graduate_1, graduate_2,graduate_3 FROM users WHERE user_email =$1";
-		const result = await pool.query(Query, [params]);
-		if (
-			!result.rows[0].graduate_1 &&
-			(result.rows[0].graduate_2 || !result.rows[0].graduate_2) &&
-			(result.rows[0].graduate_3 || !result.rows[0].graduate_3)
-		) {
-			const result1 = await pool.query(
-				"UPDATE users SET graduate_1=$1 WHERE user_email=$2",
-				[graduate, params]
-			);
-			res.send(result1);
-		} else if (
-			result.rows[0].graduate_1 &&
-			!result.rows[0].graduate_2 &&
-			(!result.rows[0].graduate_3 || result.rows[0].graduate_3)
-		) {
-			const result2 = await pool.query(
-				"UPDATE users SET graduate_2=$1 WHERE user_email=$2",
-				[graduate, params]
-			);
-			res.send(result2);
-		} else if (
-			result.rows[0].graduate_1 &&
-			result.rows[0].graduate_2 &&
-			!result.rows[0].graduate_3
-		) {
-			const result3 = await pool.query(
-				"UPDATE users SET graduate_3=$1 WHERE user_email=$2",
-				[graduate, params]
-			);
-			res.send(result3);
+			"SELECT * FROM users WHERE graduate_1 IN ($1) OR graduate_2 IN ($1) OR graduate_3 IN ($1)AND user_email=$2;";
+		const result = await pool.query(Query, [graduate, params]);
+		console.log(result.rows.length);
+		if (result.rows.length === 0) {
+			const Query =
+				"SELECT user_email,graduate_1, graduate_2,graduate_3 FROM users WHERE user_email =$1";
+			const result = await pool.query(Query, [params]);
+			if (
+				!result.rows[0].graduate_1 &&
+				(result.rows[0].graduate_2 || !result.rows[0].graduate_2) &&
+				(result.rows[0].graduate_3 || !result.rows[0].graduate_3)
+			) {
+				const result1 = await pool.query(
+					"UPDATE users SET graduate_1=$1 WHERE user_email=$2",
+					[graduate, params]
+				);
+				res.send(result1);
+			} else if (
+				result.rows[0].graduate_1 &&
+				!result.rows[0].graduate_2 &&
+				(!result.rows[0].graduate_3 || result.rows[0].graduate_3)
+			) {
+				const result2 = await pool.query(
+					"UPDATE users SET graduate_2=$1 WHERE user_email=$2",
+					[graduate, params]
+				);
+				res.send(result2);
+			} else if (
+				result.rows[0].graduate_1 &&
+				result.rows[0].graduate_2 &&
+				!result.rows[0].graduate_3
+			) {
+				const result3 = await pool.query(
+					"UPDATE users SET graduate_3=$1 WHERE user_email=$2",
+					[graduate, params]
+				);
+				res.send(result3);
+			} else {
+				res.send("all entries are full");
+			}
+			// console.log(result.rows[0].graduate_2);
 		} else {
-			res.send("all entries are full");
+			res.send("graduate is already added");
 		}
-		// console.log(result.rows[0].graduate_2);
 	} catch (error) {
 		console.error(error);
 		res.status(500).send(error);
@@ -273,5 +281,8 @@ router.get("/graduates", async (req, res) => {
 		res.status(500).send(error);
 	}
 });
+
+
+
 
 export default router;
