@@ -1,7 +1,7 @@
-import Card from "../Components/UI/Card/Card";
-import Element from "../Components/Element/Element";
+import Card from "../../UI/Card/Card";
+import Element from "../../Element/Element";
 import "./MyPlan.css";
-import Navbar from "../Components/Header/Navbar/Navbar";
+import Navbar from "../../Header/Navbar/Navbar";
 const MyPlan = (props) => {
 return (
   <>
