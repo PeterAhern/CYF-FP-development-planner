@@ -2,8 +2,7 @@ import Card from "../../UI/Card/Card";
 import Element from "../../Element/Element";
 import "./MyPlan.css";
 import Navbar from "../../Header/Navbar/Navbar";
-const MyPlan = (props) => {
-	
+const MyPlan = ({ graduateEmail }) => {
 	//  const h = goal;
 	return (
 		<>
@@ -16,9 +15,9 @@ const MyPlan = (props) => {
 					</p>
 					<h1>Elements to Success</h1>
 					<div className="elements">
-						<Element id={1} name={"Technical"} user={props.user} />
-						<Element id={2} name={"Job Search"} user={props.user} />
-						<Element id={3} name={"Soft Skills"} user={props.user} />
+						<Element id={1} name={"Technical"} graduateEmail={graduateEmail} />
+						<Element id={2} name={"Job Search"} graduateEmail={graduateEmail} />
+						<Element id={3} name={"Soft Skills"} graduateEmail={graduateEmail} />
 					</div>
 				</Card>
 			</main>
