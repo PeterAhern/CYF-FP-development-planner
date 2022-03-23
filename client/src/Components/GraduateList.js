@@ -30,11 +30,10 @@ const GraduateList = ({ addGradRefresh }) => {
 			fetchGradsHandler(user);
 		}, [fetchGradsHandler, addGradRefresh]);
 
-    return (
-			<div className="table-container">
-				<h1>Graduate Connections</h1>
-
-				<table>
+		console.log(gradList.Graduate1);
+		let gradListContent = <h1>No graduate connections, search and add graduates</h1>;
+	if (gradList.Graduate1!==null) {
+			gradListContent = <table>
 					<thead>
 						<tr>
 							<th>Graduate Name</th>
@@ -47,10 +46,17 @@ const GraduateList = ({ addGradRefresh }) => {
 						<tr>{gradList.Graduate2}</tr>
 						<tr>{gradList.Graduate3}</tr>
 					</tbody>
-				</table>
+				</table>;
+		}
+
+		console.log(gradListContent);
+
+    return (
+			<div className="table-container">
+				<h1>Graduate Connections</h1>
+				{gradListContent}
 			</div>
 		);
-
 };
 
 
