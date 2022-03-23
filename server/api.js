@@ -397,10 +397,10 @@ router.get("/graduates", async (req, res) => {
 		const mentor = "f";
 		const Query = "SELECT user_email FROM users WHERE mentor_access =$1;";
 		const result = await pool.query(Query, [mentor]);
-		res.send(result.rows);
+		return res.send(result.rows);
 	} catch (error) {
 		console.error(error);
-		res.status(500).send(error);
+		return res.status(500).send(error);
 	}
 });
 
