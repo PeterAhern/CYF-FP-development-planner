@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import "./GraduateList.css";
 
-const GraduateList = () => {
+const GraduateList = ({ addGradRefresh, gradRefreshFunc }) => {
 
 	const user = "mentor@gmail.com";
 
@@ -20,9 +20,7 @@ const GraduateList = () => {
 					Graduate2: data[0].graduate_id_2,
 					Graduate3: data[0].graduate_id_3,
 				});
-				console.log(loadedGrads[0]);
 			setGradList(loadedGrads[0]);
-			// console.log(gradList[0]);
 		} catch (error) {
 			console.log(error.message);
 		}
@@ -30,7 +28,7 @@ const GraduateList = () => {
 
 	useEffect(() => {
 			fetchGradsHandler(user);
-		}, [fetchGradsHandler]);
+		}, [fetchGradsHandler, addGradRefresh]);
 
     return (
 			<div className="table-container">

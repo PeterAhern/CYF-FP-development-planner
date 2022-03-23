@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import "./AllGraduates.css";
 import MentorGraduate from "./MentorGraduates";
 
-const AllGraduates = () => {
+const AllGraduates = ( { gradRefreshFunc }) => {
 	const [users, setUsers] = useState([]);
 	const [search, setSearch] = useState([]);
 	const [term, setTerm] = useState("");
@@ -53,7 +53,11 @@ const AllGraduates = () => {
 					// 	{user.user_email}{" "}
 					// 	<button onClick={() => addGraduate(user.user_email)}>add</button>
 					// </h5>
-					<MentorGraduate user = {user.user_email} key ={index} />
+					<MentorGraduate
+						user={user.user_email}
+						key={index}
+						gradRefreshFunc={gradRefreshFunc}
+					/>
 				))}
 
 			{term.length > 0 &&
@@ -62,12 +66,16 @@ const AllGraduates = () => {
 					// 	Graduate {user.user_email}
 					// 	<button>add</button>
 					// </h5>
-					<MentorGraduate user ={user.user_email} key ={index} />
+					<MentorGraduate
+						user={user.user_email}
+						key={index}
+						gradRefreshFunc={gradRefreshFunc}
+					/>
 				))}
-{/* // 			<div className="mentees">
+			{/* // 			<div className="mentees">
 // <h3>my mentees</h3>
 // 				{graduate.map((item, index) => ( */}
-{/* // 				))}
+			{/* // 				))}
 					<h5 key={index}>{item}<button>delete</button></h5> */}
 			{/* </div> */}
 		</>
