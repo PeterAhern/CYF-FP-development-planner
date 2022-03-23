@@ -1,8 +1,66 @@
 import { Router } from "express";
 
+
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
+
 import pool from "./db";
 
 const router = Router();
+
+router.post("/register", (req, res) => {
+  const { user_email, password } = req.body;
+
+  bcrypt.hash(password, saltRounds, (err, hash) => {
+    if (err) {
+      console.log(err);
+    }
+
+    pool.query(
+			"INSERT INTO users (user_email, mentor_access, password) VALUES ($1,$2,$3)",
+			[user_email, false, hash]
+		).then(() => res.send("User inserted successfully"));
+  });
+});
+
+router.get("/login", (req, res) => {
+	console.log("req.session.user has the value: ", req.session.user);
+  if (req.session.user) {
+    return res.send({ loggedIn: true, user: req.session.user });
+  } else {
+    return res.send({ loggedIn: false });
+  }
+});
+
+router.post("/login", (req, res) => {
+  const { user_email, password } = req.body;
+  console.log("email", user_email);
+
+  pool.query(
+    "SELECT * FROM users WHERE user_email = $1;",
+    [user_email]).then((result) => {
+		console.log("result after querying", result);
+		console.log("end of result after querying");
+		if (result.rows.length > 0) {
+			console.log("the password passed from req body: ", password);
+			console.log("the password from the result: ", result.rows[0].password);
+			bcrypt.compare(password, result.rows[0].password, (error, response) => {
+				if (response) {
+					console.log("comparison successfull");
+					req.session.user = result.rows[0];
+					console.log(req.session.user);
+					res.send(result.rows[0]);
+				} else {
+					res.send({ message: "Wrong username/password combination!" });
+				}
+			});
+		} else {
+			res.send({ message: "User doesn't exist" });
+		}
+	}).catch((err) => console.log(err));
+});
+
+
 
 router.get("/tasks", (req, res) => {
 	pool
