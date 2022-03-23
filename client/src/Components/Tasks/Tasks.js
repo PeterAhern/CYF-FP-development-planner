@@ -5,7 +5,7 @@ import TaskForm from "../TaskForm/TaskForm";
 //for date formatting on task card
 	import moment from "moment";
 
-const Tasks = ({ refresh, refreshFunc }) => {
+const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 	const [tasks, setTasks] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState(null);
@@ -41,7 +41,9 @@ const Tasks = ({ refresh, refreshFunc }) => {
 		setIsLoading(true);
 		setError(null);
 		try {
-			const response = await fetch("/api/tasks");
+			const response = await fetch(
+				`/api/users/${userEmail}/elements/${elementId}/tasks`
+			);
 
 			if (!response.ok) {
 				throw new Error("Something went wrong!");
@@ -65,16 +67,19 @@ const Tasks = ({ refresh, refreshFunc }) => {
 			setError(error.message);
 		}
 		setIsLoading(false);
-	}, []);
+	}, [userEmail, elementId]);
 
 	useEffect(() => {
 		fetchTasksHandler();
 	}, [fetchTasksHandler, refresh]);
 
 	const deleteTask = async (id) => {
-		const response = await fetch(`/api/tasks/${id}`, {
-			method: "DELETE",
-		});
+		const response = await fetch(
+			`/api/users/${userEmail}/elements/${elementId}/tasks/${id}`,
+			{
+				method: "DELETE",
+			}
+		);
 		refreshFunc();
 		if (!response.ok) {
 			throw new Error("Something went wrong!");
@@ -158,6 +163,6 @@ const Tasks = ({ refresh, refreshFunc }) => {
 	}
 
 	return <>{content}</>;
-};;
+};
 
 export default Tasks;

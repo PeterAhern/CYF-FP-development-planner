@@ -8,14 +8,14 @@ const Element = (props) => {
 	//states for pop up edit task form
 	const [isOpen, setIsOpen] = useState(false);
 	const togglePopup = () => {
-		if(props.user!==" "){
+		if (props.graduateEmail !== " ") {
 			setUserPasser(props.user);
 		}
 		setIsOpen(!isOpen);
 	};
 	const [refresh, setRefresh] = useState(true);
 	const [clicked, setClicked] = useState(false);
-	const [userPasser, setUserPasser] = useState("test1@gmail.com");
+	const [userPasser, setUserPasser] = useState(props.graduateEmail);
 
 	return (
 		<div className="element">
@@ -55,7 +55,12 @@ const Element = (props) => {
 			)}
 			{clicked && (
 				<div className="form">
-					<Tasks refresh={refresh} refreshFunc={() => setRefresh(!refresh)} />
+					<Tasks
+						userEmail={userPasser}
+						elementId={props.id}
+						refresh={refresh}
+						refreshFunc={() => setRefresh(!refresh)}
+					/>
 				</div>
 			)}
 		</div>

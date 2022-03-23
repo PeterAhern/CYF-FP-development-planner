@@ -40,7 +40,7 @@ const TaskForm = ({
 	};
 	//addTask fetch request
 	const addTask = async () => {
-		const response = await fetch("/api/tasks", addTaskOptions);
+		const response = await fetch(`/api/users/${task.userEmail}/elements/${task.elementId}/tasks`, addTaskOptions);
 		if (!response.ok) {
 			throw new Error("Failed to add new task");
 		}
@@ -48,7 +48,10 @@ const TaskForm = ({
 	//editTask fetch request
 
 	const updateTask = async () => {
-		const response = await fetch(`/api/tasks/${task.id}`, updateTaskOptions);
+		const response = await fetch(
+			`/api/users/${task.userEmail}/elements/${task.elementId}/tasks/${task.id}`,
+			updateTaskOptions
+		);
 		if (!response.ok) {
 			throw new Error("Failed to update");
 		}
@@ -60,10 +63,10 @@ const TaskForm = ({
 			await addTask();
 			setTask({
 				taskTitle: "",
-				userEmail: "test1@gmail.com",
+				userEmail: task.userEmail,
 				dueDate: "",
 				evidence: "",
-				elementId: 1,
+				elementId: task.elementId,
 				statusId: 1,
 			});
 			refreshFunc();
@@ -74,10 +77,10 @@ const TaskForm = ({
 				editing: false,
 				initialFormState: {
 					taskTitle: "",
-					userEmail: "test1@gmail.com",
+					userEmail: task.userEmail,
 					dueDate: "",
 					evidence: "",
-					elementId: 1,
+					elementId: task.elementId,
 					statusId: 1,
 				},
 			});
