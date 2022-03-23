@@ -1,20 +1,22 @@
 import { Route, Routes } from "react-router-dom";
-import MyPlan from "./pages/MyPlan";
-import Landing from "./pages/Landing";
-import { useState } from "react";
-import MentorsHome from "./pages/MentorsHome";
 
 
+import Registration from "./pages/registration";
+import Plan from "./pages/plan";
 
 const App = () => {
-	const [user, setUser] = useState(" ");
-	const userChange=(user) =>(setUser(user));
 	return (
 		<>
 			<Routes>
-				<Route path="/" element={<Landing user={userChange} />} />
-				<Route path="/myPlan" element={<MyPlan user={user} />} />
-				<Route path="/mentors" element={<MentorsHome user={user} />} />
+				<Route
+					path="/"
+					exact
+					element={<Registration />}
+				/>
+				<Route
+					path="/plan"
+					exact
+					element={<Plan />} />
 			</Routes>
 		</>
 	);

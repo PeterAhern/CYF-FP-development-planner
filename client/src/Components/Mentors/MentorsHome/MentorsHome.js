@@ -1,7 +1,7 @@
-import Navbar from "../Components/Header/Navbar/Navbar";
-import Tasks from "../Components/Tasks/Tasks";
+import Navbar from "../../../Components/Header/Navbar/Navbar";
+import Tasks from "../../Tasks/Tasks";
 // import Search from "../Components/Search";
-import AllGraduates from "../Components/AllGraduates";
+import AllGraduates from "../ViewAllGraduates/AllGraduates";
 const MentorsHome = () => {
 	return (
 		<>
