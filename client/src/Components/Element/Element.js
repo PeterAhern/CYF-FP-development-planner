@@ -9,7 +9,7 @@ const Element = (props) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const togglePopup = () => {
 		if (props.graduateEmail !== " ") {
-			setUserPasser(props.user);
+			setUserPasser(props.graduateEmail);
 		}
 		setIsOpen(!isOpen);
 	};

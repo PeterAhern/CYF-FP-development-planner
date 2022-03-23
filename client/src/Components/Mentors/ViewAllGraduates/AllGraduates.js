@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import "./AllGraduates.css";
 import MentorGraduate from "./MentorGraduates";
 
-const AllGraduates = ( { gradRefreshFunc }) => {
+const AllGraduates = ({ mentorEmail, gradRefreshFunc }) => {
 	const [users, setUsers] = useState([]);
 	const [search, setSearch] = useState([]);
 	const [term, setTerm] = useState("");
