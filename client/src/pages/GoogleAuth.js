@@ -99,7 +99,9 @@ const GoogleAuth = (props) => {
 								onLogoutSuccess={onSignoutSuccess}
 							></GoogleLogout> */}
 							<Link to="/myPlan">
-								<button>Take me to my plan</button>
+								<button className="btn btn-danger m-5">
+									Take me to my plan
+								</button>
 							</Link>
 						</div>
 					</main>
