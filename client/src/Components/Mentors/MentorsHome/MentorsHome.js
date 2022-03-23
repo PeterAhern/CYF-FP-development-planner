@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Navbar from "../Components/Header/Navbar/Navbar";
-import Tasks from "../Components/Tasks/Tasks";
-import AllGraduates from "../Components/AllGraduates";
-import GraduateList from "../Components/GraduateList";
+import Navbar from "../../Header/Navbar/Navbar";
+import Tasks from "../../Tasks/Tasks";
+import AllGraduates from "../ViewAllGraduates/AllGraduates";
+import GraduateList from "../GraduateList/GraduateList";
 
 const MentorsHome = () => {
 	const [addGradRefresh, setAddGradRefresh] = useState(true);
