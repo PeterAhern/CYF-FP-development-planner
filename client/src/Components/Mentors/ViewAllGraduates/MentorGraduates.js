@@ -1,7 +1,6 @@
 // import { useState } from "react";
 
-const MentorGraduate = (props) => {
-	// const [graduate, setGraduate] = useState({ graduate: " " });
+const MentorGraduate = ( { user, gradRefreshFunc  } ) => {
 
 	const requestOptions = {
 		method: "Put",
@@ -9,22 +8,23 @@ const MentorGraduate = (props) => {
 			"Content-Type": "application/json",
 			Accept: "application/json",
 		},
-		body: JSON.stringify({ graduate: props.user }),
+		body: JSON.stringify({ graduate: user }),
 	};
 
 	const addGraduate = async () => {
-		let mentor = "linda@gmail";
+		let mentor = "mentor@gmail.com";
 		//just for testing
 		const response = await fetch(`api/users/mentors/${mentor}`, requestOptions);
 		if (!response.ok) {
 			throw new Error("Something went wrong!");
 		}
+		gradRefreshFunc();
 	};
 
 	return (
 		<div>
 			<h4>
-				{props.user} <button onClick={addGraduate}>Add</button>
+				{user} <button onClick={addGraduate}>Connect</button>
 			</h4>
 		</div>
 	);
