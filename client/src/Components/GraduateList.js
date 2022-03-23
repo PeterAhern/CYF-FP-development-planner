@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import "./GraduateList.css";
 
-const GraduateList = ({ addGradRefresh, gradRefreshFunc }) => {
+const GraduateList = ({ addGradRefresh }) => {
 
 	const user = "mentor@gmail.com";
 
@@ -16,9 +16,9 @@ const GraduateList = ({ addGradRefresh, gradRefreshFunc }) => {
 			const data = await response.json();
 			const loadedGrads = [];
 				loadedGrads.push({
-					Graduate1: data[0].graduate_id_1,
-					Graduate2: data[0].graduate_id_2,
-					Graduate3: data[0].graduate_id_3,
+					Graduate1: data[0].graduate_1,
+					Graduate2: data[0].graduate_2,
+					Graduate3: data[0].graduate_3,
 				});
 			setGradList(loadedGrads[0]);
 		} catch (error) {

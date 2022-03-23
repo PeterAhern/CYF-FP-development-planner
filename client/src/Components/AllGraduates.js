@@ -30,10 +30,6 @@ const AllGraduates = ( { gradRefreshFunc }) => {
 		setSearch(users.filter((user) => user.user_email.includes(term)));
 		setClicked(false);
 	};
-	// const addGraduate = (email) => {
-	// 	setGraduate(graduate.concat(email));
-	// };
-	// console.log(graduate);
 	return (
 		<>
 			<div>
@@ -49,10 +45,6 @@ const AllGraduates = ( { gradRefreshFunc }) => {
 			<button onClick={() => setClicked(!clicked)}>All Graduates</button>
 			{clicked &&
 				users.map((user, index) => (
-					// <h5 key={index}>
-					// 	{user.user_email}{" "}
-					// 	<button onClick={() => addGraduate(user.user_email)}>add</button>
-					// </h5>
 					<MentorGraduate
 						user={user.user_email}
 						key={index}
@@ -62,22 +54,12 @@ const AllGraduates = ( { gradRefreshFunc }) => {
 
 			{term.length > 0 &&
 				search.map((user, index) => (
-					// <h5 key={index}>
-					// 	Graduate {user.user_email}
-					// 	<button>add</button>
-					// </h5>
 					<MentorGraduate
 						user={user.user_email}
 						key={index}
 						gradRefreshFunc={gradRefreshFunc}
 					/>
 				))}
-			{/* // 			<div className="mentees">
-// <h3>my mentees</h3>
-// 				{graduate.map((item, index) => ( */}
-			{/* // 				))}
-					<h5 key={index}>{item}<button>delete</button></h5> */}
-			{/* </div> */}
 		</>
 	);
 };

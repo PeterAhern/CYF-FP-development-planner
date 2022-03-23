@@ -210,35 +210,35 @@ router.put("/users/mentors/:mentor", async (req, res) => {
 		const params = req.params.mentor;
 		const graduate = req.body.graduate;
 		const Query =
-			"SELECT user_email,graduate_id_1, graduate_id_2,graduate_id_3 FROM users WHERE user_email =$1";
+			"SELECT user_email,graduate_1, graduate_2,graduate_3 FROM users WHERE user_email =$1";
 		const result = await pool.query(Query, [params]);
 		if (
-			!result.rows[0].graduate_id_1 &&
-			(result.rows[0].graduate_id_2 || !result.rows[0].graduate_id_2) &&
-			(result.rows[0].graduate_id_3 || !result.rows[0].graduate_id_3)
+			!result.rows[0].graduate_1 &&
+			(result.rows[0].graduate_2 || !result.rows[0].graduate_2) &&
+			(result.rows[0].graduate_3 || !result.rows[0].graduate_3)
 		) {
 			const result1 = await pool.query(
-				"UPDATE users SET graduate_id_1=$1 WHERE user_email=$2",
+				"UPDATE users SET graduate_1=$1 WHERE user_email=$2",
 				[graduate, params]
 			);
 			res.send(result1);
 		} else if (
-			result.rows[0].graduate_id_1 &&
-			!result.rows[0].graduate_id_2 &&
-			(!result.rows[0].graduate_id_3 || result.rows[0].graduate_id_3)
+			result.rows[0].graduate_1 &&
+			!result.rows[0].graduate_2 &&
+			(!result.rows[0].graduate_3 || result.rows[0].graduate_3)
 		) {
 			const result2 = await pool.query(
-				"UPDATE users SET graduate_id_2=$1 WHERE user_email=$2",
+				"UPDATE users SET graduate_2=$1 WHERE user_email=$2",
 				[graduate, params]
 			);
 			res.send(result2);
 		} else if (
-			result.rows[0].graduate_id_1 &&
-			result.rows[0].graduate_id_2 &&
-			!result.rows[0].graduate_id_3
+			result.rows[0].graduate_1 &&
+			result.rows[0].graduate_2 &&
+			!result.rows[0].graduate_3
 		) {
 			const result3 = await pool.query(
-				"UPDATE users SET graduate_id_3=$1 WHERE user_email=$2",
+				"UPDATE users SET graduate_3=$1 WHERE user_email=$2",
 				[graduate, params]
 			);
 			res.send(result3);
@@ -270,7 +270,7 @@ router.get("/graduates/:mentor", async (req, res) => {
 	try {
 		const mentor = req.params.mentor;
 		const Query =
-			"SELECT graduate_id_1,graduate_id_2,graduate_id_3 FROM users WHERE user_email  =$1 ";
+			"SELECT graduate_1,graduate_2,graduate_3 FROM users WHERE user_email  =$1 ";
 		const result = await pool.query(Query, [mentor]);
 		res.send(result.rows);
 	} catch (error) {
