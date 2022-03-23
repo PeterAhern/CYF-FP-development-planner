@@ -270,7 +270,7 @@ router.get("/graduates/:mentor", async (req, res) => {
 	try {
 		const mentor = req.params.mentor;
 		const Query =
-			"SELECT graduate_1,graduate_2,graduate_3 FROM users WHERE user_email  =$1 ";
+			"SELECT graduate_id_1,graduate_id_2,graduate_id_3 FROM users WHERE user_email  =$1 ";
 		const result = await pool.query(Query, [mentor]);
 		res.send(result.rows);
 	} catch (error) {

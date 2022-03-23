@@ -3,8 +3,9 @@ import "./GraduateList.css";
 
 const GraduateList = () => {
 
-    const [gradList, setGradList] = useState({ Graduate1: {graduateName:"Pete"}, Graduate2: {}, Graduate3: {} });
+	const user = "mentor@gmail.com";
 
+    const [gradList, setGradList] = useState({});
 	const fetchGradsHandler = useCallback(async (mentor) => {
 		try {
 			const response = await fetch(`api/graduates/${mentor}`);
@@ -13,32 +14,28 @@ const GraduateList = () => {
 				throw new Error("Something went wrong!");
 			}
 			const data = await response.json();
-
 			const loadedGrads = [];
-			for (const key in data) {
 				loadedGrads.push({
-					// id: data[key].task_id,
-					// title: data[key].task_title,
-					// user_email: data[key].user_email,
-					// due_date: data[key].due_date,
-					// evidence: data[key].evidence,
-					// element_id: data[key].element_id,
-					// status_id: data[key].status_id,
+					Graduate1: data[0].graduate_id_1,
+					Graduate2: data[0].graduate_id_2,
+					Graduate3: data[0].graduate_id_3,
 				});
-			}
-			setGradList(loadedGrads);
+				console.log(loadedGrads[0]);
+			setGradList(loadedGrads[0]);
+			// console.log(gradList[0]);
 		} catch (error) {
 			console.log(error.message);
 		}
 	}, []);
 
 	useEffect(() => {
-			fetchGradsHandler();
+			fetchGradsHandler(user);
 		}, [fetchGradsHandler]);
 
     return (
 			<div className="table-container">
 				<h1>Graduate Connections</h1>
+
 				<table>
 					<thead>
 						<tr>
@@ -48,9 +45,9 @@ const GraduateList = () => {
 						</tr>
 					</thead>
 					<tbody>
-						<tr>{gradList.Graduate1.graduateName}</tr>
-						<tr></tr>
-						<tr></tr>
+						<tr>{gradList.Graduate1}</tr>
+						<tr>{gradList.Graduate2}</tr>
+						<tr>{gradList.Graduate3}</tr>
 					</tbody>
 				</table>
 			</div>
