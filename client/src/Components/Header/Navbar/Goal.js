@@ -16,15 +16,19 @@ const Goal = () => {
 	return (
 		<>
 			<h3 className="goal">{goal}</h3>
-			<button
-				onClick={() => setClicked(!clicked)}
-				className=" btn-sm button"
-			>
+			<button onClick={() => setClicked(!clicked)} className=" btn-sm button">
 				{clicked ? <h6>save</h6> : <h6>Edit Goal</h6>}
 			</button>
 
 			{clicked && (
 				<input
+					ref={(ref) => ref && ref.focus()}
+					onFocus={(e) =>
+						e.currentTarget.setSelectionRange(
+							e.currentTarget.value.length,
+							e.currentTarget.value.length
+						)
+					}
 					type="text"
 					name="goal"
 					value={goal}
