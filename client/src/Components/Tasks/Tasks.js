@@ -47,6 +47,7 @@ const Tasks = ({ refresh, refreshFunc }) => {
 				throw new Error("Something went wrong!");
 			}
 			const data = await response.json();
+
 			const loadedTasks = [];
 			for (const key in data) {
 				loadedTasks.push({

@@ -2,6 +2,10 @@ import express from "express";
 import morgan from "morgan";
 import path from "path";
 
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+const session = require("express-session");
+
 import router from "./api";
 import {
 	configuredHelmet,
@@ -16,9 +20,27 @@ const app = express();
 app.use(
 	cors({
 		origin: "http://localhost:3000",
+		credentials: true,
 	})
 );
 app.use(express.json());
+
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(
+	session({
+		key: "userId",
+		secret: "elemental",
+		resave: false,
+		saveUninitialized: false,
+		cookie: {
+			expires: 60 * 60 * 24,
+		},
+	})
+);
+
+
 app.use(configuredHelmet());
 app.use(morgan("dev"));
 
