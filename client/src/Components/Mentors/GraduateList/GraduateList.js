@@ -1,8 +1,12 @@
 import React, { useState, useEffect, useCallback } from "react";
+import GraduateElement from "./GraduateElement";
 import "./GraduateList.css";
+import Popup from "./Popup";
+import "./Popup.css";
 
 const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 	const [gradList, setGradList] = useState({});
+	const [buttonPopup,setButtonPopup] = useState(false);
 	const fetchGradsHandler = useCallback(async () => {
 		try {
 			const response = await fetch(`api/graduates/${mentorEmail}`);
@@ -61,33 +65,77 @@ const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 					</tr>
 				</thead>
 				<tbody>
-					{gradList.Graduate1 &&
-					<tr>
-						<td>{gradList.Graduate1}</td>
-						<td>
-							<button value={gradList.Graduate1} onClick={removeGraduate}>
-								Remove
-							</button>
-						</td>
-					</tr>}
-					{gradList.Graduate2 &&
-					<tr>
-						<td>{gradList.Graduate2}</td>
-						<td>
-							<button value={gradList.Graduate2} onClick={removeGraduate}>
-								Remove
-							</button>
-						</td>
-					</tr>}
-					{gradList.Graduate3 &&
-					<tr>
-						<td>{gradList.Graduate3}</td>
-						<td>
-							<button value={gradList.Graduate3} onClick={removeGraduate}>
-								Remove
-							</button>
-						</td>
-					</tr>}
+					{gradList.Graduate1 && (
+						<tr>
+							<td>{gradList.Graduate1}</td>
+							<td>
+								<button value={gradList.Graduate1} onClick={removeGraduate}>
+									Remove
+								</button>
+							</td>
+							<td>
+								<button
+									value={gradList.Graduate2}
+									onClick={() => setButtonPopup(true)}
+								>
+									Show tasks
+								</button>
+								<Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+									<GraduateElement name={"Technical"} />
+									<GraduateElement name={"Job Search"} />
+									<GraduateElement name={"Soft Skills"} />
+								</Popup>
+							</td>
+						</tr>
+					)}
+					{gradList.Graduate2 && (
+						<tr>
+							<td>{gradList.Graduate2}</td>
+							<td>
+								<button value={gradList.Graduate2} onClick={removeGraduate}>
+									Remove
+								</button>
+							</td>
+							<td>
+								<button
+									value={gradList.Graduate2}
+									onClick={() => setButtonPopup(true)}
+								>
+									Show tasks
+								</button>
+								<Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+									<GraduateElement name={"Technical"} />
+									<GraduateElement name={"Job Search"} />
+									<GraduateElement name={"Soft Skills"} />
+								</Popup>
+							</td>
+						</tr>
+					)}
+					{gradList.Graduate3 && (
+						<tr>
+							<td>{gradList.Graduate3}</td>
+							<td>
+								<button value={gradList.Graduate3} onClick={removeGraduate}>
+									Remove
+								</button>
+							</td>
+							<td>
+								<button
+									value={gradList.Graduate2}
+									onClick={() => setButtonPopup(true)}
+								>
+									Show tasks
+								</button>
+								<Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+									<div  className="element">
+										<GraduateElement name={"Technical"} />
+										<GraduateElement name={"Job Search"} />
+										<GraduateElement name={"Soft Skills"} />
+									</div>
+								</Popup>
+							</td>
+						</tr>
+					)}
 				</tbody>
 			</table>
 		);
