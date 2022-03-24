@@ -1,6 +1,6 @@
 // import { useState } from "react";
 
-const MentorGraduate = ( { user, gradRefreshFunc  } ) => {
+const MentorGraduate = ( { user, gradRefreshFunc, mentorEmail  } ) => {
 
 	const requestOptions = {
 		method: "Put",
@@ -12,8 +12,7 @@ const MentorGraduate = ( { user, gradRefreshFunc  } ) => {
 	};
 
 	const addGraduate = async () => {
-		let mentor = "mentor@gmail.com";
-		//just for testing
+		let mentor = mentorEmail;
 		const response = await fetch(`api/users/mentors/${mentor}`, requestOptions);
 		if (!response.ok) {
 			throw new Error("Something went wrong!");

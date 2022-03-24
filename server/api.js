@@ -342,7 +342,6 @@ router.put("/users/mentors/:mentor", async (req, res) => {
 		const Query =
 			"SELECT * FROM users WHERE graduate_1 IN ($1) OR graduate_2 IN ($1) OR graduate_3 IN ($1)AND user_email=$2;";
 		const result = await pool.query(Query, [graduate, params]);
-		console.log(result.rows.length);
 		if (result.rows.length === 0) {
 			const Query =
 				"SELECT user_email,graduate_1, graduate_2,graduate_3 FROM users WHERE user_email =$1";
@@ -380,9 +379,53 @@ router.put("/users/mentors/:mentor", async (req, res) => {
 			} else {
 				res.send("all entries are full");
 			}
-			// console.log(result.rows[0].graduate_2);
 		} else {
 			res.send("graduate is already added");
+		}
+	} catch (error) {
+		console.error(error);
+		res.status(500).send(error);
+	}
+});
+
+//remove a mentee from mentor
+
+router.put("/users/mentors/:mentor/:graduate", async (req, res) => {
+	try {
+		const mentor = req.params.mentor;
+		const graduate = req.params.graduate;
+		const Query =
+			"SELECT * FROM users WHERE graduate_1 IN ($1) OR graduate_2 IN ($1) OR graduate_3 IN ($1)AND user_email=$2;";
+		const result = await pool.query(Query, [graduate, mentor]);
+		if (result.rows.length > 0) {
+			const Query =
+				"SELECT user_email,graduate_1, graduate_2,graduate_3 FROM users WHERE user_email =$1";
+			const result = await pool.query(Query, [mentor]);
+			if (
+				result.rows[0].graduate_1===graduate
+			) {
+				const result1 = await pool.query(
+					"UPDATE users SET graduate_1=null WHERE user_email=$1",
+					[mentor]
+				);
+				res.send(result1);
+			} else if (result.rows[0].graduate_2 === graduate) {
+				const result2 = await pool.query(
+					"UPDATE users SET graduate_2=null WHERE user_email=$1",
+					[mentor]
+				);
+				res.send(result2);
+			} else if (result.rows[0].graduate_3 === graduate) {
+				const result3 = await pool.query(
+					"UPDATE users SET graduate_3=null WHERE user_email=$1",
+					[mentor]
+				);
+				res.send(result3);
+			} else {
+				res.send("No connection found");
+			}
+		} else {
+			res.send("mentor has no current connections");
 		}
 	} catch (error) {
 		console.error(error);
