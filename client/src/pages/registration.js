@@ -11,8 +11,10 @@ export default function Registration() {
 	const [userEmail, setUserEmail] = useState("");
 	const [password, setPassword] = useState("");
 
-	const [loginStatus, setLoginStatus] = useState({ status: false, loginResult: "" });
-
+	const [loginStatus, setLoginStatus] = useState({
+		status: false,
+		loginResult: "",
+	});
 
 	Axios.defaults.withCredentials = true;
 
@@ -34,18 +36,18 @@ export default function Registration() {
 		}).then((response) => {
 			console.log(response);
 			if (response.data.message) {
-				setLoginStatus((prev) =>{
+				return setLoginStatus((prev) => {
 					const currLoginStatus = { ...prev };
-					currLoginStatus.status= false;
-					currLoginStatus.loginResult= response.data.message;
+					currLoginStatus.status = false;
+					currLoginStatus.loginResult = response.data.message;
 					return currLoginStatus;
 				});
-
 			} else {
-				setLoginStatus((prev) =>{
+				return setLoginStatus((prev) => {
 					const currLoginStatus = { ...prev };
-					currLoginStatus.status= true;
-					currLoginStatus.loginResult= response.data.user_email;
+					currLoginStatus.status = true;
+					currLoginStatus.loginResult = response.data.user_email;
+
 					return currLoginStatus;
 				});
 			}
@@ -55,7 +57,12 @@ export default function Registration() {
 	useEffect(() => {
 		Axios.get("/api/login").then((response) => {
 			if (response.data.loggedIn == true) {
-				setLoginStatus(response.user.user_email);
+				setLoginStatus((prev) => {
+					const currLoginStatus = { ...prev };
+					currLoginStatus.status = true;
+					currLoginStatus.loginResult = response.data.user_email;
+					return currLoginStatus;
+				});
 			}
 		});
 	}, []);

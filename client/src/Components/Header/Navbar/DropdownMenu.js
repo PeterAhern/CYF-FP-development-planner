@@ -12,7 +12,10 @@ const DropdownMenu = ({ logoutHandler }) => {
 	return (
 		<Card>
 			<div className={classes.dropdown}>
-				<DropdownItem href="/myPlan" leftIcon={developmentIcon}>
+				<DropdownItem href="/plan" leftIcon={developmentIcon}>
+					Elements
+				</DropdownItem>
+				<DropdownItem href="/profile" leftIcon={developmentIcon}>
 					My Profile
 				</DropdownItem>
 				<DropdownItem href="/" leftIcon={logInOutSvg}>
