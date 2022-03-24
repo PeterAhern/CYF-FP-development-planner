@@ -1,14 +1,10 @@
 import { useState } from "react";
-import MentorsTasks from "./MentorsTasks";
+import GraduateTasks from "./GraduateTasks";
 
 const GraduateElement = (props) => {
 	const [clicked, setClicked] = useState(false);
-	// "/users/:userEmail/elements/:elementId/detailedTasks"
-
-	// let userEmail = props.graduateEmail;
-	// let elementId = props.id;
 	return (
-		<div className="element">
+		<div >
 			<button
 				value={props.graduateEmail}
 				name={props.id}
@@ -19,7 +15,11 @@ const GraduateElement = (props) => {
 				{props.name}
 			</button>
 			{clicked && (
-				<MentorsTasks userEmail={props.graduateEmail} elementId={props.id} />
+				<GraduateTasks
+					userEmail={props.graduateEmail}
+					elementId={props.id}
+					className="element"
+				/>
 			)}
 		</div>
 	);

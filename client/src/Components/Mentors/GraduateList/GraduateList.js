@@ -71,10 +71,13 @@ const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 		gradListContent = (
 			<table>
 				<Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-					<GraduateElement name={"Technical"} id={1} graduateEmail={user} />
-					<GraduateElement name={"Job Search"} id={2} graduateEmail={user} />
-					<GraduateElement name={"Soft Skills"} id={3} graduateEmail={user} />
+					<div className="element">
+						<GraduateElement name={"Technical"} id={1} graduateEmail={user} />
+						<GraduateElement name={"Job Search"} id={2} graduateEmail={user} />
+						<GraduateElement name={"Soft Skills"} id={3} graduateEmail={user} />
+					</div>
 				</Popup>
+
 				<thead>
 					<tr>
 						<th>Graduate Name</th>
