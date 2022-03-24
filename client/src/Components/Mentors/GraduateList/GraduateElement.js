@@ -1,23 +1,26 @@
-import {  useState } from "react";
+import { useState } from "react";
+import MentorsTasks from "./MentorsTasks";
 
 const GraduateElement = (props) => {
-    	const [clicked, setClicked] = useState(false);
+	const [clicked, setClicked] = useState(false);
+	// "/users/:userEmail/elements/:elementId/detailedTasks"
 
+	// let userEmail = props.graduateEmail;
+	// let elementId = props.id;
 	return (
 		<div className="element">
 			<button
+				value={props.graduateEmail}
+				name={props.id}
 				type="button"
 				className="btn btn-danger"
 				onClick={() => setClicked(!clicked)}
 			>
 				{props.name}
-                {/* Technical */}
 			</button>
-            {clicked&&
-            <div>
-               TASKS
-            </div>
-                }
+			{clicked && (
+				<MentorsTasks userEmail={props.graduateEmail} elementId={props.id} />
+			)}
 		</div>
 	);
 };
