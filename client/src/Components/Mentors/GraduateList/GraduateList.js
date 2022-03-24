@@ -6,7 +6,12 @@ import "./Popup.css";
 
 const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 	const [gradList, setGradList] = useState({});
-	const [buttonPopup,setButtonPopup] = useState(false);
+	const [buttonPopup, setButtonPopup] = useState(false);
+	const [user, setUser] = useState("");
+	const clickHandler = (e) => {
+		setUser(e.target.value);
+		setButtonPopup(true);
+	};
 	const fetchGradsHandler = useCallback(async () => {
 		try {
 			const response = await fetch(`api/graduates/${mentorEmail}`);
@@ -37,13 +42,16 @@ const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 			"Content-Type": "application/json",
 			Accept: "application/json",
 		},
-		body: JSON.stringify({ }),
+		body: JSON.stringify({}),
 	};
 
 	const removeGraduate = async (e) => {
 		let mentor = mentorEmail;
 		let graduate = e.target.value;
-		const response = await fetch(`api/users/mentors/${mentor}/${graduate}`, requestOptions);
+		const response = await fetch(
+			`api/users/mentors/${mentor}/${graduate}`,
+			requestOptions
+		);
 		if (!response.ok) {
 			throw new Error("Something went wrong!");
 		}
@@ -53,10 +61,20 @@ const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 	let gradListContent = (
 		<h1>No graduate connections, search and add graduates</h1>
 	);
+	console.log(gradList.Graduate2);
 
-	if (gradList.Graduate1 !== null || gradList.Graduate2 !== null || gradList.Graduate3!== null) {
+	if (
+		gradList.Graduate1 !== null ||
+		gradList.Graduate2 !== null ||
+		gradList.Graduate3 !== null
+	) {
 		gradListContent = (
 			<table>
+				<Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+					<GraduateElement name={"Technical"} id={1} graduateEmail={user} />
+					<GraduateElement name={"Job Search"} id={2} graduateEmail={user} />
+					<GraduateElement name={"Soft Skills"} id={3} graduateEmail={user} />
+				</Popup>
 				<thead>
 					<tr>
 						<th>Graduate Name</th>
@@ -74,17 +92,9 @@ const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 								</button>
 							</td>
 							<td>
-								<button
-									value={gradList.Graduate2}
-									onClick={() => setButtonPopup(true)}
-								>
+								<button value={gradList.Graduate1} onClick={clickHandler}>
 									Show tasks
 								</button>
-								<Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-									<GraduateElement name={"Technical"} />
-									<GraduateElement name={"Job Search"} />
-									<GraduateElement name={"Soft Skills"} />
-								</Popup>
 							</td>
 						</tr>
 					)}
@@ -97,17 +107,9 @@ const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 								</button>
 							</td>
 							<td>
-								<button
-									value={gradList.Graduate2}
-									onClick={() => setButtonPopup(true)}
-								>
+								<button value={gradList.Graduate2} onClick={clickHandler}>
 									Show tasks
 								</button>
-								<Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-									<GraduateElement name={"Technical"} />
-									<GraduateElement name={"Job Search"} />
-									<GraduateElement name={"Soft Skills"} />
-								</Popup>
 							</td>
 						</tr>
 					)}
@@ -120,19 +122,9 @@ const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 								</button>
 							</td>
 							<td>
-								<button
-									value={gradList.Graduate2}
-									onClick={() => setButtonPopup(true)}
-								>
+								<button value={gradList.Graduate3} onClick={clickHandler}>
 									Show tasks
 								</button>
-								<Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-									<div  className="element">
-										<GraduateElement name={"Technical"} />
-										<GraduateElement name={"Job Search"} />
-										<GraduateElement name={"Soft Skills"} />
-									</div>
-								</Popup>
 							</td>
 						</tr>
 					)}
