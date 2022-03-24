@@ -42,24 +42,31 @@ const AllGraduates = ({ mentorEmail, gradRefreshFunc }) => {
 					onChange={onChange}
 				/>
 			</div>
-			<button onClick={() => setClicked(!clicked)}>All Graduates</button>
-			{clicked &&
-				users.map((user, index) => (
-					<MentorGraduate
-						user={user.user_email}
-						key={index}
-						gradRefreshFunc={gradRefreshFunc}
-					/>
-				))}
-
-			{term.length > 0 &&
-				search.map((user, index) => (
-					<MentorGraduate
-						user={user.user_email}
-						key={index}
-						gradRefreshFunc={gradRefreshFunc}
-					/>
-				))}
+			<button className="btn btn-danger" onClick={() => setClicked(!clicked)}>
+				All Graduates
+			</button>
+			<ul>
+				{clicked &&
+					users.map((user, index) => (
+						<li key={index}>
+							<MentorGraduate
+								user={user.user_email}
+								gradRefreshFunc={gradRefreshFunc}
+							/>
+						</li>
+					))}
+			</ul>
+			<ul>
+				{term.length > 0 &&
+					search.map((user, index) => (
+						<li key={index}>
+							<MentorGraduate
+								user={user.user_email}
+								gradRefreshFunc={gradRefreshFunc}
+							/>
+						</li>
+					))}
+			</ul>
 		</>
 	);
 };

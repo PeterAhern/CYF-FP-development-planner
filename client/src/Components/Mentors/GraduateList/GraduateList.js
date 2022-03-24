@@ -2,7 +2,6 @@ import React, { useState, useEffect, useCallback } from "react";
 import "./GraduateList.css";
 
 const GraduateList = ({ mentorEmail, addGradRefresh }) => {
-
 	const [gradList, setGradList] = useState({});
 	const fetchGradsHandler = useCallback(async () => {
 		try {
@@ -43,15 +42,19 @@ const GraduateList = ({ mentorEmail, addGradRefresh }) => {
 					</tr>
 				</thead>
 				<tbody>
-					<tr>{gradList.Graduate1}</tr>
-					<tr>{gradList.Graduate2}</tr>
-					<tr>{gradList.Graduate3}</tr>
+					<tr>
+						<td>{gradList.Graduate1}</td>
+					</tr>
+					<tr>
+						<td>{gradList.Graduate2}</td>
+					</tr>
+					<tr>
+						<td>{gradList.Graduate3}</td>
+					</tr>
 				</tbody>
 			</table>
 		);
 	}
-
-	console.log(gradListContent);
 
 	return (
 		<div className="table-container">
@@ -60,6 +63,5 @@ const GraduateList = ({ mentorEmail, addGradRefresh }) => {
 		</div>
 	);
 };
-
 
 export default GraduateList;
