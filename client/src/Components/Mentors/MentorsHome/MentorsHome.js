@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Navbar from "../../Header/Navbar/Navbar";
-import Tasks from "../../Tasks/Tasks";
 import AllGraduates from "../ViewAllGraduates/AllGraduates";
 import GraduateList from "../GraduateList/GraduateList";
 
@@ -21,8 +20,6 @@ const MentorsHome = ({ mentorEmail }) => {
 				mentorEmail={mentorEmail}
 				gradRefreshFunc={() => setAddGradRefresh(!addGradRefresh)}
 			/>
-			<h1> All Tasks</h1>
-			<Tasks />
 		</>
 	);
 };

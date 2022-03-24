@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import "./GraduateList.css";
 
-const GraduateList = ({ mentorEmail, addGradRefresh }) => {
+const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 	const [gradList, setGradList] = useState({});
 	const fetchGradsHandler = useCallback(async () => {
 		try {
@@ -27,30 +27,67 @@ const GraduateList = ({ mentorEmail, addGradRefresh }) => {
 		fetchGradsHandler();
 	}, [fetchGradsHandler, addGradRefresh, mentorEmail]);
 
-	console.log(gradList.Graduate1);
+	const requestOptions = {
+		method: "Put",
+		headers: {
+			"Content-Type": "application/json",
+			Accept: "application/json",
+		},
+		body: JSON.stringify({ }),
+	};
+
+	const removeGraduate = async (e) => {
+		let mentor = mentorEmail;
+		let graduate = e.target.value;
+		const response = await fetch(`api/users/mentors/${mentor}/${graduate}`, requestOptions);
+		if (!response.ok) {
+			throw new Error("Something went wrong!");
+		}
+		gradRefreshFunc();
+	};
+
 	let gradListContent = (
 		<h1>No graduate connections, search and add graduates</h1>
 	);
-	if (gradList.Graduate1 !== null) {
+
+	if (gradList.Graduate1 !== null || gradList.Graduate2 !== null || gradList.Graduate3!== null) {
 		gradListContent = (
 			<table>
 				<thead>
 					<tr>
 						<th>Graduate Name</th>
-						<th>Last Login</th>
-						<th>Tasks Added</th>
+						<th>Remove Connection</th>
+						<th># of tasks</th>
 					</tr>
 				</thead>
 				<tbody>
+					{gradList.Graduate1 &&
 					<tr>
 						<td>{gradList.Graduate1}</td>
-					</tr>
+						<td>
+							<button value={gradList.Graduate1} onClick={removeGraduate}>
+								Remove
+							</button>
+						</td>
+					</tr>}
+					{gradList.Graduate2 &&
 					<tr>
 						<td>{gradList.Graduate2}</td>
-					</tr>
+						<td>
+							<button value={gradList.Graduate2} onClick={removeGraduate}>
+								Remove
+							</button>
+						</td>
+					</tr>}
+					{gradList.Graduate3 &&
 					<tr>
 						<td>{gradList.Graduate3}</td>
-					</tr>
+						<td>
+							<button value={gradList.Graduate3} onClick={removeGraduate}>
+								Remove
+							</button>
+						</td>
+					</tr>}
 				</tbody>
 			</table>
 		);

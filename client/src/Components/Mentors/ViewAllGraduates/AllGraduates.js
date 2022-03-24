@@ -52,6 +52,7 @@ const AllGraduates = ({ mentorEmail, gradRefreshFunc }) => {
 							<MentorGraduate
 								user={user.user_email}
 								gradRefreshFunc={gradRefreshFunc}
+								mentorEmail={mentorEmail}
 							/>
 						</li>
 					))}
