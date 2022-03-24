@@ -13,7 +13,7 @@ const Navbar = ({ logoutHandler }) => {
 		<nav className={classes.navbar}>
 			<ul className={classes.navbarNav}>
 				<Goal />
-				<NavItem navText="Dev Planner" href="/myPlan" icon={developmentSvg} />
+				<NavItem navText="Dev Planner" href="/plan" icon={developmentSvg} />
 				<NavItem navText="Options" icon={navOptions}>
 					<DropdownMenu
 						logoutHandler={logoutHandler}
