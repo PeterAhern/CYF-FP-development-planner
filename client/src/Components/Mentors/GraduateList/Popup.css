@@ -8,6 +8,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+   
 
 }
 
@@ -18,10 +19,12 @@
     max-width:640px;
     background-color: white;
     height:50%;
+     border-radius: 5px;
+     overflow: scroll;
 
 
 }
-.popup-inner .close-btn{
+.popup-inner .close-btn {
     position:absolute;
     top:16px;
     right:16px;
@@ -34,4 +37,24 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    
+}
+.task{
+    border-style: solid;
+    border-radius: 5px;
+    padding-left: 2%;
+    margin-top: 2%;
+    border-color: rgba(204, 25, 25, 0.774);
+    background-color:white;
+
+  
+
+
+}
+button:hover{
+    color: red;
 }
