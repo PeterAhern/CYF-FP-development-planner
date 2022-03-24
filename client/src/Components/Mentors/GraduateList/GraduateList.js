@@ -49,41 +49,45 @@ const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 	let gradListContent = (
 		<h1>No graduate connections, search and add graduates</h1>
 	);
-	if (gradList.Graduate1 !== null) {
+
+	if (gradList.Graduate1 !== null || gradList.Graduate2 !== null || gradList.Graduate3!== null) {
 		gradListContent = (
 			<table>
 				<thead>
 					<tr>
 						<th>Graduate Name</th>
-						<th>Last Login</th>
-						<th>Tasks Added</th>
+						<th>Remove Connection</th>
+						<th># of tasks</th>
 					</tr>
 				</thead>
 				<tbody>
+					{gradList.Graduate1 &&
 					<tr>
+						<td>{gradList.Graduate1}</td>
 						<td>
-							{gradList.Graduate1}
 							<button value={gradList.Graduate1} onClick={removeGraduate}>
 								Remove
 							</button>
 						</td>
-					</tr>
+					</tr>}
+					{gradList.Graduate2 &&
 					<tr>
+						<td>{gradList.Graduate2}</td>
 						<td>
-							{gradList.Graduate2}
 							<button value={gradList.Graduate2} onClick={removeGraduate}>
 								Remove
 							</button>
 						</td>
-					</tr>
+					</tr>}
+					{gradList.Graduate3 &&
 					<tr>
+						<td>{gradList.Graduate3}</td>
 						<td>
-							{gradList.Graduate3}
 							<button value={gradList.Graduate3} onClick={removeGraduate}>
 								Remove
 							</button>
 						</td>
-					</tr>
+					</tr>}
 				</tbody>
 			</table>
 		);
