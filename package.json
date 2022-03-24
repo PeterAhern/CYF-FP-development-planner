@@ -87,7 +87,9 @@
 		"moment": "^2.29.1",
 		"morgan": "^1.10.0",
 		"pg": "^8.7.3",
-		"react-transition-group": "^4.4.2"
+		"react-icons": "^4.3.1",
+		"react-transition-group": "^4.4.2",
+		"styled-components": "^5.3.3"
 	},
 	"engines": {
 		"node": "^12 || ^14 || ^16 || ^17",
