@@ -16,7 +16,7 @@
     position:relative;
     padding:32px;
     width:100%;
-    max-width:640px;
+    max-width:850px;
     background-color: white;
     height:50%;
      border-radius: 5px;
@@ -57,4 +57,24 @@
 }
 button:hover{
     color: red;
+}
+.comment{
+    border-radius: 60px;
+    /* font-size: xx-small; */
+}
+.submit{
+    width:4rem;
+    height:4rem;
+}
+.commentsArea{
+
+    border-style: solid;
+    width:70%;
+    border-width: 1px;
+    border-color: rgb(46, 44, 44);
+}
+.form{
+    display:flex;
+    flex-flow: row wrap;
+    /* flex-direction: column; */
 }
