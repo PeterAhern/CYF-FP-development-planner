@@ -1,8 +1,17 @@
 import React, { useState, useEffect, useCallback } from "react";
+import GraduateElement from "./GraduateElement";
 import "./GraduateList.css";
+import Popup from "./Popup";
+import "./Popup.css";
 
 const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 	const [gradList, setGradList] = useState({});
+	const [buttonPopup, setButtonPopup] = useState(false);
+	const [user, setUser] = useState("");
+	const clickHandler = (e) => {
+		setUser(e.target.value);
+		setButtonPopup(true);
+	};
 	const fetchGradsHandler = useCallback(async () => {
 		try {
 			const response = await fetch(`api/graduates/${mentorEmail}`);
@@ -33,13 +42,16 @@ const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 			"Content-Type": "application/json",
 			Accept: "application/json",
 		},
-		body: JSON.stringify({ }),
+		body: JSON.stringify({}),
 	};
 
 	const removeGraduate = async (e) => {
 		let mentor = mentorEmail;
 		let graduate = e.target.value;
-		const response = await fetch(`api/users/mentors/${mentor}/${graduate}`, requestOptions);
+		const response = await fetch(
+			`api/users/mentors/${mentor}/${graduate}`,
+			requestOptions
+		);
 		if (!response.ok) {
 			throw new Error("Something went wrong!");
 		}
@@ -49,10 +61,23 @@ const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 	let gradListContent = (
 		<h1>No graduate connections, search and add graduates</h1>
 	);
+	console.log(gradList.Graduate2);
 
-	if (gradList.Graduate1 !== null || gradList.Graduate2 !== null || gradList.Graduate3!== null) {
+	if (
+		gradList.Graduate1 !== null ||
+		gradList.Graduate2 !== null ||
+		gradList.Graduate3 !== null
+	) {
 		gradListContent = (
 			<table>
+				<Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+					<div className="element">
+						<GraduateElement name={"Technical"} id={1} graduateEmail={user} />
+						<GraduateElement name={"Job Search"} id={2} graduateEmail={user} />
+						<GraduateElement name={"Soft Skills"} id={3} graduateEmail={user} />
+					</div>
+				</Popup>
+
 				<thead>
 					<tr>
 						<th>Graduate Name</th>
@@ -61,33 +86,51 @@ const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 					</tr>
 				</thead>
 				<tbody>
-					{gradList.Graduate1 &&
-					<tr>
-						<td>{gradList.Graduate1}</td>
-						<td>
-							<button value={gradList.Graduate1} onClick={removeGraduate}>
-								Remove
-							</button>
-						</td>
-					</tr>}
-					{gradList.Graduate2 &&
-					<tr>
-						<td>{gradList.Graduate2}</td>
-						<td>
-							<button value={gradList.Graduate2} onClick={removeGraduate}>
-								Remove
-							</button>
-						</td>
-					</tr>}
-					{gradList.Graduate3 &&
-					<tr>
-						<td>{gradList.Graduate3}</td>
-						<td>
-							<button value={gradList.Graduate3} onClick={removeGraduate}>
-								Remove
-							</button>
-						</td>
-					</tr>}
+					{gradList.Graduate1 && (
+						<tr>
+							<td>{gradList.Graduate1}</td>
+							<td>
+								<button value={gradList.Graduate1} onClick={removeGraduate}>
+									Remove
+								</button>
+							</td>
+							<td>
+								<button value={gradList.Graduate1} onClick={clickHandler}>
+									Show tasks
+								</button>
+							</td>
+						</tr>
+					)}
+					{gradList.Graduate2 && (
+						<tr>
+							<td>{gradList.Graduate2}</td>
+							<td>
+								<button value={gradList.Graduate2} onClick={removeGraduate}>
+									Remove
+								</button>
+							</td>
+							<td>
+								<button value={gradList.Graduate2} onClick={clickHandler}>
+									Show tasks
+								</button>
+							</td>
+						</tr>
+					)}
+					{gradList.Graduate3 && (
+						<tr>
+							<td>{gradList.Graduate3}</td>
+							<td>
+								<button value={gradList.Graduate3} onClick={removeGraduate}>
+									Remove
+								</button>
+							</td>
+							<td>
+								<button value={gradList.Graduate3} onClick={clickHandler}>
+									Show tasks
+								</button>
+							</td>
+						</tr>
+					)}
 				</tbody>
 			</table>
 		);
