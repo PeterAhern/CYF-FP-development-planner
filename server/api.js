@@ -473,6 +473,12 @@ router.put("/graduates/goal/:graduate", async (req, res) => {
 	}
 });
 
+//Get Comments from database
+
+
+
+
+
 //UPDATE graduates goal
 
 //Get all graduates
