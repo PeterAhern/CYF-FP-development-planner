@@ -1,30 +1,17 @@
 import React from "react";
-import Sketch from "react-p5";
+// import Sketch from "react-p5";
 
 import { Wrapper } from "./LandingCanvas.style";
+import mobileLanding from "../../../Assets/mp4/mobileLanding.mp4";
 
 const LandingCanvas = () => {
-
-    function windowResized(p5) {
-        p5.resizeCanvas(window.innerWidth, window.innerHeight);
-    }
-
-    let setup = (p5, canvasParentRef) => {
-        //Canvas of size 1000x800
-        let xyz = p5
-					.createCanvas(p5.windowWidth, p5.windowHeight)
-					.parent(canvasParentRef);
-        xyz.style("display", "block");
-        xyz.position(0,0);
-        
-    };
-
-    let draw = (p5) => {
-        p5.background(175,0,0, 0.8);
-    };
 	return (
 		<Wrapper>
-			<Sketch setup={setup} draw={draw} className="App" />
+			{/* <Sketch setup={setup} draw={draw} className="App" /> */}
+            {/* <video src={mobileLanding}></video> */}
+            <video className="video-container" autoPlay loop muted >
+                <source type="video/mp4"  src={mobileLanding} />
+            </video>
 		</Wrapper>
 	);
 };
