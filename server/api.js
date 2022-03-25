@@ -1,6 +1,5 @@
 import { Router } from "express";
 
-
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
@@ -11,55 +10,58 @@ const router = Router();
 // ///////////////////// AUTHORIZATION /////////////////////////////////////
 
 router.post("/register", (req, res) => {
-  const { user_email, password } = req.body;
+	const { user_email, password } = req.body;
 
-  bcrypt.hash(password, saltRounds, (err, hash) => {
-    if (err) {
-      console.log(err);
-    }
+	bcrypt.hash(password, saltRounds, (err, hash) => {
+		if (err) {
+			console.log(err);
+		}
 
-    pool.query(
-			"INSERT INTO users (user_email, mentor_access, password) VALUES ($1,$2,$3)",
-			[user_email, false, hash]
-		).then(() => res.send("User inserted successfully"));
-  });
+		pool
+			.query(
+				"INSERT INTO users (user_email, mentor_access, password) VALUES ($1,$2,$3)",
+				[user_email, false, hash]
+			)
+			.then(() => res.send("User inserted successfully"));
+	});
 });
 
 router.get("/login", (req, res) => {
 	console.log("req.session.user has the value: ", req.session.user);
-  if (req.session.user) {
-    return res.send({ loggedIn: true, user: req.session.user });
-  } else {
-    return res.send({ loggedIn: false });
-  }
+	if (req.session.user) {
+		return res.send({ loggedIn: true, user: req.session.user });
+	} else {
+		return res.send({ loggedIn: false });
+	}
 });
 
 router.post("/login", (req, res) => {
-  const { user_email, password } = req.body;
-  console.log("email", user_email);
+	const { user_email, password } = req.body;
+	console.log("email", user_email);
 
-  pool.query(
-    "SELECT * FROM users WHERE user_email = $1;",
-    [user_email]).then((result) => {
-		console.log("result after querying", result);
-		console.log("end of result after querying");
-		if (result.rows.length > 0) {
-			console.log("the password passed from req body: ", password);
-			console.log("the password from the result: ", result.rows[0].password);
-			bcrypt.compare(password, result.rows[0].password, (error, response) => {
-				if (response) {
-					console.log("comparison successfull");
-					req.session.user = result.rows[0];
-					console.log(req.session.user);
-					res.send(result.rows[0]);
-				} else {
-					res.send({ message: "Wrong username/password combination!" });
-				}
-			});
-		} else {
-			res.send({ message: "User doesn't exist" });
-		}
-	}).catch((err) => console.log(err));
+	pool
+		.query("SELECT * FROM users WHERE user_email = $1;", [user_email])
+		.then((result) => {
+			console.log("result after querying", result);
+			console.log("end of result after querying");
+			if (result.rows.length > 0) {
+				console.log("the password passed from req body: ", password);
+				console.log("the password from the result: ", result.rows[0].password);
+				bcrypt.compare(password, result.rows[0].password, (error, response) => {
+					if (response) {
+						console.log("comparison successfull");
+						req.session.user = result.rows[0];
+						console.log(req.session.user);
+						res.send(result.rows[0]);
+					} else {
+						res.send({ message: "Wrong username/password combination!" });
+					}
+				});
+			} else {
+				res.send({ message: "User doesn't exist" });
+			}
+		})
+		.catch((err) => console.log(err));
 });
 
 // ///////////////////////////// TASKS TABLE///////////////////////////////
@@ -92,7 +94,7 @@ router.put(
 						.query(
 							"UPDATE tasks SET task_title=$1, due_date=$2, status_id =$3,evidence = $4 WHERE tasks.element_id=$5 AND task_id=$6",
 							[
-								taskTitle || originalValues.task_title ,
+								taskTitle || originalValues.task_title,
 								date || originalValues.due_date,
 								statusId || originalValues.status_id,
 								evidence || originalValues.evidence,
@@ -154,7 +156,6 @@ router.delete(
 					const data =
 						"SELECT * FROM tasks WHERE user_email=$1 AND element_id=$2";
 					await pool.query(data, [userEmail, elementId]).then((result) => {
-
 						// In case the graduate has any remaining tasks, we are displaying them back to them, by sending them back
 						if (result.rows.length > 0) {
 							return res.send(result.rows);
@@ -226,44 +227,47 @@ router.get("/users/:userEmail/elements/:elementId/tasks", (req, res) => {
 			message: "Something went wrong while getting your tasks for this Element",
 		});
 	}
-
 });
 
 // // Graduate's tasks per element with status title and element title => inner join per element for Graduate
 // Will use this to quickly display task details in front end when mapping tasks
 // GET /api/users/:userEmail/elements/:elementId/tasks
-router.get("/users/:userEmail/elements/:elementId/detailedTasks", async (req, res) => {
-	const { userEmail, elementId } = req.params;
+router.get(
+	"/users/:userEmail/elements/:elementId/detailedTasks",
+	async (req, res) => {
+		const { userEmail, elementId } = req.params;
 
-	if (userEmail.length > 0 && elementId.length > 0) {
-		try {
-			// querying for the requested tasks details in the specified element for the graduate
-			const Query =
-				"SELECT task_title , due_date, evidence, element_title, status_title FROM tasks INNER JOIN elements ON tasks.element_id = elements.element_id INNER JOIN status ON tasks.status_id = status.status_id WHERE user_email = $1 AND elements.element_id=$2";
-			const result = await pool.query(Query, [userEmail, elementId]);
+		if (userEmail.length > 0 && elementId.length > 0) {
+			try {
+				// querying for the requested tasks details in the specified element for the graduate
+				const Query =
+					"SELECT task_title , due_date, evidence, element_title, status_title FROM tasks INNER JOIN elements ON tasks.element_id = elements.element_id INNER JOIN status ON tasks.status_id = status.status_id WHERE user_email = $1 AND elements.element_id=$2";
+				const result = await pool.query(Query, [userEmail, elementId]);
 
-			if (result.rows.length > 0) {
-				return res.send(result.rows);
-			} else {
-				// else we are concluding that the user has no tasks in the specified element and we share this information with them
-				return res.send({
-					success: true,
-					message:
-						"it appears you have no tasks in this element, why not add some!",
-				});
+				if (result.rows.length > 0) {
+					return res.send(result.rows);
+				} else {
+					// else we are concluding that the user has no tasks in the specified element and we share this information with them
+					return res.send({
+						success: true,
+						message:
+							"it appears you have no tasks in this element, why not add some!",
+					});
+				}
+			} catch (error) {
+				console.error(error);
+				res.status(500).send(error);
 			}
-		} catch (error) {
-			console.error(error);
-			res.status(500).send(error);
+		} else {
+			// if any of the params were not provided we are returning back a 400 request error
+			return res.status(400).send({
+				success: false,
+				message:
+					"Something went wrong while getting the details for your tasks under this Element",
+			});
 		}
-	} else {
-		// if any of the params were not provided we are returning back a 400 request error
-		return res.status(400).send({
-			success: false,
-			message: "Something went wrong while getting the details for your tasks under this Element",
-		});
 	}
-});
+);
 
 //Add a task under a particular element for a particular Graduate
 // POST /api/users/:userEmail/elements/:elementId/tasks
@@ -278,12 +282,10 @@ router.post("/users/:userEmail/elements/:elementId/tasks", (req, res) => {
 	if (userEmail.length > 0 && elementId.length > 0) {
 		// checking if any of the non-null fields in the tasks table is not provided
 		if (!taskTitle || !statusId) {
-			return res
-				.status(400)
-				.send({
-					message:
-						"Task Title and Status cannot be empty, please edit and try again :D ",
-				});
+			return res.status(400).send({
+				message:
+					"Task Title and Status cannot be empty, please edit and try again :D ",
+			});
 		} else {
 			// if the previous check clears, the else statement kicks in inserting a new task under the specified element for the graduate
 			// after inserting the new task, we are doing another query to display back all the tasks under a particular element for the graduate
@@ -302,13 +304,11 @@ router.post("/users/:userEmail/elements/:elementId/tasks", (req, res) => {
 		}
 	} else {
 		// if any of the required parameters was not provided, we are returning an error message with a bad request status 400
-		return res
-			.status(400)
-			.send({
-				success: false,
-				message:
-					"Something went wrong while trying to add this task under the specified element, please refresh and try again",
-			});
+		return res.status(400).send({
+			success: false,
+			message:
+				"Something went wrong while trying to add this task under the specified element, please refresh and try again",
+		});
 	}
 });
 
@@ -401,9 +401,7 @@ router.put("/users/mentors/:mentor/:graduate", async (req, res) => {
 			const Query =
 				"SELECT user_email,graduate_1, graduate_2,graduate_3 FROM users WHERE user_email =$1";
 			const result = await pool.query(Query, [mentor]);
-			if (
-				result.rows[0].graduate_1===graduate
-			) {
+			if (result.rows[0].graduate_1 === graduate) {
 				const result1 = await pool.query(
 					"UPDATE users SET graduate_1=null WHERE user_email=$1",
 					[mentor]
@@ -433,7 +431,6 @@ router.put("/users/mentors/:mentor/:graduate", async (req, res) => {
 	}
 });
 
-
 //Get all graduates
 router.get("/graduates", async (req, res) => {
 	try {
@@ -446,7 +443,6 @@ router.get("/graduates", async (req, res) => {
 		return res.status(500).send(error);
 	}
 });
-
 
 //get all graduates for specific mentor
 router.get("/graduates/:mentor", async (req, res) => {
@@ -477,6 +473,24 @@ router.get("/users", async (req, res) => {
 	try {
 		const Query = "SELECT * FROM users ";
 		const result = await pool.query(Query);
+		res.send(result.rows);
+	} catch (error) {
+		console.error(error);
+		res.status(500).send(error);
+	}
+});
+
+//////posting a comment to the graduate
+
+router.post("/comments/:graduate/elements/:element", async (req, res) => {
+	try {
+		const { graduate, element } = req.params;
+		const date = req.body.date;
+		const comment = req.body.comment;
+
+		const Query =
+			"INSERT INTO comments (user_email,element_id, comment_content,comment_date) VALUES ($1,$2,$3,$4)";
+		const result = await pool.query(Query, [graduate, element, comment, date]);
 		res.send(result.rows);
 	} catch (error) {
 		console.error(error);
