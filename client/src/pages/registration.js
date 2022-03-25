@@ -4,6 +4,8 @@ import "../App.css";
 import { Link } from "react-router-dom";
 import Navbar from "../Components/Header/Navbar/Navbar";
 
+import LandingCanvas from "../Components/MobileComponents/Canvas/LandingCanvas";
+
 export default function Registration() {
 	const [userEmailReg, setUserEmailReg] = useState("");
 	const [passwordReg, setPasswordReg] = useState("");
@@ -81,6 +83,7 @@ export default function Registration() {
 		<>
 			{!loginStatus.status && (
 				<div className="App">
+					<LandingCanvas />
 					<form className="registration" onSubmit={registerSubmitHandler}>
 						<h1>Registration</h1>
 						<label htmlFor="email">User Email</label>
