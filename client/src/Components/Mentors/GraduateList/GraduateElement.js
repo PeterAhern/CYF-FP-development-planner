@@ -1,10 +1,14 @@
 import { useState } from "react";
 import GraduateTasks from "./GraduateTasks";
+import "./Popup.css";
+import Comment from "./Comment";
 
 const GraduateElement = (props) => {
 	const [clicked, setClicked] = useState(false);
+	const [comment, setComment] = useState(false);
+
 	return (
-		<div >
+		<div>
 			<button
 				value={props.graduateEmail}
 				name={props.id}
@@ -14,6 +18,14 @@ const GraduateElement = (props) => {
 			>
 				{props.name}
 			</button>
+			<button
+				className="comment btn btn-danger"
+				onClick={() => setComment(!comment)}
+			>
+				+
+			</button>
+			{comment && <Comment email={props.graduateEmail} id={props.id} />}
+
 			{clicked && (
 				<GraduateTasks
 					userEmail={props.graduateEmail}
