@@ -15,13 +15,11 @@ export default function Plan() {
 					const stateUser = { ...prev };
 					stateUser.role = response.data.user.mentor_access ? "mentor" : "grad";
 					stateUser.user_email = response.data.user.user_email;
-					// loggedInUserEmail(response.data.user.user_email);
 					return stateUser;
 				});
 			}
 		});
 	}, []);
-
 	return (
 		<div>
 			{currUser.role === "grad" && (

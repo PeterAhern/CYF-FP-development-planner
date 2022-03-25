@@ -33,7 +33,7 @@ const contentStyle = {
 	border: "none",
 };
 
-const Navbar = ({ logoutHandler }) => {
+const Navbar = ({ logoutHandler, graduateEmail }) => {
 	const [toggleHamburgerMenu, setToggleHamburgerMenu] = useState(false);
 
 	const toggleHamburgerMenuHandler = () => setToggleHamburgerMenu(!toggleHamburgerMenu);
@@ -54,7 +54,7 @@ const Navbar = ({ logoutHandler }) => {
 				<Bars onClick={toggleHamburgerMenuHandler}></Bars>
 				{/* {toggleHamburgerMenu && <SideDrawerNavigation />} */}
 
-				<Goal />
+				<Goal graduateEmail={graduateEmail} />
 				<ul className="navbarNav">
 					<NavMenu>
 						<NavItem navText="Dev Planner" href="/plan" icon={developmentSvg} />
@@ -70,17 +70,3 @@ const Navbar = ({ logoutHandler }) => {
 };
 
 export default Navbar;
-
-
-/*
-	<ul className={"navbarNav"}>
-				<Goal />
-				<NavItem navText="Dev Planner" href="/plan" icon={developmentSvg} />
-				<NavItem navText="Options" icon={navOptions}>
-					<DropdownMenu
-						logoutHandler={logoutHandler}
-					/>
-				</NavItem>
-			</ul>
-
-*/
