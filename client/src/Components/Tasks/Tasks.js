@@ -49,7 +49,11 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 				throw new Error("Something went wrong!");
 			}
 			const data = await response.json();
-
+			console.log(data);
+			//when no tasks in db, data is sent back as a message (instead of tasks data) with success=true
+			if(data.success===true){
+				setTasks([]);
+			} else {
 			const loadedTasks = [];
 			for (const key in data) {
 				loadedTasks.push({
@@ -63,6 +67,7 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 				});
 			}
 			setTasks(loadedTasks);
+		}
 		} catch (error) {
 			setError(error.message);
 		}
@@ -99,8 +104,8 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 		};
 
 
-	let content = <p>Found no tasks.</p>;
-
+	let content = <p>You have no tasks.</p>;
+		console.log(tasks);
 	if (tasks.length > 0) {
 		content = tasks.map((task, index) => (
 			<Card key={task.id}>

@@ -3,10 +3,9 @@ import Element from "../../Element/Element";
 import "./MyPlan.css";
 import Navbar from "../../Header/Navbar/Navbar";
 const MyPlan = ({ graduateEmail }) => {
-	//  const h = goal;
 	return (
 		<>
-			<Navbar />
+			<Navbar graduateEmail={graduateEmail} />
 			<main role="main">
 				<Card>
 					<p>
@@ -17,7 +16,11 @@ const MyPlan = ({ graduateEmail }) => {
 					<div className="elements">
 						<Element id={1} name={"Technical"} graduateEmail={graduateEmail} />
 						<Element id={2} name={"Job Search"} graduateEmail={graduateEmail} />
-						<Element id={3} name={"Soft Skills"} graduateEmail={graduateEmail} />
+						<Element
+							id={3}
+							name={"Soft Skills"}
+							graduateEmail={graduateEmail}
+						/>
 					</div>
 				</Card>
 			</main>
