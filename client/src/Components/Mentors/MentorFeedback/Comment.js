@@ -1,9 +1,14 @@
 import { useState } from "react";
 
-const Comment = ({ email, id }) => {
+const Comment = ({ email, id, mentorEmail }) => {
 	const utc = new Date().toJSON().slice(0, 10).replace(/-/g, "-");
 
-	const [value, setValue] = useState({ comment: "", date: utc });
+	const [value, setValue] = useState({
+		comment: "",
+		date: utc,
+		email: "",
+		mentorEmail: mentorEmail,
+	});
 	const addCommentOptions = {
 		method: "POST",
 		headers: {
@@ -22,7 +27,7 @@ const Comment = ({ email, id }) => {
 		}
 	};
 	const handleChange = (e) => {
-		setValue({ comment: e.target.value, date: utc });
+		setValue({ comment: e.target.value, date: utc, mentorEmail: mentorEmail });
 	};
 	console.log(value);
 	const handleSubmit = async (e) => {

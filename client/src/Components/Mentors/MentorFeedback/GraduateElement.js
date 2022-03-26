@@ -24,8 +24,13 @@ const GraduateElement = (props) => {
 			>
 				+
 			</button>
-			{comment && <Comment email={props.graduateEmail} id={props.id} />}
-
+			{comment && (
+				<Comment
+					email={props.graduateEmail}
+					id={props.id}
+					mentorEmail={props.mentorEmail}
+				/>
+			)}
 			{clicked && (
 				<GraduateTasks
 					userEmail={props.graduateEmail}

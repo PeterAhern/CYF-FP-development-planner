@@ -1,7 +1,20 @@
 import { Router } from "express";
 
 const bcrypt = require("bcrypt");
+const nodemailer = require("nodemailer");
+const sendgridTransport = require("nodemailer-sendgrid-transport");
 const saltRounds = 10;
+
+//initializing transporter
+const transporter = nodemailer.createTransport(
+	sendgridTransport({
+		auth: {
+			api_key:
+				"********************************",
+		},
+	})
+);
+
 
 import pool from "./db";
 
@@ -533,16 +546,21 @@ router.post("/comments/:graduate/elements/:element", async (req, res) => {
 	try {
 		const { graduate, element } = req.params;
 		const date = req.body.date;
-		const comment = req.body.comment;
+		const { comment } = req.body;
 
 		const Query =
-			"INSERT INTO comments (user_email,element_id, comment_content,comment_date) VALUES ($1,$2,$3,$4)";
+			"SELECT comment_content,comment_date FROM comments WHERE user_email=$1 AND element_id =$2";
 		const result = await pool.query(Query, [graduate, element, comment, date]);
+		transporter.sendMail({
+			to: "halla.sulaiman.33@gmail.com",
+			from: "wiamnasr@gmail.com",
+			subject: "new comment",
+			html: "<h1> you have a new comment sign in to view it</h1>",
+		});
 		res.send(result.rows);
 	} catch (error) {
 		console.error(error);
 		res.status(500).send(error);
 	}
 });
-
 export default router;

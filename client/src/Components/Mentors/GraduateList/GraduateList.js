@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
-import GraduateElement from "./GraduateElement";
+import GraduateElement from "../MentorFeedback/GraduateElement";
 import "./GraduateList.css";
-import Popup from "./Popup";
-import "./Popup.css";
+import Popup from "../MentorFeedback/Popup";
+import "../MentorFeedback/Popup.css";
 
 const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 	const [gradList, setGradList] = useState({});
@@ -72,9 +72,24 @@ const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 			<table>
 				<Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
 					<div className="element">
-						<GraduateElement name={"Technical"} id={1} graduateEmail={user} />
-						<GraduateElement name={"Job Search"} id={2} graduateEmail={user} />
-						<GraduateElement name={"Soft Skills"} id={3} graduateEmail={user} />
+						<GraduateElement
+							name={"Technical"}
+							id={1}
+							graduateEmail={user}
+							mentorEmail={mentorEmail}
+						/>
+						<GraduateElement
+							name={"Job Search"}
+							id={2}
+							graduateEmail={user}
+							mentorEmail={mentorEmail}
+						/>
+						<GraduateElement
+							name={"Soft Skills"}
+							id={3}
+							graduateEmail={user}
+							mentorEmail={mentorEmail}
+						/>
 					</div>
 				</Popup>
 
