@@ -5,10 +5,9 @@ import { Link } from "react-router-dom";
 import Navbar from "../Components/Header/Navbar/Navbar";
 
 import LandingCanvas from "../Components/MobileComponents/Canvas/LandingCanvas";
+import Register from "../Components/LandingComponents/Register";
 
 export default function Registration() {
-	const [userEmailReg, setUserEmailReg] = useState("");
-	const [passwordReg, setPasswordReg] = useState("");
 
 	const [userEmail, setUserEmail] = useState("");
 	const [password, setPassword] = useState("");
@@ -20,15 +19,10 @@ export default function Registration() {
 
 	Axios.defaults.withCredentials = true;
 
-	const registerSubmitHandler = (e) => {
-		e.preventDefault();
-		Axios.post("/api/register", {
-			user_email: userEmailReg,
-			password: passwordReg,
-		}).then((response) => {
-			console.log(response);
-		});
-	};
+	// regex from StackOverflow (https://stackoverflow.com/questions/7635533/validate-email-address-textbox-using-javascript)
+	// const reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+
 
 	const loginSubmitHandler = (e) => {
 		e.preventDefault();
@@ -38,14 +32,14 @@ export default function Registration() {
 		}).then((response) => {
 			console.log(response);
 			if (response.data.message) {
-				return setLoginStatus((prev) => {
+				setLoginStatus((prev) => {
 					const currLoginStatus = { ...prev };
 					currLoginStatus.status = false;
 					currLoginStatus.loginResult = response.data.message;
 					return currLoginStatus;
 				});
 			} else {
-				return setLoginStatus((prev) => {
+				setLoginStatus((prev) => {
 					const currLoginStatus = { ...prev };
 					currLoginStatus.status = true;
 					currLoginStatus.loginResult = response.data.user_email;
@@ -84,24 +78,7 @@ export default function Registration() {
 			{!loginStatus.status && (
 				<div className="App">
 					<LandingCanvas />
-					<form className="registration" onSubmit={registerSubmitHandler}>
-						<h1>Registration</h1>
-						<label htmlFor="email">User Email</label>
-						<input
-							type="text"
-							onChange={(e) => {
-								setUserEmailReg(e.target.value);
-							}}
-						/>
-						<label htmlFor="password">Password</label>
-						<input
-							type="text"
-							onChange={(e) => {
-								setPasswordReg(e.target.value);
-							}}
-						/>
-						<button> Register </button>
-					</form>
+					<Register />					
 					<h1>Elemental Planner</h1>
 					<h2>Organising your elements to success</h2>
 					<form className="login" onSubmit={loginSubmitHandler}>
