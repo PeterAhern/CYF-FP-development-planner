@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import "../App.css";
-import { Link } from "react-router-dom";
-import Navbar from "../Components/Header/Navbar/Navbar";
+// import { Link } from "react-router-dom";
+// import Navbar from "../Components/Header/Navbar/Navbar";
+import { Navigate } from "react-router-dom";
 
 import LandingCanvas from "../Components/MobileComponents/Canvas/LandingCanvas";
 import Register from "../Components/LandingComponents/Register";
@@ -17,13 +18,6 @@ export default function Registration() {
 
 	Axios.defaults.withCredentials = true;
 
-	// regex from StackOverflow (https://stackoverflow.com/questions/7635533/validate-email-address-textbox-using-javascript)
-	// const reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-
-
-
-
-
 	useEffect(() => {
 		Axios.get("/api/login").then((response) => {
 			if (response.data.loggedIn == true) {
@@ -37,15 +31,15 @@ export default function Registration() {
 		});
 	}, []);
 
-	const logoutHandler = (e) => {
-		e.preventDefault();
-		setLoginStatus((prev) => {
-			const currLoginStatus = { ...prev };
-			currLoginStatus.status = false;
-			currLoginStatus.loginResult = "";
-			return currLoginStatus;
-		});
-	};
+	// const logoutHandler = (e) => {
+	// 	e.preventDefault();
+	// 	setLoginStatus((prev) => {
+	// 		const currLoginStatus = { ...prev };
+	// 		currLoginStatus.status = false;
+	// 		currLoginStatus.loginResult = "";
+	// 		return currLoginStatus;
+	// 	});
+	// };
 
 	return (
 		<>
@@ -58,15 +52,7 @@ export default function Registration() {
 					<Login setLoginStatus={setLoginStatus} />
 				</div>
 			)}
-			{loginStatus.status && (
-				<div>
-					<Navbar logoutHandler={logoutHandler} />
-					<h1>Welcome back</h1>
-					<Link to="/plan">
-						<button>Take me to my plan</button>
-					</Link>
-				</div>
-			)}
+			{loginStatus.status && <Navigate to="/plan" />}
 		</>
 	);
 }
