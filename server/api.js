@@ -481,9 +481,26 @@ router.put("/graduates/goal/:graduate", async (req, res) => {
 	}
 });
 
-//Get Comments from database
+//Get Comments from database for graduate
+router.get("/comments/:email/:id", async (req, res) => {
+	try {
+		const graduate = req.params.email;
+		const id = req.params.id;
+		const Query = "SELECT user_email, comment_date, comment_content FROM comments WHERE graduate_email =$1 and element_id=$2;";
+		const result = await pool.query(Query, [graduate, id]);
+		return res.send(result.rows);
+	} catch (error) {
+		console.error(error);
+		return res.status(500).send(error);
+	}
+});
 
-//UPDATE graduates goal
+
+
+
+
+
+
 
 //Get all graduates
 router.get("/graduates", async (req, res) => {
@@ -536,11 +553,14 @@ router.get("/users", async (req, res) => {
 
 //////posting a comment to the graduate
 
-router.post("/comments/:sender/elements/:element/", async (req, res) => {
+
+
+router.post("/comments/:sender/elements/:element", async (req, res) => {
 	try {
 		const { sender, element } = req.params;
 		const date = req.body.date;
 		const comment = req.body.comment;
+		// const graduate = req.body.gradEmail;
 
 		// const mentorEmail = req.body.mentorEmail;
 
@@ -554,6 +574,7 @@ router.post("/comments/:sender/elements/:element/", async (req, res) => {
 			date,
 			grad,
 		]);
+		console.log(result);
 		res.send("a post sent");
 	} catch (error) {
 		console.error(error);
@@ -567,8 +588,10 @@ router.get("/comments/:sender/elements/:element/grad/:grad", async (req, res) =>
 	try {
 		const { sender, element, grad } = req.params;
 		const Query =
+
 			"SELECT comment_date,comment_content FROM comments WHERE  user_email =$1 AND element_id =$2 AND graduate_email=$3";
 		const result = await pool.query(Query, [sender, element, grad]);
+
 		res.send(result.rows);
 
 	} catch (error) {

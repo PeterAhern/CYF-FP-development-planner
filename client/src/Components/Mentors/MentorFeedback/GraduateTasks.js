@@ -3,7 +3,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import moment from "moment";
 import "./Popup.css";
 
-const GraduateTasks = ({ userEmail, elementId }) => {
+const GraduateTasks = ({ elementId, graduateEmail }) => {
 	const [tasks, setTasks] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState(null);
@@ -13,7 +13,7 @@ const GraduateTasks = ({ userEmail, elementId }) => {
 		setError(null);
 		try {
 			const response = await fetch(
-				`/api/users/${userEmail}/elements/${elementId}/tasks`
+				`/api/users/${graduateEmail}/elements/${elementId}/tasks`
 			);
 
 			if (!response.ok) {
@@ -26,7 +26,7 @@ const GraduateTasks = ({ userEmail, elementId }) => {
 			setError(error.message);
 		}
 		setIsLoading(false);
-	}, [userEmail, elementId]);
+	}, [graduateEmail, elementId]);
 
 	useEffect(() => {
 		fetchTasksHandler();
