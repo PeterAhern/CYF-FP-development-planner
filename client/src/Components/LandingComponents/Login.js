@@ -83,7 +83,8 @@ const Login = ({ setLoginStatus }) => {
 				});
 			}
 
-			if (passwordReg.trim().length > 6) {
+			// password validation needs to change > 6 not > 3, for testing
+			if (passwordReg.trim().length > 3) {
 				setRegistrationFormValidity((prev) => {
 					const passwordIsValid = { ...prev };
 					passwordIsValid.userPasswordIsValid = true;
@@ -189,30 +190,3 @@ const Login = ({ setLoginStatus }) => {
 };
 
 export default Login;
-
-
-
-{/* <form className="login" onSubmit={loginSubmitHandler}>
-	<h1>Login</h1>
-	<input
-		type="text"
-		placeholder="User Email..."
-		onChange={(e) => {
-			setUserEmail(e.target.value);
-		}}
-	/>
-	<input
-		type="password"
-		placeholder="Password..."
-		onChange={(e) => {
-			setPassword(e.target.value);
-		}}
-	/>
-	<button> Login </button>
-</form>; */}
-
-
-const loginSubmitHandler = (e) => {
-	e.preventDefault();
-
-};
