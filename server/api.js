@@ -587,8 +587,8 @@ router.get("/comments/elements/:element/grad/:grad", async (req, res) => {
 	try {
 		const {  element, grad } = req.params;
 		const Query =
-			"SELECT comment_date,comment_content FROM comments WHERE  user_email =$1 AND element_id =$2 AND graduate_email=$3";
-		const result = await pool.query(Query, [sender, element, grad]);
+			"SELECT comment_date,comment_content,user_email FROM comments WHERE  element_id =$1 AND graduate_email=$2";
+		const result = await pool.query(Query, [ element, grad]);
 
 		res.send(result.rows);
 

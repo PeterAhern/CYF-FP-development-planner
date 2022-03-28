@@ -1,7 +1,7 @@
 import { useState } from "react";
 import GraduateTasks from "./GraduateTasks";
 import "./Popup.css";
-import Comment from "./Comment";
+import Comment from "../MentorFeedback/Comment";
 
 const GraduateElement = (props) => {
 	const [clicked, setClicked] = useState(false);
@@ -41,7 +41,7 @@ const GraduateElement = (props) => {
 					userEmail={props.mentorEmail}
 					elementId={props.id}
 					className="element"
-					graduateEmail={props.graduateEmail}
+					senderEmail={props.graduateEmail}
 				/>
 			)}
 		</div>
