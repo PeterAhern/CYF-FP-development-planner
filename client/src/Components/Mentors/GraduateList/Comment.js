@@ -1,9 +1,41 @@
-import { useState } from "react";
+import { useState, useCallback, useEffect } from "react";
 
 const Comment = ({ email, id, senderEmail }) => {
 	const utc = new Date().toJSON().slice(0, 10).replace(/-/g, "-");
+	const [value, setValue] = useState({ comment: "", date: utc, gradEmail: email });
+	const [comments, setComments] = useState("No feedback yet");
 
-	const [value, setValue] = useState({ comment: "", date: utc, from:"" });
+	const fetchCommentsHandler = useCallback(async () => {
+		try {
+			const response = await fetch(
+				`/api/comments/${email}/${id}`
+			);
+
+			if (!response.ok) {
+				throw new Error("Error, unable to load comments");
+			}
+			const data = await response.json();
+			if(data.length>0){
+				const loadedComments = [];
+				for (const key in data) {
+					loadedComments.push({
+						From: data[key].user_email,
+						Comment: data[key].comment_content,
+						Sent: data[key].comment_date,
+					});
+				}
+				console.log(loadedComments);
+				setComments(loadedComments);
+			}
+		} catch (error) {
+			console.log(error.message);
+		}
+	}, [email, id]);
+
+	useEffect(() => {
+		fetchCommentsHandler();
+	}, [fetchCommentsHandler, email]);
+
 	const addCommentOptions = {
 		method: "POST",
 		headers: {
@@ -12,23 +44,24 @@ const Comment = ({ email, id, senderEmail }) => {
 		},
 		body: JSON.stringify(value),
 	};
+
 	const addComment = async () => {
 		const response = await fetch(
-			`/api/comments/${email}/elements/${id}/${senderEmail}`,
+			`/api/comments/${senderEmail}/elements/${id}`,
 			addCommentOptions
 		);
 		if (!response.ok) {
 			throw new Error("Failed to add new task");
 		}
 	};
+
 	const handleChange = (e) => {
-		setValue({ comment: e.target.value, date: utc, from: senderEmail });
+		setValue({ comment: e.target.value, date: utc, gradEmail: email });
 	};
-	console.log(value);
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		await addComment();
-		setValue({ comment: "", date: utc, from:"" });
+		setValue({ comment: "", date: utc, gradEmail: email });
 	};
 
 	return (
@@ -38,10 +71,14 @@ const Comment = ({ email, id, senderEmail }) => {
 					Comment:
 					<textarea value={value.comment} onChange={handleChange} />
 				</label>
-				<input type="submit" value="Submit" className="btn btn-danger submit" />
+				<input
+					type="submit"
+					value="Send Feedback"
+					className="btn btn-danger submit"
+				/>
 			</form>
 			<div className="commentsArea">
-				<h1> comments go here</h1>
+				Previous Comments should be displayed here
 			</div>
 		</div>
 	);

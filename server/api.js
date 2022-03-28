@@ -471,12 +471,12 @@ router.put("/graduates/goal/:graduate", async (req, res) => {
 });
 
 //Get Comments from database for graduate
-router.get("/comments/:graduate", async (req, res) => {
+router.get("/comments/:email/:id", async (req, res) => {
 	try {
-		const mentor = "f";
-		const graduate = req.params;
-		const Query = "SELECT user_email FROM comments WHERE mentor_access =$1;";
-		const result = await pool.query(Query, [mentor]);
+		const graduate = req.params.email;
+		const id = req.params.id;
+		const Query = "SELECT user_email, comment_date, comment_content FROM comments WHERE graduate_email =$1 and element_id=$2;";
+		const result = await pool.query(Query, [graduate, id]);
 		return res.send(result.rows);
 	} catch (error) {
 		console.error(error);
@@ -540,15 +540,22 @@ router.get("/users", async (req, res) => {
 
 //////posting a comment to the graduate
 
-router.post("/comments/:graduate/elements/:element/:senderEmail", async (req, res) => {
+router.post("/comments/:sender/elements/:element", async (req, res) => {
 	try {
-		const { graduate, element, senderEmail } = req.params;
+		const { sender, element } = req.params;
 		const date = req.body.date;
 		const comment = req.body.comment;
+		const graduate = req.body.gradEmail;
 
 		const Query =
 			"INSERT INTO comments (user_email,element_id, comment_content,comment_date, graduate_email) VALUES ($1,$2,$3,$4,$5)";
-		const result = await pool.query(Query, [senderEmail, element, comment, date, graduate]);
+		const result = await pool.query(Query, [
+			sender,
+			element,
+			comment,
+			date,
+			graduate,
+		]);
 		res.send(result.rows);
 	} catch (error) {
 		console.error(error);
