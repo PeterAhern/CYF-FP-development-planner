@@ -1,7 +1,17 @@
 import { Router } from "express";
-
 const bcrypt = require("bcrypt");
+const nodemailer = require("nodemailer");
+const sendgridTransport = require("nodemailer-sendgrid-transport");
 const saltRounds = 10;
+//initializing transporter
+const transporter = nodemailer.createTransport(
+	sendgridTransport({
+		auth: {
+			api_key:
+				"********************************",
+		},
+	})
+);
 
 import pool from "./db";
 
@@ -436,7 +446,8 @@ router.get("/graduates/goal/:graduate", async (req, res) => {
 	try {
 		const mentor = "f";
 		const graduate = req.params.graduate;
-		const Query = "SELECT goal FROM users WHERE mentor_access =$1 AND user_email=$2;";
+		const Query =
+			"SELECT goal FROM users WHERE mentor_access =$1 AND user_email=$2;";
 		const result = await pool.query(Query, [mentor, graduate]);
 		return res.send(result.rows);
 	} catch (error) {
@@ -452,18 +463,17 @@ router.put("/graduates/goal/:graduate", async (req, res) => {
 		const goal = req.body.goal;
 		const graduate = req.params.graduate;
 		console.log(graduate);
-		const Query =
-			"SELECT * FROM users WHERE user_email=$1;";
+		const Query = "SELECT * FROM users WHERE user_email=$1;";
 		const result = await pool.query(Query, [graduate]);
 		if (result.rows.length > 0) {
 			const result1 = await pool.query(
-					"UPDATE users SET goal=$1 WHERE user_email=$2",
-					[goal, graduate]
-				);
-				res.send(result1);
-			} else {
-				res.send("No graduate goal found");
-			}
+				"UPDATE users SET goal=$1 WHERE user_email=$2",
+				[goal, graduate]
+			);
+			res.send(result1);
+		} else {
+			res.send("No graduate goal found");
+		}
 	} catch (error) {
 		console.error(error);
 		res.status(500).send(error);
@@ -472,11 +482,7 @@ router.put("/graduates/goal/:graduate", async (req, res) => {
 
 //Get Comments from database
 
-
-
 //UPDATE graduates goal
-
-
 
 //Get all graduates
 router.get("/graduates", async (req, res) => {
@@ -529,15 +535,37 @@ router.get("/users", async (req, res) => {
 
 //////posting a comment to the graduate
 
-router.post("/comments/:graduate/elements/:element", async (req, res) => {
+router.post("/comments/:sender/elements/:element", async (req, res) => {
 	try {
-		const { graduate, element } = req.params;
+		const { sender, element } = req.params;
 		const date = req.body.date;
 		const comment = req.body.comment;
-
+        const grad = req.body.gradEmail;
 		const Query =
-			"INSERT INTO comments (user_email,element_id, comment_content,comment_date) VALUES ($1,$2,$3,$4)";
-		const result = await pool.query(Query, [graduate, element, comment, date]);
+			"INSERT INTO comments (user_email,element_id, comment_content,comment_date,graduate_email) VALUES ($1,$2,$3,$4,$5)";
+		const result = await pool.query(Query, [
+			sender,
+			element,
+			comment,
+			date,
+			grad,
+		]);
+		res.send("a post sent");
+
+	} catch (error) {
+		console.error(error);
+		res.status(500).send(error);
+	}
+});
+
+//getting the mentors comments
+
+router.get("/comments/:sender/elements/:element/grad/:grad", async (req, res) => {
+	try {
+		const { sender, element, grad } = req.params;
+		const Query =
+			"SELECT comment_date,comment_content FROM comments WHERE  user_email =$1 AND element_id =$2 AND graduate_email=$3";
+		const result = await pool.query(Query, [sender, element, grad]);
 		res.send(result.rows);
 	} catch (error) {
 		console.error(error);
