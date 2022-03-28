@@ -28,7 +28,7 @@ const GraduateElement = (props) => {
 				<Comment
 					email={props.graduateEmail}
 					id={props.id}
-					mentorEmail={props.mentorEmail}
+					senderEmail={props.mentorEmail}
 				/>
 			)}
 			{clicked && (

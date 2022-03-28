@@ -1,13 +1,12 @@
 import { useState } from "react";
 
-const Comment = ({ email, id, mentorEmail }) => {
+const Comment = ({ email, id, senderEmail }) => {
 	const utc = new Date().toJSON().slice(0, 10).replace(/-/g, "-");
 
 	const [value, setValue] = useState({
 		comment: "",
 		date: utc,
-		email: "",
-		mentorEmail: mentorEmail,
+		gradEmail: email,
 	});
 	const addCommentOptions = {
 		method: "POST",
@@ -19,7 +18,7 @@ const Comment = ({ email, id, mentorEmail }) => {
 	};
 	const addComment = async () => {
 		const response = await fetch(
-			`/api/comments/${email}/elements/${id}`,
+			`/api/comments/${senderEmail}/elements/${id}/`,
 			addCommentOptions
 		);
 		if (!response.ok) {
@@ -27,13 +26,13 @@ const Comment = ({ email, id, mentorEmail }) => {
 		}
 	};
 	const handleChange = (e) => {
-		setValue({ comment: e.target.value, date: utc, mentorEmail: mentorEmail });
+		setValue({ comment: e.target.value, date: utc, gradEmail: email });
 	};
 	console.log(value);
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		await addComment();
-		setValue({ comment: "", date: utc });
+		setValue({ comment: "", date: utc, gradEmail: email });
 	};
 
 	return (

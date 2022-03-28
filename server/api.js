@@ -10,7 +10,7 @@ const transporter = nodemailer.createTransport(
 	sendgridTransport({
 		auth: {
 			api_key:
-				"********************************",
+				"***********",
 		},
 	})
 );
@@ -542,22 +542,24 @@ router.get("/users", async (req, res) => {
 
 //////posting a comment to the graduate
 
-router.post("/comments/:graduate/elements/:element", async (req, res) => {
+router.post("/comments/:sender/elements/:element/", async (req, res) => {
 	try {
-		const { graduate, element } = req.params;
+		const { sender, element } = req.params;
 		const date = req.body.date;
 		const comment = req.body.comment;
+		const grad = req.body.gradEmail;
+		// const mentorEmail = req.body.mentorEmail;
 
 		const Query =
-			"INSERT INTO comments (user_email,element_id, comment_content,comment_date) VALUES ($1,$2,$3,$4)";
-		const result = await pool.query(Query, [graduate, element, comment, date]);
-		transporter.sendMail({
-			to: "halla.sulaiman.33@gmail.com",
-			from: "wiamnasr@gmail.com",
-			subject: "new comment",
-			html: "<h1> you have a new comment sign in to view it</h1>",
-		});
-		res.send(result.rows);
+			"INSERT INTO comments (user_email,element_id, comment_content,comment_date,graduate_email) VALUES ($1,$2,$3,$4,$5)";
+		const result = await pool.query(Query, [sender, element, comment, date,grad]);
+		// transporter.sendMail({
+		// 	to: "halla.sulaiman.33@gmail.com",
+		// 	from: "hallasulaiman333@gmail.com",
+		// 	subject: "new comment",
+		// 	html: "<h1> you have a new comment sign in to view it</h1>",
+		// });
+		res.send("a post sent");
 	} catch (error) {
 		console.error(error);
 		res.status(500).send(error);
