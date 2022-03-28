@@ -1,9 +1,8 @@
 import { useState, useCallback, useEffect } from "react";
 
-
-
 const Comment = ({ email, id, senderEmail }) => {
 	const [comments, setComments] = useState([]);
+	const [refresh, setRefresh] = useState(false);
 
 	const utc = new Date().toJSON().slice(0, 10).replace(/-/g, "-");
 
@@ -37,6 +36,10 @@ const Comment = ({ email, id, senderEmail }) => {
 		e.preventDefault();
 		await addComment();
 		setValue({ comment: "", date: utc, gradEmail: email });
+		refreshFunc();
+	};
+	const refreshFunc = () => {
+		setRefresh(!refresh);
 	};
 
 	const fetchComments = useCallback(async () => {
@@ -57,7 +60,7 @@ const Comment = ({ email, id, senderEmail }) => {
 	}, [senderEmail, id, email]);
 	useEffect(() => {
 		fetchComments();
-	}, [fetchComments]);
+	}, [fetchComments,refresh]);
 	console.log(comments);
 	return (
 		<div>
@@ -73,7 +76,7 @@ const Comment = ({ email, id, senderEmail }) => {
 					{comments.map((comment, index) => {
 						return (
 							<li key={index}>
-								<h6> {(comment.comment_date).slice(0, 10).replace(/-/g, "-")}</h6>
+								<h6> {comment.comment_date.slice(0, 10).replace(/-/g, "-")}</h6>
 								<h5>{comment.comment_content}</h5>
 							</li>
 						);
