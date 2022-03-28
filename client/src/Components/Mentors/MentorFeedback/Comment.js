@@ -25,7 +25,7 @@ const Comment = ({ email, id, senderEmail }) => {
 			addCommentOptions
 		);
 		if (!response.ok) {
-			throw new Error("Failed to add new task");
+			throw new Error("Failed to add new comment");
 		}
 	};
 	const handleChange = (e) => {
@@ -76,6 +76,7 @@ const Comment = ({ email, id, senderEmail }) => {
 					{comments.map((comment, index) => {
 						return (
 							<li key={index}>
+								<h6>sender:{comment.user_email}</h6>
 								<h6> {comment.comment_date.slice(0, 10).replace(/-/g, "-")}</h6>
 								<h5>{comment.comment_content}</h5>
 							</li>
