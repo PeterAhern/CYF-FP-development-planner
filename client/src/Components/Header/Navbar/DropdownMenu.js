@@ -7,7 +7,6 @@ import Card from "../../UI/Card/Card";
 
 // Component
 import DropdownItem from "./DropdownItem";
-
 const DropdownMenu = ({ logoutHandler }) => {
 	return (
 		<Card>

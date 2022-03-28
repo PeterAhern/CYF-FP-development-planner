@@ -1,7 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import moment from "moment";
 
-
 const Comment = ({ email, id, senderEmail, refresh, refreshFunc }) => {
 	const utc = new Date().toJSON().slice(0, 10).replace(/-/g, "-");
 	const [value, setValue] = useState({ comment: "", date: utc, gradEmail: email });
@@ -24,10 +23,6 @@ const Comment = ({ email, id, senderEmail, refresh, refreshFunc }) => {
 		}
 	}, [email, id]);
 
-	useEffect(() => {
-		fetchComments();
-	}, [fetchComments, email]);
-
 	const addCommentOptions = {
 		method: "POST",
 		headers: {
@@ -37,6 +32,7 @@ const Comment = ({ email, id, senderEmail, refresh, refreshFunc }) => {
 		body: JSON.stringify(value),
 	};
 
+
 	const addComment = async () => {
 		const response = await fetch(
 			`/api/comments/${senderEmail}/elements/${id}`,
@@ -45,18 +41,21 @@ const Comment = ({ email, id, senderEmail, refresh, refreshFunc }) => {
 		if (!response.ok) {
 			throw new Error("Failed to add new task");
 		}
+
 		refreshFunc();
 	};
 
 	const handleChange = (e) => {
 		setValue({ comment: e.target.value, date: utc, gradEmail: email });
 	};
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		await addComment();
 		setValue({ comment: "", date: utc, gradEmail: email });
 	};
 
+	
 	useEffect(() => {
 		fetchComments();
 	}, [fetchComments, refresh]);
@@ -70,6 +69,7 @@ const Comment = ({ email, id, senderEmail, refresh, refreshFunc }) => {
 			</li>
 		);
 	});
+
 
 	return (
 		<div>
