@@ -470,7 +470,7 @@ router.put("/graduates/goal/:graduate", async (req, res) => {
 	}
 });
 
-//Get Comments from database
+//Get Comments from database for graduate
 router.get("/comments/:graduate", async (req, res) => {
 	try {
 		const mentor = "f";

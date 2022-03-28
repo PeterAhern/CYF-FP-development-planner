@@ -7,15 +7,16 @@ import PopUpForm from "../Tasks/PopUpForm";
 const Element = (props) => {
 	//states for pop up edit task form
 	const [isOpen, setIsOpen] = useState(false);
+	const [commentsOpen, setCommentsOpen] = useState(false);
+
 	const togglePopup = () => {
-		if (props.graduateEmail !== " ") {
-			setUserPasser(props.graduateEmail);
-		}
 		setIsOpen(!isOpen);
+	};
+	const toggleComments = () => {
+		setCommentsOpen(!commentsOpen);
 	};
 	const [refresh, setRefresh] = useState(true);
 	const [clicked, setClicked] = useState(false);
-	const [userPasser, setUserPasser] = useState(props.graduateEmail);
 
 	return (
 		<div className="element">
@@ -29,7 +30,7 @@ const Element = (props) => {
 			<input
 				type="button"
 				className="btn btn-danger"
-				value="+"
+				value="Add New Task"
 				onClick={togglePopup}
 			/>
 			{isOpen && (
@@ -41,7 +42,7 @@ const Element = (props) => {
 								refreshFunc={() => setRefresh(!refresh)}
 								addNewTaskForm={{
 									taskTitle: "",
-									userEmail: userPasser,
+									userEmail: props.graduateEmail,
 									dueDate: "",
 									evidence: "",
 									elementId: props.id,
@@ -53,10 +54,26 @@ const Element = (props) => {
 					handleClose={togglePopup}
 				/>
 			)}
+			<input
+				type="button"
+				className="btn btn-danger"
+				value="View Feedback"
+				onClick={toggleComments}
+			/>
+			{commentsOpen && (
+				<PopUpForm
+					content={
+						<>
+							<b>Mentor Feedback</b>
+						</>
+					}
+					handleClose={toggleComments}
+				/>
+			)}
 			{clicked && (
 				<div className="form">
 					<Tasks
-						userEmail={userPasser}
+						userEmail={props.graduateEmail}
 						elementId={props.id}
 						refresh={refresh}
 						refreshFunc={() => setRefresh(!refresh)}
