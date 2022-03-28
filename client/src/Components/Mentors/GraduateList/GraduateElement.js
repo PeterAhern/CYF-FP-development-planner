@@ -6,6 +6,7 @@ import Comment from "./Comment";
 const GraduateElement = (props) => {
 	const [clicked, setClicked] = useState(false);
 	const [comment, setComment] = useState(false);
+	const [refresh, setRefresh] = useState(true);
 
 	return (
 		<div>
@@ -24,7 +25,7 @@ const GraduateElement = (props) => {
 			>
 				Give Feedback
 			</button>
-			{comment && <Comment senderEmail={props.mentorEmail} email={props.graduateEmail} id={props.id} />}
+			{comment && <Comment senderEmail={props.mentorEmail} email={props.graduateEmail} id={props.id} refresh={refresh} refreshFunc={() => setRefresh(!refresh)} />}
 
 			{clicked && (
 				<GraduateTasks

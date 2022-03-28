@@ -1,11 +1,13 @@
 import { useState, useCallback, useEffect } from "react";
+import moment from "moment";
 
-const Comment = ({ email, id, senderEmail }) => {
+
+const Comment = ({ email, id, senderEmail, refresh, refreshFunc }) => {
 	const utc = new Date().toJSON().slice(0, 10).replace(/-/g, "-");
 	const [value, setValue] = useState({ comment: "", date: utc, gradEmail: email });
-	const [comments, setComments] = useState("No feedback yet");
+	const [comments, setComments] = useState([]);
 
-	const fetchCommentsHandler = useCallback(async () => {
+	const fetchComments = useCallback(async () => {
 		try {
 			const response = await fetch(
 				`/api/comments/${email}/${id}`
@@ -15,26 +17,16 @@ const Comment = ({ email, id, senderEmail }) => {
 				throw new Error("Error, unable to load comments");
 			}
 			const data = await response.json();
-			if(data.length>0){
-				const loadedComments = [];
-				for (const key in data) {
-					loadedComments.push({
-						From: data[key].user_email,
-						Comment: data[key].comment_content,
-						Sent: data[key].comment_date,
-					});
-				}
-				console.log(loadedComments);
-				setComments(loadedComments);
-			}
+				setComments(data);
+
 		} catch (error) {
 			console.log(error.message);
 		}
 	}, [email, id]);
 
 	useEffect(() => {
-		fetchCommentsHandler();
-	}, [fetchCommentsHandler, email]);
+		fetchComments();
+	}, [fetchComments, email]);
 
 	const addCommentOptions = {
 		method: "POST",
@@ -53,6 +45,7 @@ const Comment = ({ email, id, senderEmail }) => {
 		if (!response.ok) {
 			throw new Error("Failed to add new task");
 		}
+		refreshFunc();
 	};
 
 	const handleChange = (e) => {
@@ -63,6 +56,20 @@ const Comment = ({ email, id, senderEmail }) => {
 		await addComment();
 		setValue({ comment: "", date: utc, gradEmail: email });
 	};
+
+	useEffect(() => {
+		fetchComments();
+	}, [fetchComments, refresh]);
+
+	let previousComments = comments.map((comment, index)=>{
+		return (
+			<li key={index}>
+				<h5>Feedback: {comment.comment_content}</h5>
+				<h6>Sent: {moment.utc(comment.comment_date.slice(0, 10).replace(/-/g, "-")).format("DD/MM/YY")}</h6>
+				<h6>From: {comment.user_email}</h6>
+			</li>
+		);
+	});
 
 	return (
 		<div>
@@ -78,7 +85,7 @@ const Comment = ({ email, id, senderEmail }) => {
 				/>
 			</form>
 			<div className="commentsArea">
-				Previous Comments should be displayed here
+				<ul>{previousComments}</ul>
 			</div>
 		</div>
 	);

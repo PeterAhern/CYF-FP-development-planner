@@ -3,6 +3,7 @@ import TaskForm from "../TaskForm/TaskForm";
 import Tasks from "../Tasks/Tasks";
 import "./Element.css";
 import PopUpForm from "../Tasks/PopUpForm";
+import Comment from "../Mentors/GraduateList/Comment";
 
 const Element = (props) => {
 	//states for pop up edit task form
@@ -65,6 +66,13 @@ const Element = (props) => {
 					content={
 						<>
 							<b>Mentor Feedback</b>
+							<Comment
+								refresh={refresh}
+								refreshFunc={() => setRefresh(!refresh)}
+								senderEmail={props.graduateEmail}
+								email={props.graduateEmail}
+								id={props.id}
+							/>
 						</>
 					}
 					handleClose={toggleComments}
