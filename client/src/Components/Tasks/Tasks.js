@@ -3,7 +3,7 @@ import Card from "../UI/Card/Card";
 import PopUpForm from "./PopUpForm";
 import TaskForm from "../TaskForm/TaskForm";
 //for date formatting on task card
-	import moment from "moment";
+import moment from "moment";
 
 const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 	const [tasks, setTasks] = useState([]);
