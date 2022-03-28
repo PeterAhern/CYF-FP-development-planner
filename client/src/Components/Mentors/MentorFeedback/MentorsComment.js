@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 
-const Comment = ({ email, id, senderEmail }) => {
+const MentorsComment = ({ email, id, senderEmail }) => {
 	const [comments, setComments] = useState([]);
 	const [refresh, setRefresh] = useState(false);
 
@@ -87,4 +87,4 @@ const Comment = ({ email, id, senderEmail }) => {
 		</div>
 	);
 };
-export default Comment;
+export default MentorsComment;

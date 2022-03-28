@@ -1,7 +1,7 @@
 import { useState } from "react";
 import GraduateTasks from "./GraduateTasks";
 import "./Popup.css";
-import Comment from "../MentorFeedback/Comment";
+import Comment from "./MentorsComment";
 
 const GraduateElement = (props) => {
 	const [clicked, setClicked] = useState(false);
