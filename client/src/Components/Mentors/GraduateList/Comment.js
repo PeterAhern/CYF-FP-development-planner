@@ -1,16 +1,13 @@
 import { useState, useCallback, useEffect } from "react";
 
+
+
 const Comment = ({ email, id, senderEmail }) => {
 	const [comments, setComments] = useState([]);
-	const [refresh, setRefresh] = useState(false);
 
 	const utc = new Date().toJSON().slice(0, 10).replace(/-/g, "-");
 
-	const [value, setValue] = useState({
-		comment: "",
-		date: utc,
-		gradEmail: email,
-	});
+	const [value, setValue] = useState({ comment: "", date: utc });
 	const addCommentOptions = {
 		method: "POST",
 		headers: {
@@ -36,10 +33,6 @@ const Comment = ({ email, id, senderEmail }) => {
 		e.preventDefault();
 		await addComment();
 		setValue({ comment: "", date: utc, gradEmail: email });
-		refreshFunc();
-	};
-	const refreshFunc = () => {
-		setRefresh(!refresh);
 	};
 
 	const fetchComments = useCallback(async () => {
@@ -57,10 +50,10 @@ const Comment = ({ email, id, senderEmail }) => {
 		} catch (error) {
 			console.log(error);
 		}
-	}, [ id, email]);
+	}, [id, email]);
 	useEffect(() => {
 		fetchComments();
-	}, [fetchComments,refresh]);
+	}, [fetchComments]);
 	console.log(comments);
 	return (
 		<div>
@@ -76,6 +69,7 @@ const Comment = ({ email, id, senderEmail }) => {
 					{comments.map((comment, index) => {
 						return (
 							<li key={index}>
+								<h6>sender:{comment.user_email}</h6>
 								<h6> {comment.comment_date.slice(0, 10).replace(/-/g, "-")}</h6>
 								<h5>{comment.comment_content}</h5>
 							</li>

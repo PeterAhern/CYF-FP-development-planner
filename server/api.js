@@ -543,8 +543,7 @@ router.post("/comments/:sender/elements/:element/", async (req, res) => {
 		const comment = req.body.comment;
 
 		// const mentorEmail = req.body.mentorEmail;
-
-        const grad = req.body.gradEmail;
+		const grad = req.body.gradEmail;
 		const Query =
 			"INSERT INTO comments (user_email,element_id, comment_content,comment_date,graduate_email) VALUES ($1,$2,$3,$4,$5)";
 		const result = await pool.query(Query, [
@@ -554,6 +553,7 @@ router.post("/comments/:sender/elements/:element/", async (req, res) => {
 			date,
 			grad,
 		]);
+		console.log(result);
 		res.send("a post sent");
 	} catch (error) {
 		console.error(error);
@@ -563,12 +563,12 @@ router.post("/comments/:sender/elements/:element/", async (req, res) => {
 
 //getting the mentors comments
 
-router.get("/comments/:sender/elements/:element/grad/:grad", async (req, res) => {
+router.get("/comments/elements/:element/grad/:grad", async (req, res) => {
 	try {
-		const { sender, element, grad } = req.params;
+		const {  element, grad } = req.params;
 		const Query =
-			"SELECT comment_date,comment_content FROM comments WHERE  user_email =$1 AND element_id =$2 AND graduate_email=$3";
-		const result = await pool.query(Query, [sender, element, grad]);
+			"SELECT comment_date,comment_content,user_email FROM comments WHERE element_id =$1 AND graduate_email=$2";
+		const result = await pool.query(Query, [ element, grad]);
 		res.send(result.rows);
 
 	} catch (error) {
@@ -578,3 +578,6 @@ router.get("/comments/:sender/elements/:element/grad/:grad", async (req, res) =>
 });
 
 export default router;
+
+
+
