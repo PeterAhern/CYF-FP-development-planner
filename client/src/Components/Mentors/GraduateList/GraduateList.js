@@ -61,8 +61,6 @@ const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 	let gradListContent = (
 		<h1>No graduate connections, search and add graduates</h1>
 	);
-	console.log(gradList.Graduate2);
-
 	if (
 		gradList.Graduate1 !== null ||
 		gradList.Graduate2 !== null ||
@@ -72,9 +70,24 @@ const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 			<table>
 				<Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
 					<div className="element">
-						<GraduateElement name={"Technical"} id={1} graduateEmail={user} />
-						<GraduateElement name={"Job Search"} id={2} graduateEmail={user} />
-						<GraduateElement name={"Soft Skills"} id={3} graduateEmail={user} />
+						<GraduateElement
+							name={"Technical"}
+							id={1}
+							graduateEmail={user}
+							mentorEmail={mentorEmail}
+						/>
+						<GraduateElement
+							name={"Job Search"}
+							id={2}
+							graduateEmail={user}
+							mentorEmail={mentorEmail}
+						/>
+						<GraduateElement
+							name={"Soft Skills"}
+							id={3}
+							graduateEmail={user}
+							mentorEmail={mentorEmail}
+						/>
 					</div>
 				</Popup>
 

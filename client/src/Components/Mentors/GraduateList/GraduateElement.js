@@ -22,15 +22,16 @@ const GraduateElement = (props) => {
 				className="comment btn btn-danger"
 				onClick={() => setComment(!comment)}
 			>
-				+
+				Give Feedback
 			</button>
-			{comment && <Comment email={props.graduateEmail} id={props.id} />}
+			{comment && <Comment senderEmail={props.mentorEmail} email={props.graduateEmail} id={props.id} />}
 
 			{clicked && (
 				<GraduateTasks
-					userEmail={props.graduateEmail}
+					userEmail={props.mentorEmail}
 					elementId={props.id}
 					className="element"
+					graduateEmail={props.graduateEmail}
 				/>
 			)}
 		</div>

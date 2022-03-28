@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-const Comment = ({ email, id }) => {
+const Comment = ({ email, id, senderEmail }) => {
 	const utc = new Date().toJSON().slice(0, 10).replace(/-/g, "-");
 
-	const [value, setValue] = useState({ comment: "", date: utc });
+	const [value, setValue] = useState({ comment: "", date: utc, from:"" });
 	const addCommentOptions = {
 		method: "POST",
 		headers: {
@@ -14,7 +14,7 @@ const Comment = ({ email, id }) => {
 	};
 	const addComment = async () => {
 		const response = await fetch(
-			`/api/comments/${email}/elements/${id}`,
+			`/api/comments/${email}/elements/${id}/${senderEmail}`,
 			addCommentOptions
 		);
 		if (!response.ok) {
@@ -22,13 +22,13 @@ const Comment = ({ email, id }) => {
 		}
 	};
 	const handleChange = (e) => {
-		setValue({ comment: e.target.value, date: utc });
+		setValue({ comment: e.target.value, date: utc, from: senderEmail });
 	};
 	console.log(value);
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		await addComment();
-		setValue({ comment: "", date: utc });
+		setValue({ comment: "", date: utc, from:"" });
 	};
 
 	return (
