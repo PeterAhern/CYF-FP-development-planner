@@ -138,6 +138,7 @@ const Register = () => {
 					<label htmlFor="email">User Email</label>
 					<input
 						type="text"
+						placeholder="User Email..."
 						onChange={emailChangeHandler}
 						value={userEmailReg}
 					/>
@@ -145,7 +146,8 @@ const Register = () => {
 						registrationStatus.emailInvalidStatus}
 					<label htmlFor="password">Password</label>
 					<input
-						type="text"
+						type="password"
+						placeholder="User Password..."
 						onChange={passwordChangeHandler}
 						value={passwordReg}
 					/>
