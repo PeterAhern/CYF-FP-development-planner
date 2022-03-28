@@ -1,6 +1,9 @@
 import Navbar from "react-bootstrap/Navbar";
 import { Container, Nav } from "react-bootstrap";
+import Goal from "./Goal";
 import DropdownOption from "./DropdownItem";
+
+import "./NavBar.css";
 
 
 import developmentSvg from "../../../Assets/svg/development.svg";
@@ -9,8 +12,7 @@ import cyfLogo from "../../../Assets/svg/cyfLogo.svg";
 
 
 
-const NavigationMenu = () => {
-
+const NavigationMenu = ({ logoutHandler, graduateEmail }) => {
 	return (
 		<>
 			<Navbar bg="light" expand="lg">
@@ -18,6 +20,7 @@ const NavigationMenu = () => {
 					<Navbar.Brand href="#">
 						<img className="cyfLogo" src={cyfLogo} alt="CYF logo" />
 					</Navbar.Brand>
+					<Goal graduateEmail={graduateEmail} />
 					<Navbar.Toggle aria-controls="navbarScroll" />
 					<Navbar.Collapse id="navbarScroll">
 						<Nav
@@ -30,18 +33,17 @@ const NavigationMenu = () => {
 									Dev Planner
 								</DropdownOption>
 							</Nav.Link>
-							<Nav.Link href="/">
+							<button onClick={logoutHandler}>
 								<DropdownOption href="/" leftIcon={logInOutSvg}>
 									Logout
 								</DropdownOption>
-							</Nav.Link>
+							</button>
 						</Nav>
 					</Navbar.Collapse>
 				</Container>
 			</Navbar>
 		</>
 	);
-
 };
 
 export default NavigationMenu;
