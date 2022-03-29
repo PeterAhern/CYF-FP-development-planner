@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import * as Components from "./landingComponents";
 import Axios from "axios";
 
 const Register = () => {
@@ -133,33 +133,35 @@ const Register = () => {
 
     return (
 			<>
-				<form className="registration" onSubmit={registerSubmitHandler}>
-					<h1>Registration</h1>
-					<label htmlFor="email">User Email</label>
-					<input
-						type="text"
-						placeholder="User Email..."
+				<Components.Form
+					className="registration"
+					onSubmit={registerSubmitHandler}
+				>
+					<Components.Title>Create Account</Components.Title>
+					<Components.Input type="text" placeholder="Name" />
+					<Components.Input
+						type="email"
+						placeholder="Email"
 						onChange={emailChangeHandler}
 						value={userEmailReg}
 					/>
 					{!registrationFormValidity.userEmailIsValid &&
 						registrationStatus.emailInvalidStatus}
-					<label htmlFor="password">Password</label>
-					<input
+					<Components.Input
 						type="password"
-						placeholder="User Password..."
+						placeholder="Password"
 						onChange={passwordChangeHandler}
 						value={passwordReg}
 					/>
 					{!registrationFormValidity.userPasswordIsValid &&
 						registrationStatus.passwordInvalidStatus}
-					<button
+					<Components.Button
+						onSubmit={registerSubmitHandler}
 						disabled={registrationFormValidity.formIsValid ? false : true}
 					>
-						{" "}
-						Register{" "}
-					</button>
-				</form>
+						Sign Up
+					</Components.Button>
+				</Components.Form>
 			</>
 		);
 };

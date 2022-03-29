@@ -1,0 +1,14 @@
+/* * {
+  box-sizing: border-box;
+} */
+
+.login_container {
+  background: #f6f5f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Roboto", sans-serif;
+  height: 100vh;
+  margin: -20px 0 50px;
+}
