@@ -61,8 +61,6 @@ const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 	let gradListContent = (
 		<h1>No graduate connections, search and add graduates</h1>
 	);
-	console.log(gradList.Graduate2);
-
 	if (
 		gradList.Graduate1 !== null ||
 		gradList.Graduate2 !== null ||

@@ -3,7 +3,7 @@ import Card from "../UI/Card/Card";
 import PopUpForm from "./PopUpForm";
 import TaskForm from "../TaskForm/TaskForm";
 //for date formatting on task card
-	import moment from "moment";
+import moment from "moment";
 
 const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 	const [tasks, setTasks] = useState([]);
@@ -105,7 +105,6 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 
 
 	let content = <p>You have no tasks.</p>;
-		console.log(tasks);
 	if (tasks.length > 0) {
 		content = tasks.map((task, index) => (
 			<Card key={task.id}>

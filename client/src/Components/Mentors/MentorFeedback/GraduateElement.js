@@ -1,11 +1,12 @@
 import { useState } from "react";
 import GraduateTasks from "./GraduateTasks";
 import "./Popup.css";
-import Comment from "./Comment";
+import Comment from "./MentorsComment";
 
 const GraduateElement = (props) => {
 	const [clicked, setClicked] = useState(false);
 	const [comment, setComment] = useState(false);
+	const [refresh, setRefresh] = useState(true);
 
 	return (
 		<div>
@@ -22,20 +23,25 @@ const GraduateElement = (props) => {
 				className="comment btn btn-danger"
 				onClick={() => setComment(!comment)}
 			>
-				+
+				Give Feedback
 			</button>
+
 			{comment && (
 				<Comment
+					senderEmail={props.mentorEmail}
 					email={props.graduateEmail}
 					id={props.id}
-					senderEmail={props.mentorEmail}
+					refresh={refresh}
+					refreshFunc={() => setRefresh(!refresh)}
 				/>
 			)}
+
 			{clicked && (
 				<GraduateTasks
-					userEmail={props.graduateEmail}
+					userEmail={props.mentorEmail}
 					elementId={props.id}
 					className="element"
+					senderEmail={props.graduateEmail}
 				/>
 			)}
 		</div>

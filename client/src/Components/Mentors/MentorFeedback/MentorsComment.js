@@ -1,9 +1,9 @@
 import { useState, useCallback, useEffect } from "react";
+import "./Popup.css";
 
-
-
-const Comment = ({ email, id, senderEmail }) => {
+const MentorsComment = ({ email, id, senderEmail }) => {
 	const [comments, setComments] = useState([]);
+	const [refresh, setRefresh] = useState(false);
 
 	const utc = new Date().toJSON().slice(0, 10).replace(/-/g, "-");
 
@@ -26,7 +26,7 @@ const Comment = ({ email, id, senderEmail }) => {
 			addCommentOptions
 		);
 		if (!response.ok) {
-			throw new Error("Failed to add new task");
+			throw new Error("Failed to add new comment");
 		}
 	};
 	const handleChange = (e) => {
@@ -37,12 +37,16 @@ const Comment = ({ email, id, senderEmail }) => {
 		e.preventDefault();
 		await addComment();
 		setValue({ comment: "", date: utc, gradEmail: email });
+		refreshFunc();
+	};
+	const refreshFunc = () => {
+		setRefresh(!refresh);
 	};
 
 	const fetchComments = useCallback(async () => {
 		try {
 			const response = await fetch(
-				`/api/comments/${senderEmail}/elements/${id}/grad/${email}`
+				`/api/comments/elements/${id}/grad/${email}`
 			);
 
 			if (!response.ok) {
@@ -54,10 +58,10 @@ const Comment = ({ email, id, senderEmail }) => {
 		} catch (error) {
 			console.log(error);
 		}
-	}, [senderEmail, id, email]);
+	}, [ id, email]);
 	useEffect(() => {
 		fetchComments();
-	}, [fetchComments]);
+	}, [fetchComments,refresh]);
 	console.log(comments);
 	return (
 		<div>
@@ -72,8 +76,9 @@ const Comment = ({ email, id, senderEmail }) => {
 				<ul>
 					{comments.map((comment, index) => {
 						return (
-							<li key={index}>
-								<h6> {(comment.comment_date).slice(0, 10).replace(/-/g, "-")}</h6>
+							<li key={index} className={comment.user_email === senderEmail?"blue":"green"}>
+								<h6>sender:{comment.user_email}</h6>
+								<h6> {comment.comment_date.slice(0, 10).replace(/-/g, "-")}</h6>
 								<h5>{comment.comment_content}</h5>
 							</li>
 						);
@@ -83,4 +88,4 @@ const Comment = ({ email, id, senderEmail }) => {
 		</div>
 	);
 };
-export default Comment;
+export default MentorsComment;
