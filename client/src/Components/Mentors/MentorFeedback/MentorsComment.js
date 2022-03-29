@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
+import "./Popup.css";
 
 const MentorsComment = ({ email, id, senderEmail }) => {
 	const [comments, setComments] = useState([]);
@@ -75,7 +76,7 @@ const MentorsComment = ({ email, id, senderEmail }) => {
 				<ul>
 					{comments.map((comment, index) => {
 						return (
-							<li key={index}>
+							<li key={index} className={comment.user_email === senderEmail?"blue":"green"}>
 								<h6>sender:{comment.user_email}</h6>
 								<h6> {comment.comment_date.slice(0, 10).replace(/-/g, "-")}</h6>
 								<h5>{comment.comment_content}</h5>
