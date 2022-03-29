@@ -15,7 +15,7 @@ import cyfLogo from "../../../Assets/svg/cyfLogo.svg";
 const NavigationMenu = ({ user_email }) => {
 
 	const logoutHandler = () => Axios.post("/api/logout");
-	
+
 	return (
 		<>
 			<Navbar bg="light" expand="lg">
