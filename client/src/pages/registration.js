@@ -5,6 +5,7 @@ import "../App.css";
 // import Navbar from "../Components/Header/Navbar/Navbar";
 import { Navigate } from "react-router-dom";
 
+
 import LandingCanvas from "../Components/MobileComponents/Canvas/LandingCanvas";
 import Register from "../Components/LandingComponents/Register";
 import Login from "../Components/LandingComponents/Login";

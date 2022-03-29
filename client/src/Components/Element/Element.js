@@ -23,7 +23,7 @@ const Element = (props) => {
 		<div className="element">
 			<button
 				type="button"
-				className="btn btn-danger"
+				className="elementButton"
 				onClick={() => setClicked(!clicked)}
 			>
 				{props.name}
