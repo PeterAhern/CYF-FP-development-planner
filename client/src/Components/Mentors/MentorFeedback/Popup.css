@@ -78,3 +78,9 @@ button:hover{
     flex-flow: row wrap;
     /* flex-direction: column; */
 }
+.blue{
+    background-color: rgb(123, 216, 216);
+}
+.green{
+    background-color: rgb(228, 180, 198);
+}

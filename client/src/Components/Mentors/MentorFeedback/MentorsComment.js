@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from "react";
+import "./Popup.css";
 
-const Comment = ({ email, id, senderEmail }) => {
+const MentorsComment = ({ email, id, senderEmail }) => {
 	const [comments, setComments] = useState([]);
 	const [refresh, setRefresh] = useState(false);
 
@@ -25,7 +26,7 @@ const Comment = ({ email, id, senderEmail }) => {
 			addCommentOptions
 		);
 		if (!response.ok) {
-			throw new Error("Failed to add new task");
+			throw new Error("Failed to add new comment");
 		}
 	};
 	const handleChange = (e) => {
@@ -75,7 +76,8 @@ const Comment = ({ email, id, senderEmail }) => {
 				<ul>
 					{comments.map((comment, index) => {
 						return (
-							<li key={index}>
+							<li key={index} className={comment.user_email === senderEmail?"blue":"green"}>
+								<h6>sender:{comment.user_email}</h6>
 								<h6> {comment.comment_date.slice(0, 10).replace(/-/g, "-")}</h6>
 								<h5>{comment.comment_content}</h5>
 							</li>
@@ -86,4 +88,4 @@ const Comment = ({ email, id, senderEmail }) => {
 		</div>
 	);
 };
-export default Comment;
+export default MentorsComment;
