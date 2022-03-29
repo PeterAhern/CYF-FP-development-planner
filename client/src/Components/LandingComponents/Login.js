@@ -130,8 +130,6 @@ const Login = ({ setLoginStatus }) => {
 
 		// this if check is redundant as the submit button will not be active unless the form is active
 		if (registrationFormValidity.formIsValid) {
-			setUserEmailReg("");
-			setPasswordReg("");
 
 			return Axios.post("/api/login", {
 				user_email: userEmailReg,
@@ -147,10 +145,17 @@ const Login = ({ setLoginStatus }) => {
 					});
 				} else {
 					setLoginStatus((prev) => {
+						setUserEmailReg("");
+						setPasswordReg("");
+						setRegistrationStatus((prev) => {
+							const currLoginStatusMessage = { ...prev };
+							currLoginStatusMessage.emailInvalidStatus= "";
+							currLoginStatusMessage.passwordInvalidStatus = "";
+							return currLoginStatusMessage;
+						});
 						const currLoginStatus = { ...prev };
 						currLoginStatus.status = true;
 						currLoginStatus.loginResult = response.data.user_email;
-
 						return currLoginStatus;
 					});
 				}

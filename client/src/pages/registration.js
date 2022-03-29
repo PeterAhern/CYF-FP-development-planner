@@ -31,16 +31,6 @@ export default function Registration() {
 		});
 	}, []);
 
-	// const logoutHandler = (e) => {
-	// 	e.preventDefault();
-	// 	setLoginStatus((prev) => {
-	// 		const currLoginStatus = { ...prev };
-	// 		currLoginStatus.status = false;
-	// 		currLoginStatus.loginResult = "";
-	// 		return currLoginStatus;
-	// 	});
-	// };
-
 	return (
 		<>
 			{!loginStatus.status && (

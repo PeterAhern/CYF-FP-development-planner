@@ -46,6 +46,11 @@ router.get("/login", (req, res) => {
 	}
 });
 
+router.post("/logout", (req, res) => {
+	req.session.user = "";
+	res.redirect("/");
+} );
+
 router.post("/login", (req, res) => {
 	const { user_email, password } = req.body;
 	console.log("email", user_email);
