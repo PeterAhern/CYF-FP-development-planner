@@ -35,6 +35,8 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 			},
 		});
 		togglePopup();
+		console.log(tasks[index].due_date);
+		console.log(tasks[index].status_id);
 	};
 
 	const fetchTasksHandler = useCallback(async () => {
@@ -51,23 +53,23 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 			const data = await response.json();
 			console.log(data);
 			//when no tasks in db, data is sent back as a message (instead of tasks data) with success=true
-			if(data.success===true){
+			if (data.success === true) {
 				setTasks([]);
 			} else {
-			const loadedTasks = [];
-			for (const key in data) {
-				loadedTasks.push({
-					id: data[key].task_id,
-					title: data[key].task_title,
-					user_email: data[key].user_email,
-					due_date: data[key].due_date,
-					evidence: data[key].evidence,
-					element_id: data[key].element_id,
-					status_id: data[key].status_id,
-				});
+				const loadedTasks = [];
+				for (const key in data) {
+					loadedTasks.push({
+						id: data[key].task_id,
+						title: data[key].task_title,
+						user_email: data[key].user_email,
+						due_date: data[key].due_date,
+						evidence: data[key].evidence,
+						element_id: data[key].element_id,
+						status_id: data[key].status_id,
+					});
+				}
+				setTasks(loadedTasks);
 			}
-			setTasks(loadedTasks);
-		}
 		} catch (error) {
 			setError(error.message);
 		}
@@ -92,17 +94,16 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 	};
 
 	const statusShower = (id) => {
-			if (id === 1) {
-				return "Not Started";
-			} else if (id === 2) {
-				return "In Progress";
-			} else if (id === 3) {
-				return "Complete";
-			} else if (id === 4) {
-				return "N/A";
-			}
-		};
-
+		if (id === 1) {
+			return "Not Started";
+		} else if (id === 2) {
+			return "In Progress";
+		} else if (id === 3) {
+			return "Complete";
+		} else if (id === 4) {
+			return "N/A";
+		}
+	};
 
 	let content = <p>You have no tasks.</p>;
 	if (tasks.length > 0) {
@@ -138,6 +139,7 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 										refreshFunc={refreshFunc}
 										editingTask={editingTask}
 										setEditingTask={setEditingTask}
+										statusShower={statusShower}
 									/>
 								</>
 							}
