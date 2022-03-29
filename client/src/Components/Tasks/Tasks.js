@@ -105,7 +105,6 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 
 
 	let content = <p>You have no tasks.</p>;
-		console.log(tasks);
 	if (tasks.length > 0) {
 		content = tasks.map((task, index) => (
 			<Card key={task.id}>

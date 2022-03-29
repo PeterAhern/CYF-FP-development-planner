@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
-// import Card from "../../UI/Card/Card";
 import moment from "moment";
 import "./Popup.css";
 
-const GraduateTasks = ({ elementId, graduateEmail }) => {
+const GraduateTasks = ({ elementId, senderEmail }) => {
 	const [tasks, setTasks] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState(null);
@@ -13,7 +12,7 @@ const GraduateTasks = ({ elementId, graduateEmail }) => {
 		setError(null);
 		try {
 			const response = await fetch(
-				`/api/users/${graduateEmail}/elements/${elementId}/tasks`
+				`/api/users/${senderEmail}/elements/${elementId}/tasks`
 			);
 
 			if (!response.ok) {
@@ -26,11 +25,13 @@ const GraduateTasks = ({ elementId, graduateEmail }) => {
 			setError(error.message);
 		}
 		setIsLoading(false);
-	}, [graduateEmail, elementId]);
+	}, [senderEmail, elementId]);
 
 	useEffect(() => {
 		fetchTasksHandler();
 	}, [fetchTasksHandler]);
+
+	console.log(tasks);
 
 	const statusShower = (id) => {
 		if (id === 1) {
@@ -50,7 +51,7 @@ const GraduateTasks = ({ elementId, graduateEmail }) => {
 		content = tasks.map((task) => (
 			<div className="task" key={task.id}>
 				<p className="title">{task.task_title}</p>
-				<p className="date" >
+				<p className="date">
 					Due: {moment.utc(task.due_date).format("DD/MM/YY")}
 				</p>
 				<p className="status">{statusShower(task.status_id)}</p>
