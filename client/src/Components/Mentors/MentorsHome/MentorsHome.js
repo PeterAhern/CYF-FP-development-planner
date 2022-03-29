@@ -7,7 +7,7 @@ const MentorsHome = ({ user_email }) => {
 	const [addGradRefresh, setAddGradRefresh] = useState(true);
 
 	return (
-		<>
+		<div>
 			<Navbar user_email={user_email} />
 			<h1> Welcome Mentor!</h1>
 			<h3> Connect with graduates, give feedback, support growth!</h3>
@@ -20,7 +20,7 @@ const MentorsHome = ({ user_email }) => {
 				mentorEmail={user_email}
 				gradRefreshFunc={() => setAddGradRefresh(!addGradRefresh)}
 			/>
-		</>
+		</div>
 	);
 };
 export default MentorsHome;
