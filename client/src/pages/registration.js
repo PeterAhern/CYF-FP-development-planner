@@ -39,7 +39,7 @@ export default function Registration() {
 					<LandingCanvas />
 					<Components.Container>
 						<Components.SignUpContainer signingIn={signIn}>
-							<Register />
+							<Register setLoginStatus={setLoginStatus} />
 						</Components.SignUpContainer>
 						<Components.SignInContainer signingIn={signIn}>
 							<Login setLoginStatus={setLoginStatus} />

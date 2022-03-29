@@ -28,12 +28,22 @@ router.post("/register", (req, res) => {
 			console.log(err);
 		}
 
-		pool
+		return pool
 			.query(
 				"INSERT INTO users (user_email, mentor_access, password) VALUES ($1,$2,$3)",
 				[user_email, false, hash]
 			)
-			.then(() => res.send("User inserted successfully"));
+			.then(() => {
+				return pool
+					.query("SELECT * FROM users WHERE user_email = $1;", [user_email])
+					.then((result) => {
+						if (result.rows.length > 0) {
+							req.session.user = result.rows[0];
+							return res.send({ loggedIn: true, user: req.session.user });
+						}
+					});
+			})
+			.catch((err) => console.log(err));
 	});
 });
 
@@ -48,7 +58,7 @@ router.get("/login", (req, res) => {
 
 router.post("/logout", (req, res) => {
 	req.session.user = "";
-	res.redirect("/");
+	return res.redirect("/");
 } );
 
 router.post("/login", (req, res) => {
