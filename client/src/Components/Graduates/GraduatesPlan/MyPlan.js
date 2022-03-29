@@ -2,10 +2,10 @@ import Card from "../../UI/Card/Card";
 import Element from "../../Element/Element";
 import "./MyPlan.css";
 import Navbar from "../../Header/Navbar/Navbar";
-const MyPlan = ({ graduateEmail }) => {
+const MyPlan = ({ user_email }) => {
 	return (
 		<>
-			<Navbar graduateEmail={graduateEmail} />
+			<Navbar graduateEmail={user_email} />
 			<main role="main">
 				<Card>
 					<p>
@@ -14,13 +14,9 @@ const MyPlan = ({ graduateEmail }) => {
 					</p>
 					<h1>Elements to Success</h1>
 					<div className="elements">
-						<Element id={1} name={"Technical"} graduateEmail={graduateEmail} />
-						<Element id={2} name={"Job Search"} graduateEmail={graduateEmail} />
-						<Element
-							id={3}
-							name={"Soft Skills"}
-							graduateEmail={graduateEmail}
-						/>
+						<Element id={1} name={"Technical"} graduateEmail={user_email} />
+						<Element id={2} name={"Job Search"} graduateEmail={user_email} />
+						<Element id={3} name={"Soft Skills"} graduateEmail={user_email} />
 					</div>
 				</Card>
 			</main>

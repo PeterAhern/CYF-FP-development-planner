@@ -2,6 +2,7 @@ import Navbar from "react-bootstrap/Navbar";
 import { Container, Nav } from "react-bootstrap";
 import Goal from "./Goal";
 import DropdownOption from "./DropdownItem";
+import Axios from "axios";
 
 import "./NavBar.css";
 
@@ -11,8 +12,10 @@ import logInOutSvg from "../../../Assets/svg/login-out.svg";
 import cyfLogo from "../../../Assets/svg/cyfLogo.svg";
 
 
+const NavigationMenu = ({ user_email }) => {
 
-const NavigationMenu = ({ logoutHandler, graduateEmail }) => {
+	const logoutHandler = () => Axios.post("/api/logout");
+	
 	return (
 		<>
 			<Navbar bg="light" expand="lg">
@@ -20,7 +23,7 @@ const NavigationMenu = ({ logoutHandler, graduateEmail }) => {
 					<Navbar.Brand href="#">
 						<img className="cyfLogo" src={cyfLogo} alt="CYF logo" />
 					</Navbar.Brand>
-					<Goal graduateEmail={graduateEmail} />
+					<Goal graduateEmail={user_email} />
 					<Navbar.Toggle aria-controls="navbarScroll" />
 					<Navbar.Collapse id="navbarScroll">
 						<Nav
@@ -33,11 +36,13 @@ const NavigationMenu = ({ logoutHandler, graduateEmail }) => {
 									Dev Planner
 								</DropdownOption>
 							</Nav.Link>
-							<button onClick={logoutHandler}>
-								<DropdownOption href="/" leftIcon={logInOutSvg}>
-									Logout
-								</DropdownOption>
-							</button>
+							<Nav.Link href="/" onClick={logoutHandler}>
+								{/* <button onClick={logoutHandler}> */}
+									<DropdownOption href="/" leftIcon={logInOutSvg}>
+										Logout
+									</DropdownOption>
+								{/* </button>  */}
+							</Nav.Link>
 						</Nav>
 					</Navbar.Collapse>
 				</Container>

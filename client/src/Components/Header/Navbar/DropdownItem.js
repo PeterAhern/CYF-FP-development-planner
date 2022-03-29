@@ -3,7 +3,7 @@ import classes from "./DropdownItem.module.css";
 const DropdownItem = (props) => {
 
 	return (
-		<a href={props.href} className={classes.menuItem}>
+		<div href={props.href} className={classes.menuItem}>
 			<span className={classes.iconButton}>
 				{props.leftIcon && (
 					<img className={classes.navIcon} src={props.leftIcon} alt="dev" />
@@ -15,7 +15,7 @@ const DropdownItem = (props) => {
 					<img className={classes.navIcon} src={props.rightIcon} alt="dev" />
 				)}
 			</span>
-		</a>
+		</div>
 	);
 };
 

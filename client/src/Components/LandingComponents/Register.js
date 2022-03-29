@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import Axios from "axios";
 
-const Register = () => {
+const Register = ({ setLoginStatus }) => {
     // Managing form Validity for registration
 	const [registrationFormValidity, setRegistrationFormValidity] =  useState({ userEmailIsValid: false, userPasswordIsValid: false, formIsValid: false });
 
@@ -113,20 +113,34 @@ const Register = () => {
 			};
 		}, [userEmailReg, passwordReg, registrationFormValidity.userEmailIsValid, registrationFormValidity.userPasswordIsValid, registrationFormValidity.formIsValid]);
 
+
     const registerSubmitHandler = async (e) => {
 		e.preventDefault();
 
         // this if check is redundant as the submit button will not be active unless the form is active
         if (registrationFormValidity.formIsValid) {
 
-            setUserEmailReg("");
-            setPasswordReg("");
 
-            return Axios.post("/api/register", {
-                user_email: userEmailReg,
+			Axios.post("/api/register", {
+				user_email: userEmailReg,
                 password: passwordReg,
             }).then((response) => {
-                console.log(response);
+				setUserEmailReg("");
+				setPasswordReg("");
+				setRegistrationStatus((prev) => {
+					const currLoginStatusMessage = { ...prev };
+					currLoginStatusMessage.emailInvalidStatus = "";
+					currLoginStatusMessage.passwordInvalidStatus = "";
+					return currLoginStatusMessage;
+				});
+				if (response.data.loggedIn == true) {
+					setLoginStatus((prev) => {
+						const currLoginStatus = { ...prev };
+						currLoginStatus.status = true;
+						currLoginStatus.loginResult = response.data.user_email;
+						return currLoginStatus;
+					});
+				}
             });
         }
 	};

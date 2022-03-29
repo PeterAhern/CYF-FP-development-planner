@@ -6,10 +6,12 @@ import MentorsHome from "../Components/Mentors/MentorsHome/MentorsHome";
 
 export default function Plan() {
 	const [currUser, setCurrUser] = useState({ role: "", user_email: "" });
+	console.log(currUser);
 
 	Axios.defaults.withCredentials = true;
 	useEffect(() => {
 		Axios.get("/api/login").then((response) => {
+			console.log(response.data.user);
 			if (response.data.loggedIn == true) {
 				setCurrUser((prev) => {
 					const stateUser = { ...prev };
@@ -22,11 +24,9 @@ export default function Plan() {
 	}, []);
 	return (
 		<div>
-			{currUser.role === "grad" && (
-				<MyPlan graduateEmail={currUser.user_email} />
-			)}
+			{currUser.role === "grad" && <MyPlan user_email={currUser.user_email} />}
 			{currUser.role === "mentor" && (
-				<MentorsHome mentorEmail={currUser.user_email} />
+				<MentorsHome user_email={currUser.user_email} />
 			)}
 		</div>
 	);
