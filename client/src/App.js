@@ -1,5 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 
+import "bootstrap/dist/css/bootstrap.min.css";
+
 
 import Registration from "./pages/registration";
 import Plan from "./pages/plan";
