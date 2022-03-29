@@ -19,7 +19,6 @@ const TaskForm = ({
 		}
 	};
 	const [task, setTask] = useState(initialState);
-	console.log(editingTask.initialFormState.statusId);
 
 	const changeHandler = (e) => {
 		const inputName = e.target.name;
@@ -99,9 +98,13 @@ const TaskForm = ({
 	};
 
 	let taskButton = <button>Add Task</button>;
+	let status = "Select Status";
+	let dueDate = "Set due date here";
 	if (editingTask) {
 		if (editingTask.editing) {
 			taskButton = <button>Update</button>;
+			status = statusShower(editingTask.initialFormState.statusId);
+			dueDate = moment.utc(task.due_date).format("DD/MM/YYYY")
 		}
 	}
 
@@ -125,7 +128,7 @@ const TaskForm = ({
 						name="dueDate"
 						onChange={changeHandler}
 						onFocus={(e) => (e.target.type = "date")}
-						placeholder={moment.utc(task.due_date).format("DD/MM/YYYY")}
+						placeholder={dueDate}
 					/>
 				</div>
 				<div>
@@ -137,7 +140,7 @@ const TaskForm = ({
 					>
 						{" "}
 						<option selected hidden>
-							{statusShower(editingTask.initialFormState.statusId)}
+							{status}
 						</option>
 						<option name="1" value="1">
 							Not Started
