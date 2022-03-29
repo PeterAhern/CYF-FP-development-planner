@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import * as Components from "./landingComponents";
 import Axios from "axios";
 
 const Login = ({ setLoginStatus }) => {
@@ -165,31 +165,31 @@ const Login = ({ setLoginStatus }) => {
 
 	return (
 		<>
-			<form className="login" onSubmit={loginSubmitHandler}>
-				<h1>Login</h1>
-				<label htmlFor="email">User Email</label>
-				<input
-					type="text"
-					placeholder="User Email..."
+			<Components.Form className="login" onSubmit={loginSubmitHandler}>
+				<Components.Title>Sign in</Components.Title>
+				<Components.Input
+					type="email"
+					placeholder="Email"
 					onChange={emailChangeHandler}
 					value={userEmailReg}
 				/>
 				{!registrationFormValidity.userEmailIsValid &&
 					registrationStatus.emailInvalidStatus}
-				<label htmlFor="password">Password</label>
-				<input
+				<Components.Input
 					type="password"
-					placeholder="User Password..."
+					placeholder="Password"
 					onChange={passwordChangeHandler}
 					value={passwordReg}
 				/>
 				{!registrationFormValidity.userPasswordIsValid &&
 					registrationStatus.passwordInvalidStatus}
-				<button disabled={registrationFormValidity.formIsValid ? false : true}>
-					{" "}
-					Login{" "}
-				</button>
-			</form>
+				<Components.Anchor href="#">Forgot your password?</Components.Anchor>
+				<Components.Button
+					disabled={registrationFormValidity.formIsValid ? false : true}
+				>
+					Sign In
+				</Components.Button>
+			</Components.Form>
 		</>
 	);
 };
