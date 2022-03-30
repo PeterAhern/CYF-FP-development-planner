@@ -17,6 +17,7 @@ export const Button = styled.button`
 	&:focus {
 		outline: none;
 	}
+	width: 170px;
 `;
 
 export const GhostButton = styled(Button)`

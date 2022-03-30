@@ -126,12 +126,12 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 								<div className="expense-date__year">{year}</div>
 							</div>
 						</div>
-					<h1 className="card_title">{task.title}</h1>
 
 						<h3 className="card_status">{statusShower(task.status_id)}</h3>
 					</section>
+					<h1 className="card_title">{task.title}</h1>
 					<section className="rightTaskDetails">
-						<div className="leftRightButton">
+						<section className="deleteTaskButtonSection">
 							<Components.Button
 								// className="deleteTaskButton"
 								onClick={() => {
@@ -141,8 +141,8 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 							>
 								Delete
 							</Components.Button>
-						</div>
-						<div className="rightRightButton">
+						</section>
+						<section className="editTaskButtonSection">
 							<Components.GhostButton
 								onClick={(e) => editTaskHandler(e, index)}
 							>
@@ -163,17 +163,18 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 									handleClose={togglePopup}
 								/>
 							)}
-						</div>
+						</section>
 
-						{task.evidence && (
-							<h4 className="bottomTaskDetails">
-								<Badge bg="secondary">
-									<a href={task.evidence} target="_blank" rel="noreferrer">
-										Evidence
-									</a>
-								</Badge>
-							</h4>
-						)}
+						<h4 className="bottomTaskDetails">
+							{task.evidence && (
+									<Badge bg="secondary">
+										<a href={task.evidence} target="_blank" rel="noreferrer">
+											Evidence
+										</a>
+									</Badge>
+							)}
+						</h4>
+
 					</section>
 				</div>
 			);

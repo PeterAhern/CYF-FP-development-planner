@@ -17,5 +17,14 @@
 
 .elements {
 	width: 100%;
+	
 
+}
+
+.elementButton {
+	width: 70%;
+	height: 130px;
+	margin: 2rem;
+	display: flex;
+	justify-content: center;
 }

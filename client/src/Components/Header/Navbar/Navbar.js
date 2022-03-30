@@ -38,7 +38,7 @@ const NavigationMenu = () => {
 
 	return (
 		<>
-			<Navbar bg="light" expand="lg">
+			<Navbar className="navigationMenu" expand="lg">
 				<Container fluid>
 					<Navbar.Brand href="#">
 						<img className="cyfLogo" src={cyfLogo} alt="CYF logo" />
