@@ -5,9 +5,15 @@
    
     
 }
+
+.navigationMenu {
+    background-color: rgba(201, 196, 196, 0.925);
+}
+
 .link{
     display: inline;
 }
+
 .none{
     display: none;
 }

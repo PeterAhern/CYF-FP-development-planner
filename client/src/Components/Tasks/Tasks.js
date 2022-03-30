@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useCallback } from "react";
-import Card from "../UI/Card/Card";
+// import Card from "../UI/Card/Card";
 import PopUpForm from "./PopUpForm";
 import TaskForm from "../TaskForm/TaskForm";
 //for date formatting on task card
 import moment from "moment";
+import "./Tasks.css";
+import * as Components from "../UI/Button/Button";
+import { Badge } from "react-bootstrap";
 
 const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 	const [tasks, setTasks] = useState([]);
@@ -107,57 +110,78 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 
 	let content = <p>You have no tasks.</p>;
 	if (tasks.length > 0) {
-		content = tasks.map((task, index) => (
-			<Card key={task.id}>
-				<h1 className="card_title">{task.title}</h1>
-				<h3 className="card_due_date">
-					Due: {moment.utc(task.due_date).format("DD/MM/YY")}
-				</h3>
-				<h3 className="card_status">{statusShower(task.status_id)}</h3>
-				<button
-					className="btn btn-danger"
-					onClick={() => {
-						window.confirm("Are you sure you want to delete?") &&
-							deleteTask(task.id);
-					}}
-				>
-					Delete
-				</button>
-				<div>
-					<input
-						type="button"
-						className="btn btn-danger"
-						value="Edit Task"
-						onClick={(e) => editTaskHandler(e, index)}
-					/>
-					{isOpen && (
-						<PopUpForm
-							content={
-								<>
-									<b>Edit your task</b>
-									<TaskForm
-										refreshFunc={refreshFunc}
-										editingTask={editingTask}
-										setEditingTask={setEditingTask}
-										statusShower={statusShower}
-									/>
-								</>
-							}
-							handleClose={togglePopup}
-						/>
-					)}
-				</div>
-				<div>
-					{task.evidence && (
-						<h4>
-							<a href={task.evidence} target="_blank" rel="noreferrer">
-								Evidence
-							</a>
+
+		content = tasks.map((task, index) => {
+			// moment(n.entry.date_entered, 'YYYY/MM/DD');
+			// const date = moment.utc(task.due_date).format("DD/MM/YY");
+			const month = moment.utc(task.due_date).month();
+			const day = moment.utc(task.due_date).date();
+			const year = moment.utc(task.due_date).year();
+			return (
+				<div key={task.id} className="taskCard">
+					<section className="leftTaskDetails">
+						<div className="card_due_date">
+							<h4 className="taskDueLabel">Due</h4>
+							<div className="expense-date">
+								<div className="expense-date__day">{day}</div>
+								<div className="expense-date__month">{month}</div>
+								<div className="expense-date__year">{year}</div>
+							</div>
+						</div>
+
+						<h3 className="card_status">{statusShower(task.status_id)}</h3>
+					</section>
+					<h1 className="card_title">{task.title}</h1>
+					<section className="rightTaskDetails">
+						<section className="deleteTaskButtonSection">
+							<Components.Button
+								// className="deleteTaskButton"
+								onClick={() => {
+									window.confirm("Are you sure you want to delete?") &&
+										deleteTask(task.id);
+								}}
+							>
+								Delete
+							</Components.Button>
+						</section>
+						<section className="editTaskButtonSection">
+							<Components.GhostButton
+								onClick={(e) => editTaskHandler(e, index)}
+							>
+								Edit Task
+							</Components.GhostButton>
+							{isOpen && (
+								<PopUpForm
+									content={
+										<>
+											<b>Edit your task</b>
+											<TaskForm
+												refreshFunc={refreshFunc}
+												editingTask={editingTask}
+												setEditingTask={setEditingTask}
+											/>
+										</>
+									}
+									handleClose={togglePopup}
+								/>
+							)}
+						</section>
+
+						<h4 className="bottomTaskDetails">
+							{task.evidence && (
+									<Badge bg="secondary">
+										<a href={task.evidence} target="_blank" rel="noreferrer">
+											Evidence
+										</a>
+									</Badge>
+							)}
+
 						</h4>
-					)}
+
+					</section>
 				</div>
-			</Card>
-		));
+			);<<<<<<< formating
+		});
 	}
 
 	if (error) {
@@ -168,7 +192,7 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 		content = <p>Loading...</p>;
 	}
 
-	return <>{content}</>;
+	return <div className="tasksContainer">{content}</div>;
 };
 
 export default Tasks;

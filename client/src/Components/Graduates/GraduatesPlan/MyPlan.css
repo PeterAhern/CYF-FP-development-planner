@@ -1,6 +1,6 @@
 .elementsSection {
 	display: flex;
-	width: 500px;
+	width: 25%;
 	height: 100%;
 	min-height: 830px;
 	flex-flow: row wrap;
@@ -17,5 +17,14 @@
 
 .elements {
 	width: 100%;
+	
 
+}
+
+.elementButton {
+	width: 70%;
+	height: 130px;
+	margin: 2rem;
+	display: flex;
+	justify-content: center;
 }

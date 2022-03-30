@@ -17,6 +17,7 @@ const NavigationMenu = () => {
 		status: false,
 		user_email: "",
 	});
+
 	const [mentorAccess, setMentorAccess] = useState(false);
 
 	useEffect(() => {
@@ -36,11 +37,11 @@ const NavigationMenu = () => {
 
 	useEffect(() => {
 		Axios.get(`api/graduate/${loginStatus.user_email}`).then((response) =>
-		// console.log(response.data[0].mentor_access)
 			setMentorAccess(response.data[0].mentor_access)
 		);
 	}, [loginStatus.user_email]);
 	console.log(loginStatus.user_email);
+
 
 	const logoutHandler = () => Axios.post("/api/logout");
 	// useEffect(() => {
@@ -53,7 +54,7 @@ const NavigationMenu = () => {
 
 	return (
 		<>
-			<Navbar bg="light" expand="lg">
+			<Navbar className="navigationMenu" expand="lg">
 				<Container fluid>
 					<Navbar.Brand href="#">
 						<img className="cyfLogo" src={cyfLogo} alt="CYF logo" />

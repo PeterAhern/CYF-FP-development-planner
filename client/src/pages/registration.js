@@ -34,12 +34,14 @@ export default function Registration() {
 		<>
 			{!loginStatus.status && (
 				<div className="login_container">
-					<h1>Elemental Planner</h1>
-					<h2>Organising your elements to success</h2>
+					<div className="landingHeader">
+						<h1>Elemental Planner</h1>
+						<h2>Organising your elements to success</h2>
+					</div>
 					<LandingCanvas />
 					<Components.Container>
 						<Components.SignUpContainer signingIn={signIn}>
-							<Register />
+							<Register setLoginStatus={setLoginStatus} />
 						</Components.SignUpContainer>
 						<Components.SignInContainer signingIn={signIn}>
 							<Login setLoginStatus={setLoginStatus} />
