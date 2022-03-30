@@ -112,8 +112,9 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 	if (tasks.length > 0) {
 
 		content = tasks.map((task, index) => {
-			const month = moment(task.due_date).month();
-			const day = moment(task.due_date).date();
+			const month = moment(task.due_date).format("MMM");
+			console.log(month);
+			const day = moment(task.due_date).format("Do");
 			const year = moment(task.due_date).year();
 			return (
 				<div key={task.id} className="taskCard">

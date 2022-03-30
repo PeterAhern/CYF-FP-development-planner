@@ -115,6 +115,10 @@ const TaskForm = ({
 		setTask({ ...task, taskTitle: inputValue });
 	};
 
+	let data1 = PreloadedTasks;
+
+	console.log(data1);
+
 	return (
 		<form onSubmit={submitHandler} className="form-align">
 			<div className="control-group">
@@ -122,14 +126,14 @@ const TaskForm = ({
 					{showOption && (
 						<div>
 							<label htmlFor="Suggested Tasks">Task ideas: </label>
-							<select onChange={(e) => dropDownChanged(e)}>
+							{/* <select onChange={(e) => dropDownChanged(e)}>
 								<option value="" disabled selected hidden>
 									Choose or Create
 								</option>
-								{PreloadedTasks.technical.map((task) => (
+								{data.technical.map((task) => (
 									<option key={task} value={task} />
 								))}
-							</select>
+							</select> */}
 						</div>
 					)}
 					<label htmlFor="taskTitle">Task Title: </label>
