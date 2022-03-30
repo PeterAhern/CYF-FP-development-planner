@@ -184,3 +184,5 @@ export const Paragraph = styled.p`
 	letter-spacing: 0.5px;
 	margin: 20px 0 30px;
 `;
+
+
