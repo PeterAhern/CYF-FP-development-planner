@@ -1,5 +1,6 @@
 import { useState } from "react";
 import moment from "moment";
+import PreloadedTasks from "./PreloadedTasks.json";
 
 
 const TaskForm = ({
@@ -19,6 +20,7 @@ const TaskForm = ({
 		}
 	};
 	const [task, setTask] = useState(initialState);
+	const [showOption, setShowOption] = useState(true);
 
 	const changeHandler = (e) => {
 		const inputName = e.target.name;
@@ -104,22 +106,48 @@ const TaskForm = ({
 		if (editingTask.editing) {
 			taskButton = <button>Update</button>;
 			status = statusShower(editingTask.initialFormState.statusId);
-			dueDate = moment.utc(task.due_date).format("DD/MM/YYYY")
+			dueDate = moment.utc(task.due_date).format("DD/MM/YYYY");
 		}
 	}
+
+	const dropDownChanged = (e) => {
+		const inputValue = e.target.value;
+		setTask({ ...task, taskTitle: inputValue });
+	};
 
 	return (
 		<form onSubmit={submitHandler} className="form-align">
 			<div className="control-group">
 				<div>
+					{showOption && (
+						<div>
+							<label htmlFor="Suggested Tasks">Task ideas: </label>
+							<select onChange={(e) => dropDownChanged(e)}>
+								<option value="" disabled selected hidden>
+									Choose or Create
+								</option>
+								{PreloadedTasks.technical.map((task) => (
+									<option key={task} value={task} />
+								))}
+							</select>
+						</div>
+					)}
 					<label htmlFor="taskTitle">Task Title: </label>
 					<input
 						type="text"
+						// list="taskTitle"
 						id="taskTitle"
 						name="taskTitle"
 						value={task?.taskTitle}
 						onChange={changeHandler}
-					/>
+				/>
+					{/* <datalist id="taskTitle" >
+    <option value="Edge" />
+    <option value="Firefox" />
+    <option value="Chrome" />
+    <option value="Opera" />
+    <option value="Safari" />
+  </datalist > */}
 				</div>
 				<div>
 					<label htmlFor="dueDate">Due Date: </label>
