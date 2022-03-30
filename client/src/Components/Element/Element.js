@@ -9,6 +9,8 @@ const Element = (props) => {
 	//states for pop up edit task form
 	const [isOpen, setIsOpen] = useState(false);
 	const [commentsOpen, setCommentsOpen] = useState(false);
+	// const [refresh, setRefresh] = useState(true);
+	const [clicked, setClicked] = useState(false);
 
 	const togglePopup = () => {
 		setIsOpen(!isOpen);
@@ -16,8 +18,6 @@ const Element = (props) => {
 	const toggleComments = () => {
 		setCommentsOpen(!commentsOpen);
 	};
-	const [refresh, setRefresh] = useState(true);
-	const [clicked, setClicked] = useState(false);
 
 	return (
 		<div className="element">
@@ -28,7 +28,7 @@ const Element = (props) => {
 			>
 				{props.name}
 			</button>
-			<input
+			{/* <input
 				type="button"
 				className="btn btn-danger"
 				value="Add New Task"
@@ -54,8 +54,8 @@ const Element = (props) => {
 					}
 					handleClose={togglePopup}
 				/>
-			)}
-			<input
+			)} */}
+			{/* <input
 				type="button"
 				className="btn btn-danger"
 				value="View Feedback"
@@ -77,7 +77,7 @@ const Element = (props) => {
 					}
 					handleClose={toggleComments}
 				/>
-			)}
+			)} */}
 			{clicked && (
 				<div className="form">
 					<Tasks

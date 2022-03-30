@@ -5,21 +5,26 @@ const Goal = ( { graduateEmail } ) => {
 	const [goal, setGoal] = useState("");
 
 	const fetchGradGoal = useCallback(async () => {
-		try {
-			const graduate = graduateEmail;
-			const response = await fetch(`api/graduates/goal/${graduate}`);
-			if (!response.ok) {
-				throw new Error("Something went wrong!");
+		if (clicked) {
+			try {
+				// const graduate = graduateEmail;
+				const response = await fetch(
+					`api/graduates/goal/${graduateEmail}`
+				);
+				if (!response.ok) {
+					throw new Error("Something went wrong!");
+				}
+				const data = await response.json();
+				console.log("the data mystery: ", data);
+				let fetchedGoal = data[0].goal;
+				if(fetchedGoal!==null){
+				setGoal(fetchedGoal);
 			}
-			const data = await response.json();
-			let fetchedGoal = data[0].goal;
-			if(fetchedGoal!==null){
-			setGoal(fetchedGoal);
+			} catch (error) {
+				console.log(error.message);
+			}
 		}
-		} catch (error) {
-			console.log(error.message);
-		}
-	}, [graduateEmail]);
+	}, [graduateEmail, clicked]);
 
 	useEffect(() => {
 		fetchGradGoal();
@@ -41,10 +46,9 @@ const Goal = ( { graduateEmail } ) => {
 
 		const updateGoal = async () => {
 			setClicked(!clicked);
-			let graduate = graduateEmail;
 			if(clicked) {
 			const response = await fetch(
-				`api/graduates/goal/${graduate}`,
+				`api/graduates/goal/${graduateEmail}`,
 				addGoalOptions
 			);
 			if (!response.ok) {
