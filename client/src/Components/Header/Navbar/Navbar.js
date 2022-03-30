@@ -18,6 +18,7 @@ const NavigationMenu = () => {
 		user_email: "",
 	});
 
+	const [mentorAccess, setMentorAccess] = useState(false);
 
 	useEffect(() => {
 		Axios.get("/api/login").then((response) => {
@@ -34,7 +35,22 @@ const NavigationMenu = () => {
 		});
 	}, [setLoginStatus]);
 
+	useEffect(() => {
+		Axios.get(`api/graduate/${loginStatus.user_email}`).then((response) =>
+			setMentorAccess(response.data[0].mentor_access)
+		);
+	}, [loginStatus.user_email]);
+	console.log(loginStatus.user_email);
+
+
 	const logoutHandler = () => Axios.post("/api/logout");
+	// useEffect(() => {
+	// 	fetch(`api/graduate/${loginStatus.user_email}`)
+	// 		.then((res) => res.json())
+	// 		.then((data) => setMentorAccess(data.mentor_access));
+	// }, [loginStatus.user_email]);
+
+	console.log(mentorAccess);
 
 	return (
 		<>
@@ -51,11 +67,13 @@ const NavigationMenu = () => {
 							style={{ maxHeight: "150px" }}
 							navbarScroll
 						>
-							<Nav.Link href="/plan">
-								<DropdownOption href="/plan" leftIcon={developmentSvg}>
-									Dev Planner
-								</DropdownOption>
-							</Nav.Link>
+							{mentorAccess && (
+								<Nav.Link href="/plan">
+									<DropdownOption href="/plan" leftIcon={developmentSvg}>
+										Mentor Guid
+									</DropdownOption>
+								</Nav.Link>
+							)}
 							<Nav.Link href="/" onClick={logoutHandler}>
 								{/* <button onClick={logoutHandler}> */}
 								<DropdownOption href="/" leftIcon={logInOutSvg}>

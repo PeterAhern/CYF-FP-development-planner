@@ -1,4 +1,5 @@
 import { useState } from "react";
+import moment from "moment";
 
 
 const TaskForm = ({
@@ -6,6 +7,7 @@ const TaskForm = ({
 	editingTask,
 	setEditingTask,
 	addNewTaskForm,
+	statusShower,
 }) => {
 	let initialState = () => {
 		if (editingTask) {
@@ -96,11 +98,16 @@ const TaskForm = ({
 	};
 
 	let taskButton = <button>Add Task</button>;
+	let status = "Select Status";
+	let dueDate = "Set due date here";
 	if (editingTask) {
 		if (editingTask.editing) {
 			taskButton = <button>Update</button>;
+			status = statusShower(editingTask.initialFormState.statusId);
+			dueDate = moment.utc(task.due_date).format("DD/MM/YYYY")
 		}
 	}
+
 	return (
 		<form onSubmit={submitHandler} className="form-align">
 			<div className="control-group">
@@ -117,11 +124,11 @@ const TaskForm = ({
 				<div>
 					<label htmlFor="dueDate">Due Date: </label>
 					<input
-						type="date"
+						type="text"
 						name="dueDate"
-						placeholder="Set due date"
 						onChange={changeHandler}
-						value={task?.dueDate}
+						onFocus={(e) => (e.target.type = "date")}
+						placeholder={dueDate}
 					/>
 				</div>
 				<div>
@@ -131,6 +138,10 @@ const TaskForm = ({
 						id="statusDropDown"
 						onChange={statusChangeHandler}
 					>
+						{" "}
+						<option selected hidden>
+							{status}
+						</option>
 						<option name="1" value="1">
 							Not Started
 						</option>

@@ -13,7 +13,6 @@ const saltRounds = 10;
 // 	})
 // );
 
-
 import pool from "./db";
 
 const router = Router();
@@ -58,8 +57,10 @@ router.get("/login", (req, res) => {
 
 router.post("/logout", (req, res) => {
 	req.session.user = "";
+
 	return res.redirect("/");
 } );
+
 
 router.post("/login", (req, res) => {
 	const { user_email, password } = req.body;
@@ -360,6 +361,18 @@ router.get("/users", async (req, res) => {
 	}
 });
 
+router.get("/graduate/:user", async (req, res) => {
+	try {
+		const email = req.params.user;
+		let query = "SELECT mentor_access FROM users WHERE user_email=$1;";
+		let result = await pool.query(query, [email]);
+		res.send(result.rows);
+	} catch (error) {
+		console.error(error);
+		res.status(500).send(error);
+	}
+});
+//////////////////////////////////////////////////////////////////////////////////////////////////
 //Add a graduate as a mentor
 router.put("/users/mentors/:mentor", async (req, res) => {
 	try {
@@ -501,7 +514,8 @@ router.get("/comments/:email/:id", async (req, res) => {
 	try {
 		const graduate = req.params.email;
 		const id = req.params.id;
-		const Query = "SELECT user_email, comment_date, comment_content FROM comments WHERE graduate_email =$1 and element_id=$2;";
+		const Query =
+			"SELECT user_email, comment_date, comment_content FROM comments WHERE graduate_email =$1 and element_id=$2;";
 		const result = await pool.query(Query, [graduate, id]);
 		return res.send(result.rows);
 	} catch (error) {
@@ -509,13 +523,6 @@ router.get("/comments/:email/:id", async (req, res) => {
 		return res.status(500).send(error);
 	}
 });
-
-
-
-
-
-
-
 
 //Get all graduates
 router.get("/graduates", async (req, res) => {
@@ -568,8 +575,6 @@ router.get("/users", async (req, res) => {
 
 //////posting a comment to the graduate
 
-
-
 router.post("/comments/:sender/elements/:element", async (req, res) => {
 	try {
 		const { sender, element } = req.params;
@@ -600,13 +605,12 @@ router.post("/comments/:sender/elements/:element", async (req, res) => {
 
 router.get("/comments/elements/:element/grad/:grad", async (req, res) => {
 	try {
-		const {  element, grad } = req.params;
+		const { element, grad } = req.params;
 		const Query =
 			"SELECT comment_date,comment_content,user_email FROM comments WHERE  element_id =$1 AND graduate_email=$2";
-		const result = await pool.query(Query, [ element, grad]);
+		const result = await pool.query(Query, [element, grad]);
 
 		res.send(result.rows);
-
 	} catch (error) {
 		console.error(error);
 		res.status(500).send(error);
@@ -614,6 +618,3 @@ router.get("/comments/elements/:element/grad/:grad", async (req, res) => {
 });
 
 export default router;
-
-
-
