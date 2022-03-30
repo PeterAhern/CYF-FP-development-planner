@@ -3,7 +3,8 @@ import GraduateElement from "../MentorFeedback/GraduateElement";
 import "./GraduateList.css";
 import Popup from "../MentorFeedback/Popup";
 import "../MentorFeedback/Popup.css";
-
+import "../MentorsHome/MentorsHome.css";
+import "../../Graduates/GraduatesPlan/MyPlan.css";
 const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 	const [gradList, setGradList] = useState({});
 	const [buttonPopup, setButtonPopup] = useState(false);
@@ -67,7 +68,7 @@ const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 		gradList.Graduate3 !== null
 	) {
 		gradListContent = (
-			<table>
+			<div>
 				<Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
 					<div className="element">
 						<GraduateElement
@@ -90,62 +91,49 @@ const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 						/>
 					</div>
 				</Popup>
-
-				<thead>
-					<tr>
-						<th>Graduate Name</th>
-						<th>Remove Connection</th>
-						<th># of tasks</th>
-					</tr>
-				</thead>
-				<tbody>
+				<div className="elements">
 					{gradList.Graduate1 && (
-						<tr>
-							<td>{gradList.Graduate1}</td>
-							<td>
-								<button value={gradList.Graduate1} onClick={removeGraduate}>
-									Remove
-								</button>
-							</td>
-							<td>
-								<button value={gradList.Graduate1} onClick={clickHandler}>
-									Show tasks
-								</button>
-							</td>
-						</tr>
+						<button className="elementButton">
+							<h1>{gradList.Graduate1}</h1>
+
+							<button value={gradList.Graduate1} onClick={removeGraduate}>
+								Remove
+							</button>
+
+							<button value={gradList.Graduate1} onClick={clickHandler}>
+								Show tasks
+							</button>
+						</button>
 					)}
+
 					{gradList.Graduate2 && (
-						<tr>
-							<td>{gradList.Graduate2}</td>
-							<td>
-								<button value={gradList.Graduate2} onClick={removeGraduate}>
-									Remove
-								</button>
-							</td>
-							<td>
-								<button value={gradList.Graduate2} onClick={clickHandler}>
-									Show tasks
-								</button>
-							</td>
-						</tr>
+						<button className="elementButton">
+							<h1>{gradList.Graduate2}</h1>
+
+							<button value={gradList.Graduate2} onClick={removeGraduate}>
+								Remove
+							</button>
+
+							<button value={gradList.Graduate2} onClick={clickHandler}>
+								Show tasks
+							</button>
+						</button>
 					)}
 					{gradList.Graduate3 && (
-						<tr>
-							<td>{gradList.Graduate3}</td>
-							<td>
-								<button value={gradList.Graduate3} onClick={removeGraduate}>
-									Remove
-								</button>
-							</td>
-							<td>
-								<button value={gradList.Graduate3} onClick={clickHandler}>
-									Show tasks
-								</button>
-							</td>
-						</tr>
+						<button className="elementButton">
+							<h1>{gradList.Graduate3}</h1>
+
+							<button value={gradList.Graduate3} onClick={removeGraduate}>
+								Remove
+							</button>
+
+							<button value={gradList.Graduate3} onClick={clickHandler}>
+								Show tasks
+							</button>
+						</button>
 					)}
-				</tbody>
-			</table>
+				</div>
+			</div>
 		);
 	}
 

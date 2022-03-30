@@ -19,11 +19,13 @@ td {
 }
 
 th {
-  background-color: rgb(117, 201, 250);
+ background: rgba(29, 28, 34, 0.968);
+color: rgb(243, 240, 235);
 }
 
 td {
-  background-color: rgb(205, 235, 253);
+ background: rgba(54, 54, 58, 0.968);
+color: rgb(243, 240, 235);
 }
 
 form {

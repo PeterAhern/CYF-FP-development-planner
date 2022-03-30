@@ -45,7 +45,7 @@ const AllGraduates = ({ mentorEmail, gradRefreshFunc }) => {
 			<button className="btn btn-danger" onClick={() => setClicked(!clicked)}>
 				All Graduates
 			</button>
-			<ul>
+			<ul className="mentees">
 				{clicked &&
 					users.map((user, index) => (
 						<li key={index}>
