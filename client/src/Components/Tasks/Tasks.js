@@ -22,20 +22,21 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 		setIsOpen(!isOpen);
 	};
 
-	const editTaskHandler = (e, index) => {
+	const editTaskHandler = async (e, index) => {
 		e.persist();
-		setEditingTask({
-			...editingTask,
-			editing: true,
-			initialFormState: {
+		await setEditingTask(() => {
+			const currTaskToEdit = { ...editingTask };
+			currTaskToEdit.editing= true;
+			currTaskToEdit.initialFormState = {
 				id: tasks[index].id,
 				taskTitle: tasks[index].title,
-				userEmail: tasks[index].user_email,
+				userEmail: userEmail,
 				dueDate: tasks[index].due_date,
 				evidence: tasks[index].evidence,
-				elementId: tasks[index].element_id,
+				elementId: elementId,
 				statusId: tasks[index].status_id,
-			},
+			};
+			return currTaskToEdit;
 		});
 		togglePopup();
 		console.log(tasks[index].due_date);
@@ -129,7 +130,9 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 							</div>
 						</div>
 
-						<h3 className="card_status">{statusShower(task.status_id)}</h3>
+						<h3 className="card_status">
+							{task.status_id ? statusShower(task.status_id) : ""}
+						</h3>
 					</section>
 					<h1 className="card_title">{task.title}</h1>
 					<section className="rightTaskDetails">
@@ -159,6 +162,7 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 												refreshFunc={refreshFunc}
 												editingTask={editingTask}
 												setEditingTask={setEditingTask}
+												statusShower={statusShower}
 											/>
 										</>
 									}
@@ -169,15 +173,13 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 
 						<h4 className="bottomTaskDetails">
 							{task.evidence && (
-									<Badge bg="secondary">
-										<a href={task.evidence} target="_blank" rel="noreferrer">
-											Evidence
-										</a>
-									</Badge>
+								<Badge bg="secondary">
+									<a href={task.evidence} target="_blank" rel="noreferrer">
+										Evidence
+									</a>
+								</Badge>
 							)}
-
 						</h4>
-
 					</section>
 				</div>
 			);
