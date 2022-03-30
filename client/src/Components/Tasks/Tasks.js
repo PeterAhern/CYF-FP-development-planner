@@ -180,7 +180,7 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 
 					</section>
 				</div>
-			);<<<<<<< formating
+			);
 		});
 	}
 
