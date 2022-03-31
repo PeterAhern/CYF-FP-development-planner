@@ -9,3 +9,8 @@ color: rgb(243, 240, 235);
     flex-direction: row-reverse;
 
 }
+.gradElement{
+    display: flex;
+    margin-top: 5rem;
+    margin-left: 45%;
+}
