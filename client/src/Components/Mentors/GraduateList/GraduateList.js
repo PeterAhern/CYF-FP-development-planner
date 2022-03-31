@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback } from "react";
 import GraduateElement from "../MentorFeedback/GraduateElement";
-import "./GraduateList.css";
+import "./GraduateList.styles.js";
 import Popup from "../MentorFeedback/Popup";
 import "../MentorFeedback/Popup.css";
 import "../MentorsHome/MentorsHome.css";
-import { Wrapper } from "../../Graduates/GraduatesPlan/MyPlan.styles";
+import { Wrapper } from "./GraduateList.styles";
 const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 	const [gradList, setGradList] = useState({});
 	const [buttonPopup, setButtonPopup] = useState(false);
@@ -73,7 +73,7 @@ const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 	) {
 		return (
 			<Wrapper className="gradPlanPage">
-				<div className="elementsSection mentees">
+				<div className=" mentees elementsSection ">
 					<div className="elementsText">
 						<p> Welcome Mentor!</p>
 						<p> Connect with graduates, give feedback, support growth!</p>
@@ -81,11 +81,11 @@ const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 
 					{gradList.Graduate1 && (
 						<button
-							className="elementButton"
+							className="elementButton button"
 							onClick={clickHandler}
 							value={gradList.Graduate1}
 						>
-							<h5>{gradList.Graduate1}</h5>
+							{(gradList.Graduate1)}
 						</button>
 					)}
 					{gradList.Graduate2 && (

@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
 
 	.elementsSection {
 		display: flex;
-		width: 25%;
+		width:40%;
 		height: calc(100vh - 50px);
 
 		flex-flow: row wrap;
@@ -22,13 +22,13 @@ export const Wrapper = styled.div`
 	}
 
 	.tasksSection {
-		width: 80%;
+		width: 60%;
 		height: 100vh;
 		overflow: hidden;
 	}
 
 	.elementsText {
-		width: 90%;
+		width: 100%;
 		height: 50px;
 		color: white;
 	}
@@ -39,17 +39,12 @@ export const Wrapper = styled.div`
 	}
 
 	.elementButton {
-		width: 70%;
+		width: 80%;
 		height: 130px;
 		margin: 2rem;
 		display: flex;
 		justify-content: center;
 		background-color: rgb(218, 179, 185);
-	}
-	.remove{
-		height:2rem;
+		padding:1rem;
 	}
 `;
-
-
-
