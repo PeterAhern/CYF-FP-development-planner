@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import Navbar from "../Header/Navbar/Navbar";
-import "./UserProfile.css";
+import { UserProfileStyles } from "./UserProfile.styles";
 
 const UserProfile = () => {
 	const [loginStatus, setLoginStatus] = useState({
@@ -22,13 +22,13 @@ const UserProfile = () => {
 		});
 	}, []);
 	return (
-		<>
+		<UserProfileStyles>
 			{loginStatus.status && (<main>
 				<Navbar />
 
 				<h1>hello User</h1>
 			</main>)}
-		</>
+		</UserProfileStyles>
 	);
 };
 

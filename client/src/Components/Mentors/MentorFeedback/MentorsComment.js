@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
-import "./Popup.css";
-import Popup from "./Popup";
+import { PopupStyles } from "./Popup.styles";
+// import Popup from "./Popup";
 
 const MentorsComment = ({ email, id, senderEmail }) => {
 	const [comments, setComments] = useState([]);
@@ -70,7 +70,7 @@ const clickHandler = (e) => {
 	}, [fetchComments, refresh]);
 	console.log(comments);
 	return (
-		<div>
+		<PopupStyles>
 			{/* <button value={gradList.Graduate1} onClick={clickHandler}>
 				Show tasks
 			</button>
@@ -107,7 +107,7 @@ const clickHandler = (e) => {
 					</ul>
 				</div>
 			{/* </Popup> */}
-		</div>
+		</PopupStyles>
 	);
 };
 export default MentorsComment;

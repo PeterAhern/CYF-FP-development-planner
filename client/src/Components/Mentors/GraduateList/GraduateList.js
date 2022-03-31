@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useCallback } from "react";
 import GraduateElement from "../MentorFeedback/GraduateElement";
-import "./GraduateList.styles.js";
+
+import { GraduateListStyle } from "./GraduateList.styles";
 import Popup from "../MentorFeedback/Popup";
-import "../MentorFeedback/Popup.css";
-import "../MentorsHome/MentorsHome.css";
-import { Wrapper } from "./GraduateList.styles";
+import { PopupStyles } from "../MentorFeedback/Popup.styles";
+import { MentorsHomeStyle } from "../MentorsHome/MentorsHome.styles";
+import { MyPlanStyles } from "../../Graduates/GraduatesPlan/MyPlan.styles";
+
 const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 	const [gradList, setGradList] = useState({});
 	const [buttonPopup, setButtonPopup] = useState(false);
@@ -72,7 +74,11 @@ const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 		gradList.Graduate3 !== null
 	) {
 		return (
-			<Wrapper className="gradPlanPage">
+
+			<MyPlanStyles>
+				<GraduateListStyle>
+					<PopupStyles>
+						<MentorsHomeStyle>
 				<div className=" mentees elementsSection ">
 					<div className="elementsText">
 						<p> Welcome Mentor!</p>
@@ -174,16 +180,28 @@ const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 						{/* </Popup> */}
 					</div>
 				)}
-			</Wrapper>
+
+
+						</MentorsHomeStyle>
+					</PopupStyles>
+				</GraduateListStyle>
+			</MyPlanStyles>
+
 		);
 	} else {
 		return (
-			<Wrapper>
-				<div className="elementsSection">
-					<h1 className="message elementsText">Graduate Connections</h1>
-					{gradListContent}
-				</div>
-			</Wrapper>
+			<MyPlanStyles>
+				<GraduateListStyle>
+					<PopupStyles>
+						<MentorsHomeStyle>
+						<div className="elementsSection">
+							<h1 className="message elementsText">Graduate Connections</h1>
+							{gradListContent}
+						</div>
+						</MentorsHomeStyle>
+					</PopupStyles>
+				</GraduateListStyle>
+			</MyPlanStyles>
 		);
 	}
 };

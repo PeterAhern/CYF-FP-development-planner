@@ -9,6 +9,7 @@ const TaskForm = ({
 	setEditingTask,
 	addNewTaskForm,
 	statusShower,
+	togglePopup,
 }) => {
 	let initialState = () => {
 		if (editingTask) {
@@ -73,6 +74,8 @@ const TaskForm = ({
 				statusId: 1,
 			});
 			refreshFunc();
+			togglePopup();
+
 		} else {
 			await updateTask();
 			setEditingTask({
@@ -88,8 +91,7 @@ const TaskForm = ({
 				},
 			});
 			refreshFunc();
-
-
+			togglePopup();
 		}
 
 	};

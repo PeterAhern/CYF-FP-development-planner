@@ -4,7 +4,7 @@ import PopUpForm from "./PopUpForm";
 import TaskForm from "../TaskForm/TaskForm";
 //for date formatting on task card
 import moment from "moment";
-import "./Tasks.css";
+import { TasksStyles } from "./Tasks.styles";
 import * as Components from "../UI/Button/Button";
 import { Badge } from "react-bootstrap";
 
@@ -113,7 +113,6 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 
 		content = tasks.map((task, index) => {
 			const month = moment(task.due_date).format("MMM");
-			console.log(month);
 			const day = moment(task.due_date).format("Do");
 			const year = moment(task.due_date).year();
 			return (
@@ -136,7 +135,6 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 					<section className="rightTaskDetails">
 						<section className="deleteTaskButtonSection">
 							<Components.Button
-								// className="deleteTaskButton"
 								onClick={() => {
 									window.confirm("Are you sure you want to delete?") &&
 										deleteTask(task.id);
@@ -157,6 +155,7 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 										<>
 											<b>Edit your task</b>
 											<TaskForm
+												togglePopup={togglePopup}
 												refreshFunc={refreshFunc}
 												editingTask={editingTask}
 												setEditingTask={setEditingTask}
@@ -192,7 +191,7 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 		content = <p>Loading...</p>;
 	}
 
-	return <div className="tasksContainer">{content}</div>;
+	return <TasksStyles>{content}</TasksStyles>;
 };
 
 export default Tasks;
