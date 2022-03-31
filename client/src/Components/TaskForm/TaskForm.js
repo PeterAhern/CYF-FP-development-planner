@@ -9,6 +9,7 @@ const TaskForm = ({
 	setEditingTask,
 	addNewTaskForm,
 	statusShower,
+	togglePopup,
 }) => {
 	let initialState = () => {
 		if (editingTask) {
@@ -73,6 +74,8 @@ const TaskForm = ({
 				statusId: 1,
 			});
 			refreshFunc();
+			togglePopup();
+
 		} else {
 			await updateTask();
 			setEditingTask({
@@ -88,8 +91,7 @@ const TaskForm = ({
 				},
 			});
 			refreshFunc();
-
-
+			togglePopup();
 		}
 
 	};
@@ -116,13 +118,13 @@ const TaskForm = ({
 
 	//variable to load the correct suggested task from the JSON file PreloadedTasks, matches task.elementId with corresponding data
 	let elementRef;
-	if(task.elementId ===1){
+	if(task?.elementId ===1){
 		elementRef = PreloadedTasks.technical.map((idea) => (
 									<option key={idea} value={idea}>{idea}</option>));
-		} else if(task.elementId ===2){
+		} else if(task?.elementId ===2){
 		elementRef = PreloadedTasks.employability.map((idea) => (
 									<option key={idea} value={idea}>{idea}</option>));
-		} else if(task.elementId===3){
+		} else if(task?.elementId===3){
 		elementRef = PreloadedTasks.essentialSkills.map((idea) => (
 									<option key={idea} value={idea}>{idea}</option>));
 		}

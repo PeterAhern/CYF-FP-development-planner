@@ -17,6 +17,18 @@ const MyPlan = ({ user_email }) => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	const [commentsOpen, setCommentsOpen] = useState(false);
+	//class for all popups to enable auto close when click outside the pop up
+	// const PopUps = [...document.getElementsByClassName("PopUp")];
+
+// 	document.addEventListener("click", function (e) {
+// 		console.log(e.target);
+// 		{if (document.getElementsByClassName("PopUp").contains(e.target)) {
+// 			setIsOpen(isOpen);
+// 			} else {
+// 			togglePopup();
+// 			}
+// 	}
+// });
 
 	const togglePopup = () => {
 		setIsOpen(!isOpen);
@@ -32,8 +44,8 @@ const MyPlan = ({ user_email }) => {
 			<section className="gradPlanPage">
 				<main role="main" className="elementsSection">
 					<p className="elementsText">
-						Welcome to your planning center, from here, you can view and add new
-						tasks to be done.
+						Welcome to your planning center, from here, you can view, edit and add new
+						tasks to help you organise your career development.
 					</p>
 					<div >
 						<button
@@ -64,11 +76,12 @@ const MyPlan = ({ user_email }) => {
 						onClick={togglePopup}
 					/>
 					{isOpen && (
-						<PopUpForm
+						<PopUpForm className="PopUp"
 							content={
 								<>
 									<b>Fill in task details</b>
 									<TaskForm
+										togglePopup={togglePopup}
 										refreshFunc={() => setRefresh(!refresh)}
 										addNewTaskForm={{
 											taskTitle: "",
