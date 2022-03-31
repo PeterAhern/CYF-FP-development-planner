@@ -22,7 +22,7 @@ export const Wrapper = styled.div`
 	}
 
 	.tasksSection {
-		width: 60%;
+		min-width: 60%;
 		height: 100vh;
 		overflow: hidden;
 	}
@@ -39,7 +39,7 @@ export const Wrapper = styled.div`
 	}
 
 	.elementButton {
-		width: 80%;
+		width: 20rem;
 		height: 130px;
 		margin: 2rem;
 		display: flex;
