@@ -36,7 +36,7 @@ export default function Registration() {
 				<div className="login_container">
 					<div className="landingHeader">
 						<h1>Elemental Planner</h1>
-						<h2>Organising your elements to success</h2>
+						<h2>Organising your elements to success.</h2>
 					</div>
 					<LandingCanvas />
 					<Components.Container>
@@ -54,9 +54,9 @@ export default function Registration() {
 										Sign up to begin organising your elements to success!
 									</Components.Paragraph>
 									<Components.Paragraph2>Already registered?</Components.Paragraph2>
-									<Components.GhostButton onClick={() => toggle(true)}>
+									<Components.GhostButton2 onClick={() => toggle(true)}>
 										Sign In
-									</Components.GhostButton>
+									</Components.GhostButton2>
 								</Components.LeftOverlayPanel>
 								<Components.RightOverlayPanel signingIn={signIn}>
 									<Components.Title>Welcome Back!</Components.Title>
@@ -64,9 +64,9 @@ export default function Registration() {
 										Sign in with your personal details.
 									</Components.Paragraph3>
 									<Components.Paragraph2>New to elemental?</Components.Paragraph2>
-									<Components.GhostButton onClick={() => toggle(false)}>
+									<Components.GhostButton2 onClick={() => toggle(false)}>
 										Create Account
-									</Components.GhostButton>
+									</Components.GhostButton2>
 								</Components.RightOverlayPanel>
 							</Components.Overlay>
 						</Components.OverlayContainer>

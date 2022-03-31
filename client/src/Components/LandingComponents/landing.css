@@ -3,7 +3,10 @@
 } */
 
 .login_container {
-  background: linear-gradient(to left, rgba(243, 240, 240, 0), rgba(223, 174, 182, 0.952));
+  background: linear-gradient(to left, rgba(243, 240, 240, 0), rgba(231, 161, 172, 0.952));
+  /* background: black; */
+    /* background: white; */
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,4 +18,12 @@
 }
 .login_container h1,h2{
   margin-bottom:3rem;;
+}
+
+.landingHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgb(82, 64, 64);
+
 }

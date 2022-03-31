@@ -1,27 +1,4 @@
 import styled from "styled-components";
-// const show = keyframes`
-//   0%, 49.99% {
-// 		opacity: 0;
-// 		z-index: 1;
-// 	}
-
-// 	50%, 100% {
-// 		opacity: 1;
-// 		z-index: 5;
-// 	}
-// `;
-
-// const hide = keyframes`
-//   0%, 49.99% {
-//     opacity: 1;
-//     z-index: 5;
-//   }
-
-//   50%, 100% {
-//     opacity: 0;
-//     z-index: 1;
-//   }
-// `
 
 export const Container = styled.div`
 	background-color: #fff;
@@ -94,7 +71,7 @@ export const Input = styled.input`
 
 export const Button = styled.button`
 	border-radius: 20px;
-	border: 1px solid #ff4b2b;
+	border: 1px solid black;
 	background-color: #ff2626;
 	color: #ffffff;
 	font-size: 12px;
@@ -114,9 +91,37 @@ export const Button = styled.button`
 	}
 `;
 
+export const Button2 = styled.button`
+	border-radius: 20px;
+	border: 1px solid #ff4b2b;
+	background-color: #ffffff;
+	color: #ffffff;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+	&:active {
+		transform: scale(0.95);
+	}
+	&:focus {
+		outline: none;
+	}
+	&:hover {
+		color: red;
+	}
+`;
+
 export const GhostButton = styled(Button)`
-	background-color: transparent;
-	border-color: #ffffff;
+	background-color: black;
+	border-color: black;
+`;
+
+export const GhostButton2 = styled(Button2)`
+	background-color: #ffffff;
+	border-color: black;
+	color: black;
 `;
 
 export const Anchor = styled.a`
@@ -141,8 +146,9 @@ export const OverlayContainer = styled.div`
 
 export const Overlay = styled.div`
 	background: #ff416c;
-	background: -webkit-linear-gradient(to right, #ff6969, #ff2626);
-	background: linear-gradient(to right, #ff6969, #ff2626);
+	// background: -webkit-linear-gradient(to right, #ff6969, #ff2626);
+	// background: linear-gradient(to right, #ff6969, #ff2626);
+	background-color: #ff2626;
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 0 0;
@@ -153,8 +159,7 @@ export const Overlay = styled.div`
 	width: 200%;
 	transform: translateX(0);
 	transition: transform 0.6s ease-in-out;
-	${(props) =>
-		props.signingIn !== true ? "transform: translateX(50%);" : null}
+	${(props) => (props.signingIn !== true ? "transform: translateX(50%);" : null)}
 `;
 
 export const OverlayPanel = styled.div`
