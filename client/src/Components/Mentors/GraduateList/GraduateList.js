@@ -5,6 +5,7 @@ import Popup from "../MentorFeedback/Popup";
 import "../MentorFeedback/Popup.css";
 import "../MentorsHome/MentorsHome.css";
 import "../../Graduates/GraduatesPlan/MyPlan.css";
+import MentorsComment from "../MentorFeedback/MentorsComment";
 const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 	const [gradList, setGradList] = useState({});
 	const [buttonPopup, setButtonPopup] = useState(false);
@@ -73,6 +74,7 @@ const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 	) {
 		return (
 			<div className="gradPlanPage">
+				{/* <MentorsComment /> */}
 				{/* <Popup trigger={buttonPopup} setTrigger={setButtonPopup}> */}
 				{clicked && (
 					<div className="taskSection ">

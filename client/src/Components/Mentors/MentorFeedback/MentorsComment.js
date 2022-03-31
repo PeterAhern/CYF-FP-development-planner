@@ -71,10 +71,10 @@ const clickHandler = (e) => {
 	console.log(comments);
 	return (
 		<div>
-			<button value={gradList.Graduate1} onClick={clickHandler}>
+			{/* <button value={gradList.Graduate1} onClick={clickHandler}>
 				Show tasks
 			</button>
-			<Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+			<Popup trigger={buttonPopup} setTrigger={setButtonPopup}> */}
 				<form onSubmit={handleSubmit} className="form">
 					<label>
 						Comment:
@@ -106,7 +106,7 @@ const clickHandler = (e) => {
 						})}
 					</ul>
 				</div>
-			</Popup>
+			{/* </Popup> */}
 		</div>
 	);
 };
