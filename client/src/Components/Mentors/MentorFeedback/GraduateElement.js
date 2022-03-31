@@ -2,16 +2,15 @@ import { useState } from "react";
 import GraduateTasks from "./GraduateTasks";
 import MentorsComment from "./MentorsComment";
 
-
 import TaskForm from "../../TaskForm/TaskForm";
 import PopUpForm from "../../Tasks/PopUpForm";
-
+import Popup from "./Popup";
 
 const GraduateElement = (props) => {
 	const [clicked, setClicked] = useState(false);
 	const [comment, setComment] = useState(false);
 	const [refresh, setRefresh] = useState(true);
-
+	const [buttonPopup, setButtonPopup] = useState(false);
 	const [assignTaskClicked, setAssignTaskClicked] = useState(false);
 
 	const [isOpen, setIsOpen] = useState(false);
@@ -35,12 +34,11 @@ const GraduateElement = (props) => {
 			</button>
 			<button
 				className="comment btn btn-danger"
-				onClick={() => setComment(!comment)}
+				onClick={() => setButtonPopup(true)}
 			>
 				Give Feedback
 			</button>
-
-			{comment && (
+			<Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
 				<MentorsComment
 					senderEmail={props.mentorEmail}
 					email={props.graduateEmail}
@@ -48,7 +46,7 @@ const GraduateElement = (props) => {
 					refresh={refresh}
 					refreshFunc={() => setRefresh(!refresh)}
 				/>
-			)}
+			</Popup>
 
 			{clicked && (
 				<>
