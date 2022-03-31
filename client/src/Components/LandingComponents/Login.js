@@ -27,7 +27,7 @@ const Login = ({ setLoginStatus }) => {
 		if (!registrationFormValidity.userEmailIsValid) {
 			setRegistrationStatus((prev) => {
 				const emailInvalidStatus = { ...prev };
-				emailInvalidStatus.emailInvalidStatus = "make sure your email is valid";
+				emailInvalidStatus.emailInvalidStatus = "Check your email is valid";
 				return emailInvalidStatus;
 			});
 		} else if (registrationFormValidity.userEmailIsValid) {
@@ -45,7 +45,7 @@ const Login = ({ setLoginStatus }) => {
 			setRegistrationStatus((prev) => {
 				const passwordInvalidStatus = { ...prev };
 				passwordInvalidStatus.passwordInvalidStatus =
-					"make sure your password is longer than 6 characters";
+					"Check your password is > 6 characters";
 				return passwordInvalidStatus;
 			});
 		} else if (registrationFormValidity.userPasswordIsValid) {

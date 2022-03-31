@@ -36,7 +36,7 @@ export default function Registration() {
 				<div className="login_container">
 					<div className="landingHeader">
 						<h1>Elemental Planner</h1>
-						<h2>Organising your elements to success</h2>
+						<h2>Organising your elements to success.</h2>
 					</div>
 					<Components.Container>
 						<Components.SignUpContainer signingIn={signIn}>
@@ -48,25 +48,24 @@ export default function Registration() {
 						<Components.OverlayContainer signingIn={signIn}>
 							<Components.Overlay signingIn={signIn}>
 								<Components.LeftOverlayPanel signingIn={signIn}>
-									<Components.Title>Welcome Back!</Components.Title>
+									<Components.Title>Start with Elemental!</Components.Title>
 									<Components.Paragraph>
-										Please login with your personal info
+										Sign up to begin organising your elements to success!
 									</Components.Paragraph>
-									<Components.GhostButton onClick={() => toggle(true)}>
+									<Components.Paragraph2>Already registered?</Components.Paragraph2>
+									<Components.GhostButton2 onClick={() => toggle(true)}>
 										Sign In
-									</Components.GhostButton>
+									</Components.GhostButton2>
 								</Components.LeftOverlayPanel>
 								<Components.RightOverlayPanel signingIn={signIn}>
-									<Components.Title>
-										Get started with Elemental
-									</Components.Title>
-									<Components.Paragraph>
-										Fill out your details to get started organising your
-										elements to success!
-									</Components.Paragraph>
-									<Components.GhostButton onClick={() => toggle(false)}>
-										Sign Up
-									</Components.GhostButton>
+									<Components.Title>Welcome Back!</Components.Title>
+									<Components.Paragraph3>
+										Sign in with your personal details.
+									</Components.Paragraph3>
+									<Components.Paragraph2>New to elemental?</Components.Paragraph2>
+									<Components.GhostButton2 onClick={() => toggle(false)}>
+										Create Account
+									</Components.GhostButton2>
 								</Components.RightOverlayPanel>
 							</Components.Overlay>
 						</Components.OverlayContainer>
