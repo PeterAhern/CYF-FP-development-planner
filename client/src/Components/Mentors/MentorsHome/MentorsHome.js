@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import Navbar from "../../Header/Navbar/Navbar";
 import AllGraduates from "../ViewAllGraduates/AllGraduates";
 import GraduateList from "../GraduateList/GraduateList";
-import "../../Graduates/GraduatesPlan/MyPlan.css";
+import { Wrapper } from "../../Graduates/GraduatesPlan/MyPlan.styles";
 import "./MentorsHome.css";
 const MentorsHome = ({ user_email }) => {
 	const [addGradRefresh, setAddGradRefresh] = useState(true);
 
 	return (
-		<div>
+		<Wrapper>
 			<Navbar user_email={user_email} />
 			<div className="main">
 				<AllGraduates
@@ -21,7 +21,7 @@ const MentorsHome = ({ user_email }) => {
 					gradRefreshFunc={() => setAddGradRefresh(!addGradRefresh)}
 				/>
 			</div>
-		</div>
+		</Wrapper>
 	);
 };
 export default MentorsHome;
