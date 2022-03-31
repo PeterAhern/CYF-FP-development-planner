@@ -39,8 +39,6 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 			return currTaskToEdit;
 		});
 		togglePopup();
-		console.log(tasks[index].due_date);
-		console.log(tasks[index].status_id);
 	};
 
 	const fetchTasksHandler = useCallback(async () => {
@@ -113,7 +111,6 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 
 		content = tasks.map((task, index) => {
 			const month = moment(task.due_date).format("MMM");
-			console.log(month);
 			const day = moment(task.due_date).format("Do");
 			const year = moment(task.due_date).year();
 			return (
@@ -189,9 +186,9 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 		content = <p>{error}</p>;
 	}
 
-	if (isLoading) {
-		content = <p>Loading...</p>;
-	}
+	// if (isLoading) {
+	// 	content = <p>Loading...</p>;
+	// }
 
 	return <div className="tasksContainer">{content}</div>;
 };
