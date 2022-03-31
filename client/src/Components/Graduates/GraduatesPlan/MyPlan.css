@@ -27,6 +27,7 @@
 	margin: 2rem;
 	display: flex;
 	justify-content: center;
+	background-color: rgb(218, 179, 185);
 }
 .message{
 	color:beige;

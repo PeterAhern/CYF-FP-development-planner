@@ -1,5 +1,6 @@
 import { useState } from "react";
 import moment from "moment";
+import PreloadedTasks from "./PreloadedTasks.json";
 
 
 const TaskForm = ({
@@ -104,17 +105,45 @@ const TaskForm = ({
 		if (editingTask.editing) {
 			taskButton = <button>Update</button>;
 			status = statusShower(editingTask.initialFormState.statusId);
-			dueDate = moment.utc(task.due_date).format("DD/MM/YYYY")
+			dueDate = moment.utc(task.due_date).format("DD/MM/YYYY");
 		}
 	}
+
+	const dropDownChanged = (e) => {
+		const inputValue = e.target.value;
+		setTask({ ...task, taskTitle: inputValue });
+	};
+
+	//variable to load the correct suggested task from the JSON file PreloadedTasks, matches task.elementId with corresponding data
+	let elementRef;
+	if(task.elementId ===1){
+		elementRef = PreloadedTasks.technical.map((idea) => (
+									<option key={idea} value={idea}>{idea}</option>));
+		} else if(task.elementId ===2){
+		elementRef = PreloadedTasks.employability.map((idea) => (
+									<option key={idea} value={idea}>{idea}</option>));
+		} else if(task.elementId===3){
+		elementRef = PreloadedTasks.essentialSkills.map((idea) => (
+									<option key={idea} value={idea}>{idea}</option>));
+		}
 
 	return (
 		<form onSubmit={submitHandler} className="form-align">
 			<div className="control-group">
 				<div>
+					<div>
+						<label htmlFor="Suggested Tasks">Task ideas: </label>
+						<select onChange={(e) => dropDownChanged(e)}>
+							<option value="" selected>
+								Choose or Create a Task
+							</option>
+							{elementRef}
+						</select>
+					</div>
 					<label htmlFor="taskTitle">Task Title: </label>
 					<input
 						type="text"
+						list="taskTitle"
 						id="taskTitle"
 						name="taskTitle"
 						value={task?.taskTitle}

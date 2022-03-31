@@ -65,9 +65,7 @@ const Comment = ({ email, id, senderEmail, refresh, refreshFunc }) => {
 				<h5>Feedback: {comment.comment_content}</h5>
 				<h6>
 					Sent:{" "}
-					{moment
-						.utc(comment.comment_date.slice(0, 10).replace(/-/g, "-"))
-						.format("DD/MM/YY")}
+					{moment(comment.comment_date).format("DD/MM/YY")}
 				</h6>
 				<h6>From: {comment.user_email}</h6>
 			</li>

@@ -55,7 +55,6 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 				throw new Error("Something went wrong!");
 			}
 			const data = await response.json();
-			console.log(data);
 			//when no tasks in db, data is sent back as a message (instead of tasks data) with success=true
 			if (data.success === true) {
 				setTasks([]);
@@ -113,11 +112,10 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 	if (tasks.length > 0) {
 
 		content = tasks.map((task, index) => {
-			// moment(n.entry.date_entered, 'YYYY/MM/DD');
-			// const date = moment.utc(task.due_date).format("DD/MM/YY");
-			const month = moment.utc(task.due_date).month();
-			const day = moment.utc(task.due_date).date();
-			const year = moment.utc(task.due_date).year();
+			const month = moment(task.due_date).format("MMM");
+			console.log(month);
+			const day = moment(task.due_date).format("Do");
+			const year = moment(task.due_date).year();
 			return (
 				<div key={task.id} className="taskCard">
 					<section className="leftTaskDetails">
