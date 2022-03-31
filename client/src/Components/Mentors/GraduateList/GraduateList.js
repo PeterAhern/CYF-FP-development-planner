@@ -73,42 +73,6 @@ const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 	) {
 		return (
 			<Wrapper className="gradPlanPage">
-				{nameClicked && (
-					<div>
-						<Popup
-							trigger={buttonPopup}
-							setTrigger={setButtonPopup}
-							setClicked={setNameClicked}
-						>
-							<div>
-								<GraduateElement
-									name={"Technical"}
-									id={1}
-									graduateEmail={user}
-									mentorEmail={mentorEmail}
-									clicked={clickHandler}
-								/>
-								<GraduateElement
-									name={"Job Search"}
-									id={2}
-									graduateEmail={user}
-									mentorEmail={mentorEmail}
-									clickHandler={clickHandler}
-								/>
-								<GraduateElement
-									name={"Soft Skills"}
-									id={3}
-									graduateEmail={user}
-									mentorEmail={mentorEmail}
-									clickHandler={clickHandler}
-								/>
-							</div>
-							<button value={user} onClick={removeGraduate}>
-								Remove
-							</button>
-						</Popup>
-					</div>
-				)}
 				<div className="elementsSection mentees">
 					<div className="elementsText">
 						<p> Welcome Mentor!</p>
@@ -143,6 +107,73 @@ const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 						</button>
 					)}
 				</div>
+				<button
+					value={user}
+					onClick={removeGraduate}
+					className="comment btn btn-danger remove"
+				>
+					Remove
+				</button>
+				{!nameClicked && (
+					<div className="gradElement">
+						<GraduateElement
+							name={"Technical"}
+							id={1}
+							graduateEmail={gradList.Graduate1}
+							mentorEmail={mentorEmail}
+							clicked={clickHandler}
+						/>
+						<GraduateElement
+							name={"Job Search"}
+							id={2}
+							graduateEmail={gradList.Graduate1}
+							mentorEmail={mentorEmail}
+							clickHandler={clickHandler}
+						/>
+						<GraduateElement
+							name={"Soft Skills"}
+							id={3}
+							graduateEmail={gradList.Graduate1}
+							mentorEmail={mentorEmail}
+							clickHandler={clickHandler}
+						/>
+					</div>
+				)}
+
+				{nameClicked && (
+					<div>
+						{/* <Popup
+							trigger={buttonPopup}
+							setTrigger={setButtonPopup}
+							setClicked={setNameClicked}
+						> */}
+						<div className="gradElement">
+							<GraduateElement
+								name={"Technical"}
+								id={1}
+								graduateEmail={user}
+								mentorEmail={mentorEmail}
+								clicked={clickHandler}
+							/>
+							<GraduateElement
+								name={"Job Search"}
+								id={2}
+								graduateEmail={user}
+								mentorEmail={mentorEmail}
+								clickHandler={clickHandler}
+							/>
+							<GraduateElement
+								name={"Soft Skills"}
+								id={3}
+								graduateEmail={user}
+								mentorEmail={mentorEmail}
+								clickHandler={clickHandler}
+							/>
+						</div>
+
+						{/* </Popup> */}
+					</div>
+				)}
 			</Wrapper>
 		);
 	} else {
