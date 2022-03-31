@@ -4,7 +4,7 @@ import "./GraduateList.css";
 import Popup from "../MentorFeedback/Popup";
 import "../MentorFeedback/Popup.css";
 import "../MentorsHome/MentorsHome.css";
-import "../../Graduates/GraduatesPlan/MyPlan.css";
+import { Wrapper } from "../../Graduates/GraduatesPlan/MyPlan.styles";
 const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 	const [gradList, setGradList] = useState({});
 	const [buttonPopup, setButtonPopup] = useState(false);
@@ -72,7 +72,7 @@ const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 		gradList.Graduate3 !== null
 	) {
 		return (
-			<div className="gradPlanPage">
+			<Wrapper className="gradPlanPage">
 				{nameClicked && (
 					<div>
 						<Popup
@@ -143,14 +143,16 @@ const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 						</button>
 					)}
 				</div>
-			</div>
+			</Wrapper>
 		);
 	} else {
 		return (
-			<div className="elementsSection">
-				<h1 className="message elementsText">Graduate Connections</h1>
-				{gradListContent}
-			</div>
+			<Wrapper>
+				<div className="elementsSection">
+					<h1 className="message elementsText">Graduate Connections</h1>
+					{gradListContent}
+				</div>
+			</Wrapper>
 		);
 	}
 };

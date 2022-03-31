@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import { Navigate } from "react-router-dom";
 
-import "./plan.css";
+import { Wrapper } from "./plan.styles";
 
 import MyPlan from "../Components/Graduates/GraduatesPlan/MyPlan";
 import MentorsHome from "../Components/Mentors/MentorsHome/MentorsHome";
@@ -30,12 +30,12 @@ export default function Plan() {
 		});
 	}, []);
 	return (
-		<div className="mainPage">
+		<Wrapper>
 			{redirect && <Navigate to="/" />}
 			{currUser.role === "grad" && <MyPlan user_email={currUser.user_email} />}
 			{currUser.role === "mentor" && (
 				<MentorsHome user_email={currUser.user_email} />
 			)}
-		</div>
+		</Wrapper>
 	);
 }
