@@ -113,7 +113,6 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 
 		content = tasks.map((task, index) => {
 			const month = moment(task.due_date).format("MMM");
-			console.log(month);
 			const day = moment(task.due_date).format("Do");
 			const year = moment(task.due_date).year();
 			return (
@@ -136,7 +135,6 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 					<section className="rightTaskDetails">
 						<section className="deleteTaskButtonSection">
 							<Components.Button
-								// className="deleteTaskButton"
 								onClick={() => {
 									window.confirm("Are you sure you want to delete?") &&
 										deleteTask(task.id);
