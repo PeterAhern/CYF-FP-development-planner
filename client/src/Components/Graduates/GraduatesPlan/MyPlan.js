@@ -1,11 +1,9 @@
 import { useState } from "react";
-
-
-import "./MyPlan.css";
+import PropTypes from "prop-types";
+import { Wrapper } from "./MyPlan.styles";
 // import Card from "../../UI/Card/Card";
 
 // Components
-import Element from "../../Element/Element";
 import Navbar from "../../Header/Navbar/Navbar";
 import Tasks from "../../Tasks/Tasks";
 import TaskForm from "../../TaskForm/TaskForm";
@@ -20,8 +18,6 @@ const MyPlan = ({ user_email }) => {
 
 	const [commentsOpen, setCommentsOpen] = useState(false);
 
-
-
 	const togglePopup = () => {
 		setIsOpen(!isOpen);
 	};
@@ -31,7 +27,7 @@ const MyPlan = ({ user_email }) => {
 	};
 
 	return (
-		<>
+		<Wrapper>
 			<Navbar graduateEmail={user_email} />
 			<section className="gradPlanPage">
 				<main role="main" className="elementsSection">
@@ -44,19 +40,19 @@ const MyPlan = ({ user_email }) => {
 							className="elementButton"
 							onClick={() => setElementTasksId(1)}
 						>
-							<Element id={1} name={"Technical"} graduateEmail={user_email} />
+							Technical
 						</button>
 						<button
 							className="elementButton"
 							onClick={() => setElementTasksId(2)}
 						>
-							<Element id={2} name={"Job Search"} graduateEmail={user_email} />
+							Job Search
 						</button>
 						<button
 							className="elementButton"
 							onClick={() => setElementTasksId(3)}
 						>
-							<Element id={3} name={"Soft Skills"} graduateEmail={user_email} />
+							Soft Skills
 						</button>
 					</div>
 				</main>
@@ -119,8 +115,12 @@ const MyPlan = ({ user_email }) => {
 					/>
 				</div>
 			</section>
-		</>
+		</Wrapper>
 	);
+};
+
+MyPlan.propTypes = {
+	user_email: PropTypes.string,
 };
 
 export default MyPlan;
