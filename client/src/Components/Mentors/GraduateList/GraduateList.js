@@ -74,10 +74,11 @@ const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 	) {
 		return (
 			<div className="gradPlanPage">
-				{/* <MentorsComment /> */}
+				{/* < MentorsComment /> */}
 				{/* <Popup trigger={buttonPopup} setTrigger={setButtonPopup}> */}
 				{clicked && (
 					<div className="taskSection ">
+						<Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
 						<div className="menteesCont">
 							<GraduateElement
 								name={"Technical"}
@@ -101,9 +102,9 @@ const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 								clickHandler={clickHandler}
 							/>
 						</div>
+						</Popup>
 					</div>
 				)}
-				{/* </Popup> */}
 				<div className="elementsSection">
 					<div className="elementsText">
 						<p> Welcome Mentor!</p>
