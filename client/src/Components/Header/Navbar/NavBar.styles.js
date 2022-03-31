@@ -13,7 +13,7 @@ export const NavBarStyles = styled.div`
 		width: 150px;
 		justify-content: flex-end;
 		height: 100px;
-		background-color: blue;
+		/* background-color: blue; */
 	}
 
 

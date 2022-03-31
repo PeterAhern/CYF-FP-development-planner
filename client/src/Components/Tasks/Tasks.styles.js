@@ -4,10 +4,10 @@ export const TasksStyles = styled.div`
 	width: 100%;
 	height: calc(100% - 66px - 24px);
 	/* background-color: black; */
-	overflow: scroll;
+	/* overflow-y: scroll; */
 
 	.taskCard {
-		max-width: 95%;
+		max-width: 90%;
 		height: 180px;
 		margin: 2rem;
 		background-color: rgba(161, 159, 159, 0.925);
@@ -124,26 +124,6 @@ export const TasksStyles = styled.div`
 		color: white;
 	}
 
-	/* width */
-	::-webkit-scrollbar {
-		width: 20px;
-	}
-
-	/* Track */
-	::-webkit-scrollbar-track {
-		box-shadow: inset 0 0 5px rgba(128, 128, 128, 0.74);
-		border-radius: 10px;
-	}
-
-	/* Handle */
-	::-webkit-scrollbar-thumb {
-		background: rgba(233, 203, 203, 0.616);
-		border-radius: 10px;
-	}
-
-	/* Handle on hover */
-	::-webkit-scrollbar-thumb:hover {
-		background: rgba(233, 203, 203, 0.616);
-	}
+	
 `;
 

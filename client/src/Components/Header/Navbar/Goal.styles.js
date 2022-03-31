@@ -17,7 +17,7 @@ export const GoalStyles = styled.div`
 	.button {
 		width: 200px;
 		height: 40px;
-		background-color: blue;
+		/* background-color: blue; */
 
 		border-style: none;
 		color: azure;
@@ -26,7 +26,7 @@ export const GoalStyles = styled.div`
 	.goalInput {
 		width: 300px;
 		height: 40px;
-		background-color: green;
+		/* background-color: green; */
 	}
 
 	@media (max-width: 800px) {

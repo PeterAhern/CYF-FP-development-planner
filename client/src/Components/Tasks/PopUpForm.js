@@ -3,7 +3,7 @@ import { PopUpFormStyles } from "./PopUpForm.styles";
 
 const PopUpForm = (props) => {
 	return (
-		<>
+		<PopUpFormStyles>
 			<div className="popup-box">
 				<div className="box">
 					<span className="close-icon" onClick={props.handleClose}>
@@ -12,7 +12,7 @@ const PopUpForm = (props) => {
 					{props.content}
 				</div>
 			</div>
-		</>
+		</PopUpFormStyles>
 	);
 };
 
