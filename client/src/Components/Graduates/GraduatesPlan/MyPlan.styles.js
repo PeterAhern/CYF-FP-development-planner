@@ -28,7 +28,7 @@ export const MyPlanStyles = styled.div`
 	}
 
 	.elementsText {
-		width: 100%;
+		width: 90%;
 		height: 50px;
 		color: white;
 	}
@@ -45,6 +45,9 @@ export const MyPlanStyles = styled.div`
 		display: flex;
 		justify-content: center;
 		background-color: rgb(218, 179, 185);
+	}
+	.remove{
+		height:2rem;
 	}
 `;
 
