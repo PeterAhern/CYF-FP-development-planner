@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import GraduateElement from "../MentorFeedback/GraduateElement";
-import "./GraduateList.css";
+import { GraduateListStyle } from "./GraduateList.styles";
 import Popup from "../MentorFeedback/Popup";
 import "../MentorFeedback/Popup.css";
 import "../MentorsHome/MentorsHome.css";
@@ -73,85 +73,89 @@ const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 	) {
 		return (
 			<Wrapper className="gradPlanPage">
-				{nameClicked && (
-					<div>
-						<Popup
-							trigger={buttonPopup}
-							setTrigger={setButtonPopup}
-							setClicked={setNameClicked}
-						>
-							<div>
-								<GraduateElement
-									name={"Technical"}
-									id={1}
-									graduateEmail={user}
-									mentorEmail={mentorEmail}
-									clicked={clickHandler}
-								/>
-								<GraduateElement
-									name={"Job Search"}
-									id={2}
-									graduateEmail={user}
-									mentorEmail={mentorEmail}
-									clickHandler={clickHandler}
-								/>
-								<GraduateElement
-									name={"Soft Skills"}
-									id={3}
-									graduateEmail={user}
-									mentorEmail={mentorEmail}
-									clickHandler={clickHandler}
-								/>
-							</div>
-							<button value={user} onClick={removeGraduate}>
-								Remove
-							</button>
-						</Popup>
-					</div>
-				)}
-				<div className="elementsSection mentees">
-					<div className="elementsText">
-						<p> Welcome Mentor!</p>
-						<p> Connect with graduates, give feedback, support growth!</p>
-					</div>
+				<GraduateListStyle>
+					{nameClicked && (
+						<div>
+							<Popup
+								trigger={buttonPopup}
+								setTrigger={setButtonPopup}
+								setClicked={setNameClicked}
+							>
+								<div>
+									<GraduateElement
+										name={"Technical"}
+										id={1}
+										graduateEmail={user}
+										mentorEmail={mentorEmail}
+										clicked={clickHandler}
+									/>
+									<GraduateElement
+										name={"Job Search"}
+										id={2}
+										graduateEmail={user}
+										mentorEmail={mentorEmail}
+										clickHandler={clickHandler}
+									/>
+									<GraduateElement
+										name={"Soft Skills"}
+										id={3}
+										graduateEmail={user}
+										mentorEmail={mentorEmail}
+										clickHandler={clickHandler}
+									/>
+								</div>
+								<button value={user} onClick={removeGraduate}>
+									Remove
+								</button>
+							</Popup>
+						</div>
+					)}
+					<div className="elementsSection mentees">
+						<div className="elementsText">
+							<p> Welcome Mentor!</p>
+							<p> Connect with graduates, give feedback, support growth!</p>
+						</div>
 
-					{gradList.Graduate1 && (
-						<button
-							className="elementButton"
-							onClick={clickHandler}
-							value={gradList.Graduate1}
-						>
-							<h5>{gradList.Graduate1}</h5>
-						</button>
-					)}
-					{gradList.Graduate2 && (
-						<button
-							className="elementButton"
-							onClick={clickHandler}
-							value={gradList.Graduate2}
-						>
-							{gradList.Graduate2}
-						</button>
-					)}
-					{gradList.Graduate3 && (
-						<button
-							className="elementButton"
-							onClick={clickHandler}
-							value={gradList.Graduate3}
-						>
-							{gradList.Graduate3}
-						</button>
-					)}
-				</div>
+						{gradList.Graduate1 && (
+							<button
+								className="elementButton"
+								onClick={clickHandler}
+								value={gradList.Graduate1}
+							>
+								<h5>{gradList.Graduate1}</h5>
+							</button>
+						)}
+						{gradList.Graduate2 && (
+							<button
+								className="elementButton"
+								onClick={clickHandler}
+								value={gradList.Graduate2}
+							>
+								{gradList.Graduate2}
+							</button>
+						)}
+						{gradList.Graduate3 && (
+							<button
+								className="elementButton"
+								onClick={clickHandler}
+								value={gradList.Graduate3}
+							>
+								{gradList.Graduate3}
+							</button>
+						)}
+					</div>
+				</GraduateListStyle>
 			</Wrapper>
 		);
 	} else {
 		return (
 			<Wrapper>
-				<div className="elementsSection">
-					<h1 className="message elementsText">Graduate Connections</h1>
-					{gradListContent}
-				</div>
+				<GraduateListStyle>
+					<div className="elementsSection">
+						<h1 className="message elementsText">Graduate Connections</h1>
+						{gradListContent}
+					</div>
+				</GraduateListStyle>
 			</Wrapper>
 		);
 	}
