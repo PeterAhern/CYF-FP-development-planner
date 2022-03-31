@@ -1,9 +1,12 @@
 import { useState, useCallback, useEffect } from "react";
 import "./Popup.css";
+import Popup from "./Popup";
 
 const MentorsComment = ({ email, id, senderEmail }) => {
 	const [comments, setComments] = useState([]);
 	const [refresh, setRefresh] = useState(false);
+	const [buttonPopup, setButtonPopup] = useState(false);
+
 
 	const utc = new Date().toJSON().slice(0, 10).replace(/-/g, "-");
 
@@ -42,7 +45,10 @@ const MentorsComment = ({ email, id, senderEmail }) => {
 	const refreshFunc = () => {
 		setRefresh(!refresh);
 	};
-
+const clickHandler = (e) => {
+	setUser(e.target.value);
+	setButtonPopup(true);
+};
 	const fetchComments = useCallback(async () => {
 		try {
 			const response = await fetch(
@@ -58,33 +64,49 @@ const MentorsComment = ({ email, id, senderEmail }) => {
 		} catch (error) {
 			console.log(error);
 		}
-	}, [ id, email]);
+	}, [id, email]);
 	useEffect(() => {
 		fetchComments();
-	}, [fetchComments,refresh]);
+	}, [fetchComments, refresh]);
 	console.log(comments);
 	return (
 		<div>
-			<form onSubmit={handleSubmit} className="form">
-				<label>
-					Comment:
-					<textarea value={value.comment} onChange={handleChange} />
-				</label>
-				<input type="submit" value="Submit" className="btn btn-danger submit" />
-			</form>
-			<div className="commentsArea">
-				<ul>
-					{comments.map((comment, index) => {
-						return (
-							<li key={index} className={comment.user_email === senderEmail?"blue":"green"}>
-								<h6>sender:{comment.user_email}</h6>
-								<h6> {comment.comment_date.slice(0, 10).replace(/-/g, "-")}</h6>
-								<h5>{comment.comment_content}</h5>
-							</li>
-						);
-					})}
-				</ul>
-			</div>
+			{/* <button value={gradList.Graduate1} onClick={clickHandler}>
+				Show tasks
+			</button>
+			<Popup trigger={buttonPopup} setTrigger={setButtonPopup}> */}
+				<form onSubmit={handleSubmit} className="form">
+					<label>
+						Comment:
+						<textarea value={value.comment} onChange={handleChange} />
+					</label>
+					<input
+						type="submit"
+						value="Submit"
+						className="btn btn-danger submit"
+					/>
+				</form>
+				<div className="commentsArea">
+					<ul>
+						{comments.map((comment, index) => {
+							return (
+								<li
+									key={index}
+									className={
+										comment.user_email === senderEmail ? "blue" : "green"
+									}
+								>
+									<h6>sender:{comment.user_email}</h6>
+									<h6>
+										{comment.comment_date.slice(0, 10).replace(/-/g, "-")}
+									</h6>
+									<h5>{comment.comment_content}</h5>
+								</li>
+							);
+						})}
+					</ul>
+				</div>
+			{/* </Popup> */}
 		</div>
 	);
 };

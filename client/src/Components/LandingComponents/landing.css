@@ -14,5 +14,7 @@
   margin: -20px 0 50px;
 }
 .login_container h1,h2{
-  margin-bottom:3rem;;
+  margin-bottom:3rem;
+  text-align: center;
+  color: rgb(55, 57, 58);
 }
