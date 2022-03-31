@@ -5,12 +5,11 @@ import Popup from "../MentorFeedback/Popup";
 import "../MentorFeedback/Popup.css";
 import "../MentorsHome/MentorsHome.css";
 import "../../Graduates/GraduatesPlan/MyPlan.css";
-import MentorsComment from "../MentorFeedback/MentorsComment";
 const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 	const [gradList, setGradList] = useState({});
 	const [buttonPopup, setButtonPopup] = useState(false);
 	const [user, setUser] = useState("");
-	const [nameClicked,setNameClicked] = useState(false);
+	const [nameClicked, setNameClicked] = useState(false);
 	const clickHandler = (e) => {
 		setUser(e.target.value);
 		setButtonPopup(true);
@@ -74,7 +73,6 @@ const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 	) {
 		return (
 			<div className="gradPlanPage">
-				{/* < MentorsComment /> */}
 				{nameClicked && (
 					<div>
 						<Popup
@@ -105,10 +103,13 @@ const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 									clickHandler={clickHandler}
 								/>
 							</div>
+							<button value={user} onClick={removeGraduate}>
+								Remove
+							</button>
 						</Popup>
 					</div>
 				)}
-				<div className="elementsSection">
+				<div className="elementsSection mentees">
 					<div className="elementsText">
 						<p> Welcome Mentor!</p>
 						<p> Connect with graduates, give feedback, support growth!</p>
@@ -121,10 +122,6 @@ const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 							value={gradList.Graduate1}
 						>
 							<h5>{gradList.Graduate1}</h5>
-
-							<button value={gradList.Graduate1} onClick={removeGraduate}>
-								Remove
-							</button>
 						</button>
 					)}
 					{gradList.Graduate2 && (
@@ -133,11 +130,7 @@ const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 							onClick={clickHandler}
 							value={gradList.Graduate2}
 						>
-							<h5>{gradList.Graduate2}</h5>
-
-							<button value={gradList.Graduate2} onClick={removeGraduate}>
-								Remove
-							</button>
+							{gradList.Graduate2}
 						</button>
 					)}
 					{gradList.Graduate3 && (
@@ -146,17 +139,13 @@ const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 							onClick={clickHandler}
 							value={gradList.Graduate3}
 						>
-							<h5>{gradList.Graduate3}</h5>
-
-							<button value={gradList.Graduate3} onClick={removeGraduate}>
-								Remove
-							</button>
+							{gradList.Graduate3}
 						</button>
 					)}
 				</div>
 			</div>
 		);
-	} else{
+	} else {
 		return (
 			<div className="elementsSection">
 				<h1 className="message elementsText">Graduate Connections</h1>
