@@ -157,6 +157,7 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 										<>
 											<b>Edit your task</b>
 											<TaskForm
+												togglePopup={togglePopup}
 												refreshFunc={refreshFunc}
 												editingTask={editingTask}
 												setEditingTask={setEditingTask}
