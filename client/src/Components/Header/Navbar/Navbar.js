@@ -6,7 +6,7 @@ import Goal from "./Goal";
 import DropdownOption from "./DropdownItem";
 import Axios from "axios";
 
-import "./NavBar.css";
+import { Wrapper } from "./NavBar.styles";
 
 import developmentSvg from "../../../Assets/svg/development.svg";
 import logInOutSvg from "../../../Assets/svg/login-out.svg";
@@ -44,33 +44,29 @@ const NavigationMenu = () => {
 
 
 	const logoutHandler = () => Axios.post("/api/logout");
-	// useEffect(() => {
-	// 	fetch(`api/graduate/${loginStatus.user_email}`)
-	// 		.then((res) => res.json())
-	// 		.then((data) => setMentorAccess(data.mentor_access));
-	// }, [loginStatus.user_email]);
+
 
 	console.log(mentorAccess);
 
 	return (
-		<>
+		<Wrapper>
 			<Navbar className="navigationMenu" expand="lg">
 				<Container fluid>
 					<Navbar.Brand href="#">
 						<img className="cyfLogo" src={cyfLogo} alt="CYF logo" />
 					</Navbar.Brand>
 					<Goal graduateEmail={loginStatus.user_email} />
-					<Navbar.Toggle aria-controls="navbarScroll" />
+					<Navbar.Toggle className="navbarToggle" aria-controls="navbarScroll" />
 					<Navbar.Collapse id="navbarScroll">
 						<Nav
 							className="me-auto my-2 my-lg-0"
-							style={{ maxHeight: "150px" }}
+							style={{ maxHeight: "100px" }}
 							navbarScroll
 						>
 							{mentorAccess && (
 								<Nav.Link href="/plan">
 									<DropdownOption href="/plan" leftIcon={developmentSvg}>
-										Mentor Guid
+										Mentor Guide
 									</DropdownOption>
 								</Nav.Link>
 							)}
@@ -85,7 +81,7 @@ const NavigationMenu = () => {
 					</Navbar.Collapse>
 				</Container>
 			</Navbar>
-		</>
+		</Wrapper>
 	);
 };
 

@@ -20,7 +20,6 @@ const TaskForm = ({
 		}
 	};
 	const [task, setTask] = useState(initialState);
-	const [showOption, setShowOption] = useState(true);
 
 	const changeHandler = (e) => {
 		const inputName = e.target.name;
@@ -115,43 +114,41 @@ const TaskForm = ({
 		setTask({ ...task, taskTitle: inputValue });
 	};
 
-	let data1 = PreloadedTasks;
-
-	console.log(data1);
+	//variable to load the correct suggested task from the JSON file PreloadedTasks, matches task.elementId with corresponding data
+	let elementRef;
+	if(task.elementId ===1){
+		elementRef = PreloadedTasks.technical.map((idea) => (
+									<option key={idea} value={idea}>{idea}</option>));
+		} else if(task.elementId ===2){
+		elementRef = PreloadedTasks.employability.map((idea) => (
+									<option key={idea} value={idea}>{idea}</option>));
+		} else if(task.elementId===3){
+		elementRef = PreloadedTasks.essentialSkills.map((idea) => (
+									<option key={idea} value={idea}>{idea}</option>));
+		}
 
 	return (
 		<form onSubmit={submitHandler} className="form-align">
 			<div className="control-group">
 				<div>
-					{showOption && (
-						<div>
-							<label htmlFor="Suggested Tasks">Task ideas: </label>
-							{/* <select onChange={(e) => dropDownChanged(e)}>
-								<option value="" disabled selected hidden>
-									Choose or Create
-								</option>
-								{data.technical.map((task) => (
-									<option key={task} value={task} />
-								))}
-							</select> */}
-						</div>
-					)}
+					<div>
+						<label htmlFor="Suggested Tasks">Task ideas: </label>
+						<select onChange={(e) => dropDownChanged(e)}>
+							<option value="" selected>
+								Choose or Create a Task
+							</option>
+							{elementRef}
+						</select>
+					</div>
 					<label htmlFor="taskTitle">Task Title: </label>
 					<input
 						type="text"
-						// list="taskTitle"
+						list="taskTitle"
 						id="taskTitle"
 						name="taskTitle"
 						value={task?.taskTitle}
 						onChange={changeHandler}
-				/>
-					{/* <datalist id="taskTitle" >
-    <option value="Edge" />
-    <option value="Firefox" />
-    <option value="Chrome" />
-    <option value="Opera" />
-    <option value="Safari" />
-  </datalist > */}
+					/>
 				</div>
 				<div>
 					<label htmlFor="dueDate">Due Date: </label>

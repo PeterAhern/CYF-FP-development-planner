@@ -1,3 +1,11 @@
 .searchBar{
-    width:30%;
+    width:100%;
+}
+.AllGradsAndSearch{
+    display: flex;
+    justify-content: flex-end;
+    width:50%;
+}
+.allGrads{
+  height: 3.8%;
 }

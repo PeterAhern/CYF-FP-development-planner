@@ -1,21 +1,21 @@
-import classes from "./DropdownItem.module.css";
+import { Wrapper } from "./DropdownItem.styles";
 
 const DropdownItem = (props) => {
 
 	return (
-		<div href={props.href} className={classes.menuItem}>
-			<span className={classes.iconButton}>
+		<Wrapper href={props.href}>
+			<span className="iconButton">
 				{props.leftIcon && (
-					<img className={classes.navIcon} src={props.leftIcon} alt="dev" />
+					<img className="navIcon" src={props.leftIcon} alt="dev" />
 				)}
 			</span>
 			{props.children}
-			<span className={classes.iconRight}>
+			<span className="iconRight">
 				{props.rightIcon && (
-					<img className={classes.navIcon} src={props.rightIcon} alt="dev" />
+					<img className="navIcon" src={props.rightIcon} alt="dev" />
 				)}
 			</span>
-		</div>
+		</Wrapper>
 	);
 };
 

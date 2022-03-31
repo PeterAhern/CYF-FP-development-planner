@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import "./Goal.css";
+import { Wrapper } from "./Goal.styles";
 const Goal = ( { graduateEmail } ) => {
 	const [clicked, setClicked] = useState(false);
 	const [goal, setGoal] = useState("");
@@ -62,9 +62,9 @@ const Goal = ( { graduateEmail } ) => {
 
 
 	return (
-		<>
+		<Wrapper>
 			<h3 className="goal">{goal}</h3>
-			<button onClick={updateGoal} className=" btn-sm button">
+			<button onClick={updateGoal} className="button">
 				{clicked ? <h6>Save</h6> : <h6>Edit Goal</h6>}
 			</button>
 
@@ -81,9 +81,10 @@ const Goal = ( { graduateEmail } ) => {
 					name="goal"
 					value={goal}
 					onChange={changeHandler}
+					className="goalInput"
 				></input>
 			)}
-		</>
+		</Wrapper>
 	);
 };
 export default Goal;

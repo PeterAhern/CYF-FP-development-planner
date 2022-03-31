@@ -32,20 +32,22 @@ const AllGraduates = ({ mentorEmail, gradRefreshFunc }) => {
 	};
 	return (
 		<>
-			<div>
-				<input
-					type="text"
-					id="customerName"
-					className="searchBar"
-					placeholder="Search all graduates"
-					value={term}
-					onChange={onChange}
-				/>
+			<div className="AllGradsAndSearch">
+				<div>
+					<input
+						type="text"
+						id="customerName"
+						className="searchBar"
+						placeholder="Search all graduates"
+						value={term}
+						onChange={onChange}
+					/>
+				</div>
+				<button className="allGrads" onClick={() => setClicked(!clicked)}>
+					All Graduates
+				</button>
 			</div>
-			<button className="btn btn-danger" onClick={() => setClicked(!clicked)}>
-				All Graduates
-			</button>
-			<ul>
+			<ul >
 				{clicked &&
 					users.map((user, index) => (
 						<li key={index}>
@@ -64,6 +66,7 @@ const AllGraduates = ({ mentorEmail, gradRefreshFunc }) => {
 							<MentorGraduate
 								user={user.user_email}
 								gradRefreshFunc={gradRefreshFunc}
+								mentorEmail={mentorEmail}
 							/>
 						</li>
 					))}

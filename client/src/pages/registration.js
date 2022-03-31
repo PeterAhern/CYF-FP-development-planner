@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
+
+import { Wrapper } from "./registration.styles";
 import Axios from "axios";
-import "../App.css";
 import { Navigate } from "react-router-dom";
-import LandingCanvas from "../Components/MobileComponents/Canvas/LandingCanvas";
 import Register from "../Components/LandingComponents/Register";
 import Login from "../Components/LandingComponents/Login";
 import * as Components from "../Components/LandingComponents/landingComponents";
-import "../Components/LandingComponents/landing.css";
+
 
 export default function Registration() {
 	const [signIn, toggle] = useState(true);
@@ -31,14 +31,13 @@ export default function Registration() {
 	}, []);
 
 	return (
-		<>
+		<Wrapper>
 			{!loginStatus.status && (
 				<div className="login_container">
 					<div className="landingHeader">
 						<h1>Elemental Planner</h1>
 						<h2>Organising your elements to success.</h2>
 					</div>
-					<LandingCanvas />
 					<Components.Container>
 						<Components.SignUpContainer signingIn={signIn}>
 							<Register setLoginStatus={setLoginStatus} />
@@ -74,6 +73,6 @@ export default function Registration() {
 				</div>
 			)}
 			{loginStatus.status && <Navigate to="/plan" />}
-		</>
+		</Wrapper>
 	);
 }
