@@ -10,11 +10,11 @@ const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 	const [gradList, setGradList] = useState({});
 	const [buttonPopup, setButtonPopup] = useState(false);
 	const [user, setUser] = useState("");
-	const [clicked,setClicked] = useState(false);
+	const [nameClicked,setNameClicked] = useState(false);
 	const clickHandler = (e) => {
 		setUser(e.target.value);
 		setButtonPopup(true);
-		setClicked(!clicked);
+		setNameClicked(!nameClicked);
 	};
 	const fetchGradsHandler = useCallback(async () => {
 		try {
@@ -75,33 +75,36 @@ const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 		return (
 			<div className="gradPlanPage">
 				{/* < MentorsComment /> */}
-				{/* <Popup trigger={buttonPopup} setTrigger={setButtonPopup}> */}
-				{clicked && (
-					<div className="taskSection ">
-						<Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-						<div className="menteesCont">
-							<GraduateElement
-								name={"Technical"}
-								id={1}
-								graduateEmail={user}
-								mentorEmail={mentorEmail}
-								clickHandler={clickHandler}
-							/>
-							<GraduateElement
-								name={"Job Search"}
-								id={2}
-								graduateEmail={user}
-								mentorEmail={mentorEmail}
-								clickHandler={clickHandler}
-							/>
-							<GraduateElement
-								name={"Soft Skills"}
-								id={3}
-								graduateEmail={user}
-								mentorEmail={mentorEmail}
-								clickHandler={clickHandler}
-							/>
-						</div>
+				{nameClicked && (
+					<div>
+						<Popup
+							trigger={buttonPopup}
+							setTrigger={setButtonPopup}
+							setClicked={setNameClicked}
+						>
+							<div>
+								<GraduateElement
+									name={"Technical"}
+									id={1}
+									graduateEmail={user}
+									mentorEmail={mentorEmail}
+									clicked={clickHandler}
+								/>
+								<GraduateElement
+									name={"Job Search"}
+									id={2}
+									graduateEmail={user}
+									mentorEmail={mentorEmail}
+									clickHandler={clickHandler}
+								/>
+								<GraduateElement
+									name={"Soft Skills"}
+									id={3}
+									graduateEmail={user}
+									mentorEmail={mentorEmail}
+									clickHandler={clickHandler}
+								/>
+							</div>
 						</Popup>
 					</div>
 				)}
@@ -147,10 +150,6 @@ const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 
 							<button value={gradList.Graduate3} onClick={removeGraduate}>
 								Remove
-							</button>
-
-							<button value={gradList.Graduate3} onClick={clickHandler}>
-								Show tasks
 							</button>
 						</button>
 					)}
