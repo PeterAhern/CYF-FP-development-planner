@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { AllGraduatesStyles } from "./AllGraduates.styles";
+import { GraduateListStyle } from "../GraduateList/GraduateList.styles";
 import MentorGraduate from "./MentorGraduates";
 
 const AllGraduates = ({ mentorEmail, gradRefreshFunc }) => {
@@ -27,28 +27,25 @@ const AllGraduates = ({ mentorEmail, gradRefreshFunc }) => {
 	const onChange = (e) => {
 		setTerm(e.target.value);
 		console.log(users);
-		setSearch(users.filter((user) => user.user_email.includes(term)));
+		setSearch(users.filter((user) => user.user_email.toLowerCase().includes(term)));
 		setClicked(false);
 	};
 	return (
-		<AllGraduatesStyles>
-			<div className="AllGradsAndSearch">
-				<div>
+		<GraduateListStyle>
+			<div className="searchAll" >
 					<input
 						type="text"
-						id="customerName"
 						className="searchBar"
 						placeholder="Search all graduates"
 						value={term}
 						onChange={onChange}
 					/>
-				</div>
-				<button
-					className="allGrads btn btn-danger"
-					onClick={() => setClicked(!clicked)}
-				>
-					All Graduates
-				</button>
+					<button
+						className="allGrads btn btn-danger"
+						onClick={() => setClicked(!clicked)}
+					>
+						All Graduates
+					</button>
 			</div>
 			<ul>
 				{clicked &&
@@ -74,7 +71,7 @@ const AllGraduates = ({ mentorEmail, gradRefreshFunc }) => {
 						</li>
 					))}
 			</ul>
-		</AllGraduatesStyles>
+		</GraduateListStyle>
 	);
 };
 export default AllGraduates;
