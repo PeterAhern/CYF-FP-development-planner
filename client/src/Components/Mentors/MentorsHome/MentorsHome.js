@@ -9,15 +9,15 @@ const MentorsHome = ({ user_email }) => {
 	return (
 		<div>
 			<Navbar user_email={user_email} />
-			<h1> Welcome Mentor!</h1>
-			<h3> Connect with graduates, give feedback, support growth!</h3>
-			<div>
-				<GraduateList
-					mentorEmail={user_email}
-					addGradRefresh={addGradRefresh}
-					gradRefreshFunc={() => setAddGradRefresh(!addGradRefresh)}
-				/>
-			</div>
+
+
+			<GraduateList
+				mentorEmail={user_email}
+				// className="elements"
+				addGradRefresh={addGradRefresh}
+				gradRefreshFunc={() => setAddGradRefresh(!addGradRefresh)}
+			/>
+
 			<AllGraduates
 				mentorEmail={user_email}
 				gradRefreshFunc={() => setAddGradRefresh(!addGradRefresh)}
