@@ -1,4 +1,4 @@
-import classes from "./Card.module.css";
+import { CardStyles } from "./Card.styles";
 import { useState } from "react";
 
 const Card = (props) => {
@@ -6,7 +6,16 @@ const Card = (props) => {
 
 	const toggleMode = () => setDarkMode(()=> !darkMode);
 
-	return <div className={darkMode && props.toggle ? classes.cardDark : classes.card} onClick={toggleMode}>{props.children}</div>;
+	return (
+		<CardStyles>
+			<div
+				className={darkMode && props.toggle ? "cardDark" : "card"}
+				onClick={toggleMode}
+			>
+				{props.children}
+			</div>
+		</CardStyles>
+	);
 };
 
 export default Card;

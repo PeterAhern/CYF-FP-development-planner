@@ -6,7 +6,7 @@ import Goal from "./Goal";
 import DropdownOption from "./DropdownItem";
 import Axios from "axios";
 
-import { Wrapper } from "./NavBar.styles";
+import { NavBarStyles } from "./NavBar.styles";
 
 import developmentSvg from "../../../Assets/svg/development.svg";
 import logInOutSvg from "../../../Assets/svg/login-out.svg";
@@ -49,7 +49,7 @@ const NavigationMenu = () => {
 	console.log(mentorAccess);
 
 	return (
-		<Wrapper>
+		<NavBarStyles>
 			<Navbar className="navigationMenu" expand="lg">
 				<Container fluid>
 					<Navbar.Brand href="#">
@@ -81,7 +81,7 @@ const NavigationMenu = () => {
 					</Navbar.Collapse>
 				</Container>
 			</Navbar>
-		</Wrapper>
+		</NavBarStyles>
 	);
 };
 

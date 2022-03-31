@@ -1,6 +1,6 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import { Wrapper } from "./MyPlan.styles";
+import { MyPlanStyles } from "./MyPlan.styles";
 // import Card from "../../UI/Card/Card";
 
 // Components
@@ -27,7 +27,7 @@ const MyPlan = ({ user_email }) => {
 	};
 
 	return (
-		<Wrapper>
+		<MyPlanStyles>
 			<Navbar graduateEmail={user_email} />
 			<section className="gradPlanPage">
 				<main role="main" className="elementsSection">
@@ -115,7 +115,7 @@ const MyPlan = ({ user_email }) => {
 					/>
 				</div>
 			</section>
-		</Wrapper>
+		</MyPlanStyles>
 	);
 };
 

@@ -1,9 +1,9 @@
-import { Wrapper } from "./DropdownItem.styles";
+import { DropdownItemStyles } from "./DropdownItem.styles";
 
 const DropdownItem = (props) => {
 
 	return (
-		<Wrapper href={props.href}>
+		<DropdownItemStyles href={props.href}>
 			<span className="iconButton">
 				{props.leftIcon && (
 					<img className="navIcon" src={props.leftIcon} alt="dev" />
@@ -15,7 +15,7 @@ const DropdownItem = (props) => {
 					<img className="navIcon" src={props.rightIcon} alt="dev" />
 				)}
 			</span>
-		</Wrapper>
+		</DropdownItemStyles>
 	);
 };
 

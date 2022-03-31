@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
+export const NavBarStyles = styled.div`
 	display: flex;
 
 	.navigationMenu {

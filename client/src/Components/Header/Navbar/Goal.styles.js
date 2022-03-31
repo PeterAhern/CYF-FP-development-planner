@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
+export const GoalStyles = styled.div`
 	display: flex;
 	flex-flow: row;
 	width: 800px;

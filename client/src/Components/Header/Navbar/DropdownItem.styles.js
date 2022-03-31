@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
+export const DropdownItemStyles = styled.div`
 
     height: 50px;
     display: flex;

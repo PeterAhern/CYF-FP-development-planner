@@ -1,6 +1,5 @@
 import { useState } from "react";
 import GraduateTasks from "./GraduateTasks";
-import "./Popup.css";
 import MentorsComment from "./MentorsComment";
 
 
