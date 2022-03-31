@@ -1,9 +1,12 @@
 import { useState } from "react";
 import GraduateTasks from "./GraduateTasks";
 import "./Popup.css";
-import Comment from "./MentorsComment";
+import MentorsComment from "./MentorsComment";
+
+
 import TaskForm from "../../TaskForm/TaskForm";
 import PopUpForm from "../../Tasks/PopUpForm";
+
 
 const GraduateElement = (props) => {
 	const [clicked, setClicked] = useState(false);
@@ -39,7 +42,7 @@ const GraduateElement = (props) => {
 			</button>
 
 			{comment && (
-				<Comment
+				<MentorsComment
 					senderEmail={props.mentorEmail}
 					email={props.graduateEmail}
 					id={props.id}
