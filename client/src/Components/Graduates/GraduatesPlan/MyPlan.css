@@ -28,3 +28,10 @@
 	display: flex;
 	justify-content: center;
 }
+.message{
+	color:beige;
+}
+.taskSection {
+     width: 75%;
+	 
+ }

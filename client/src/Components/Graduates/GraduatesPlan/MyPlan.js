@@ -39,7 +39,7 @@ const MyPlan = ({ user_email }) => {
 						Welcome to your planning center, from here, you can view and add new
 						tasks to be done.
 					</p>
-					<div className="elements">
+					<div >
 						<button
 							className="elementButton"
 							onClick={() => setElementTasksId(1)}
