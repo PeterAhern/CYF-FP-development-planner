@@ -4,7 +4,7 @@ import PopUpForm from "./PopUpForm";
 import TaskForm from "../TaskForm/TaskForm";
 //for date formatting on task card
 import moment from "moment";
-import "./Tasks.css";
+import { TasksStyles } from "./Tasks.styles";
 import * as Components from "../UI/Button/Button";
 import { Badge } from "react-bootstrap";
 
@@ -193,7 +193,7 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 		content = <p>Loading...</p>;
 	}
 
-	return <div className="tasksContainer">{content}</div>;
+	return <TasksStyles>{content}</TasksStyles>;
 };
 
 export default Tasks;
