@@ -80,7 +80,7 @@ export const MyPlanStyles = styled.div`
 	.elementTasksList {
 		padding-top: 6rem;
 		width: 100%;
-		height: 100%;
+		height: calc(100vh - 290px);
 		overflow: scroll;
 	}
 
