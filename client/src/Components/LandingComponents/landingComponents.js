@@ -76,10 +76,11 @@ export const Form = styled.form`
 	text-align: center;
 `;
 
-export const Title = styled.h1`
+export const Title = styled.h2`
 	font-weight: bold;
 	margin: 0;
 `;
+
 
 export const Input = styled.input`
 	background-color: #eee;
@@ -87,12 +88,14 @@ export const Input = styled.input`
 	padding: 12px 15px;
 	margin: 8px 0;
 	width: 100%;
+	height: 40px;
+	font-size: 20px
 `;
 
 export const Button = styled.button`
 	border-radius: 20px;
 	border: 1px solid #ff4b2b;
-	background-color: #ff4b2b;
+	background-color: #ff2626;
 	color: #ffffff;
 	font-size: 12px;
 	font-weight: bold;
@@ -105,6 +108,9 @@ export const Button = styled.button`
 	}
 	&:focus {
 		outline: none;
+	}
+	&:hover {
+		color: black;
 	}
 `;
 
@@ -135,8 +141,8 @@ export const OverlayContainer = styled.div`
 
 export const Overlay = styled.div`
 	background: #ff416c;
-	background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
-	background: linear-gradient(to right, #ff4b2b, #ff416c);
+	background: -webkit-linear-gradient(to right, #ff6969, #ff2626);
+	background: linear-gradient(to right, #ff6969, #ff2626);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 0 0;
@@ -178,11 +184,25 @@ export const RightOverlayPanel = styled(OverlayPanel)`
 		props.signingIn !== true ? "transform: translateX(20%);" : null}
 `;
 export const Paragraph = styled.p`
-	font-size: 14px;
+	font-size: 18px;
 	font-weight: 100;
 	line-height: 20px;
 	letter-spacing: 0.5px;
-	margin: 20px 0 30px;
+	margin: 20px 0 35px;
 `;
 
+export const Paragraph2 = styled.p`
+	font-size: 18px;
+	font-weight: 100;
+	line-height: 20px;
+	letter-spacing: 0.5px;
+	margin: 20px 0 10px;
+`;
 
+export const Paragraph3 = styled.p`
+	font-size: 18px;
+	font-weight: 100;
+	line-height: 20px;
+	letter-spacing: 0.5px;
+	margin: 20px 0 60px;
+`;

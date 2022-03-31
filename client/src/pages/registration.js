@@ -49,24 +49,23 @@ export default function Registration() {
 						<Components.OverlayContainer signingIn={signIn}>
 							<Components.Overlay signingIn={signIn}>
 								<Components.LeftOverlayPanel signingIn={signIn}>
-									<Components.Title>Welcome Back!</Components.Title>
+									<Components.Title>Start with Elemental!</Components.Title>
 									<Components.Paragraph>
-										Please login with your personal info
+										Sign up to begin organising your elements to success!
 									</Components.Paragraph>
+									<Components.Paragraph2>Already registered?</Components.Paragraph2>
 									<Components.GhostButton onClick={() => toggle(true)}>
 										Sign In
 									</Components.GhostButton>
 								</Components.LeftOverlayPanel>
 								<Components.RightOverlayPanel signingIn={signIn}>
-									<Components.Title>
-										Get started with Elemental
-									</Components.Title>
-									<Components.Paragraph>
-										Fill out your details to get started organising your
-										elements to success!
-									</Components.Paragraph>
+									<Components.Title>Welcome Back!</Components.Title>
+									<Components.Paragraph3>
+										Sign in with your personal details.
+									</Components.Paragraph3>
+									<Components.Paragraph2>New to elemental?</Components.Paragraph2>
 									<Components.GhostButton onClick={() => toggle(false)}>
-										Sign Up
+										Create Account
 									</Components.GhostButton>
 								</Components.RightOverlayPanel>
 							</Components.Overlay>
