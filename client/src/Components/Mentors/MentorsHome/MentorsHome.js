@@ -5,16 +5,29 @@ import AllGraduates from "../ViewAllGraduates/AllGraduates";
 // import GraduateList from "../GraduateList/GraduateList";
 import { MentorsHomeStyle } from "./MentorsHome.styles";
 
+import TaskForm from "../../TaskForm/TaskForm";
+import PopUpForm from "../../Tasks/PopUpForm";
+import GraduateTasks from "../MentorFeedback/GraduateTasks";
+import MentorsComment from "../MentorFeedback/MentorsComment";
+
 const MentorsHome = ({ user_email }) => {
 	const [addGradRefresh, setAddGradRefresh] = useState(true);
+	const [clicked, setClicked] = useState(1);
 
 	const [gradList, setGradList] = useState({});
-	const [buttonPopup, setButtonPopup] = useState(false);
+	// const [buttonPopup, setButtonPopup] = useState(false);
 	const [user, setUser] = useState("");
 	const [nameClicked, setNameClicked] = useState(false);
+	const [comment, setComment] = useState(false);
+	const [refresh, setRefresh] = useState(true);
+
+	const [assignTaskClicked, setAssignTaskClicked] = useState(false);
+
+	const [isOpen, setIsOpen] = useState(false);
+
 	const clickHandler = (e) => {
 		setUser(e.target.value);
-		setButtonPopup(true);
+		// setButtonPopup(true);
 		setNameClicked(!nameClicked);
 	};
 
@@ -71,6 +84,12 @@ const MentorsHome = ({ user_email }) => {
 		</h1>
 	);
 
+	const assignTaskHandler = () => setAssignTaskClicked(!assignTaskClicked);
+
+	const togglePopup = () => {
+		setIsOpen(!isOpen);
+	};
+
 
 		return (
 			<MentorsHomeStyle>
@@ -112,85 +131,157 @@ const MentorsHome = ({ user_email }) => {
 							)}
 						</div>
 					</div>
-					<div className="AllMenteesSection">
-						<AllGraduates
-							mentorEmail={user_email}
-							gradRefreshFunc={gradRefreshFunc}
-						/>
-					</div>
-					{gradList.Graduate1 !== null ||
-					gradList.Graduate2 !== null ||
-					gradList.Graduate3 !== null ? (
-						<section className="graduateElementsSection">
-							<button
-								value={user}
-								onClick={removeGraduate}
-								className="comment btn btn-danger remove"
-							>
-								Remove
-							</button>
+					<div className="rightSideDisplaySection">
+						<div className="AllMenteesSection">
+							<AllGraduates
+								mentorEmail={user_email}
+								gradRefreshFunc={gradRefreshFunc}
+							/>
+						</div>
+						<section className="graduateElementsDisplaySection">
+							{gradList.Graduate1 !== null ||
+							gradList.Graduate2 !== null ||
+							gradList.Graduate3 !== null ? (
+								<section className="graduateElementsSection">
+									<button
+										value={user}
+										onClick={removeGraduate}
+										className="comment btn btn-danger remove"
+									>
+										Remove
+									</button>
 
-							{!nameClicked && (
-								<div className="gradElement">
-									<GraduateElement
-										name={"Technical"}
-										id={1}
-										graduateEmail={gradList.Graduate1}
-										mentorEmail={user_email}
-										clicked={clickHandler}
-									/>
-									<GraduateElement
-										name={"Job Search"}
-										id={2}
-										graduateEmail={gradList.Graduate1}
-										mentorEmail={user_email}
-										clickHandler={clickHandler}
-									/>
-									<GraduateElement
-										name={"Soft Skills"}
-										id={3}
-										graduateEmail={gradList.Graduate1}
-										mentorEmail={user_email}
-										clickHandler={clickHandler}
-									/>
-								</div>
-							)}
+									{!nameClicked && (
+										<div className="gradElement">
+											<GraduateElement
+												name={"Technical"}
+												id={1}
+												graduateEmail={gradList.Graduate1}
+												mentorEmail={user_email}
+												clickHandler={clickHandler}
+											/>
+											<GraduateElement
+												name={"Job Search"}
+												id={2}
+												graduateEmail={gradList.Graduate1}
+												mentorEmail={user_email}
+												clickHandler={clickHandler}
+											/>
+											<GraduateElement
+												name={"Soft Skills"}
+												id={3}
+												graduateEmail={gradList.Graduate1}
+												mentorEmail={user_email}
+												clickHandler={clickHandler}
+											/>
+										</div>
+									)}
 
-							{nameClicked && (
-								<div>
-									<div className="gradElement">
-										<GraduateElement
-											name={"Technical"}
-											id={1}
-											graduateEmail={user}
-											mentorEmail={user_email}
-											clicked={clickHandler}
-										/>
-										<GraduateElement
-											name={"Job Search"}
-											id={2}
-											graduateEmail={user}
-											mentorEmail={user_email}
-											clickHandler={clickHandler}
-										/>
-										<GraduateElement
-											name={"Soft Skills"}
-											id={3}
-											graduateEmail={user}
-											mentorEmail={user_email}
-											clickHandler={clickHandler}
-										/>
-									</div>
-
+									{nameClicked && (
+										<div>
+											<div className="gradElement">
+												<GraduateElement
+													name={"Technical"}
+													id={1}
+													graduateEmail={user}
+													mentorEmail={user_email}
+													clickHandler={clickHandler}
+													setClicked={setClicked}
+													clicked={clicked}
+												/>
+												<GraduateElement
+													name={"Job Search"}
+													id={2}
+													graduateEmail={user}
+													mentorEmail={user_email}
+													clickHandler={clickHandler}
+													setClicked={setClicked}
+													clicked={clicked}
+												/>
+												<GraduateElement
+													name={"Soft Skills"}
+													id={3}
+													graduateEmail={user}
+													mentorEmail={user_email}
+													clickHandler={clickHandler}
+													setClicked={setClicked}
+													clicked={clicked}
+												/>
+											</div>
+										</div>
+									)}
+								</section>
+							) : (
+								<div className="elementsSection">
+									<h1 className="message elementsText">Graduate Connections</h1>
+									{gradListContent}
 								</div>
 							)}
 						</section>
-					) : (
-						<div className="elementsSection">
-							<h1 className="message elementsText">Graduate Connections</h1>
-							{gradListContent}
-						</div>
-					)}
+						<section className="graduateButtons">
+							<button
+								className="menteeCommentButton"
+								onClick={() => setComment(!comment)}
+							>
+								Feedback
+							</button>
+
+							{comment && (
+								<MentorsComment
+									senderEmail={user_email}
+									email={user}
+									id={clicked}
+									refresh={refresh}
+									refreshFunc={() => setRefresh(!refresh)}
+								/>
+							)}
+
+							{clicked && (
+								<>
+									<button onClick={assignTaskHandler}>Assign Task</button>
+									{assignTaskClicked && (
+										<div className="tasksSection">
+											<input
+												type="button"
+												className="addNewTaskButton"
+												value="Add New Task"
+												onClick={togglePopup}
+											/>
+											{isOpen && (
+												<PopUpForm
+													content={
+														<>
+															<b>Assign task details</b>
+															<TaskForm
+																refreshFunc={() => setRefresh(!refresh)}
+																addNewTaskForm={{
+																	taskTitle: "",
+																	userEmail: user,
+																	dueDate: "",
+																	evidence: "",
+																	elementId: clicked,
+																	statusId: 1,
+																}}
+															/>
+														</>
+													}
+													handleClose={togglePopup}
+												/>
+											)}
+										</div>
+									)}
+								</>
+							)}
+						</section>
+						<section className="graduateElementTasksDisplaySection">
+							<GraduateTasks
+								userEmail={user_email}
+								elementId={clicked}
+								className="element"
+								senderEmail={user}
+							/>
+						</section>
+					</div>
 				</div>
 			</MentorsHomeStyle>
 		);

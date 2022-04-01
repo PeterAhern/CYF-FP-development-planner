@@ -54,16 +54,24 @@ export const MentorsHomeStyle = styled.div`
 		font-weight: 700;
 	}
 
+	.rightSideDisplaySection {
+		width: 80%;
+		height: 100%;
+	}
 
 	.AllMenteesSection {
 		margin-top: 0;
-		width: 80%;
-		height: 100%;
+		width: 100%;
+		height: 150px;
+		overflow-y: scroll;
 
 		background-color: none;
 	}
 
-
+	.graduateElementsDisplaySection {
+		width: 100%;
+		height: 100px;
+	}
 
 	.tasksSection {
 		min-width: 60%;

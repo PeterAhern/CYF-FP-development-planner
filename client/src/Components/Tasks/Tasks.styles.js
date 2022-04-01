@@ -22,7 +22,7 @@ export const TasksStyles = styled.div`
 		width: 57%;
 		height: 100%;
 		text-align: center;
-		margin: 0 1rem 0 1rem;
+		margin: 1rem;
 		/* background-color: violet;    */
 		display: flex;
 		flex-flow: row wrap;
