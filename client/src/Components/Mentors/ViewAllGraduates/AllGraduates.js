@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import "./AllGraduates.css";
+import { AllGraduatesStyles } from "./AllGraduates.styles";
 import MentorGraduate from "./MentorGraduates";
 
 const AllGraduates = ({ mentorEmail, gradRefreshFunc }) => {
@@ -31,7 +31,7 @@ const AllGraduates = ({ mentorEmail, gradRefreshFunc }) => {
 		setClicked(false);
 	};
 	return (
-		<>
+		<AllGraduatesStyles>
 			<div className="AllGradsAndSearch">
 				<div>
 					<input
@@ -43,11 +43,14 @@ const AllGraduates = ({ mentorEmail, gradRefreshFunc }) => {
 						onChange={onChange}
 					/>
 				</div>
-				<button className="allGrads" onClick={() => setClicked(!clicked)}>
+				<button
+					className="allGrads btn btn-danger"
+					onClick={() => setClicked(!clicked)}
+				>
 					All Graduates
 				</button>
 			</div>
-			<ul >
+			<ul>
 				{clicked &&
 					users.map((user, index) => (
 						<li key={index}>
@@ -71,7 +74,7 @@ const AllGraduates = ({ mentorEmail, gradRefreshFunc }) => {
 						</li>
 					))}
 			</ul>
-		</>
+		</AllGraduatesStyles>
 	);
 };
 export default AllGraduates;

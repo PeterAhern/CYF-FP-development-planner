@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
+export const NavBarStyles = styled.div`
 	display: flex;
 
 	.navigationMenu {
@@ -13,7 +13,7 @@ export const Wrapper = styled.div`
 		width: 150px;
 		justify-content: flex-end;
 		height: 100px;
-		background-color: blue;
+		/* background-color: blue; */
 	}
 
 
