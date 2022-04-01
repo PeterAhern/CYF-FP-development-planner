@@ -9,6 +9,7 @@ import TaskForm from "../../TaskForm/TaskForm";
 import PopUpForm from "../../Tasks/PopUpForm";
 import GraduateTasks from "../MentorFeedback/GraduateTasks";
 import MentorsComment from "../MentorFeedback/MentorsComment";
+import * as Components from "../../UI/Button/Button";
 
 const MentorsHome = ({ user_email }) => {
 	const [addGradRefresh, setAddGradRefresh] = useState(true);
@@ -146,7 +147,7 @@ const MentorsHome = ({ user_email }) => {
 									<button
 										value={user}
 										onClick={removeGraduate}
-										className="comment btn btn-danger remove"
+										className="removeGraduateButton"
 									>
 										Remove
 									</button>
@@ -219,12 +220,12 @@ const MentorsHome = ({ user_email }) => {
 							)}
 						</section>
 						<section className="graduateButtons">
-							<button
+							<Components.Button
 								className="menteeCommentButton"
 								onClick={() => setComment(!comment)}
 							>
 								Feedback
-							</button>
+							</Components.Button>
 
 							{comment && (
 								<MentorsComment
@@ -238,12 +239,16 @@ const MentorsHome = ({ user_email }) => {
 
 							{clicked && (
 								<>
-									<button onClick={assignTaskHandler}>Assign Task</button>
+									<Components.GhostButton
+										className="addNewTaskButton"
+										onClick={assignTaskHandler}
+									>
+										Assign Task
+									</Components.GhostButton>
 									{assignTaskClicked && (
 										<div className="tasksSection">
 											<input
 												type="button"
-												className="addNewTaskButton"
 												value="Add New Task"
 												onClick={togglePopup}
 											/>

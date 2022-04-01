@@ -8,7 +8,7 @@ const GraduateElement = (props) => {
 				value={props.graduateEmail}
 				name={props.id}
 				type="button"
-				className="btn btn-danger"
+				className="graduateElementButton"
 				onClick={() => props.setClicked(props.id)}
 			>
 				{props.name}
