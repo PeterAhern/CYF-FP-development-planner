@@ -2,7 +2,7 @@ import { useState, useCallback, useEffect } from "react";
 import moment from "moment";
 
 const Comment = ({ email, id, senderEmail, refresh, refreshFunc }) => {
-	const utc = new Date().toJSON().slice(0, 10).replace(/-/g, "-");
+	const utc = new Date();
 	const [value, setValue] = useState({
 		comment: "",
 		date: utc,
@@ -12,7 +12,9 @@ const Comment = ({ email, id, senderEmail, refresh, refreshFunc }) => {
 
 	const fetchComments = useCallback(async () => {
 		try {
-			const response = await fetch(`/api/comments/${email}/${id}`);
+			const response = await fetch(
+				`/api/comments/elements/${id}/grad/${email}`
+			);
 
 			if (!response.ok) {
 				throw new Error("Error, unable to load comments");

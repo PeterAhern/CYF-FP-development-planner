@@ -74,119 +74,114 @@ const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 		gradList.Graduate3 !== null
 	) {
 		return (
-
 			<MyPlanStyles>
 				<GraduateListStyle>
 					<PopupStyles>
 						<MentorsHomeStyle>
-				<div className=" mentees elementsSection ">
-					<div className="elementsText">
-						<p> Welcome Mentor!</p>
-						<p> Connect with graduates, give feedback, support growth!</p>
-					</div>
+							<div className="main-cont">
+								<div className="  elementsSection ">
+									<div className="mentorText">
+										<h3> Welcome Mentor!</h3>
+										<p>
+											Connect with graduates, give feedback, support growth!
+										</p>
+									</div>
 
-					{gradList.Graduate1 && (
-						<button
-							className="elementButton button"
-							onClick={clickHandler}
-							value={gradList.Graduate1}
-						>
-							{(gradList.Graduate1)}
-						</button>
-					)}
-					{gradList.Graduate2 && (
-						<button
-							className="elementButton"
-							onClick={clickHandler}
-							value={gradList.Graduate2}
-						>
-							{gradList.Graduate2}
-						</button>
-					)}
-					{gradList.Graduate3 && (
-						<button
-							className="elementButton"
-							onClick={clickHandler}
-							value={gradList.Graduate3}
-						>
-							{gradList.Graduate3}
-						</button>
-					)}
-				</div>
-				<button
-					value={user}
-					onClick={removeGraduate}
-					className="comment btn btn-danger remove"
-				>
-					Remove
-				</button>
-				{!nameClicked && (
-					<div className="gradElement">
-						<GraduateElement
-							name={"Technical"}
-							id={1}
-							graduateEmail={gradList.Graduate1}
-							mentorEmail={mentorEmail}
-							clicked={clickHandler}
-						/>
-						<GraduateElement
-							name={"Job Search"}
-							id={2}
-							graduateEmail={gradList.Graduate1}
-							mentorEmail={mentorEmail}
-							clickHandler={clickHandler}
-						/>
-						<GraduateElement
-							name={"Soft Skills"}
-							id={3}
-							graduateEmail={gradList.Graduate1}
-							mentorEmail={mentorEmail}
-							clickHandler={clickHandler}
-						/>
-					</div>
-				)}
+									{gradList.Graduate1 && (
+										<button
+											className="elementButton button"
+											onClick={clickHandler}
+											value={gradList.Graduate1}
+										>
+											{gradList.Graduate1}
+										</button>
+									)}
+									{gradList.Graduate2 && (
+										<button
+											className="elementButton"
+											onClick={clickHandler}
+											value={gradList.Graduate2}
+										>
+											{gradList.Graduate2}
+										</button>
+									)}
+									{gradList.Graduate3 && (
+										<button
+											className="elementButton"
+											onClick={clickHandler}
+											value={gradList.Graduate3}
+										>
+											{gradList.Graduate3}
+										</button>
+									)}
+								</div>
+								<div className="tasksSection">
+									<button
+										value={user}
+										onClick={removeGraduate}
+										className=" btn btn-danger remove"
+									>
+										Remove
+									</button>
+									{!nameClicked && (
+										<div className="elements">
+											<GraduateElement
+												name={"Technical"}
+												id={1}
+												graduateEmail={gradList.Graduate1}
+												mentorEmail={mentorEmail}
+												clicked={clickHandler}
+											/>
+											<GraduateElement
+												name={"Job Search"}
+												id={2}
+												graduateEmail={gradList.Graduate1}
+												mentorEmail={mentorEmail}
+												clickHandler={clickHandler}
+											/>
+											<GraduateElement
+												name={"Soft Skills"}
+												id={3}
+												graduateEmail={gradList.Graduate1}
+												mentorEmail={mentorEmail}
+												clickHandler={clickHandler}
+											/>
+										</div>
+									)}
 
-				{nameClicked && (
-					<div>
-						{/* <Popup
-							trigger={buttonPopup}
-							setTrigger={setButtonPopup}
-							setClicked={setNameClicked}
-						> */}
-						<div className="gradElement">
-							<GraduateElement
-								name={"Technical"}
-								id={1}
-								graduateEmail={user}
-								mentorEmail={mentorEmail}
-								clicked={clickHandler}
-							/>
-							<GraduateElement
-								name={"Job Search"}
-								id={2}
-								graduateEmail={user}
-								mentorEmail={mentorEmail}
-								clickHandler={clickHandler}
-							/>
-							<GraduateElement
-								name={"Soft Skills"}
-								id={3}
-								graduateEmail={user}
-								mentorEmail={mentorEmail}
-								clickHandler={clickHandler}
-							/>
-						</div>
-
-						{/* </Popup> */}
-					</div>
-				)}
-
-
+									{nameClicked && (
+										<div>
+											<div className="gradElement">
+												<GraduateElement
+													name={"Technical"}
+													id={1}
+													graduateEmail={user}
+													mentorEmail={mentorEmail}
+													clicked={clickHandler}
+												/>
+												<GraduateElement
+													name={"Job Search"}
+													id={2}
+													graduateEmail={user}
+													mentorEmail={mentorEmail}
+													clickHandler={clickHandler}
+												/>
+												<GraduateElement
+													name={"Soft Skills"}
+													id={3}
+													graduateEmail={user}
+													mentorEmail={mentorEmail}
+													clickHandler={clickHandler}
+												/>
+											</div>
+										</div>
+									)}
+								</div>
+							</div>
 						</MentorsHomeStyle>
 					</PopupStyles>
 				</GraduateListStyle>
 			</MyPlanStyles>
-
 		);
 	} else {
 		return (
@@ -194,10 +189,10 @@ const GraduateList = ({ mentorEmail, addGradRefresh, gradRefreshFunc }) => {
 				<GraduateListStyle>
 					<PopupStyles>
 						<MentorsHomeStyle>
-						<div className="elementsSection">
-							<h1 className="message elementsText">Graduate Connections</h1>
-							{gradListContent}
-						</div>
+							<div className="elementsSection">
+								<h1 className="message elementsText">Graduate Connections</h1>
+								{gradListContent}
+							</div>
 						</MentorsHomeStyle>
 					</PopupStyles>
 				</GraduateListStyle>
