@@ -2,7 +2,7 @@ import { useState, useCallback, useEffect } from "react";
 import moment from "moment";
 
 const Comment = ({ email, id, senderEmail, refresh, refreshFunc }) => {
-	const utc = new Date().toJSON().slice(0, 10).replace(/-/g, "-");
+	const utc = new Date();
 	const [value, setValue] = useState({
 		comment: "",
 		date: utc,
