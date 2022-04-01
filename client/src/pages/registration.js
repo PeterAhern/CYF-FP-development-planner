@@ -53,9 +53,9 @@ export default function Registration() {
 										Sign up to begin organising your elements to success!
 									</Components.Paragraph>
 									<Components.Paragraph2>Already registered?</Components.Paragraph2>
-									<Components.GhostButton2 onClick={() => toggle(true)}>
+									<Components.GhostButton3 onClick={() => toggle(true)}>
 										Sign In
-									</Components.GhostButton2>
+									</Components.GhostButton3>
 								</Components.LeftOverlayPanel>
 								<Components.RightOverlayPanel signingIn={signIn}>
 									<Components.Title>Welcome Back!</Components.Title>

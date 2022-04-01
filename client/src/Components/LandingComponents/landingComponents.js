@@ -121,7 +121,33 @@ export const Button3 = styled.button`
 	font-size: 12px;
 	font-weight: bold;
 	padding: 12px 45px;
-	margin-top: 15px;
+	margin-top: 20px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+	&:active {
+		transform: scale(0.95);
+	}
+	&:focus {
+		outline: none;
+	}
+	&:hover {
+		color: black;
+	}
+`;
+
+export const Button4 = styled.button`
+	margin-top: 50px;
+`;
+export const Button5 = styled.button`
+	border-radius: 20px;
+	border: 1px solid black;
+	background-color: #ff2626;
+	color: #ffffff;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	margin-top:20px;
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
@@ -145,6 +171,15 @@ export const GhostButton2 = styled(Button2)`
 	background-color: #ffffff;
 	border-color: black;
 	color: black;
+	padding-right:10px;		
+	padding-left: 10px;
+	margin-top: 20px;
+	`;
+
+	export const GhostButton3 = styled(Button2)`
+		background-color: #ffffff;
+		border-color: black;
+		color: black;
 	`;
 
 export const Anchor = styled.a`

@@ -11,13 +11,15 @@ export const Wrapper = styled.div`
 			// rgba(243, 240, 240, 0),
 			// rgba(223, 174, 182, 0.952)
 			#ffffff,
-			rgba(235, 200, 137, 0.8)
+			// #f5f5f5,
+
+			#f5f5f5
 		);
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		flex-direction: column;
-		color: rgb(82, 64, 64);
+		color: black;
 		height: 100vh;
 		margin: -20px 0 50px;
 	}
