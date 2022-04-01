@@ -4,7 +4,6 @@ import { PopupStyles } from "./Popup.styles";
 const Popup = (props) => {
 	const clickHandler = () => {
 		props.setTrigger(false);
-		props.setClicked(false);
 	};
 	return props.trigger ? (
 		<PopupStyles>
