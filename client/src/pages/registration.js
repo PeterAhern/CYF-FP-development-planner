@@ -33,12 +33,12 @@ export default function Registration() {
 	return (
 		<RegistrationStyles>
 			{!loginStatus.status && (
-				<div className="login_container">
+				<div className="login_container" >
 					<div className="landingHeader">
 						<h1>Elemental Planner</h1>
 						<h2>Organising your elements to success.</h2>
 					</div>
-					<Components.Container>
+					<Components.Container className="loginComp">
 						<Components.SignUpContainer signingIn={signIn}>
 							<Register setLoginStatus={setLoginStatus} />
 						</Components.SignUpContainer>
@@ -48,7 +48,7 @@ export default function Registration() {
 						<Components.OverlayContainer signingIn={signIn}>
 							<Components.Overlay signingIn={signIn}>
 								<Components.LeftOverlayPanel signingIn={signIn}>
-									<Components.Title>Start with Elemental!</Components.Title>
+									<Components.Title>Start with Elemental...</Components.Title>
 									<Components.Paragraph>
 										Sign up to begin organising your elements to success!
 									</Components.Paragraph>
