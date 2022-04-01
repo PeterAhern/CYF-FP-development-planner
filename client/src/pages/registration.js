@@ -48,7 +48,7 @@ export default function Registration() {
 						<Components.OverlayContainer signingIn={signIn}>
 							<Components.Overlay signingIn={signIn}>
 								<Components.LeftOverlayPanel signingIn={signIn}>
-									<Components.Title>Start with Elemental!</Components.Title>
+									<Components.Title>Start with Elemental...</Components.Title>
 									<Components.Paragraph>
 										Sign up to begin organising your elements to success!
 									</Components.Paragraph>

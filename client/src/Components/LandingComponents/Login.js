@@ -184,11 +184,11 @@ const Login = ({ setLoginStatus }) => {
 				{!registrationFormValidity.userPasswordIsValid &&
 					registrationStatus.passwordInvalidStatus}
 				<Components.Anchor href="#">Forgot your password?</Components.Anchor>
-				<Components.Button
+				<Components.Button3
 					disabled={registrationFormValidity.formIsValid ? false : true}
 				>
 					Sign In
-				</Components.Button>
+				</Components.Button3>
 			</Components.Form>
 		</>
 	);
