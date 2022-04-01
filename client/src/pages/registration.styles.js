@@ -23,7 +23,69 @@ export const Wrapper = styled.div`
 	h2 {
 		margin-bottom: 3rem;
 	}
-	.landingHeader {
-		text-align: center;
+	// .landingHeader {
+	// 	text-align: center;
+	// 	animation: fadeIn 3s;
+	// 	animation-delay: 5s;
+	// 	-webkit-animation: fadeIn 3s;
+	// 	-webkit-animation-delay: 5s;
+	// 	-moz-animation: fadeIn 3s;
+	// 	-o-animation: fadeIn 3s;
+	// 	-ms-animation: fadeIn 3s;
+	// }
+
+	.loginComp {
+		opacity:0;
+		animation: fadeIn 8s;
+		animation-delay: 5s;
+		-webkit-animation: fadeIn 8s;
+		-webkit-animation-delay: 5s;
+		-moz-animation: fadeIn 8s 3s;
+		-o-animation: fadeIn 8s 3s;
+		-ms-animation: fadeIn 8s 3s;
+	}
+	@keyframes fadeIn {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
+
+	@-moz-keyframes fadeIn {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
+
+	@-webkit-keyframes fadeIn {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
+
+	@-o-keyframes fadeIn {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
+
+	@-ms-keyframes fadeIn {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
 	}
 `;
