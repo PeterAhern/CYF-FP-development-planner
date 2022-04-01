@@ -8,8 +8,10 @@ export const Wrapper = styled.div`
 	.login_container {
 		background: linear-gradient(
 			to left,
-			rgba(243, 240, 240, 0),
-			rgba(223, 174, 182, 0.952)
+			// rgba(243, 240, 240, 0),
+			// rgba(223, 174, 182, 0.952)
+			#ffffff,
+			rgba(235, 200, 137, 0.8)
 		);
 		display: flex;
 		justify-content: center;
@@ -60,7 +62,7 @@ export const Wrapper = styled.div`
 		letter-spacing: 0.05em;
 		border-color: transparent;
 		animation: typing 2s steps(20, end), blink-caret 0.75s step-end infinite;
-		animation-delay: 2.1s;
+		animation-delay: 2.05s;
 		animation-fill-mode: forwards;
 	}
 
@@ -88,11 +90,11 @@ export const Wrapper = styled.div`
 	}
 
 	.loginComp {
-		animation: fadeIn 6s;
-		animation-delay: 2s;
+		animation: fadeIn 5s;
+		animation-delay: 2.2s;
 		opacity: 0;
-		-webkit-animation: fadeIn 6s;
-		-webkit-animation-delay: 2s;
+		-webkit-animation: fadeIn 5s;
+		-webkit-animation-delay: 2.2s;
 		-webkit-animation-fill-mode: forwards;
 		-moz-animation: fadeIn 3s;
 		-moz-animation-delay: 4s;
