@@ -509,20 +509,6 @@ router.put("/graduates/goal/:graduate", async (req, res) => {
 	}
 });
 
-//Get Comments from database for graduate
-router.get("/comments/:email/:id", async (req, res) => {
-	try {
-		const graduate = req.params.email;
-		const id = req.params.id;
-		const Query =
-			"SELECT user_email, comment_date, comment_content FROM comments WHERE graduate_email =$1 and element_id=$2 ORDER BY comment_date DESC LIMIT 8;";
-		const result = await pool.query(Query, [graduate, id]);
-		return res.send(result.rows);
-	} catch (error) {
-		console.error(error);
-		return res.status(500).send(error);
-	}
-});
 
 //Get all graduates
 router.get("/graduates", async (req, res) => {
@@ -607,7 +593,7 @@ router.get("/comments/elements/:element/grad/:grad", async (req, res) => {
 	try {
 		const { element, grad } = req.params;
 		const Query =
-			"SELECT comment_date,comment_content,user_email FROM comments WHERE  element_id =$1 AND graduate_email=$2 ORDER BY comment_date DESC LIMIT 8";
+			"SELECT * FROM comments WHERE  element_id =$1 AND graduate_email=$2 ORDER BY comment_date DESC LIMIT 8";
 		const result = await pool.query(Query, [element, grad]);
 
 		res.send(result.rows);

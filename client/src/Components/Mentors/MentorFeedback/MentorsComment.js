@@ -5,7 +5,7 @@ const MentorsComment = ({ email, id, senderEmail }) => {
 	const [comments, setComments] = useState([]);
 	const [refresh, setRefresh] = useState(false);
 
-	const utc = new Date().toJSON().slice(0, 10).replace(/-/g, "-");
+	const utc = new Date();
 
 	const [value, setValue] = useState({
 		comment: "",

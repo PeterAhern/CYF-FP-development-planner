@@ -12,7 +12,9 @@ const Comment = ({ email, id, senderEmail, refresh, refreshFunc }) => {
 
 	const fetchComments = useCallback(async () => {
 		try {
-			const response = await fetch(`/api/comments/${email}/${id}`);
+			const response = await fetch(
+				`/api/comments/elements/${id}/grad/${email}`
+			);
 
 			if (!response.ok) {
 				throw new Error("Error, unable to load comments");
