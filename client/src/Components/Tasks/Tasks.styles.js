@@ -12,7 +12,7 @@ export const TasksStyles = styled.div`
 		margin: 2rem;
 		background-color: rgba(161, 159, 159, 0.925);
 		display: flex;
-		flex-flow: row wrap;
+		flex-flow: row;
 		justify-content: center;
 		align-items: center;
 		border-radius: 10px;
