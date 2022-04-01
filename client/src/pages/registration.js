@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { Wrapper } from "./registration.styles";
+import { RegistrationStyles } from "./registration.styles";
 import Axios from "axios";
 import { Navigate } from "react-router-dom";
 import Register from "../Components/LandingComponents/Register";
@@ -31,7 +31,7 @@ export default function Registration() {
 	}, []);
 
 	return (
-		<Wrapper>
+		<RegistrationStyles>
 			{!loginStatus.status && (
 				<div className="login_container">
 					<div className="landingHeader">
@@ -52,7 +52,9 @@ export default function Registration() {
 									<Components.Paragraph>
 										Sign up to begin organising your elements to success!
 									</Components.Paragraph>
-									<Components.Paragraph2>Already registered?</Components.Paragraph2>
+									<Components.Paragraph2>
+										Already registered?
+									</Components.Paragraph2>
 									<Components.GhostButton2 onClick={() => toggle(true)}>
 										Sign In
 									</Components.GhostButton2>
@@ -62,7 +64,9 @@ export default function Registration() {
 									<Components.Paragraph3>
 										Sign in with your personal details.
 									</Components.Paragraph3>
-									<Components.Paragraph2>New to elemental?</Components.Paragraph2>
+									<Components.Paragraph2>
+										New to elemental?
+									</Components.Paragraph2>
 									<Components.GhostButton2 onClick={() => toggle(false)}>
 										Create Account
 									</Components.GhostButton2>
@@ -73,6 +77,6 @@ export default function Registration() {
 				</div>
 			)}
 			{loginStatus.status && <Navigate to="/plan" />}
-		</Wrapper>
+		</RegistrationStyles>
 	);
 }
