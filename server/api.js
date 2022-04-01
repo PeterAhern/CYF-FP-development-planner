@@ -256,6 +256,51 @@ router.get("/users/:userEmail/elements/:elementId/tasks", (req, res) => {
 	}
 });
 
+//Get number of tasks for a Graduate's element
+router.get("/users/:user_email/:elementId/tasks", (req, res) => {
+	// destructuring the userEmail and element Id to use them to get all the tasks for the graduate under a specific element
+	const { user_email, elementId } = req.params;
+
+	// if the params where provided, then we go ahead
+	if (user_email.length > 0 && elementId.length > 0) {
+		try {
+			// querying for the requested tasks in the specified element for the graduate
+			pool
+				.query("SELECT COUNT(*) FROM tasks WHERE user_email=$1 AND element_id=$2", [
+					user_email,
+					elementId,
+				])
+				.then((result) => {
+					// if the graduate has any tasks in the specified element, we are returning them back
+					if (result.rows.length > 0) {
+						return res.send(result.rows);
+					} else {
+						// else we are concluding that the user has no tasks in the specified element and we share this information with them
+						return res.send({
+							success: true,
+							message:
+								"no tasks in this element, why not add some!",
+						});
+					}
+				})
+				.catch((error) => {
+					console.error(error);
+					console.log(user_email);
+					return res.status(500).json(error);
+				});
+		} catch (error) {
+			console.error(error);
+			res.status(500).send(error);
+		}
+	} else {
+		// if any of the params were not provided we are returning back a 400 request error
+		return res.status(400).send({
+			success: false,
+			message: "Something went wrong while getting the number of tasks for this Element",
+		});
+	}
+});
+
 // // Graduate's tasks per element with status title and element title => inner join per element for Graduate
 // Will use this to quickly display task details in front end when mapping tasks
 // GET /api/users/:userEmail/elements/:elementId/tasks
