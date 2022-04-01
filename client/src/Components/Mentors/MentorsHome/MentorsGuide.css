@@ -1,0 +1,13 @@
+.guide h2 {
+	margin-top: 5rem;
+	margin-bottom: 5rem;
+	text-align: center;
+	font-family: "Roboto", sans-serif;
+}
+.guide {
+	text-align: justify;
+	margin-left: 10%;
+	margin-right: 10%;
+	font-size: larger;
+	font-family: "Roboto", sans-serif;
+}

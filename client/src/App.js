@@ -8,6 +8,7 @@ import "./App.css";
 import Registration from "./pages/registration";
 import Plan from "./pages/plan";
 import UserProfile from "./Components/UserProfile/UserProfile";
+import MentorGuide from  "./Components/Mentors/MentorsHome/MentorsGuide";
 
 const App = () => {
 	return (
@@ -15,6 +16,7 @@ const App = () => {
 			<Routes>
 				<Route path="/" exact element={<Registration />} />
 				<Route path="/plan" exact element={<Plan />} />
+				<Route path="/guide" exact element={<MentorGuide />} />
 				<Route path={"/profile"} exact element={<UserProfile />} />
 			</Routes>
 		</div>

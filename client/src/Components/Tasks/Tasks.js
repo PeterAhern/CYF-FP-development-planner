@@ -39,8 +39,6 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 			return currTaskToEdit;
 		});
 		togglePopup();
-		console.log(tasks[index].due_date);
-		console.log(tasks[index].status_id);
 	};
 
 	const fetchTasksHandler = useCallback(async () => {
@@ -188,9 +186,9 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 		content = <p>{error}</p>;
 	}
 
-	if (isLoading) {
-		content = <p>Loading...</p>;
-	}
+	// if (isLoading) {
+	// 	content = <p>Loading...</p>;
+	// }
 
 	return <TasksStyles>{content}</TasksStyles>;
 };

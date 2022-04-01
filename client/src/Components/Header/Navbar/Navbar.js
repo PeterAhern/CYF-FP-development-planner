@@ -56,7 +56,10 @@ const NavigationMenu = () => {
 						<img className="cyfLogo" src={cyfLogo} alt="CYF logo" />
 					</Navbar.Brand>
 					<Goal graduateEmail={loginStatus.user_email} />
-					<Navbar.Toggle className="navbarToggle" aria-controls="navbarScroll" />
+					<Navbar.Toggle
+						className="navbarToggle"
+						aria-controls="navbarScroll"
+					/>
 					<Navbar.Collapse id="navbarScroll">
 						<Nav
 							className="me-auto my-2 my-lg-0"
@@ -64,8 +67,8 @@ const NavigationMenu = () => {
 							navbarScroll
 						>
 							{mentorAccess && (
-								<Nav.Link href="/plan">
-									<DropdownOption href="/plan" leftIcon={developmentSvg}>
+								<Nav.Link href="/guide">
+									<DropdownOption href="/guide" leftIcon={developmentSvg}>
 										Mentor Guide
 									</DropdownOption>
 								</Nav.Link>
