@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-// import { GraduateListStyle } from "../GraduateList/GraduateList.styles";
+import { AllGraduatesStyles } from "./AllGraduates.styles";
 import MentorGraduate from "./MentorGraduates";
 
 const AllGraduates = ({ mentorEmail, gradRefreshFunc }) => {
@@ -32,7 +32,8 @@ const AllGraduates = ({ mentorEmail, gradRefreshFunc }) => {
 	};
 	return (
 		<>
-			<div className="searchAll" >
+			<AllGraduatesStyles>
+				<div className="searchAll">
 					<input
 						type="text"
 						className="searchBar"
@@ -46,31 +47,32 @@ const AllGraduates = ({ mentorEmail, gradRefreshFunc }) => {
 					>
 						All Graduates
 					</button>
-			</div>
-			<ul>
-				{clicked &&
-					users.map((user, index) => (
-						<li key={index}>
-							<MentorGraduate
-								user={user.user_email}
-								gradRefreshFunc={gradRefreshFunc}
-								mentorEmail={mentorEmail}
-							/>
-						</li>
-					))}
-			</ul>
-			<ul>
-				{term.length > 0 &&
-					search.map((user, index) => (
-						<li key={index}>
-							<MentorGraduate
-								user={user.user_email}
-								gradRefreshFunc={gradRefreshFunc}
-								mentorEmail={mentorEmail}
-							/>
-						</li>
-					))}
-			</ul>
+				</div>
+				<ul className="list">
+					{clicked &&
+						users.map((user, index) => (
+							<li key={index}>
+								<MentorGraduate
+									user={user.user_email}
+									gradRefreshFunc={gradRefreshFunc}
+									mentorEmail={mentorEmail}
+								/>
+							</li>
+						))}
+				</ul>
+				<ul className="list searchList">
+					{term.length > 0 &&
+						search.map((user, index) => (
+							<li key={index}>
+								<MentorGraduate
+									user={user.user_email}
+									gradRefreshFunc={gradRefreshFunc}
+									mentorEmail={mentorEmail}
+								/>
+							</li>
+						))}
+				</ul>
+			</AllGraduatesStyles>
 		</>
 	);
 };

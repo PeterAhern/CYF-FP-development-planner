@@ -78,7 +78,7 @@ export const MentorsHomeStyle = styled.div`
 
 	.menteeCommentButton {
 		position: fixed;
-		margin: 5rem 2rem 0 0;
+		margin: -15rem 37rem 0 0;
 		background-color: none;
 		width: 150px;
 		height: 50px;
@@ -95,8 +95,8 @@ export const MentorsHomeStyle = styled.div`
 
 	.addNewTaskButton {
 		position: fixed;
-		margin-top: 0.5rem;
-		margin-right: 2rem;
+		margin-top: -15rem;
+		margin-right:23rem;
 		width: 150px;
 		height: 50px;
 		font-size: 10px;
@@ -155,16 +155,17 @@ export const MentorsHomeStyle = styled.div`
 	}
 
 	.tasksSection {
-		min-width: 60%;
+		min-width: 30%;
 		height: 100vh;
 		overflow: hidden;
-		background-color: blue;
+		
 	}
 
 	.graduateElementTasksDisplaySection {
 		padding-top: 6rem;
-		overflow: scroll;
+		// overflow: scroll;
 		height: calc(100vh - 470px);
+		width: 50%;
 	}
 `;
 
