@@ -1,7 +1,8 @@
-import "./MentorsGuide.css";
+import { MentorsGuideStyles } from "./MentorsGuide.styles";
+
 const MentorsGuide=()=>{
     return (
-			<div className="guide">
+			<MentorsGuideStyles>
 				<h2>Mentor Guide</h2>
 				<p>
 					The essential need-to-know list for Mentors @CYF About the role:
@@ -26,7 +27,7 @@ const MentorsGuide=()=>{
 					steps Both mentee and mentor should reflect on the effectiveness of
 					the relationship
 				</p>
-			</div>
+			</MentorsGuideStyles>
 		);
 };
 export default MentorsGuide;

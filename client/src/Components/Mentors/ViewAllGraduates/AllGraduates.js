@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { GraduateListStyle } from "../GraduateList/GraduateList.styles";
+// import { GraduateListStyle } from "../GraduateList/GraduateList.styles";
 import MentorGraduate from "./MentorGraduates";
 
 const AllGraduates = ({ mentorEmail, gradRefreshFunc }) => {
@@ -31,7 +31,7 @@ const AllGraduates = ({ mentorEmail, gradRefreshFunc }) => {
 		setClicked(false);
 	};
 	return (
-		<GraduateListStyle>
+		<>
 			<div className="searchAll" >
 					<input
 						type="text"
@@ -71,7 +71,7 @@ const AllGraduates = ({ mentorEmail, gradRefreshFunc }) => {
 						</li>
 					))}
 			</ul>
-		</GraduateListStyle>
+		</>
 	);
 };
 export default AllGraduates;

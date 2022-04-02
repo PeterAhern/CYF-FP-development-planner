@@ -115,6 +115,17 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 			const year = moment(task.due_date).year();
 			return (
 				<div key={task.id} className="taskCard">
+					<div className="evidenceSide">
+						<h4 className="taskEvidence">
+							{task.evidence && (
+								<Badge bg="secondary">
+									<a href={task.evidence} target="_blank" rel="noreferrer">
+										Evidence
+									</a>
+								</Badge>
+							)}
+						</h4>
+					</div>
 					<section className="leftTaskDetails">
 						<div className="card_due_date">
 							<h4 className="taskDueLabel">Due</h4>
@@ -165,16 +176,6 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 								/>
 							)}
 						</section>
-
-						<h4 className="bottomTaskDetails">
-							{task.evidence && (
-								<Badge bg="secondary">
-									<a href={task.evidence} target="_blank" rel="noreferrer">
-										Evidence
-									</a>
-								</Badge>
-							)}
-						</h4>
 					</section>
 				</div>
 			);

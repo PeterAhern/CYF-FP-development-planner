@@ -12,26 +12,35 @@ export const TasksStyles = styled.div`
 		margin: 2rem;
 		background-color: rgba(161, 159, 159, 0.925);
 		display: flex;
-		flex-flow: row wrap;
+		flex-flow: row;
 		justify-content: center;
 		align-items: center;
+		border-radius: 10px;
 	}
 
 	.card_title {
-		width: 30%;
+		width: 57%;
 		height: 100%;
 		text-align: center;
+		margin: 1rem;
 		/* background-color: violet;    */
 		display: flex;
 		flex-flow: row wrap;
 		justify-content: center;
 		align-items: center;
+		overflow-y: scroll;
+		overflow-x: hidden;
+		/* text-wrap: wrap; */
 	}
 	.leftTaskDetails {
 		/* background-color: aqua; */
-		width: 30%;
+		width: 10%;
 		height: 100%;
 		margin-top: 0px;
+		display: flex;
+		flex-flow: column;
+		justify-content: center;
+		align-items: center;
 	}
 
 	.card_due_date {
@@ -45,7 +54,7 @@ export const TasksStyles = styled.div`
 		width: 100%;
 		text-align: center;
 		color: white;
-		font-size: 1rem;
+		font-size: 1.5rem;
 		height: 20px;
 	}
 
@@ -63,7 +72,7 @@ export const TasksStyles = styled.div`
 		margin: 0;
 	}
 	.expense-date__month {
-		font-size: 0.75rem;
+		font-size: 1.75rem;
 		font-weight: bold;
 	}
 	.expense-date__year {
@@ -86,8 +95,10 @@ export const TasksStyles = styled.div`
 	.rightTaskDetails {
 		display: flex;
 		flex-flow: row wrap;
-		width: 35%;
+		width: 20%;
 		height: 100%;
+		justify-content: center;
+		align-items: center;
 	}
 
 	.deleteTaskButtonSection {
@@ -108,22 +119,23 @@ export const TasksStyles = styled.div`
 		align-items: center;
 	}
 
-	.bottomTaskDetails {
+	.evidenceSide {
+		width: 10%;
+		height: 100%;
+	}
+
+	.taskEvidence {
 		width: 100%;
 		height: 40px;
 		display: flex;
-		flex-direction: row wrap;
-		align-items: center;
-		justify-content: center;
-		/* background-color: yellow; */
+		justify-content: flex-start;
+		margin-left: 0;
 	}
 
-	.bottomTaskDetails a {
+	.taskEvidence a {
 		text-decoration: none;
 		font-size: 1rem;
 		color: white;
 	}
-
-	
 `;
 
