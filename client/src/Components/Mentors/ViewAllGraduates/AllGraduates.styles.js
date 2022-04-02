@@ -1,29 +1,34 @@
 import styled from "styled-components";
 
 export const AllGraduatesStyles = styled.div`
+
+
+
+	width: 100%;
+	height: calc(100vh - 400px);
+	overflow: scroll;
 	.searchBar {
 		width: 20%%;
-		position: fixed;
-		right: 8rem;
 	}
-	.AllGradsAndSearch {
-		display: flex;
-		justify-content: flex-end;
-		width: 50%;
-	}
+
 	.allGrads {
-		height: 3.8%;
-		position: fixed;
-		right: 2rem;
+		height: 30px;
+		
 	}
 	.list {
-		position: fixed;
-		top: 15rem;
-		right: 2rem;
-		// overflow-y:scroll;
-    height:50%;
+		
+
+		/* height: 100vh; */
+		width: 100%;
+		display: flex;
+		flex-flow: row wrap;
+		margin: 1rem 1rem 0 0;
+
 	}
-  // .searchList{
-  //   display:none;
-  // }
+
+	li {
+		width: 100%;
+		height: 50px;
+		padding: 0 1rem 0 0;
+	}
 `;

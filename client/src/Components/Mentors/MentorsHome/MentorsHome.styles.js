@@ -59,26 +59,18 @@ export const MentorsHomeStyle = styled.div`
 		height: 100%;
 	}
 
-	.AllMenteesSection {
-		margin-top: 0;
-		width: 100%;
-		height: 150px;
-		overflow-y: scroll;
-
-		background-color: none;
-	}
-
 	.graduateButtons {
 		background-color: rgba(139, 137, 150, 0);
 		width: 100%;
-		height: 10px;
+		height: 100px;
 		display: fixed;
 		justify-content: flex-end;
+		/* background-color: green; */
 	}
 
 	.menteeCommentButton {
 		position: fixed;
-		margin: -15rem 37rem 0 0;
+		margin: 3rem 33rem 0 0;
 		background-color: none;
 		width: 150px;
 		height: 50px;
@@ -95,8 +87,8 @@ export const MentorsHomeStyle = styled.div`
 
 	.addNewTaskButton {
 		position: fixed;
-		margin-top: -15rem;
-		margin-right:23rem;
+		margin-top: 3rem;
+		margin-right: 22rem;
 		width: 150px;
 		height: 50px;
 		font-size: 10px;
@@ -114,8 +106,8 @@ export const MentorsHomeStyle = styled.div`
 	}
 
 	.graduateElementsDisplaySection {
-		width: 100%;
-		height: 100px;
+		width: 70%;
+		height: 50px;
 		display: flex;
 		/* background-color: blue; */
 		flex-flow: row wrap;
@@ -128,7 +120,7 @@ export const MentorsHomeStyle = styled.div`
 		display: flex;
 		/* justify-content: space-evenly; */
 		align-items: center;
-		justify-content: flex-start;
+		/* justify-content: center; */
 	}
 
 	.gradElement {
@@ -145,7 +137,7 @@ export const MentorsHomeStyle = styled.div`
 		background-color: white;
 		color: red;
 		border: none;
-		justify-self: flex-end;
+		justify-self: flex-start;
 	}
 
 	.removeGraduateButton:hover {
@@ -158,14 +150,33 @@ export const MentorsHomeStyle = styled.div`
 		min-width: 30%;
 		height: 100vh;
 		overflow: hidden;
-		
+	}
+
+	.tasksAddMentee {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		/* background-color: red; */
 	}
 
 	.graduateElementTasksDisplaySection {
-		padding-top: 6rem;
 		// overflow: scroll;
-		height: calc(100vh - 470px);
+		height: calc(100vh - 400px);
+		width: 75%;
+	}
+
+	.AllMenteesSection {
+		margin-top: 0;
+		width: 25%;
+		height: 100%;
+		/* background-color: blue; */
+	}
+
+	.mentorsFeedbackSection {
+		/* background-color: violet; */
 		width: 50%;
+		height: 100%;
+		
 	}
 `;
 

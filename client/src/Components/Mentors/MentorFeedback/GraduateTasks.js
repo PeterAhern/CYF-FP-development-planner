@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import moment from "moment";
-import { PopupStyles } from "./Popup.styles";
+import { GraduateTasksStyles } from "./GraduateTasks.styles";
 
 const GraduateTasks = ({ elementId, senderEmail }) => {
 	const [tasks, setTasks] = useState([]);
@@ -77,7 +77,7 @@ const GraduateTasks = ({ elementId, senderEmail }) => {
 		content = <p>Loading...</p>;
 	}
 
-	return <PopupStyles>{content}</PopupStyles>;
+	return <GraduateTasksStyles>{content}</GraduateTasksStyles>;
 };
 
 export default GraduateTasks;

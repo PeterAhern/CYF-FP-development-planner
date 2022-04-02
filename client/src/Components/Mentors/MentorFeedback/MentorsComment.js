@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from "react";
-import { PopupStyles } from "./Popup.styles";
+import { MentorsCommentStyles } from "./MentorsComment.styles";
 import moment from "moment";
+
 const MentorsComment = ({ email, id, senderEmail }) => {
 	const [comments, setComments] = useState([]);
 	const [refresh, setRefresh] = useState(false);
@@ -62,7 +63,7 @@ const MentorsComment = ({ email, id, senderEmail }) => {
 		fetchComments();
 	}, [fetchComments, refresh]);
 	return (
-		<PopupStyles>
+		<MentorsCommentStyles>
 			<form onSubmit={handleSubmit} className="form">
 				<label>
 					Comment:
@@ -71,7 +72,7 @@ const MentorsComment = ({ email, id, senderEmail }) => {
 				<input type="submit" value="Submit" className="btn btn-danger submit" />
 			</form>
 			<div className="commentsArea">
-				<ul >
+				<ul>
 					{comments.map((comment, index) => {
 						return (
 							<li
@@ -88,7 +89,7 @@ const MentorsComment = ({ email, id, senderEmail }) => {
 					})}
 				</ul>
 			</div>
-		</PopupStyles>
+		</MentorsCommentStyles>
 	);
 };
 export default MentorsComment;
