@@ -4,15 +4,14 @@ export const RegistrationStyles = styled.div`
 	width: 100%;
 	height: 100vh;
 	font-family: Raleway, sans-serif;
+	margin: 0;
+	display:flex;
+	flex-direction:column;
 
 	.login_container {
 		background: linear-gradient(
 			to left,
-			// rgba(243, 240, 240, 0),
-			// rgba(223, 174, 182, 0.952)
 			#ffffff,
-			// #f5f5f5,
-
 			#f5f5f5
 		);
 		display: flex;
@@ -63,7 +62,7 @@ export const RegistrationStyles = styled.div`
 		margin: 0 auto;
 		letter-spacing: 0.05em;
 		border-color: transparent;
-		animation: typing 2s steps(20, end), blink-caret 0.75s step-end infinite;
+		animation: typing 2s steps(20, end), blink-caret 0.75s step-end 5;
 		animation-delay: 2.05s;
 		animation-fill-mode: forwards;
 	}
