@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const TasksStyles = styled.div`
 	width: 100%;
 	height: calc(100% - 66px - 24px);
+	background-color:#f5f5f5;
 	/* background-color: black; */
 	/* overflow-y: scroll; */
 
@@ -136,6 +137,12 @@ export const TasksStyles = styled.div`
 		text-decoration: none;
 		font-size: 1rem;
 		color: white;
+	}
+
+	.noTasks {
+		font-size: 2.5rem;
+		text-align: center;
+		margin: 2rem;
 	}
 `;
 
