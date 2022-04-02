@@ -106,7 +106,7 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 		}
 	};
 
-	let content = <p>You have no tasks.</p>;
+	let content = <p className="noTasks">You have no tasks.</p>;
 	if (tasks.length > 0) {
 
 		content = tasks.map((task, index) => {

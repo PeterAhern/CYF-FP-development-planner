@@ -4,7 +4,9 @@ export const NavBarStyles = styled.div`
 	display: flex;
 
 	.navigationMenu {
-		background-color: rgba(201, 196, 196, 0.925);
+		// background-color: rgba(201, 196, 196, 0.925);
+		background-color: #f5f5f5;
+
 		width: 100%;
 	}
 
@@ -15,7 +17,6 @@ export const NavBarStyles = styled.div`
 		height: 100px;
 		/* background-color: blue; */
 	}
-
 
 	.link {
 		display: inline;

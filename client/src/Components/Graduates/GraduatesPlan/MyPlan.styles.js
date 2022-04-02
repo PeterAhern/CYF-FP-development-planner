@@ -17,7 +17,8 @@ export const MyPlanStyles = styled.div`
 		height: 95%;
 
 		flex-flow: row wrap;
-		background-color: rgba(139, 137, 150, 0.968);
+		// background-color: rgba(139, 137, 150, 0.968);
+		background-color: #ff2626;
 
 		border-style: none;
 		justify-content: center;
@@ -87,7 +88,8 @@ export const MyPlanStyles = styled.div`
 	.elementTasksHeading {
 		width: 100%;
 		height: 80px;
-		background-color: #ff0000c3;
+		// background-color: #ff0000c3;
+		background-color: #ff2626;
 		color: white;
 		display: flex;
 		justify-content: center;
@@ -97,8 +99,9 @@ export const MyPlanStyles = styled.div`
 
 	.elementsText {
 		width: 90%;
-		height: 50px;
+		height: 5rem;
 		color: white;
+		font-size: 1.5rem;
 	}
 
 	.elements {
@@ -107,13 +110,21 @@ export const MyPlanStyles = styled.div`
 	}
 
 	.elementButton {
-		width: 180px;
+		width: 95%;
 		height: 130px;
-		margin: 2rem;
+		border-radius: 1.5rem;
+		// margin-right: 0.1rem;
+		// margin-left: 0.1rem;
+		margin-top:2rem;
 		display: flex;
 		justify-content: center;
-		background-color: rgb(218, 179, 185);
+		// background-color: rgb(218, 179, 185);
+		background-color: #f5f5f5;
 		align-items: center;
+	}
+
+	.elementButton div {
+		font-size: 2rem;
 	}
 	.remove {
 		height: 2rem;

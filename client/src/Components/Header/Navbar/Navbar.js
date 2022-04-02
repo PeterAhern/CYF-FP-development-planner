@@ -75,7 +75,7 @@ const NavigationMenu = () => {
 									</DropdownOption>
 								</Nav.Link>
 							)}
-							<Nav.Link href="/" onClick={logoutHandler}>
+							<Nav.Link className="logout" href="/" onClick={logoutHandler}>
 								{/* <button onClick={logoutHandler}> */}
 								<DropdownOption href="/" leftIcon={logInOutSvg}>
 									Logout

@@ -68,7 +68,7 @@ const MyPlan = ({ user_email }) => {
 			<section className="gradPlanPage">
 				<main role="main" className="elementsSection">
 					<p className="elementsText">
-						Welcome to your planning center, from here, you can view, edit and
+						Welcome to your planning centre. You can view, edit and
 						add new tasks to help you organise your career development.
 					</p>
 					<div>
