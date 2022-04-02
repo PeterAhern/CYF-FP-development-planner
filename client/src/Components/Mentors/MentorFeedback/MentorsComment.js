@@ -71,7 +71,7 @@ const MentorsComment = ({ email, id, senderEmail }) => {
 				<input type="submit" value="Submit" className="btn btn-danger submit" />
 			</form>
 			<div className="commentsArea">
-				<ul>
+				<ul >
 					{comments.map((comment, index) => {
 						return (
 							<li

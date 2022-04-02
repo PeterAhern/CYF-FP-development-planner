@@ -63,6 +63,7 @@ export const PopupStyles = styled.div`
 		width: 70%;
 		border-width: 1px;
 		border-color: rgb(46, 44, 44);
+		background:white;
 	}
 	.form {
 		display: flex;
@@ -74,5 +75,10 @@ export const PopupStyles = styled.div`
 	}
 	.green {
 		background-color: rgb(228, 180, 198);
+	}
+	ul{
+		padding-left:0;
+		margin:1rem;
+		// overflow:scroll;
 	}
 `;
