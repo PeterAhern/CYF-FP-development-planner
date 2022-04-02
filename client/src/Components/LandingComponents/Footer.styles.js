@@ -19,29 +19,29 @@ export const FooterDiv = styled.div`
 	}
 
 	.cyfLogo {
-		position:relative;
-		bottom:0;
-		left:55%;
-		align-content:bottom;
+		position: relative;
+		bottom: 0;
+		left: 55%;
+		align-content: bottom;
 	}
 
 	.elementalLogo {
-		left:32%;
+		left: 32%;
 	}
-	
 
-	.elementalLogo, .cyfLogo{
+	.elementalLogo,
+	.cyfLogo {
 		height: 12rem;
 		position: relative;
-		bottom:0;
+		bottom: 0;
 	}
 
 	.elementalLogo img {
 		height: 12rem;
 	}
 
-	.cyfLogo img {
-		position:absolute;
-		bottom:5rem;
+	.cyfLogo a{
+		position: absolute;
+		bottom: 5rem;
 	}
 `;

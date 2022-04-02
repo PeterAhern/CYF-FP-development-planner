@@ -12,10 +12,12 @@ const Footer = () => {
 	return (
 		<FooterDiv>
 			<div className="cyfLogo">
-				<img src={cyfLogo} alt="CYF logo" />
+				<a className="link" href="https://syllabus.codeyourfuture.io/">
+					<img src={cyfLogo} alt="CYF logo" />
+				</a>
 			</div>
 			<div className="elementalLogo">
-				<img src={elemental}  alt="Elemental logo" />
+				<img src={elemental} alt="Elemental logo" />
 			</div>
 		</FooterDiv>
 	);

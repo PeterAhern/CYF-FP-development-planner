@@ -103,12 +103,11 @@ const MyPlan = ({ user_email }) => {
 				<div className="tasksSection">
 
 				<div className="elementTasksHeading">
-						Your{" "}
 						{elementTasksId === 1
 							? "Technical"
 							: elementTasksId === 2
-							? "Job Search"
-							: "Soft Skills"}{" "}
+							? "Employability"
+							: "Essential Skills"}{" "}
 						Tasks
 					</div>
 					<div className="overallButtons">
@@ -116,7 +115,7 @@ const MyPlan = ({ user_email }) => {
 							onClick={togglePopup}
 							className="addNewTaskButton"
 						>
-							Add New Task
+							+ New Task
 						</Components.Button>
 						{isOpen && (
 							<PopUpForm

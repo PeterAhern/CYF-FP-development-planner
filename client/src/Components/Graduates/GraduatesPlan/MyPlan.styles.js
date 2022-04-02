@@ -33,7 +33,7 @@ export const MyPlanStyles = styled.div`
 	}
 
 	.overallButtons {
-		background-color: rgba(139, 137, 150, 0);
+		background-color: #ff2626;
 		width: 100%;
 		height: 10px;
 		display: fixed;
@@ -43,7 +43,7 @@ export const MyPlanStyles = styled.div`
 	.addNewTaskButton {
 		position: fixed;
 		margin: 5rem 2rem 0 0;
-		background-color: none;
+		background-color: #ff2626;
 		width: 150px;
 		height: 50px;
 		font-size: 10px;
@@ -64,7 +64,7 @@ export const MyPlanStyles = styled.div`
 		width: 150px;
 		height: 50px;
 		font-size: 10px;
-		color: #ff0000c3;
+		color: #ff2626;
 		font-weight: 800;
 		justify-content: center;
 		background-color: rgb(218, 179, 185);
@@ -104,7 +104,6 @@ export const MyPlanStyles = styled.div`
 	.elements {
 		width: 100%;
 		height: 100%;
-		
 	}
 
 	.elementButton {
@@ -116,8 +115,8 @@ export const MyPlanStyles = styled.div`
 		background-color: rgb(218, 179, 185);
 		align-items: center;
 	}
-	.remove{
-		height:2rem;
+	.remove {
+		height: 2rem;
 	}
 `;
 
