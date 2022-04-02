@@ -31,7 +31,6 @@ const AllGraduates = ({ mentorEmail, gradRefreshFunc }) => {
 		setClicked(false);
 	};
 	return (
-		<>
 			<AllGraduatesStyles>
 				<div className="searchAll">
 					<input
@@ -73,7 +72,6 @@ const AllGraduates = ({ mentorEmail, gradRefreshFunc }) => {
 						))}
 				</ul>
 			</AllGraduatesStyles>
-		</>
 	);
 };
 export default AllGraduates;

@@ -39,14 +39,7 @@ export const PopupStyles = styled.div`
 		display: flex;
 		flex-direction: column;
 	}
-	.task {
-		border-style: solid;
-		border-radius: 5px;
-		padding-left: 2%;
-		margin-top: 2%;
-		border-color: rgba(204, 25, 25, 0.774);
-		background-color: white;
-	}
+	
 	button:hover {
 		color: red;
 	}
@@ -58,27 +51,5 @@ export const PopupStyles = styled.div`
 		width: 4rem;
 		height: 4rem;
 	}
-	.commentsArea {
-		border-style: solid;
-		width: 70%;
-		border-width: 1px;
-		border-color: rgb(46, 44, 44);
-		background:white;
-	}
-	.form {
-		display: flex;
-		flex-flow: row wrap;
-		/* flex-direction: column; */
-	}
-	.blue {
-		background-color: rgb(123, 216, 216);
-	}
-	.green {
-		background-color: rgb(228, 180, 198);
-	}
-	ul{
-		padding-left:0;
-		margin:1rem;
-		// overflow:scroll;
-	}
+	
 `;

@@ -85,7 +85,10 @@ const MentorsHome = ({ user_email }) => {
 		</h1>
 	);
 
-	const assignTaskHandler = () => setAssignTaskClicked(!assignTaskClicked);
+	const assignTaskHandler = () => {
+		setAssignTaskClicked(!assignTaskClicked);
+		togglePopup();
+	};
 
 	const togglePopup = () => {
 		setIsOpen(!isOpen);
@@ -133,12 +136,6 @@ const MentorsHome = ({ user_email }) => {
 						</div>
 					</div>
 					<div className="rightSideDisplaySection">
-						<div className="AllMenteesSection">
-							<AllGraduates
-								mentorEmail={user_email}
-								gradRefreshFunc={gradRefreshFunc}
-							/>
-						</div>
 						<section className="graduateElementsDisplaySection">
 							{gradList.Graduate1 !== null ||
 							gradList.Graduate2 !== null ||
@@ -227,16 +224,6 @@ const MentorsHome = ({ user_email }) => {
 								Feedback
 							</Components.Button>
 
-							{comment && (
-								<MentorsComment
-									senderEmail={user_email}
-									email={user}
-									id={clicked}
-									refresh={refresh}
-									refreshFunc={() => setRefresh(!refresh)}
-								/>
-							)}
-
 							{clicked && (
 								<>
 									<Components.GhostButton
@@ -245,35 +232,26 @@ const MentorsHome = ({ user_email }) => {
 									>
 										Assign Task
 									</Components.GhostButton>
-									{assignTaskClicked && (
-										<div className="tasksSection">
-											<input
-												type="button"
-												value="Add New Task"
-												onClick={togglePopup}
-											/>
-											{isOpen && (
-												<PopUpForm
-													content={
-														<>
-															<b>Assign task details</b>
-															<TaskForm
-																refreshFunc={() => setRefresh(!refresh)}
-																addNewTaskForm={{
-																	taskTitle: "",
-																	userEmail: user,
-																	dueDate: "",
-																	evidence: "",
-																	elementId: clicked,
-																	statusId: 1,
-																}}
-															/>
-														</>
-													}
-													handleClose={togglePopup}
-												/>
-											)}
-										</div>
+									{assignTaskClicked && isOpen && (
+										<PopUpForm
+											content={
+												<>
+													<b>Assign task details</b>
+													<TaskForm
+														refreshFunc={() => setRefresh(!refresh)}
+														addNewTaskForm={{
+															taskTitle: "",
+															userEmail: user,
+															dueDate: "",
+															evidence: "",
+															elementId: clicked,
+															statusId: 1,
+														}}
+													/>
+												</>
+											}
+											handleClose={togglePopup}
+										/>
 									)}
 								</>
 							)}
@@ -286,6 +264,24 @@ const MentorsHome = ({ user_email }) => {
 								senderEmail={user}
 							/>
 						</section>
+
+						<div className="AllMenteesSection">
+							<AllGraduates
+								mentorEmail={user_email}
+								gradRefreshFunc={gradRefreshFunc}
+							/>
+						</div>
+					</div>
+					<div className="mentorsFeedbackSection">
+						{comment && (
+							<MentorsComment
+								senderEmail={user_email}
+								email={user}
+								id={clicked}
+								refresh={refresh}
+								refreshFunc={() => setRefresh(!refresh)}
+							/>
+						)}
 					</div>
 				</div>
 			</MentorsHomeStyle>

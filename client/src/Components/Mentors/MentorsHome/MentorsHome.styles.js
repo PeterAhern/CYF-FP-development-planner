@@ -62,22 +62,20 @@ export const MentorsHomeStyle = styled.div`
 	.AllMenteesSection {
 		margin-top: 0;
 		width: 100%;
-		height: 150px;
-		overflow-y: scroll;
-
-		background-color: none;
+		height: 50px;
+		background-color: blue;
 	}
 
 	.graduateButtons {
 		background-color: rgba(139, 137, 150, 0);
 		width: 100%;
-		height: 10px;
-		display: fixed;
+		height: 100px;
+		/* display: fixed; */
 		justify-content: flex-end;
 	}
 
 	.menteeCommentButton {
-		position: fixed;
+		/* position: fixed; */
 		margin: -15rem 37rem 0 0;
 		background-color: none;
 		width: 150px;
@@ -94,7 +92,7 @@ export const MentorsHomeStyle = styled.div`
 	}
 
 	.addNewTaskButton {
-		position: fixed;
+		/* position: fixed; */
 		margin-top: -15rem;
 		margin-right:23rem;
 		width: 150px;
@@ -115,7 +113,7 @@ export const MentorsHomeStyle = styled.div`
 
 	.graduateElementsDisplaySection {
 		width: 100%;
-		height: 100px;
+		height: 50px;
 		display: flex;
 		/* background-color: blue; */
 		flex-flow: row wrap;
@@ -128,7 +126,7 @@ export const MentorsHomeStyle = styled.div`
 		display: flex;
 		/* justify-content: space-evenly; */
 		align-items: center;
-		justify-content: flex-start;
+		/* justify-content: center; */
 	}
 
 	.gradElement {
@@ -145,7 +143,7 @@ export const MentorsHomeStyle = styled.div`
 		background-color: white;
 		color: red;
 		border: none;
-		justify-self: flex-end;
+		justify-self: flex-start;
 	}
 
 	.removeGraduateButton:hover {
@@ -162,10 +160,13 @@ export const MentorsHomeStyle = styled.div`
 	}
 
 	.graduateElementTasksDisplaySection {
-		padding-top: 6rem;
 		// overflow: scroll;
-		height: calc(100vh - 470px);
-		width: 50%;
+		height: calc(100vh - 400px);
+		width: 60%;
+	}
+
+	.mentorsFeedbackSection {
+		background-color: violet;
 	}
 `;
 
