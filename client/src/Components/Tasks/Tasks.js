@@ -106,7 +106,19 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 		}
 	};
 
-	let content = <p className="noTasks">You have no tasks.</p>;
+	const elementName = (id) => {
+		if (id === 1) {
+			return "Technical";
+		} else if (id === 2) {
+			return "Employabilty";
+		} else if (id === 3) {
+			return "Essential Skills";
+		}
+	};
+
+	let content = (
+		<p className="noTasks">You have no tasks in {elementName(elementId)}</p>
+	);
 	if (tasks.length > 0) {
 
 		content = tasks.map((task, index) => {
@@ -128,17 +140,13 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 					</div>
 					<section className="leftTaskDetails">
 						<div className="card_due_date">
-							<h4 className="taskDueLabel">Due</h4>
+							<h4 className="taskDueLabel">Due By:</h4>
 							<div className="expense-date">
 								<div className="expense-date__day">{day}</div>
 								<div className="expense-date__month">{month}</div>
 								<div className="expense-date__year">{year}</div>
 							</div>
 						</div>
-
-						<h3 className="card_status">
-							{task.status_id ? statusShower(task.status_id) : ""}
-						</h3>
 					</section>
 					<h1 className="card_title">{task.title}</h1>
 					<section className="rightTaskDetails">
@@ -175,6 +183,11 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 									handleClose={togglePopup}
 								/>
 							)}
+						</section>
+						<section className="statusShower">
+							<button>
+								{task.status_id ? statusShower(task.status_id) : ""}
+							</button>
 						</section>
 					</section>
 				</div>
