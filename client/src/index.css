@@ -9,6 +9,12 @@ body, html {
     height: 100%;
     overflow-x: hidden;
     font-family: 'Roboto', sans-serif;
+    /* Needed for footer blended */
+    background: linear-gradient(
+			to left,
+			#ffffff,
+			#f5f5f5
+		);
 }
 
 :root {
