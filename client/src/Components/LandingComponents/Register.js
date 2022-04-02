@@ -175,12 +175,13 @@ const Register = ({ setLoginStatus }) => {
 				/>
 				{!registrationFormValidity.userPasswordIsValid &&
 					registrationStatus.passwordInvalidStatus}
-				<Components.Button
+				<Components.Button5
+				className="signupbtn"
 					onSubmit={registerSubmitHandler}
 					disabled={registrationFormValidity.formIsValid ? false : true}
 				>
 					Sign Up
-				</Components.Button>
+				</Components.Button5>
 			</Components.Form>
 		</>
 	);
