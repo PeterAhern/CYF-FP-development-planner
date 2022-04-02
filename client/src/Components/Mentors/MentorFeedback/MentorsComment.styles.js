@@ -1,15 +1,18 @@
 import styled from "styled-components";
 
 export const MentorsCommentStyles = styled.div`
-	width: 40%;
-	height: calc(100vh - 450px);
+	width: 100%;
+	height: 100%;
 	overflow: scroll;
+	margin-top: 2rem;
 
 	.form {
 		display: flex;
 		flex-flow: row wrap;
 		/* flex-direction: column; */
-		background-color: green;
+		/* background-color: green; */
+		justify-content: center;
+		align-items: center;
 	}
 
 	.commentsArea {

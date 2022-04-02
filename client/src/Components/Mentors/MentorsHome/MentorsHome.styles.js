@@ -59,24 +59,18 @@ export const MentorsHomeStyle = styled.div`
 		height: 100%;
 	}
 
-	.AllMenteesSection {
-		margin-top: 0;
-		width: 100%;
-		height: 50px;
-		background-color: blue;
-	}
-
 	.graduateButtons {
 		background-color: rgba(139, 137, 150, 0);
 		width: 100%;
 		height: 100px;
-		/* display: fixed; */
+		display: fixed;
 		justify-content: flex-end;
+		/* background-color: green; */
 	}
 
 	.menteeCommentButton {
-		/* position: fixed; */
-		margin: -15rem 37rem 0 0;
+		position: fixed;
+		margin: 3rem 33rem 0 0;
 		background-color: none;
 		width: 150px;
 		height: 50px;
@@ -92,9 +86,9 @@ export const MentorsHomeStyle = styled.div`
 	}
 
 	.addNewTaskButton {
-		/* position: fixed; */
-		margin-top: -15rem;
-		margin-right:23rem;
+		position: fixed;
+		margin-top: 3rem;
+		margin-right: 22rem;
 		width: 150px;
 		height: 50px;
 		font-size: 10px;
@@ -112,7 +106,7 @@ export const MentorsHomeStyle = styled.div`
 	}
 
 	.graduateElementsDisplaySection {
-		width: 100%;
+		width: 70%;
 		height: 50px;
 		display: flex;
 		/* background-color: blue; */
@@ -156,17 +150,33 @@ export const MentorsHomeStyle = styled.div`
 		min-width: 30%;
 		height: 100vh;
 		overflow: hidden;
-		
+	}
+
+	.tasksAddMentee {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		/* background-color: red; */
 	}
 
 	.graduateElementTasksDisplaySection {
 		// overflow: scroll;
 		height: calc(100vh - 400px);
-		width: 60%;
+		width: 75%;
+	}
+
+	.AllMenteesSection {
+		margin-top: 0;
+		width: 25%;
+		height: 100%;
+		/* background-color: blue; */
 	}
 
 	.mentorsFeedbackSection {
-		background-color: violet;
+		/* background-color: violet; */
+		width: 50%;
+		height: 100%;
+		
 	}
 `;
 

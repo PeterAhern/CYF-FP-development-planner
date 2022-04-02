@@ -216,6 +216,7 @@ const MentorsHome = ({ user_email }) => {
 								</div>
 							)}
 						</section>
+
 						<section className="graduateButtons">
 							<Components.Button
 								className="menteeCommentButton"
@@ -256,24 +257,25 @@ const MentorsHome = ({ user_email }) => {
 								</>
 							)}
 						</section>
-						<section className="graduateElementTasksDisplaySection">
-							<GraduateTasks
-								userEmail={user_email}
-								elementId={clicked}
-								className="element"
-								senderEmail={user}
-							/>
-						</section>
-
-						<div className="AllMenteesSection">
-							<AllGraduates
-								mentorEmail={user_email}
-								gradRefreshFunc={gradRefreshFunc}
-							/>
+						<div className="tasksAddMentee">
+							<section className="graduateElementTasksDisplaySection">
+								<GraduateTasks
+									userEmail={user_email}
+									elementId={clicked}
+									className="element"
+									senderEmail={user}
+								/>
+							</section>
+							<div className="AllMenteesSection">
+								<AllGraduates
+									mentorEmail={user_email}
+									gradRefreshFunc={gradRefreshFunc}
+								/>
+							</div>
 						</div>
 					</div>
-					<div className="mentorsFeedbackSection">
-						{comment && (
+					{comment && (
+						<div className="mentorsFeedbackSection">
 							<MentorsComment
 								senderEmail={user_email}
 								email={user}
@@ -281,8 +283,8 @@ const MentorsHome = ({ user_email }) => {
 								refresh={refresh}
 								refreshFunc={() => setRefresh(!refresh)}
 							/>
-						)}
-					</div>
+						</div>
+					)}
 				</div>
 			</MentorsHomeStyle>
 		);

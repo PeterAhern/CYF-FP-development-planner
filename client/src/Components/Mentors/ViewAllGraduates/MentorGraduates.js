@@ -1,4 +1,5 @@
 // import { useState } from "react";
+import { MentorGraduatesStyles } from "./MentorGraduates.styles";
 
 const MentorGraduate = ( { user, gradRefreshFunc, mentorEmail  } ) => {
 
@@ -21,11 +22,9 @@ const MentorGraduate = ( { user, gradRefreshFunc, mentorEmail  } ) => {
 	};
 
 	return (
-		<div>
-			<h4>
+		<MentorGraduatesStyles>
 				{user} <button onClick={addGraduate}>Connect</button>
-			</h4>
-		</div>
+		</MentorGraduatesStyles>
 	);
 };
 export default MentorGraduate;
