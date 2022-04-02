@@ -111,14 +111,18 @@ export const MyPlanStyles = styled.div`
 
 	.elementButton {
 		width: 95%;
-		height: 130px;
+		height: 9rem;
 		border-radius: 1.5rem;
-		// margin-right: 0.1rem;
-		// margin-left: 0.1rem;
-		margin-top:2rem;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 0.5rem;
+		margin-bottom:0.5rem;
+		padding-left: 7rem;
+		padding-right: 7rem;
+
 		display: flex;
+		flex-direction: column;
 		justify-content: center;
-		// background-color: rgb(218, 179, 185);
 		background-color: #f5f5f5;
 		align-items: center;
 	}

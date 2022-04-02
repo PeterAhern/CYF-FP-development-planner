@@ -1,6 +1,7 @@
 import { useState } from "react";
 import moment from "moment";
 import PreloadedTasks from "./PreloadedTasks.json";
+import { TaskFormStyles } from "./TaskForm.styles";
 
 
 const TaskForm = ({
@@ -100,12 +101,12 @@ const TaskForm = ({
 		setTask({ ...task, statusId: statusIdValue });
 	};
 
-	let taskButton = <button>Add Task</button>;
+	let taskButton = <button className="taskButton">Add Task</button>;
 	let status = "Select Status";
 	let dueDate = "Set due date here";
 	if (editingTask) {
 		if (editingTask.editing) {
-			taskButton = <button>Update</button>;
+			taskButton = <button className="taskButton">Update</button>;
 			status = statusShower(editingTask.initialFormState.statusId);
 			dueDate = moment.utc(task.due_date).format("DD/MM/YYYY");
 		}
@@ -130,76 +131,81 @@ const TaskForm = ({
 		}
 
 	return (
-		<form onSubmit={submitHandler} className="form-align">
-			<div className="control-group">
-				<div>
-					<div>
-						<label htmlFor="Suggested Tasks">Task ideas: </label>
-						<select onChange={(e) => dropDownChanged(e)}>
-							<option value="" selected>
-								Choose or Create a Task
-							</option>
-							{elementRef}
-						</select>
+		<TaskFormStyles>
+			<div className="form-container">
+				<h2>Task Details</h2>
+				<form onSubmit={submitHandler} >
+					<div className="control-group">
+						<div className="taskInput">
+							<label htmlFor="Suggested Tasks">Task ideas: </label>
+							<select onChange={(e) => dropDownChanged(e)}>
+								<option value="" selected>
+									Choose or Create a Task
+								</option>
+								{elementRef}
+							</select>
+						</div>
+						<div className="taskInput">
+							<label htmlFor="taskTitle">Task Title: </label>
+							<input
+								type="text"
+								list="taskTitle"
+								id="taskTitle"
+								name="taskTitle"
+								value={task?.taskTitle}
+								onChange={changeHandler}
+							/>
+						</div>
+						<div className="taskInput">
+							<label htmlFor="dueDate">Due Date: </label>
+							<input
+								type="text"
+								name="dueDate"
+								onChange={changeHandler}
+								onFocus={(e) => (e.target.type = "date")}
+								placeholder={dueDate}
+							/>
+						</div>
+						<div className="taskInput">
+							<label htmlFor="Progress Status">Progress: </label>
+							<select
+								name="Progress Status"
+								id="statusDropDown"
+								onChange={statusChangeHandler}
+							>
+								{" "}
+								<option selected hidden>
+									{status}
+								</option>
+								<option name="1" value="1">
+									Not Started
+								</option>
+								<option name="2" value="2">
+									In Progress
+								</option>
+								<option name="3" value="3">
+									Complete
+								</option>
+								<option name="4" value="4">
+									N/A
+								</option>
+							</select>
+						</div>
+						<div className="taskInput">
+							<label htmlFor="evidence">Evidence: </label>
+							<input
+								type="text"
+								id="evidence"
+								name="evidence"
+								value={task?.evidence}
+								onChange={changeHandler}
+							/>
+						</div>
 					</div>
-					<label htmlFor="taskTitle">Task Title: </label>
-					<input
-						type="text"
-						list="taskTitle"
-						id="taskTitle"
-						name="taskTitle"
-						value={task?.taskTitle}
-						onChange={changeHandler}
-					/>
-				</div>
-				<div>
-					<label htmlFor="dueDate">Due Date: </label>
-					<input
-						type="text"
-						name="dueDate"
-						onChange={changeHandler}
-						onFocus={(e) => (e.target.type = "date")}
-						placeholder={dueDate}
-					/>
-				</div>
-				<div>
-					<label htmlFor="Progress Status">Progress Status: </label>
-					<select
-						name="Progress Status"
-						id="statusDropDown"
-						onChange={statusChangeHandler}
-					>
-						{" "}
-						<option selected hidden>
-							{status}
-						</option>
-						<option name="1" value="1">
-							Not Started
-						</option>
-						<option name="2" value="2">
-							In Progress
-						</option>
-						<option name="3" value="3">
-							Complete
-						</option>
-						<option name="4" value="4">
-							N/A
-						</option>
-					</select>
-				</div>
-				<div>
-					<label htmlFor="evidence">Evidence link: </label>
-					<input
-						type="text"
-						id="evidence"
-						name="evidence"
-						value={task?.evidence}
-						onChange={changeHandler}
-					/>
-				</div>
+					{taskButton}
+				</form>
 			</div>
-			{taskButton}
-		</form>
+		</TaskFormStyles>
 	);
 };
 

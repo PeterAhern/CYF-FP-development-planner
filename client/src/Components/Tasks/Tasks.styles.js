@@ -3,9 +3,7 @@ import styled from "styled-components";
 export const TasksStyles = styled.div`
 	width: 100%;
 	height: calc(100% - 66px - 24px);
-	background-color:#f5f5f5;
-	/* background-color: black; */
-	/* overflow-y: scroll; */
+	background-color: #f5f5f5;
 
 	.taskCard {
 		max-width: 90%;
@@ -24,18 +22,15 @@ export const TasksStyles = styled.div`
 		height: 100%;
 		text-align: center;
 		margin: 1rem;
-		/* background-color: violet;    */
 		display: flex;
 		flex-flow: row wrap;
 		justify-content: center;
 		align-items: center;
 		overflow-y: scroll;
 		overflow-x: hidden;
-		/* text-wrap: wrap; */
 	}
 	.leftTaskDetails {
-		/* background-color: aqua; */
-		width: 10%;
+		width: 15%;
 		height: 100%;
 		margin-top: 0px;
 		display: flex;
@@ -62,11 +57,12 @@ export const TasksStyles = styled.div`
 	.expense-date {
 		display: flex;
 		flex-direction: column;
-		width: 6.5rem;
-		height: 6.5rem;
-		border: 1px solid #ececec;
-		background-color: #2a2a2a;
-		color: white;
+		width: 7rem;
+		height: 7rem;
+		border: 1px solid red;
+		// background-color: #2a2a2a;
+		background-color: white;
+		color: red;
 		border-radius: 12px;
 		align-items: center;
 		justify-content: center;
@@ -80,7 +76,7 @@ export const TasksStyles = styled.div`
 		font-size: 0.75rem;
 	}
 	.expense-date__day {
-		font-size: 0.75rem;
+		font-size: 1rem;
 		font-weight: bold;
 	}
 
@@ -143,6 +139,8 @@ export const TasksStyles = styled.div`
 		font-size: 2.5rem;
 		text-align: center;
 		margin: 2rem;
+	}
+	.StatusShower {
 	}
 `;
 

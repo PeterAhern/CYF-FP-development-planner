@@ -122,7 +122,6 @@ const MyPlan = ({ user_email }) => {
 								className="PopUp"
 								content={
 									<>
-										<b>Fill in task details</b>
 										<TaskForm
 											togglePopup={togglePopup}
 											refreshFunc={() => setRefresh(!refresh)}
