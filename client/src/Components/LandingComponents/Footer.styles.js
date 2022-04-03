@@ -10,9 +10,9 @@ export const FooterDiv = styled.div`
 	margin-top: auto;
 	height: 80%;
 
-	@media (max-width: 1000px) {
-		padding: 70px 30px;
-	}
+	// @media (max-width: 1000px) {
+	// 	padding: 70px 30px;
+	// }
 
 	img {
 		height: 100%;

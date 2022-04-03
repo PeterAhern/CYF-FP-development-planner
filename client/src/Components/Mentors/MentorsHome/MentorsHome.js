@@ -202,6 +202,7 @@ const MentorsHome = ({ user_email }) => {
 						gradList.Graduate2 !== null ||
 						gradList.Graduate3 !== null ? (
 							<section className="graduateElementsSection">
+
 								<button
 									value={user}
 									onClick={removeGraduate}
@@ -221,6 +222,7 @@ const MentorsHome = ({ user_email }) => {
 								{!nameClicked && (
 									<div className="gradElement">
 										<GraduateElement
+											className="gradElementDesc"
 											name={"Technical"}
 											id={1}
 											graduateEmail={gradList.Graduate1}
@@ -228,14 +230,16 @@ const MentorsHome = ({ user_email }) => {
 											clickHandler={clickHandler}
 										/>
 										<GraduateElement
-											name={"Job Search"}
+											className="gradElementDesc"
+											name={"Employabilty"}
 											id={2}
 											graduateEmail={gradList.Graduate1}
 											mentorEmail={user_email}
 											clickHandler={clickHandler}
 										/>
 										<GraduateElement
-											name={"Soft Skills"}
+											className="gradElementDesc"
+											name={"Essential Skills"}
 											id={3}
 											graduateEmail={gradList.Graduate1}
 											mentorEmail={user_email}
@@ -248,6 +252,7 @@ const MentorsHome = ({ user_email }) => {
 									<div>
 										<div className="gradElement">
 											<GraduateElement
+												className="gradElementDesc"
 												name={"Technical"}
 												id={1}
 												graduateEmail={user}
@@ -257,7 +262,8 @@ const MentorsHome = ({ user_email }) => {
 												clicked={clicked}
 											/>
 											<GraduateElement
-												name={"Job Search"}
+												className="gradElementDesc"
+												name={"Employabilty"}
 												id={2}
 												graduateEmail={user}
 												mentorEmail={user_email}
@@ -266,7 +272,8 @@ const MentorsHome = ({ user_email }) => {
 												clicked={clicked}
 											/>
 											<GraduateElement
-												name={"Soft Skills"}
+												className="gradElementDesc"
+												name={"Essential Skills"}
 												id={3}
 												graduateEmail={user}
 												mentorEmail={user_email}
@@ -287,6 +294,13 @@ const MentorsHome = ({ user_email }) => {
 					</section>
 
 					<section className="graduateButtons">
+						<Components.GhostButton
+							value={user}
+							onClick={removeGraduate}
+							className="removeGradButton"
+						>
+							Remove
+						</Components.GhostButton>
 						<Components.GhostButton
 							className="viewFeedbackButton"
 							onClick={commentHandler}
