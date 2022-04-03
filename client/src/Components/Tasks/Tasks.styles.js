@@ -140,7 +140,16 @@ export const TasksStyles = styled.div`
 		text-align: center;
 		margin: 2rem;
 	}
-	.StatusShower {
+	.statusShower {
+		border-radius: 20px;
+		border: 1px solid #ff2626;
+		background-color: #f5f5f5;
+		color: black;
+		font-size: 12px;
+		font-weight: bold;
+		padding: 12px 40px;
+		letter-spacing: 1px;
+		text-transform: uppercase;
 	}
 `;
 

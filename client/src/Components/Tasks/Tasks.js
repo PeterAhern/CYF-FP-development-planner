@@ -161,11 +161,11 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 							</Components.Button>
 						</section>
 						<section className="editTaskButtonSection">
-							<Components.GhostButton
+							<Components.Button
 								onClick={(e) => editTaskHandler(e, index)}
 							>
 								Edit Task
-							</Components.GhostButton>
+							</Components.Button>
 							{isOpen && (
 								<PopUpForm
 									content={
@@ -184,8 +184,8 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 								/>
 							)}
 						</section>
-						<section className="statusShower">
-							<button>
+						<section>
+							<button className="statusShower" disabled>
 								{task.status_id ? statusShower(task.status_id) : ""}
 							</button>
 						</section>
