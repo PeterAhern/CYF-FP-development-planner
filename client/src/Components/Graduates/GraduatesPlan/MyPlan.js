@@ -8,7 +8,7 @@ import Navbar from "../../Header/Navbar/Navbar";
 import Tasks from "../../Tasks/Tasks";
 import TaskForm from "../../TaskForm/TaskForm";
 import PopUpForm from "../../Tasks/PopUpForm";
-import Comment from "../../Mentors/GraduateList/Comment";
+import MentorsComment from "../../Mentors/MentorFeedback/MentorsComment";
 import * as Components from "../../UI/Button/Button";
 
 const MyPlan = ({ user_email }) => {
@@ -20,7 +20,6 @@ const MyPlan = ({ user_email }) => {
 	const [employerTasks, setEmployerTasks] = useState(0);
 	const [essentialTasks, setEssentialTasks] = useState(0);
 
-
 	const togglePopup = () => {
 		setIsOpen(!isOpen);
 	};
@@ -29,38 +28,40 @@ const MyPlan = ({ user_email }) => {
 		setCommentsOpen(!commentsOpen);
 	};
 
-	const fetchTasksNumber = useCallback(async (elementId) => {
-		try {
-			const response = await fetch(
-				`/api/users/${user_email}/${elementId}/tasks`
-			);
+	const fetchTasksNumber = useCallback(
+		async (elementId) => {
+			try {
+				const response = await fetch(
+					`/api/users/${user_email}/${elementId}/tasks`
+				);
 
-			if (!response.ok) {
-				throw new Error("Something went wrong!");
-			}
-			const data = await response.json();
-			//when no tasks in db, data is sent back as a message (instead of tasks data) with success=true
-			if (data.success === true) {
-				return "No tasks";
-			} else {
-				if(elementId===1){
-					setTechTasks(data[0].count);
-				} else if(elementId===2){
-				setEmployerTasks(data[0].count);
-				} else if(elementId===3){
-				setEssentialTasks(data[0].count);
+				if (!response.ok) {
+					throw new Error("Something went wrong!");
 				}
+				const data = await response.json();
+				//when no tasks in db, data is sent back as a message (instead of tasks data) with success=true
+				if (data.success === true) {
+					return "No tasks";
+				} else {
+					if (elementId === 1) {
+						setTechTasks(data[0].count);
+					} else if (elementId === 2) {
+						setEmployerTasks(data[0].count);
+					} else if (elementId === 3) {
+						setEssentialTasks(data[0].count);
+					}
+				}
+			} catch (error) {
+				console.log(error.message);
 			}
-		} catch (error) {
-			console.log(error.message);
-		}
-	}, [user_email]);
+		},
+		[user_email]
+	);
 
 	//fetching the number of tasks for each element. Element Id passed into fetch request function as an argument
 	fetchTasksNumber(1);
 	fetchTasksNumber(2);
 	fetchTasksNumber(3);
-
 
 	return (
 		<MyPlanStyles>
@@ -68,8 +69,8 @@ const MyPlan = ({ user_email }) => {
 			<section className="gradPlanPage">
 				<main role="main" className="elementsSection">
 					<p className="elementsText">
-						Welcome to your planning centre. You can view, edit and
-						add new tasks to help you organise your career development.
+						Welcome to your planning centre. You can view, edit and add new
+						tasks to help you organise your career development.
 					</p>
 					<div>
 						<button
@@ -101,8 +102,7 @@ const MyPlan = ({ user_email }) => {
 				</main>
 
 				<div className="tasksSection">
-
-				<div className="elementTasksHeading">
+					<div className="elementTasksHeading">
 						{elementTasksId === 1
 							? "Technical"
 							: elementTasksId === 2
@@ -149,16 +149,13 @@ const MyPlan = ({ user_email }) => {
 						{commentsOpen && (
 							<PopUpForm
 								content={
-									<>
-										<b>Mentor Feedback</b>
-										<Comment
-											refresh={refresh}
-											refreshFunc={() => setRefresh(!refresh)}
-											senderEmail={user_email}
-											email={user_email}
-											id={elementTasksId}
-										/>
-									</>
+									<MentorsComment
+										refresh={refresh}
+										refreshFunc={() => setRefresh(!refresh)}
+										senderEmail={user_email}
+										email={user_email}
+										id={elementTasksId}
+									/>
 								}
 								handleClose={toggleComments}
 							/>

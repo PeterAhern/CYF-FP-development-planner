@@ -171,15 +171,9 @@ export const MentorsHomeStyle = styled.div`
 		height: 100%;
 		/* background-color: blue; */
 	}
-
 	.mentorsFeedbackSection {
 		/* background-color: violet; */
-		width: 50%;
+		width: 100%;
 		height: 100%;
-		
 	}
 `;
-
-
-
-
