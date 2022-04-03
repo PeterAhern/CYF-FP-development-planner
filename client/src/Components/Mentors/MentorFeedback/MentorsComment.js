@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
-import { MentorsCommentStyles } from "./MentorsComment.styles";
+// import { MentorsCommentStyles } from "./MentorsComment.styles";
+import { PopUpFormStyles } from "../../Tasks/PopUpForm.styles";
 import moment from "moment";
 
 const MentorsComment = ({ email, id, senderEmail }) => {
@@ -63,7 +64,7 @@ const MentorsComment = ({ email, id, senderEmail }) => {
 		fetchComments();
 	}, [fetchComments, refresh]);
 	return (
-		<MentorsCommentStyles>
+		<PopUpFormStyles>
 			<form onSubmit={handleSubmit} className="form">
 				<label>
 					Comment:
@@ -71,25 +72,28 @@ const MentorsComment = ({ email, id, senderEmail }) => {
 				</label>
 				<input type="submit" value="Submit" className="btn btn-danger submit" />
 			</form>
-			<div className="commentsArea">
-				<ul>
+			
+				<ul className="timeline">
 					{comments.map((comment, index) => {
 						return (
 							<li
 								key={index}
 								className={
-									comment.user_email === senderEmail ? "blue" : "green"
+									comment.user_email === senderEmail
+										? "blue container left"
+										: "green container right"
 								}
 							>
-								<h6>Sender:{comment.user_email}</h6>
-								<h6>{moment(comment.comment_date).format("DD/MM/YY")}</h6>
-								<h5>{comment.comment_content}</h5>
+								<div className="content">
+									<h5>Sender:{comment.user_email}</h5>
+									<h6>{moment(comment.comment_date).format("DD/MM/YY")}</h6>
+									<h4>{comment.comment_content}</h4>
+								</div>
 							</li>
 						);
 					})}
 				</ul>
-			</div>
-		</MentorsCommentStyles>
+		</PopUpFormStyles>
 	);
 };
 export default MentorsComment;
