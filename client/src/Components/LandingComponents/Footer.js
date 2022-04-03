@@ -11,11 +11,6 @@ import {
 const Footer = () => {
 	return (
 		<FooterDiv>
-			<div className="cyfLogo">
-				<a className="link" href="https://syllabus.codeyourfuture.io/">
-					<img src={cyfLogo} alt="CYF logo" />
-				</a>
-			</div>
 			<div className="elementalLogo">
 				<img src={elemental} alt="Elemental logo" />
 			</div>
