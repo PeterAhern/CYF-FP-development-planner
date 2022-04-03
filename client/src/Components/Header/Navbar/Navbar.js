@@ -6,12 +6,11 @@ import Goal from "./Goal";
 import DropdownOption from "./DropdownItem";
 import Axios from "axios";
 import { useLocation } from "react-router-dom";
-
 import { NavBarStyles } from "./NavBar.styles";
-
 import developmentSvg from "../../../Assets/svg/development.svg";
-import logInOutSvg from "../../../Assets/svg/login-out.svg";
+// import logInOutSvg from "../../../Assets/svg/login-out.svg";
 import cyfLogo from "../../../Assets/svg/cyfLogo.svg";
+import LogRed from "../../../Assets/svg/logoutRed.svg";
 
 const NavigationMenu = () => {
 	const [loginStatus, setLoginStatus] = useState({
@@ -57,7 +56,7 @@ const NavigationMenu = () => {
 							<img className="cyfLogo" src={cyfLogo} alt="CYF logo" />
 						</a>
 					</Navbar.Brand>
-					<Goal graduateEmail={loginStatus.user_email} />
+					{/* <Goal graduateEmail={loginStatus.user_email} /> */}
 					<Navbar.Toggle
 						className="navbarToggle"
 						aria-controls="navbarScroll"
@@ -87,9 +86,7 @@ const NavigationMenu = () => {
 								</>
 							)}
 							<Nav.Link className="logout" href="/" onClick={logoutHandler}>
-								<DropdownOption href="/" leftIcon={logInOutSvg}>
-									Logout
-								</DropdownOption>
+								<DropdownOption href="/" leftIcon={LogRed} />
 							</Nav.Link>
 						</Nav>
 					</Navbar.Collapse>

@@ -4,9 +4,7 @@ export const NavBarStyles = styled.div`
 	display: flex;
 
 	.navigationMenu {
-		// background-color: rgba(201, 196, 196, 0.925);
 		background-color: #f5f5f5;
-
 		width: 100%;
 	}
 
@@ -14,8 +12,7 @@ export const NavBarStyles = styled.div`
 		display: flex;
 		width: 150px;
 		justify-content: flex-end;
-		height: 100px;
-		/* background-color: blue; */
+		height: 80px;
 	}
 
 	.link {
@@ -40,6 +37,18 @@ export const NavBarStyles = styled.div`
 	}
 	.another{
 		display:none;
+	}
+
+	.logout {
+		position:fixed;
+		right: 0;
+		top: 1rem;
+		background-color: transparent;
+		background: transparent;
+	}
+
+	Navbar.Brand a {
+		margin-left: 2rem;
 	}
 `;
 
