@@ -2,46 +2,42 @@ import styled from "styled-components";
 
 export const FooterDiv = styled.div`
 	background: transparent;
-	position: fixed;
+
 	bottom: 0;
 	display: flex;
+	justify-content: center;
+	align-items: center;
 	width: 100%;
 	margin-top: auto;
+	max-height: 100%;
 
 	@media (max-width: 1000px) {
 		padding: 70px 30px;
 	}
 
 	img {
-		height: 3rem;
-		width: auto;
-		position: flex;
+		height: 100%;
+		width: 100%;
 	}
 
 	.cyfLogo {
-		position: relative;
-		bottom: 0;
-		left: 55%;
-		align-content: bottom;
+		height: 100%;
+		width: 20%;
 	}
 
 	.elementalLogo {
-		left: 32%;
-	}
-
-	.elementalLogo,
-	.cyfLogo {
-		height: 12rem;
-		position: relative;
-		bottom: 0;
+		height: 100%;
+		width: 20%;
 	}
 
 	.elementalLogo img {
-		height: 12rem;
+		/* height: 12rem; */
+		height: 100%;
+		width: 100%;
 	}
 
-	.cyfLogo a{
-		position: absolute;
-		bottom: 5rem;
+	.cyfLogo a {
+		/* position: absolute;
+		bottom: 5rem; */
 	}
 `;
