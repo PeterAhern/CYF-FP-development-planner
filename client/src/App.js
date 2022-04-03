@@ -8,7 +8,7 @@ import "./App.css";
 import Registration from "./pages/registration";
 import Plan from "./pages/plan";
 import UserProfile from "./Components/UserProfile/UserProfile";
-import MentorGuide from  "./Components/Mentors/MentorsHome/MentorsGuide";
+import MentorGuide from  "../src/pages/MentorsGuide";
 
 const App = () => {
 	return (
