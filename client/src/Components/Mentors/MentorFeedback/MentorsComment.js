@@ -72,7 +72,6 @@ const MentorsComment = ({ email, id, senderEmail }) => {
 				</label>
 				<input type="submit" value="Submit" className="btn btn-danger submit" />
 			</form>
-			
 				<ul className="timeline">
 					{comments.map((comment, index) => {
 						return (

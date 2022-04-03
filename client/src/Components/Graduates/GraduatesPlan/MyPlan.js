@@ -170,7 +170,7 @@ const MyPlan = ({ user_email }) => {
 								className="returnToElementsButton"
 								onClick={returnToElementButtonClickHandler}
 							>
-								RETURN
+								Go Back
 							</button>
 						)}
 

@@ -15,9 +15,8 @@ export const MentorsHomeStyle = styled.div`
 		display: flex;
 		width: 25%;
 		height: 95%;
-
 		flex-flow: row wrap;
-		background-color: rgba(139, 137, 150, 0.968);
+		background-color: #ff2626;
 
 		border-style: none;
 		justify-content: center;
@@ -30,28 +29,42 @@ export const MentorsHomeStyle = styled.div`
 		height: 100%;
 		justify-content: center;
 		flex-flow: row wrap;
-		background-color: rgba(139, 137, 150, 0.968);
+		background-color: #ff2626;
 
 		border-style: none;
 	}
 
 	.elementsText {
-		margin: 1rem;
+		margin: 2rem;
 		width: 60%;
 		height: 100px;
 		color: white;
 	}
 
 	.gradButton {
-		width: 180px;
-		height: 130px;
-		margin: 1rem;
+		width: 95%;
+		height: 5rem;
+		border-radius: 1.5rem;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 0.3rem;
+		margin-bottom: 0.3rem;
+		padding-left: 4rem;
+		padding-right: 4rem;
 		display: flex;
+		flex-direction: row;
 		justify-content: center;
-		background-color: rgb(218, 179, 185);
+		background-color: #f5f5f5;
 		align-items: center;
-		color: white;
-		font-weight: 700;
+		font-size:2rem;
+
+		@media (min-width: 500px) {
+			height: 9rem;
+			margin-top: 0.5rem;
+			margin-bottom: 0.5rem;
+			padding-left: 7rem;
+			padding-right: 7rem;
+		}
 	}
 
 	.rightSideDisplaySection {
@@ -68,16 +81,16 @@ export const MentorsHomeStyle = styled.div`
 		/* background-color: green; */
 	}
 
-	.menteeCommentButton {
-		position: fixed;
-		margin: 3rem 33rem 0 0;
-		background-color: none;
-		width: 150px;
-		height: 50px;
-		font-size: 10px;
-		font-weight: 800;
-		box-shadow: 10px 10px 5px #aaaaaa;
-	}
+	// .menteeCommentButton {
+	// 	position: fixed;
+	// 	margin: 3rem 33rem 0 0;
+	// 	background-color: none;
+	// 	width: 150px;
+	// 	height: 50px;
+	// 	font-size: 10px;
+	// 	font-weight: 800;
+	// 	box-shadow: 10px 10px 5px #aaaaaa;
+	// }
 
 	.menteeCommentButton:hover {
 		color: #ff0000c3;
@@ -99,7 +112,22 @@ export const MentorsHomeStyle = styled.div`
 		box-shadow: 10px 10px 5px #aaaaaa;
 	}
 
-	.addNewTaskButton:hover {
+	.removeGradButton {
+		position: fixed;
+		margin-top: 3rem;
+		margin-right: 22rem;
+		width: 150px;
+		height: 50px;
+		font-size: 10px;
+		color: white;
+		font-weight: 800;
+		justify-content: center;
+		background-color: #ff2626;
+		box-shadow: 10px 10px 5px #aaaaaa;
+	}
+
+	.addNewTaskButton,
+	.removeGradButton:hover {
 		background-color: #ff0000c3;
 		color: white;
 		cursor: pointer;
@@ -116,18 +144,15 @@ export const MentorsHomeStyle = styled.div`
 	.graduateElementsSection {
 		height: 100%;
 		width: 100%;
-		/* background-color: orange; */
+		background-color: #ff2626;
 		display: flex;
-		/* justify-content: space-evenly; */
-		align-items: center;
-		/* justify-content: center; */
+		justify-content: spread-evenly;
 	}
 
 	.gradElement {
 		display: flex;
 		height: 100%;
-		width: 50px;
-		/* justify-content: space-evenly; */
+		justify-content: space-evenly;
 		/* align-items: center; */
 	}
 
@@ -141,8 +166,8 @@ export const MentorsHomeStyle = styled.div`
 	}
 
 	.removeGraduateButton:hover {
-		background-color: red;
-		color: white;
+		background-color: white;
+		color: #ff2626;
 		border: none;
 	}
 
