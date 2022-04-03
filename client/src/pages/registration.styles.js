@@ -5,7 +5,7 @@ export const RegistrationStyles = styled.div`
 	height: 100vh;
 	font-family: Raleway, sans-serif;
 	margin: 0;
-	display:flex;
+	display: flex;
 	flex-flow: row wrap;
 
 	.upperPartLandingPage {
@@ -21,11 +21,7 @@ export const RegistrationStyles = styled.div`
 	}
 
 	.login_container {
-		background: linear-gradient(
-			to left,
-			#ffffff,
-			#f5f5f5
-		);
+		background: linear-gradient(to left, #ffffff, #f5f5f5);
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -34,11 +30,6 @@ export const RegistrationStyles = styled.div`
 		height: 100vh;
 		margin: -20px 0 50px;
 	}
-
-	// .login_container h1,
-	// h2 {
-	// 	margin-bottom: 3rem;
-	// }
 
 	.landingHeader {
 		margin-bottom: 3rem;
@@ -103,19 +94,19 @@ export const RegistrationStyles = styled.div`
 	}
 
 	.loginComp {
-		animation: fadeIn 5s;
+		animation: fadeIn ease 5s;
 		animation-delay: 2.2s;
 		opacity: 0;
-		-webkit-animation: fadeIn 5s;
+		-webkit-animation: fadeIn ease 5s;
 		-webkit-animation-delay: 2.2s;
 		-webkit-animation-fill-mode: forwards;
-		-moz-animation: fadeIn 3s;
+		-moz-animation: fadeIn ease 3s;
 		-moz-animation-delay: 4s;
 		-moz-animation-fill-mode: forwards;
-		-o-animation: fadeIn 3s;
+		-o-animation: fadeIn ease 3s;
 		-o-animation-delay: 4s;
 		-o-animation-fill-mode: forwards;
-		-ms-animation: fadeIn 3 s;
+		-ms-animation: fadeIn ease 3 s;
 		-ms-animation-delay: 4s;
 		-ms-animation-fill-mode: forwards;
 	}
