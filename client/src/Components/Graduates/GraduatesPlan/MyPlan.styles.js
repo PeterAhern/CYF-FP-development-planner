@@ -17,7 +17,6 @@ export const MyPlanStyles = styled.div`
 		height: 95%;
 
 		flex-flow: row wrap;
-		// background-color: rgba(139, 137, 150, 0.968);
 		background-color: #ff2626;
 
 		border-style: none;
@@ -112,14 +111,13 @@ export const MyPlanStyles = styled.div`
 	.elementButton {
 		width: 95%;
 		height: 9rem;
-		border-radius: 1.5rem;
+		border-radius: 1rem;
 		margin-left: auto;
 		margin-right: auto;
 		margin-top: 0.5rem;
 		margin-bottom:0.5rem;
 		padding-left: 7rem;
 		padding-right: 7rem;
-
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
