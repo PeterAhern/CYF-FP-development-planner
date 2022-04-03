@@ -6,8 +6,8 @@ export const TasksStyles = styled.div`
 	background-color: #f5f5f5;
 
 	.taskCard {
-		max-width: 90%;
-		height: 180px;
+		width: 85%;
+		height: 120px;
 		margin: 2rem;
 		background-color: rgba(161, 159, 159, 0.925);
 		display: flex;
@@ -15,19 +15,29 @@ export const TasksStyles = styled.div`
 		justify-content: center;
 		align-items: center;
 		border-radius: 10px;
+
+		@media (min-width: 500px) {
+			height: 180px;
+		}
 	}
 
 	.card_title {
-		width: 57%;
+		width: 47%;
 		height: 100%;
 		text-align: center;
-		margin: 1rem;
+		margin: 0.5rem;
 		display: flex;
 		flex-flow: row wrap;
 		justify-content: center;
 		align-items: center;
 		overflow-y: scroll;
 		overflow-x: hidden;
+		font-size: medium;
+
+		@media (min-width: 500px) {
+			width: 57%;
+			font-size: 2rem;
+		}
 	}
 	.leftTaskDetails {
 		width: 15%;
@@ -50,15 +60,19 @@ export const TasksStyles = styled.div`
 		width: 100%;
 		text-align: center;
 		color: white;
-		font-size: 1.5rem;
+		font-size: medium;
 		height: 20px;
+		@media (min-width: 500px) {
+			font-size: 1.5rem;
+		}
 	}
 
 	.expense-date {
 		display: flex;
 		flex-direction: column;
-		width: 8rem;
-		height: 8rem;
+		width: 4rem;
+		height: 4rem;
+
 		border: 1px solid red;
 		// background-color: #2a2a2a;
 		background-color: white;
@@ -67,53 +81,82 @@ export const TasksStyles = styled.div`
 		align-items: center;
 		justify-content: center;
 		margin: 0;
+
+		@media (min-width: 500px) {
+			width: 8rem;
+			height: 8rem;
+		}
 	}
 	.expense-date__month {
-		font-size: 2rem;
+		font-size: Large;
 		font-weight: bold;
+
+		@media (min-width: 500px) {
+			font-size: 2rem;
+		}
 	}
 	.expense-date__year {
-		font-size: 0.9rem;
+		font-size: medium;
+		
+		@media (min-width: 500px) {
+			font-size: 1.5rem;
+		}
 	}
 	.expense-date__day {
-		font-size: 1.5rem;
+		font-size: medium;
 		font-weight: bold;
+		@media (min-width: 500px) {
+			font-size: 1.5rem;
+		}
 	}
 
 	.card_status {
 		width: 100%;
 		text-align: center;
-		height: 20px;
+		height: 10px;
 		margin-top: 0;
-		font-size: 1rem;
+		font-size: medium;
 		color: white;
+		@media (min-width: 500px) {
+			font-size: 1rem;
+			height: 20px;
+		}
 	}
 
 	.rightTaskDetails {
 		display: flex;
 		flex-flow: row wrap;
-		width: 20%;
+		width: 25%;
 		height: 100%;
 		justify-content: center;
 		align-items: center;
 	}
 
 	.deleteTaskButtonSection {
-		width: 100%;
-		height: 50px;
+		width: 90%;
+		height: 20px;
+
 		display: flex;
 		flex-flow: row wrap;
 		justify-content: center;
 		align-items: center;
+		@media (min-width: 500px) {
+			width: 100%;
+			height: 50px;
+		}
 	}
 
 	.editTaskButtonSection {
-		width: 100%;
-		height: 50px;
+		width: 90%;
+		height: 20px;
 		display: flex;
 		flex-flow: row wrap;
 		justify-content: center;
 		align-items: center;
+		@media (min-width: 500px) {
+			width: 100%;
+			height: 50px;
+		}
 	}
 
 	.evidenceSide {
@@ -122,34 +165,54 @@ export const TasksStyles = styled.div`
 	}
 
 	.taskEvidence {
-		width: 100%;
-		height: 40px;
+		width: 80%;
+		height: 20px;
 		display: flex;
 		justify-content: flex-start;
 		margin-left: 0;
+		@media (min-width: 500px) {
+			height: 40px;
+			width: 100%;
+		}
 	}
 
 	.taskEvidence a {
 		text-decoration: none;
-		font-size: 1rem;
+		font-size: medium;
 		color: white;
+		@media (min-width: 500px) {
+			font-size: 1rem;
+		}
 	}
 
 	.noTasks {
-		font-size: 2.5rem;
+		font-size: 1.5rem;
 		text-align: center;
-		margin: 2rem;
+		margin: 1rem;
+		@media (min-width: 500px) {
+			font-size: 2.5rem;
+			margin: 2rem;
+		}
 	}
 	.statusShower {
+		width: 90%;
+		height: 40px;
+		font-size: 10px;
 		border-radius: 20px;
 		border: 1px solid #ff2626;
 		background-color: #f5f5f5;
 		color: black;
-		font-size: 12px;
+
 		font-weight: bold;
-		padding: 12px 40px;
+
 		letter-spacing: 1px;
 		text-transform: uppercase;
+		@media (min-width: 500px) {
+			padding: 12px 40px;
+			width: 100%;
+			height: 50px;
+			font-size: 12px;
+		}
 	}
 `;
 
