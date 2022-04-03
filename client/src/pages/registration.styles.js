@@ -6,7 +6,19 @@ export const RegistrationStyles = styled.div`
 	font-family: Raleway, sans-serif;
 	margin: 0;
 	display:flex;
-	flex-direction:column;
+	flex-flow: row wrap;
+
+	.upperPartLandingPage {
+		width: 100%;
+		height: 80%;
+	}
+
+	.footerPartLandingPage {
+		width: 100%;
+		height: 20%;
+		display: flex;
+		justify-content: center;
+	}
 
 	.login_container {
 		background: linear-gradient(
