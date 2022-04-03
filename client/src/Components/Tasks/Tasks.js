@@ -140,7 +140,7 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 					</div>
 					<section className="leftTaskDetails">
 						<div className="card_due_date">
-							<h4 className="taskDueLabel">Due By:</h4>
+							{/* <h4 className="taskDueLabel">Due By:</h4> */}
 							<div className="expense-date">
 								<div className="expense-date__day">{day}</div>
 								<div className="expense-date__month">{month}</div>

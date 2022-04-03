@@ -57,8 +57,8 @@ export const TasksStyles = styled.div`
 	.expense-date {
 		display: flex;
 		flex-direction: column;
-		width: 7rem;
-		height: 7rem;
+		width: 8rem;
+		height: 8rem;
 		border: 1px solid red;
 		// background-color: #2a2a2a;
 		background-color: white;
@@ -69,14 +69,14 @@ export const TasksStyles = styled.div`
 		margin: 0;
 	}
 	.expense-date__month {
-		font-size: 1.75rem;
+		font-size: 2rem;
 		font-weight: bold;
 	}
 	.expense-date__year {
-		font-size: 0.75rem;
+		font-size: 0.9rem;
 	}
 	.expense-date__day {
-		font-size: 1rem;
+		font-size: 1.5rem;
 		font-weight: bold;
 	}
 
