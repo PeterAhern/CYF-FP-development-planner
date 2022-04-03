@@ -106,11 +106,16 @@ export const MentorsHomeStyle = styled.div`
 	}
 
 	.graduateElementsDisplaySection {
-		width: 70%;
-		height: 50px;
 		display: flex;
-		/* background-color: blue; */
-		flex-flow: row wrap;
+		width: 100%;
+
+		@media (min-width: 500px) {
+			width: 70%;
+			height: 50px;
+			/* background-color: blue; */
+			flex-flow: row wrap;
+		}
+		
 	}
 
 	.graduateElementsSection {
@@ -125,8 +130,13 @@ export const MentorsHomeStyle = styled.div`
 
 	.gradElement {
 		display: flex;
-		height: 100%;
-		width: 50px;
+		width: 100%:
+		height: 60px;
+		@media (min-width: 500px) {
+			height: 100%;
+			width: 50px;
+		}
+
 		/* justify-content: space-evenly; */
 		/* align-items: center; */
 	}
@@ -161,8 +171,13 @@ export const MentorsHomeStyle = styled.div`
 
 	.graduateElementTasksDisplaySection {
 		// overflow: scroll;
-		height: calc(100vh - 400px);
-		width: 75%;
+		height: 100%;
+		width: 100%;
+
+		@media (min-width: 500px) {
+			height: calc(100vh - 400px);
+			width: 75%;
+		}
 	}
 
 	.AllMenteesSection {
@@ -236,6 +251,26 @@ export const MentorsHomeStyle = styled.div`
 		@media (min-width: 500px) {
 			background-color: #ff2626;
 		}
+	}
+
+	.viewAndAddGradsButton {
+		position: fixed;
+		width: 50px;
+		height: 50px;
+		font-size: .9rem;
+		font-weight: 700;
+		background-color: white;
+		border-radius: 50%;
+		border-style: none;
+		color: #ff2626;
+		top: 11rem;
+		margin-right: 20rem;
+		box-shadow: 10px 10px 5px #aaaaaa;
+	}
+
+	.viewAndAddGradsButton:hover {
+		background-color: #ff2626;
+		color: white;
 	}
 
 	.elementsText {
