@@ -5,9 +5,9 @@ export const Button = styled.button`
 	border: 1px solid #ff4b2b;
 	background-color: #ff0000c3;
 	color: #ffffff;
-	font-size: 12px;
+	font-size: 10px;
 	font-weight: bold;
-	padding: 12px 45px;
+
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
@@ -17,7 +17,15 @@ export const Button = styled.button`
 	&:focus {
 		outline: none;
 	}
-	width: 170px;
+	width: 100%;
+	height: 30px;
+
+	@media (min-width: 500px) {
+		padding: 12px 45px;
+		height: 50px;
+		font-size: 12px;
+		width: 170px;
+	}
 `;
 
 export const GhostButton = styled(Button)`

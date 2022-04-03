@@ -22,9 +22,9 @@ export const PopUpFormStyles = styled.div`
 
 	.box {
 		position: relative;
-		width:30%;
+		width: 100%;
 		margin: 0 auto;
-		height: 35rem;
+		height: 100%;
 		margin-top: calc(100vh - 85vh - 20px);
 		background: #f5f5f5;
 		border-radius: 8px;
@@ -33,6 +33,11 @@ export const PopUpFormStyles = styled.div`
 		box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
 		overflow-wrap: break-word;
 		overflow: scroll;
+
+		@media (min-width: 500px) {
+			width: 30%;
+			height: 35rem;
+		}
 	}
 
 	.close-icon {
@@ -58,7 +63,6 @@ export const PopUpFormStyles = styled.div`
 	.green {
 	}
 
-	
 	* {
 		box-sizing: border-box;
 	}

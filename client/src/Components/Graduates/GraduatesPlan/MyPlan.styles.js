@@ -70,8 +70,15 @@ export const MyPlanStyles = styled.div`
 	.elementsText {
 		width: 90%;
 		color: white;
-		height: 5rem;
-		font-size: 1.5rem;
+		height: 3rem;
+
+		font-size: 1rem;
+
+		@media (min-width: 500px) {
+			background-color: #ff2626;
+			height: 5rem;
+			font-size: 1.5rem;
+		}
 	}
 
 	.elementsButtonsSection {
@@ -87,10 +94,10 @@ export const MyPlanStyles = styled.div`
 		border-radius: 1.5rem;
 		margin-left: auto;
 		margin-right: auto;
-		margin-top: 0.5rem;
-		margin-bottom: 0.5rem;
-		padding-left: 7rem;
-		padding-right: 7rem;
+		margin-top: 0.3rem;
+		margin-bottom: 0.3rem;
+		padding-left: 4rem;
+		padding-right: 4rem;
 
 		display: flex;
 		flex-direction: column;
@@ -100,6 +107,10 @@ export const MyPlanStyles = styled.div`
 
 		@media (min-width: 500px) {
 			height: 9rem;
+			margin-top: 0.5rem;
+			margin-bottom: 0.5rem;
+			padding-left: 7rem;
+			padding-right: 7rem;
 		}
 	}
 
@@ -141,6 +152,11 @@ export const MyPlanStyles = styled.div`
 		color: #ff0000c3;
 		background-color: rgb(218, 179, 185);
 		cursor: pointer;
+	}
+
+	.PopUp {
+		width: 100%;
+		height: 80%;
 	}
 
 	.viewFeedbackButton {
