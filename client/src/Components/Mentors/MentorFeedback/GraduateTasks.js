@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import moment from "moment";
 import { GraduateTasksStyles } from "./GraduateTasks.styles";
-
+import { Badge } from "react-bootstrap";
 const GraduateTasks = ({ elementId, senderEmail }) => {
 	const [tasks, setTasks] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
@@ -44,29 +44,47 @@ const GraduateTasks = ({ elementId, senderEmail }) => {
 			return "N/A";
 		}
 	};
-
 	let content = <p>Found no tasks.</p>;
 
 	if (tasks.length > 0) {
-		content = tasks.map((task) => (
-			<div className="task" key={task.id}>
-				<p className="title">{task.task_title}</p>
-				<p className="date">
-					Due: {moment.utc(task.due_date).format("DD/MM/YY")}
-				</p>
-				<p className="status">{statusShower(task.status_id)}</p>
+		content = tasks.map((task) => {
+			const month = moment(task.due_date).format("MMM");<h4 className="taskDueLabel">Due By:</h4>;
+			const day = moment(task.due_date).format("Do");
+			const year = moment(task.due_date).year();
+			return (
+				<div className="taskCard" key={task.id}>
+					<h1 className="card_title">{task.task_title}</h1>
+					<section className="leftTaskDetails">
+						<div className="card_due_date">
+							<div className="expense-date">
+								<div className="expense-date__day">{day}</div>
+								<div className="expense-date__month">{month}</div>
+								<div className="expense-date__year">{year}</div>
+							</div>
+						</div>
+					</section>
+					<section className="rightTaskDetails">
+						<section className="StatusShower">
+							<button>
+								{task.status_id ? statusShower(task.status_id) : ""}
+							</button>
+						</section>
+					</section>
 
-				<div>
-					{task.evidence && (
-						<h6>
-							<a href={task.evidence} target="_blank" rel="noreferrer">
-								Evidence
-							</a>
-						</h6>
-					)}
+					<div className="evidenceSide">
+						<h4 className="taskEvidence">
+							{task.evidence && (
+								<Badge bg="secondary">
+									<a href={task.evidence} target="_blank" rel="noreferrer">
+										Evidence
+									</a>
+								</Badge>
+							)}
+						</h4>
+					</div>
 				</div>
-			</div>
-		));
+			);
+		});
 	}
 
 	if (error) {
