@@ -10,12 +10,12 @@ export const RegistrationStyles = styled.div`
 
 	.upperPartLandingPage {
 		width: 100%;
-		height: 80%;
+		height: 90%;
 	}
 
 	.footerPartLandingPage {
 		width: 100%;
-		height: 20%;
+		height: 10%;
 		display: flex;
 		justify-content: center;
 	}
