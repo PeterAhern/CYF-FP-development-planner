@@ -35,6 +35,12 @@ export const NavBarStyles = styled.div`
 			display: none;
 		}
 	}
+	.guide{
+		background:blue;
+	}
+	.another{
+		display:none;
+	}
 `;
 
 

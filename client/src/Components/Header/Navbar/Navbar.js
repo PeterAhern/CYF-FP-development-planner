@@ -5,6 +5,7 @@ import { Container, Nav } from "react-bootstrap";
 import Goal from "./Goal";
 import DropdownOption from "./DropdownItem";
 import Axios from "axios";
+import { useLocation } from "react-router-dom";
 
 import { NavBarStyles } from "./NavBar.styles";
 
@@ -19,6 +20,7 @@ const NavigationMenu = () => {
 	});
 
 	const [mentorAccess, setMentorAccess] = useState(false);
+	const location = useLocation();
 
 	useEffect(() => {
 		Axios.get("/api/login").then((response) => {
@@ -42,9 +44,7 @@ const NavigationMenu = () => {
 	}, [loginStatus.user_email]);
 	console.log(loginStatus.user_email);
 
-
 	const logoutHandler = () => Axios.post("/api/logout");
-
 
 	console.log(mentorAccess);
 
@@ -54,7 +54,7 @@ const NavigationMenu = () => {
 				<Container fluid>
 					<Navbar.Brand href="#">
 						<a href="https://syllabus.codeyourfuture.io/">
-						<img className="cyfLogo" src={cyfLogo} alt="CYF logo" />
+							<img className="cyfLogo" src={cyfLogo} alt="CYF logo" />
 						</a>
 					</Navbar.Brand>
 					<Goal graduateEmail={loginStatus.user_email} />
@@ -69,11 +69,26 @@ const NavigationMenu = () => {
 							navbarScroll
 						>
 							{mentorAccess && (
-								<Nav.Link href="/guide">
-									<DropdownOption href="/guide" leftIcon={developmentSvg}>
-										Mentor Guide
-									</DropdownOption>
-								</Nav.Link>
+								<>
+									{location.pathname !== "/guide" && (
+										<li>
+											<Nav.Link href="/guide">
+												<DropdownOption href="/guide" leftIcon={developmentSvg}>
+													Mentor Guide
+												</DropdownOption>
+											</Nav.Link>
+										</li>
+									)}
+									{location.pathname !== "/plan" && (
+										<li>
+											<Nav.Link href="/plan">
+												<DropdownOption href="/plan" leftIcon={developmentSvg}>
+													Home
+												</DropdownOption>
+											</Nav.Link>
+										</li>
+									)}
+								</>
 							)}
 							<Nav.Link className="logout" href="/" onClick={logoutHandler}>
 								{/* <button onClick={logoutHandler}> */}
