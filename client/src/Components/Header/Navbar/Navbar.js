@@ -71,31 +71,25 @@ const NavigationMenu = () => {
 							{mentorAccess && (
 								<>
 									{location.pathname !== "/guide" && (
-										<li>
-											<Nav.Link href="/guide">
-												<DropdownOption href="/guide" leftIcon={developmentSvg}>
-													Mentor Guide
-												</DropdownOption>
-											</Nav.Link>
-										</li>
+										<Nav.Link href="/guide">
+											<DropdownOption href="/guide" leftIcon={developmentSvg}>
+												Mentor Guide
+											</DropdownOption>
+										</Nav.Link>
 									)}
 									{location.pathname !== "/plan" && (
-										<li>
-											<Nav.Link href="/plan">
-												<DropdownOption href="/plan" leftIcon={developmentSvg}>
-													Home
-												</DropdownOption>
-											</Nav.Link>
-										</li>
+										<Nav.Link href="/plan">
+											<DropdownOption href="/plan" leftIcon={developmentSvg}>
+												Home
+											</DropdownOption>
+										</Nav.Link>
 									)}
 								</>
 							)}
 							<Nav.Link className="logout" href="/" onClick={logoutHandler}>
-								{/* <button onClick={logoutHandler}> */}
 								<DropdownOption href="/" leftIcon={logInOutSvg}>
 									Logout
 								</DropdownOption>
-								{/* </button>  */}
 							</Nav.Link>
 						</Nav>
 					</Navbar.Collapse>
