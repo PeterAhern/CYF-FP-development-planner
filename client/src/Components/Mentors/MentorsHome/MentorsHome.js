@@ -227,20 +227,20 @@ const MentorsHome = ({ user_email }) => {
 					</section>
 
 					<section className="graduateButtons">
-						<Components.Button
-							className="menteeCommentButton"
+						<Components.GhostButton
+							className="viewFeedbackButton"
 							onClick={commentHandler}
 						>
 							Feedback
-						</Components.Button>
+						</Components.GhostButton>
 
 						<>
-							<Components.GhostButton
+							<Components.Button
 								className="addNewTaskButton"
 								onClick={assignTaskHandler}
 							>
 								Assign Task
-							</Components.GhostButton>
+							</Components.Button>
 							{isOpen && (
 								<PopUpForm
 									content={
@@ -269,7 +269,7 @@ const MentorsHome = ({ user_email }) => {
 							<GraduateTasks
 								userEmail={user_email}
 								elementId={clicked}
-								className="element"
+								className="elementTasksList"
 								senderEmail={user}
 							/>
 						</section>
