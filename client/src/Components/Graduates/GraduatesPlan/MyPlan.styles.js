@@ -16,7 +16,6 @@ export const MyPlanStyles = styled.div`
 		width: 30%;
 		height: 95%;
 		flex-flow: row wrap;
-		// background-color: rgba(139, 137, 150, 0.968);
 		background-color: #ff2626;
 		border-style: none;
 		justify-content: center;
@@ -202,6 +201,7 @@ export const MyPlanStyles = styled.div`
 		border-style: none;
 		color: white;
 	}
+
 	.returnToElementsButton:hover {
 		background-color: white;
 		color: #ff2626;

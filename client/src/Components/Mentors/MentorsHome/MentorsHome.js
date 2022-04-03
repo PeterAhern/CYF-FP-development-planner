@@ -7,7 +7,7 @@ import { MentorsHomeStyle } from "./MentorsHome.styles";
 
 import TaskForm from "../../TaskForm/TaskForm";
 import PopUpForm from "../../Tasks/PopUpForm";
-import PopupFeedBack from "../../Tasks/PopUpForm";
+import PopupFeedBackMentor from "../../Tasks/PopupFeedBackMentor";
 
 import GraduateTasks from "../MentorFeedback/GraduateTasks";
 import MentorsComment from "../MentorFeedback/MentorsComment";
@@ -282,19 +282,15 @@ const MentorsHome = ({ user_email }) => {
 					</div>
 				</div>
 				{Open && (
-					<PopupFeedBack
+					<PopupFeedBackMentor
 						content={
-							<>
-								<div className="mentorsFeedbackSection">
-									<MentorsComment
-										senderEmail={user_email}
-										email={user}
-										id={clicked}
-										refresh={refresh}
-										refreshFunc={() => setRefresh(!refresh)}
-									/>
-								</div>
-							</>
+							<MentorsComment
+								senderEmail={user_email}
+								email={user}
+								id={clicked}
+								refresh={refresh}
+								refreshFunc={() => setRefresh(!refresh)}
+							/>
 						}
 						handleClose={openPopup}
 					/>
