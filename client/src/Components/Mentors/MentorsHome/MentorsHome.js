@@ -4,6 +4,7 @@ import Navbar from "../../Header/Navbar/Navbar";
 import AllGraduates from "../ViewAllGraduates/AllGraduates";
 // import GraduateList from "../GraduateList/GraduateList";
 import { MentorsHomeStyle } from "./MentorsHome.styles";
+import { MyPlanStyles } from "../../Graduates/GraduatesPlan/MyPlan.styles";
 
 import TaskForm from "../../TaskForm/TaskForm";
 import PopUpForm from "../../Tasks/PopUpForm";
@@ -28,11 +29,42 @@ const MentorsHome = ({ user_email }) => {
 
 	const [isOpen, setIsOpen] = useState(false);
 	const [Open, setOpen] = useState(false);
+	const [allmenteesPopUpOpen, setAllMenteesPopUpOpen] = useState(false);
+
+	const [fixedTasksSectionSelected, setFixedTasksSectionSelected] =
+		useState(false);
+
+	const [windowDimension, detectHW] = useState({
+		winWidth: window.innerWidth,
+		winHeight: window.innerHeight,
+	});
+
+	const [allGraduatesClicked, setAllGraduatesClicked] = useState(false);
+
+	const detectSize = () => {
+		detectHW({
+			winWidth: window.innerWidth,
+			winHeight: window.innerHeight,
+		});
+	};
+
+	useEffect(() => {
+		window.addEventListener("resize", detectSize);
+
+		return () => {
+			window.removeEventListener("resize", detectSize);
+		};
+	}, [windowDimension]);
+
 
 	const clickHandler = (e) => {
 		setUser(e.target.value);
 		// setButtonPopup(true);
 		setNameClicked(!nameClicked);
+
+		if (windowDimension.winWidth < 500) {
+			setFixedTasksSectionSelected(true);
+		}
 	};
 
 	const gradRefreshFunc = () => setAddGradRefresh(!addGradRefresh);
@@ -104,11 +136,22 @@ const MentorsHome = ({ user_email }) => {
 		setOpen(!Open);
 	};
 
+	const returnToElementButtonClickHandler = () =>
+		setFixedTasksSectionSelected(false);
+
 	return (
 		<MentorsHomeStyle>
 			<Navbar user_email={user_email} />
 			<div className="main">
-				<div className="chosenMenteesSection">
+				<div
+					className={
+						windowDimension.winWidth > 500
+							? "chosenMenteesSection"
+							: !fixedTasksSectionSelected
+							? "fixedElementsButtonsSelected"
+							: "fixedElementsButtonsUnSelected"
+					}
+				>
 					<div className="menteesSection ">
 						<div className="elementsText">
 							<p> Welcome Mentor!</p>
@@ -144,7 +187,16 @@ const MentorsHome = ({ user_email }) => {
 						)}
 					</div>
 				</div>
-				<div className="rightSideDisplaySection">
+
+				<div
+					className={
+						windowDimension.winWidth > 500
+							? "rightSideDisplaySection"
+							: !fixedTasksSectionSelected
+							? "fixedTasksSectionUnSelected"
+							: "fixedTasksSectionSelected"
+					}
+				>
 					<section className="graduateElementsDisplaySection">
 						{gradList.Graduate1 !== null ||
 						gradList.Graduate2 !== null ||
@@ -157,6 +209,14 @@ const MentorsHome = ({ user_email }) => {
 								>
 									Remove
 								</button>
+								{fixedTasksSectionSelected && (
+									<button
+										className="returnToElementsButton"
+										onClick={returnToElementButtonClickHandler}
+									>
+										RETURN
+									</button>
+								)}
 
 								{!nameClicked && (
 									<div className="gradElement">
@@ -233,37 +293,42 @@ const MentorsHome = ({ user_email }) => {
 						>
 							Feedback
 						</Components.GhostButton>
-
-						<>
-							<Components.Button
-								className="addNewTaskButton"
-								onClick={assignTaskHandler}
-							>
-								Assign Task
-							</Components.Button>
-							{isOpen && (
-								<PopUpForm
-									content={
-										<>
-											<b>Assign task details</b>
-											<TaskForm
-												refreshFunc={() => setRefresh(!refresh)}
-												addNewTaskForm={{
-													taskTitle: "",
-													userEmail: user,
-													dueDate: "",
-													evidence: "",
-													elementId: clicked,
-													statusId: 1,
-												}}
-											/>
-										</>
-									}
-									handleClose={togglePopup}
-								/>
-							)}
-						</>
+						<Components.Button
+							className="addNewTaskButton"
+							onClick={assignTaskHandler}
+						>
+							Assign Task
+						</Components.Button>
+						{isOpen && (
+							<PopUpForm
+								content={
+									<>
+										<b>Assign task details</b>
+										<TaskForm
+											refreshFunc={() => setRefresh(!refresh)}
+											addNewTaskForm={{
+												taskTitle: "",
+												userEmail: user,
+												dueDate: "",
+												evidence: "",
+												elementId: clicked,
+												statusId: 1,
+											}}
+										/>
+									</>
+								}
+								handleClose={togglePopup}
+							/>
+						)}
 					</section>
+					{windowDimension.winWidth < 500 && fixedTasksSectionSelected && (
+						<button
+							className="viewAndAddGradsButton"
+							onClick={() => setAllGraduatesClicked(true)}
+						>
+							All Grads
+						</button>
+					)}
 					<div className="tasksAddMentee">
 						<section className="graduateElementTasksDisplaySection">
 							<GraduateTasks
@@ -273,12 +338,15 @@ const MentorsHome = ({ user_email }) => {
 								senderEmail={user}
 							/>
 						</section>
-						<div className="AllMenteesSection">
-							<AllGraduates
-								mentorEmail={user_email}
-								gradRefreshFunc={gradRefreshFunc}
-							/>
-						</div>
+
+						{windowDimension.winWidth > 500 && (
+							<div className="AllMenteesSection">
+								<AllGraduates
+									mentorEmail={user_email}
+									gradRefreshFunc={gradRefreshFunc}
+								/>
+							</div>
+						)}
 					</div>
 				</div>
 				{Open && (
@@ -296,6 +364,19 @@ const MentorsHome = ({ user_email }) => {
 					/>
 				)}
 			</div>
+			{windowDimension.winWidth < 500 && allGraduatesClicked && (
+				<PopUpForm
+					content={
+						<AllGraduates
+							mentorEmail={user_email}
+							gradRefreshFunc={gradRefreshFunc}
+						/>
+					}
+					handleClose={() => {
+						setAllGraduatesClicked(false);
+					}}
+				/>
+			)}
 		</MentorsHomeStyle>
 	);
 };
