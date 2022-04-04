@@ -6,9 +6,8 @@ const MentorsGuide=()=>{
 			<main>
 				<Navbar />
 				<MentorsGuideStyles>
-					<h2>
-						Mentor Guide: The essential need-to-know list for Mentors @CYF.
-					</h2>
+					<h1>Mentor Guide</h1>
+					<h2>The essential need-to-know list for Mentors @CYF</h2>
 					<section>
 						<h3>About the role:</h3>
 						<p>
@@ -20,11 +19,11 @@ const MentorsGuide=()=>{
 					<section>
 						<h3>Activities:</h3>
 						<ul>
-							<li>Have regular 1:1 sessions with your mentee</li>
+							<li>Have regular 1:1 sessions with your mentee.</li>
 							<li>
-								Help facilitate mock interviews Review CVs and give feedback
+								Help facilitate mock interviews Review CVs and give feedback.
 							</li>
-							<li>Goal setting and career guidance </li>
+							<li>Goal setting and career guidance. </li>
 							<li>Work with graduates on their Elements.</li>
 						</ul>
 					</section>
@@ -37,13 +36,13 @@ const MentorsGuide=()=>{
 					</section>
 					<section>
 						<ul>
-							<li>Explain the purpose of the mentoring relationship</li>
+							<li>Explain the purpose of the mentoring relationship.</li>
 							<li>
-								Decide together the format of the meetings and how these will
+								Decide together the format of the meetings and how these will.
 							</li>
-							<li>Explain your role as mentor and what you will commit to</li>
+							<li>Explain your role as mentor and what you will commit to.</li>
 							<li>
-								Clarify what is expected behaviour from mentees and their role
+								Clarify what is expected behaviour from mentees and their role.
 							</li>
 						</ul>
 					</section>
@@ -58,7 +57,7 @@ const MentorsGuide=()=>{
 							<li>Identify strengths and achievements.</li>
 							<li>Explore options.</li>
 							<li>Agree support needs.</li>
-							<li>Set targets for future actions</li>
+							<li>Set targets for future actions.</li>
 							<li>
 								Create networking opportunities for mentees to gain experience.
 							</li>
@@ -71,8 +70,8 @@ const MentorsGuide=()=>{
 								Mentoring should end six months after Demo Day or when a mentee
 								secures employment.
 							</li>
-							<li>Summarise and celebrate achievements</li>
-							<li>Help your mentee to identify their next steps </li>
+							<li>Summarise and celebrate achievements.</li>
+							<li>Help your mentee to identify their next steps. </li>
 							<li>
 								Both mentee and mentor should reflect on the effectiveness of
 								the relationship.

@@ -22,8 +22,8 @@ const MentorGraduate = ( { user, gradRefreshFunc, mentorEmail  } ) => {
 	};
 
 	return (
-		<MentorGraduatesStyles onClick={addGraduate}>
-			{user}
+		<MentorGraduatesStyles>
+			<button onClick={addGraduate} className = "button">{user}</button>
 		</MentorGraduatesStyles>
 	);
 };
