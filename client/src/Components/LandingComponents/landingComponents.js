@@ -48,9 +48,17 @@ export const Form = styled.form`
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-	padding: 0 50px;
-	height: 100%;
+	margin-top: 6rem;
+
+	max-height: 90%;
+
 	text-align: center;
+
+	@media (min-width: 500px) {
+		height: 100%;
+		padding: 0 50px;
+		margin-top: auto;
+	}
 `;
 
 export const Title = styled.h2`
@@ -63,7 +71,7 @@ export const Input = styled.input`
 	border: none;
 	padding: 12px 15px;
 	margin: 8px 0;
-	width: 100%;
+	width: 90%;
 	height: 40px;
 	font-size: 20px;
 `;
@@ -245,27 +253,46 @@ export const RightOverlayPanel = styled(OverlayPanel)`
 	transform: translateX(0);
 	${(props) =>
 		props.signingIn !== true ? "transform: translateX(20%);" : null}
+
+		
 `;
 export const Paragraph = styled.p`
-	font-size: 18px;
+	font-size: 10px;
 	font-weight: 100;
-	line-height: 20px;
+	line-height: 12px;
 	letter-spacing: 0.5px;
 	margin: 20px 0 35px;
+
+	max-height: 90%;
+
+	@media (min-width: 500px) {
+		max-height: 100%;
+		font-size: 18px;
+		line-height: 20px;
+	}
 `;
 
 export const Paragraph2 = styled.p`
-	font-size: 18px;
+	font-size: 10px;
 	font-weight: 100;
-	line-height: 20px;
+	line-height: 15px;
 	letter-spacing: 0.5px;
 	margin: 20px 0 10px;
+	@media (min-width: 500px) {
+		font-size: 18px;
+		line-height: 20px;
+	}
 `;
 
 export const Paragraph3 = styled.p`
-	font-size: 18px;
+	font-size: 10px;
 	font-weight: 100;
-	line-height: 20px;
+	line-height: 15px;
 	letter-spacing: 0.5px;
 	margin: 20px 0 60px;
+
+	@media (min-width: 500px) {
+		font-size: 18px;
+		line-height: 20px;
+	}
 `;

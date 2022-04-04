@@ -48,14 +48,10 @@ const NavigationMenu = () => {
 
 	console.log(mentorAccess);
 	const handleClick1 = () => {
-		
 			setDirect("/guide");
-	
 	};
 	const handleClick2 = () => {
-		
 			setDirect("/plan");
-		
 	};
 
 	return (
@@ -63,7 +59,7 @@ const NavigationMenu = () => {
 			<Navbar className="navigationMenu" expand="lg">
 				<Container fluid>
 					<Navbar.Brand href="#">
-						<a href="https://syllabus.codeyourfuture.io/">
+						<a href="https://codeyourfuture.io/">
 							<img className="cyfLogo" src={cyfLogo} alt="CYF logo" />
 						</a>
 					</Navbar.Brand>
