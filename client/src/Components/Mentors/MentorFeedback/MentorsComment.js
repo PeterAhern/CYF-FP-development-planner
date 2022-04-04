@@ -1,5 +1,4 @@
 import { useState, useCallback, useEffect } from "react";
-// import { MentorsCommentStyles } from "./MentorsComment.styles";
 import { PopUpFormStyles } from "../../Tasks/PopUpForm.styles";
 import moment from "moment";
 
@@ -67,7 +66,7 @@ const MentorsComment = ({ email, id, senderEmail }) => {
 		<PopUpFormStyles>
 			<form onSubmit={handleSubmit} className="form">
 				<label>
-					Comment:
+					Give Feedback:
 					<textarea value={value.comment} onChange={handleChange} />
 				</label>
 				<input type="submit" value="Submit" className="btn btn-danger submit" />
@@ -79,14 +78,14 @@ const MentorsComment = ({ email, id, senderEmail }) => {
 								key={index}
 								className={
 									comment.user_email === senderEmail
-										? "blue container left"
-										: "green container right"
+										? "gradComments"
+										: "mentorComments"
 								}
 							>
 								<div className="content">
-									<h5>Sender:{comment.user_email}</h5>
-									<h6>{moment(comment.comment_date).format("DD/MM/YY")}</h6>
 									<h4>{comment.comment_content}</h4>
+									<h5>Sender: {comment.user_email}</h5>
+									<h6>{moment(comment.comment_date).format("DD/MM/YY")}</h6>
 								</div>
 							</li>
 						);

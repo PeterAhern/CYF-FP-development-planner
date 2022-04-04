@@ -1,9 +1,8 @@
 import styled from "styled-components";
 
 export const MentorsCommentStyles = styled.div`
-	width: 100%;
+	width: 50%;
 	height: 100%;
-	overflow: scroll;
 	margin-top: 2rem;
 
 `;
