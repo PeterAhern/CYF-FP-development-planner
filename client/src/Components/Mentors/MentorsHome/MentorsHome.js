@@ -337,12 +337,11 @@ const MentorsHome = ({ user_email }) => {
 					)}
 					<div className="tasksAddMentee">
 						<section className="graduateElementTasksDisplaySection">
-							<GraduateTasks
-								userEmail={user_email}
+							{nameClicked && <GraduateTasks userEmail={user_email}
 								elementId={clicked}
 								className="elementTasksList"
 								senderEmail={user}
-							/>
+							/>}
 						</section>
 
 						{windowDimension.winWidth > 500 && (
