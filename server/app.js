@@ -56,4 +56,8 @@ app.use(pushStateRouting(apiRoot, staticDir));
 
 app.use(logErrors());
 
+app.get("/*", (req, res) => {
+	res.status(404).send({ success: false, message: "outside API s reach" });
+});
+
 export default app;
