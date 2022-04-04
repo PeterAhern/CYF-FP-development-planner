@@ -10,16 +10,27 @@ export const MentorGraduatesStyles = styled.h4`
 	padding-left:1rem;
 	padding-top:1rem;
 
-	:hover {
+	.button {
+	    background: transparent;
+		color:red;
+		border-style:none;
+		padding:0.4rem;
+		font-size:large;
+		
+	} 
+	.button:hover {
 		background: #ff2626;
 		font-weight: bolder;
 		color: white;
 		border-radius: 0.5rem;
 	}
 
+	
+
+
 	.addGrad {
 			// position: fixed;
-			width: 0.5rem,
+			width: 0.5rem;
 			height: 0.5rem;
 			font-size: 1rem;
 			font-weight: 800;
