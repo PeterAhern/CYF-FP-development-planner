@@ -56,8 +56,8 @@ const NavigationMenu = () => {
 
 	return (
 		<NavBarStyles>
-			<Navbar className="navigationMenu" expand="lg">
-				<Container fluid>
+			<Navbar className="navigationMenu" collapseOnSelect expand="lg">
+				<Container>
 					<Navbar.Brand href="#">
 						<a href="https://codeyourfuture.io/">
 							<img className="cyfLogo" src={cyfLogo} alt="CYF logo" />
@@ -66,13 +66,11 @@ const NavigationMenu = () => {
 					{/* <Goal graduateEmail={loginStatus.user_email} /> */}
 					<Navbar.Toggle
 						className="navbarToggle"
-						aria-controls="navbarScroll"
+						aria-controls="responsive-navbar-nav"
 					/>
-					<Navbar.Collapse id="navbarScroll">
+					<Navbar.Collapse id="responsive-navbar-nav">
 						<Nav
-							className="me-auto my-2 my-lg-0"
-							style={{ maxHeight: "100px" }}
-							navbarScroll
+							className="me-auto"
 						>
 							{mentorAccess && (
 								<>
