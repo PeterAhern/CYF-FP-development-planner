@@ -48,7 +48,7 @@ export const PopUpFormStyles = styled.div`
 
 	.mentorComments {
 		left: 2rem;
-		background-color: #38b6ff;
+		background-color: #ff7878;
 	}
 
 	.box {
@@ -111,7 +111,6 @@ export const PopUpFormStyles = styled.div`
 	/* The actual timeline (the vertical ruler) */
 	.timeline::after {
 		content: "";
-		// position: absolute;
 		width: 6px;
 		background-color: white;
 		top: 0;
