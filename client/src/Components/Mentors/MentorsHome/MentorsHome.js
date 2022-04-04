@@ -223,7 +223,7 @@ const MentorsHome = ({ user_email }) => {
 										/>
 										<GraduateElement
 											className="gradElementDesc"
-											name={"Employabilty"}
+											name={"Employability"}
 											id={2}
 											graduateEmail={gradList.Graduate1}
 											mentorEmail={user_email}

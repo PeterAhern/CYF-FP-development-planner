@@ -134,7 +134,7 @@ const MyPlan = ({ user_email }) => {
 								setElementTasksId(2);
 							}}
 						>
-							<div>Employabilty</div>
+							<div>Employability</div>
 							<div>{employerTasks} Tasks</div>
 						</button>
 						<button
@@ -154,7 +154,6 @@ const MyPlan = ({ user_email }) => {
 					</div>
 				</main>
 
-
 				<div
 					className={
 						windowDimension.winWidth > 500
@@ -173,7 +172,6 @@ const MyPlan = ({ user_email }) => {
 								Go Back
 							</button>
 						)}
-
 						{elementTasksId === 1
 							? "Technical"
 							: elementTasksId === 2
