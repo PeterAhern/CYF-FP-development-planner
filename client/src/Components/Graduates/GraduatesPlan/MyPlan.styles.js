@@ -114,6 +114,12 @@ export const MyPlanStyles = styled.div`
 		}
 	}
 
+	.elementButton:hover {
+		background-color: white;
+		color: #ff2626;
+		cursor: pointer;
+	}
+
 	.elementButton div {
 		font-size: 1rem;
 
@@ -125,7 +131,6 @@ export const MyPlanStyles = styled.div`
 	.overallButtons {
 		background-color: #ff2626;
 		width: 100%;
-		height: 10px;
 		display: fixed;
 		justify-content: flex-end;
 	}
@@ -134,14 +139,13 @@ export const MyPlanStyles = styled.div`
 		position: fixed;
 		width: 120px;
 		height: 50px;
-		font-size: 10px;
+		font-size: 13px;
 		font-weight: 800;
-		box-shadow: 10px 10px 5px #aaaaaa;
+		box-shadow: 5px 5px 2px #aaaaaa;
 		background-color: #ff2626;
-		justify-content: center;
-		justify-self: center;
+		border: 1px solid black;
 		margin: 0.5rem 9.5rem 0 0;
-
+		white-space: nowrap;
 		@media (min-width: 500px) {
 			margin: 3rem 2rem 0 0;
 			width: 150px;
@@ -149,8 +153,8 @@ export const MyPlanStyles = styled.div`
 	}
 
 	.addNewTaskButton:hover {
-		color: #ff0000c3;
-		background-color: rgb(218, 179, 185);
+		color: #ff2626;
+		background-color: white;
 		cursor: pointer;
 	}
 
@@ -163,14 +167,32 @@ export const MyPlanStyles = styled.div`
 		position: fixed;
 		width: 120px;
 		height: 50px;
-		font-size: 10px;
+		font-size: 15px;
 		color: #ff2626;
 		font-weight: 800;
 		justify-content: center;
-		background-color: rgb(218, 179, 185);
-		box-shadow: 10px 10px 5px #aaaaaa;
+		box-shadow: 5px 5px 2px #aaaaaa;
 		margin-top: 0.4rem;
 		margin-right: 1.5rem;
+		border-radius: 20px;
+		border: 1px solid black;
+		background-color: #ff2626;
+		color: #ffffff;
+		font-size: 12px;
+		font-weight: bold;
+		padding: 12px 45px;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		transition: transform 80ms ease-in;
+		&:active {
+			transform: scale(0.95);
+		}
+		&:focus {
+			outline: none;
+		}
+		&:hover {
+			color: black;
+		}
 
 		@media (min-width: 500px) {
 			width: 150px;
@@ -180,8 +202,8 @@ export const MyPlanStyles = styled.div`
 	}
 
 	.viewFeedbackButton:hover {
-		background-color: #ff0000c3;
-		color: white;
+		background-color: white;
+		color: #ff2626;
 		cursor: pointer;
 	}
 

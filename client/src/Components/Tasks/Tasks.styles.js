@@ -97,7 +97,7 @@ export const TasksStyles = styled.div`
 	}
 	.expense-date__year {
 		font-size: medium;
-		
+
 		@media (min-width: 500px) {
 			font-size: 1.5rem;
 		}
@@ -135,7 +135,6 @@ export const TasksStyles = styled.div`
 	.deleteTaskButtonSection {
 		width: 90%;
 		height: 20px;
-
 		display: flex;
 		flex-flow: row wrap;
 		justify-content: center;
@@ -157,6 +156,17 @@ export const TasksStyles = styled.div`
 			width: 100%;
 			height: 50px;
 		}
+	}
+
+	.editTask,
+	.deleteTask {
+		border: 1px solid black;
+	}
+
+	.editTask:hover, .deleteTask:hover {
+		background-color: white;
+		color: #ff2626;
+		cursor: pointer;
 	}
 
 	.evidenceSide {
