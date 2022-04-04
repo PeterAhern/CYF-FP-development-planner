@@ -152,6 +152,7 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 					<section className="rightTaskDetails">
 						<section className="deleteTaskButtonSection">
 							<Components.Button
+								className="deleteTask"
 								onClick={() => {
 									window.confirm("Are you sure you want to delete?") &&
 										deleteTask(task.id);
@@ -161,7 +162,10 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 							</Components.Button>
 						</section>
 						<section className="editTaskButtonSection">
-							<Components.Button onClick={(e) => editTaskHandler(e, index)}>
+							<Components.Button
+								className="editTask"
+								onClick={(e) => editTaskHandler(e, index)}
+							>
 								Edit Task
 							</Components.Button>
 							{isOpen && (
@@ -186,7 +190,6 @@ const Tasks = ({ userEmail, elementId, refresh, refreshFunc }) => {
 						<button className="statusShower" disabled>
 							{task.status_id ? statusShower(task.status_id) : ""}
 						</button>
-
 					</section>
 				</div>
 			);

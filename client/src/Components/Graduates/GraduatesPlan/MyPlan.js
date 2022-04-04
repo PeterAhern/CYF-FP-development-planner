@@ -186,7 +186,7 @@ const MyPlan = ({ user_email }) => {
 							onClick={togglePopup}
 							className="addNewTaskButton"
 						>
-							New Task
+							+ New Task
 						</Components.Button>
 						{isOpen && (
 							<PopUpForm

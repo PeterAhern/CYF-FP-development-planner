@@ -8,11 +8,7 @@ export const FooterDiv = styled.div`
 	align-items: center;
 	width: 100%;
 	margin-top: auto;
-	height: 80%;
-
-	// @media (max-width: 1000px) {
-	// 	padding: 70px 30px;
-	// }
+	height: 100%;
 
 	img {
 		height: 100%;
@@ -21,7 +17,7 @@ export const FooterDiv = styled.div`
 
 	.elementalLogo {
 		height: 100%;
-		width: 20%;
+		width: 50%;
 		animation: fadeIn ease 5s;
 		animation-delay: 2s;
 		opacity: 0;
@@ -81,10 +77,5 @@ export const FooterDiv = styled.div`
 		100% {
 			opacity: 1;
 		}
-	}
-
-	.elementalLogo img {
-		height: 100%;
-		width: 100%;
 	}
 `;
