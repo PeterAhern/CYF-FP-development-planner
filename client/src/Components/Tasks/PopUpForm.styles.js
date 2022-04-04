@@ -48,7 +48,7 @@ export const PopUpFormStyles = styled.div`
 
 	.mentorComments {
 		left: 2rem;
-		background-color: #ff7878;
+		background-color: #38b6ff;
 	}
 
 	.box {
