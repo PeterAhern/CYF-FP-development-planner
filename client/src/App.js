@@ -10,6 +10,8 @@ import Plan from "./pages/plan";
 import UserProfile from "./Components/UserProfile/UserProfile";
 import MentorGuide from  "../src/pages/MentorsGuide";
 
+import ErrorPage from "./pages/ErrorPage";
+
 const App = () => {
 	return (
 		<div className="landingPage">
@@ -18,6 +20,7 @@ const App = () => {
 				<Route path="/plan" exact element={<Plan />} />
 				<Route path="/guide" exact element={<MentorGuide />} />
 				<Route path={"/profile"} exact element={<UserProfile />} />
+				<Route path="/*" element={<ErrorPage />} />
 			</Routes>
 		</div>
 	);
