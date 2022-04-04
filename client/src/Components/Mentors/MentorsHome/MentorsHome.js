@@ -2,10 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import GraduateElement from "../MentorFeedback/GraduateElement";
 import Navbar from "../../Header/Navbar/Navbar";
 import AllGraduates from "../ViewAllGraduates/AllGraduates";
-// import GraduateList from "../GraduateList/GraduateList";
 import { MentorsHomeStyle } from "./MentorsHome.styles";
-import { MyPlanStyles } from "../../Graduates/GraduatesPlan/MyPlan.styles";
-
 import TaskForm from "../../TaskForm/TaskForm";
 import PopUpForm from "../../Tasks/PopUpForm";
 import PopupFeedBackMentor from "../../Tasks/PopupFeedBackMentor";
@@ -17,9 +14,7 @@ import * as Components from "../../UI/Button/Button";
 const MentorsHome = ({ user_email }) => {
 	const [addGradRefresh, setAddGradRefresh] = useState(true);
 	const [clicked, setClicked] = useState(1);
-
 	const [gradList, setGradList] = useState({});
-	// const [buttonPopup, setButtonPopup] = useState(false);
 	const [user, setUser] = useState("");
 	const [nameClicked, setNameClicked] = useState(false);
 	const [comment, setComment] = useState(false);
@@ -29,8 +24,6 @@ const MentorsHome = ({ user_email }) => {
 
 	const [isOpen, setIsOpen] = useState(false);
 	const [Open, setOpen] = useState(false);
-	const [allmenteesPopUpOpen, setAllMenteesPopUpOpen] = useState(false);
-
 	const [fixedTasksSectionSelected, setFixedTasksSectionSelected] =
 		useState(false);
 

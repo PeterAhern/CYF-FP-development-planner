@@ -5,6 +5,8 @@ export const MentorsHomeStyle = styled.div`
 	height: 100%;
 	overflow: hidden;
 
+
+	
 	.main {
 		width: 100%;
 		height: 95%;
@@ -179,11 +181,7 @@ export const MentorsHomeStyle = styled.div`
 		border: none;
 	}
 
-	.tasksSection {
-		min-width: 30%;
-		height: 100vh;
-		overflow: hidden;
-	}
+	
 
 	.tasksAddMentee {
 		width: 100%;
@@ -435,6 +433,16 @@ export const MentorsHomeStyle = styled.div`
 		@media (min-width: 500px) {
 			font-size: 3rem;
 		}
+	}
+
+	.returnToElementsButton {
+		width: 50px;
+		height: 50px;
+		font-size: 0.5rem;
+		background-color: #ff2626;
+		border-radius: 50%;
+		border-style: none;
+		color: white;
 	}
 
 	.returnToElementsButton {

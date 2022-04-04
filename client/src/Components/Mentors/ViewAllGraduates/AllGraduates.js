@@ -21,6 +21,11 @@ const AllGraduates = ({ mentorEmail, gradRefreshFunc }) => {
 			console.log(error);
 		}
 	}, []);
+	const clickHandler =()=>{
+		setClicked(!clicked);
+		setTerm("");
+
+	}
 	useEffect(() => {
 		fetchUsersHandler();
 	}, [fetchUsersHandler]);
@@ -42,7 +47,7 @@ const AllGraduates = ({ mentorEmail, gradRefreshFunc }) => {
 					/>
 					<button
 						className="allGrads btn btn-danger"
-						onClick={() => setClicked(!clicked)}
+						onClick={clickHandler}
 					>
 						All Graduates
 					</button>

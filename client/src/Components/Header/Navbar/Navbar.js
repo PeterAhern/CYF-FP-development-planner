@@ -19,6 +19,7 @@ const NavigationMenu = () => {
 	});
 
 	const [mentorAccess, setMentorAccess] = useState(false);
+	const [direct, setDirect] = useState("");
 	const location = useLocation();
 
 	useEffect(() => {
@@ -46,6 +47,16 @@ const NavigationMenu = () => {
 	const logoutHandler = () => Axios.post("/api/logout");
 
 	console.log(mentorAccess);
+	const handleClick1 = () => {
+		
+			setDirect("/guide");
+	
+	};
+	const handleClick2 = () => {
+		
+			setDirect("/plan");
+		
+	};
 
 	return (
 		<NavBarStyles>
@@ -70,15 +81,15 @@ const NavigationMenu = () => {
 							{mentorAccess && (
 								<>
 									{location.pathname !== "/guide" && (
-										<Nav.Link href="/guide">
-											<DropdownOption href="/guide" leftIcon={developmentSvg}>
+										<Nav.Link onClick={handleClick1} href={direct}>
+											<DropdownOption href={direct} leftIcon={developmentSvg}>
 												Mentor Guide
 											</DropdownOption>
 										</Nav.Link>
 									)}
 									{location.pathname !== "/plan" && (
-										<Nav.Link href="/plan">
-											<DropdownOption href="/plan" leftIcon={developmentSvg}>
+										<Nav.Link onClick={handleClick2} href={direct}>
+											<DropdownOption href={direct} leftIcon={developmentSvg}>
 												Home
 											</DropdownOption>
 										</Nav.Link>
