@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom";
-import Favicon from "react-favicon";
+// import Favicon from "react-favicon";
 import { BrowserRouter } from "react-router-dom";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
@@ -13,7 +13,7 @@ import App from "./App";
 
 ReactDOM.render(
 	<BrowserRouter>
-		<Favicon url="./favicon.ico" />
+		{/* <Favicon url="./favicon.ico" /> */}
 		<App />
 	</BrowserRouter>,
 	document.getElementById("root")
