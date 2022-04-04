@@ -58,7 +58,7 @@ export const MentorsHomeStyle = styled.div`
 		justify-content: center;
 		background-color: #f5f5f5;
 		align-items: center;
-		font-size:2rem;
+		font-size: 1.5rem;
 
 		@media (min-width: 500px) {
 			height: 9rem;
@@ -69,69 +69,64 @@ export const MentorsHomeStyle = styled.div`
 		}
 	}
 
+	.gradButton:hover {
+		background-color: white;
+		color: #ff2626;
+		cursor: pointer;
+	}
+
 	.rightSideDisplaySection {
 		width: 80%;
 		height: 100%;
 	}
 
 	.graduateButtons {
-		background-color: rgba(139, 137, 150, 0);
+		background-color: transparent;
 		width: 100%;
 		height: 100px;
 		display: fixed;
+		color: white;
 		justify-content: flex-end;
 		/* background-color: green; */
 	}
 
-	// .menteeCommentButton {
-	// 	position: fixed;
-	// 	margin: 3rem 33rem 0 0;
-	// 	background-color: none;
-	// 	width: 150px;
-	// 	height: 50px;
-	// 	font-size: 10px;
-	// 	font-weight: 800;
-	// 	box-shadow: 10px 10px 5px #aaaaaa;
-	// }
-
-	.menteeCommentButton:hover {
-		color: #ff0000c3;
-		background-color: rgb(218, 179, 185);
-		cursor: pointer;
-	}
-
-	.addNewTaskButton {
+	.addNewTaskButton, .removeGradButton, .viewFeedbackButton {
+		border-radius: 20px;
+		border: 1px solid black;
+		background-color: #ff2626;
+		color: #ffffff;
+		font-size: 13px;
+		font-weight: bold;
+		padding: 12px 45px;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		transition: transform 80ms ease-in;
+		&:active {
+			transform: scale(0.95);
+		}
+		&:focus {
+			outline: none;
+		}
+		&:hover {
+			color: black;
+		}
 		position: fixed;
 		margin-top: 3rem;
 		margin-right: 22rem;
 		width: 150px;
 		height: 50px;
-		font-size: 10px;
-		color: white;
-		font-weight: 800;
-		justify-content: center;
-		background-color: rgb(218, 179, 185);
-		box-shadow: 10px 10px 5px #aaaaaa;
-	}
-
-	.removeGradButton {
-		position: fixed;
-		margin-top: 3rem;
-		margin-right: 22rem;
-		width: 150px;
-		height: 50px;
-		font-size: 10px;
+		font-size: 13px;
 		color: white;
 		font-weight: 800;
 		justify-content: center;
 		background-color: #ff2626;
-		box-shadow: 10px 10px 5px #aaaaaa;
+		box-shadow: 5px 5px 2px #aaaaaa;
 	}
 
-	.addNewTaskButton,
-	.removeGradButton:hover {
-		background-color: #ff0000c3;
-		color: white;
+	.addNewTaskButton:hover,
+	.removeGradButton:hover, .viewFeedbackButton:hover {
+		background-color: white;
+		color: #ff2626;
 		cursor: pointer;
 	}
 

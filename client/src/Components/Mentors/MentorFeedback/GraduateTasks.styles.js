@@ -149,6 +149,22 @@ export const GraduateTasksStyles = styled.div`
 		text-align: center;
 		margin: 2rem;
 	}
-	.StatusShower {
+	.statusShower {
+		width: 90%;
+		height: 40px;
+		font-size: 10px;
+		border-radius: 20px;
+		border: 1px solid #ff2626;
+		background-color: #f5f5f5;
+		color: black;
+		font-weight: bold;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		@media (min-width: 500px) {
+			padding: 12px 40px;
+			width: 100%;
+			height: 50px;
+			font-size: 12px;
+		}
 	}
 `;
