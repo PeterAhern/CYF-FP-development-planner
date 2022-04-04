@@ -81,16 +81,24 @@ const NavigationMenu = () => {
 							{mentorAccess && (
 								<>
 									{location.pathname !== "/guide" && (
-										<Nav.Link onClick={handleClick1} href={direct}>
-											<DropdownOption href={direct} leftIcon={developmentSvg}>
-												Mentor Guide
+										<Nav.Link
+											onClick={handleClick1}
+											href={direct}
+											className="divMentorGuide"
+										>
+											<DropdownOption href={direct}>
+												<p className="mentorGuide">Mentor Guide</p>
 											</DropdownOption>
 										</Nav.Link>
 									)}
 									{location.pathname !== "/plan" && (
-										<Nav.Link onClick={handleClick2} href={direct}>
-											<DropdownOption href={direct} leftIcon={developmentSvg}>
-												Home
+										<Nav.Link
+											onClick={handleClick2}
+											className="divMentorGuide"
+											href={direct}
+										>
+											<DropdownOption href={direct}>
+												<p className="mentorGuide2">Home</p>
 											</DropdownOption>
 										</Nav.Link>
 									)}
