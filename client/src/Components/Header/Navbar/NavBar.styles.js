@@ -32,15 +32,15 @@ export const NavBarStyles = styled.div`
 			display: none;
 		}
 	}
-	.guide{
-		background:blue;
+	.guide {
+		background: blue;
 	}
-	.another{
-		display:none;
+	.another {
+		display: none;
 	}
 
 	.logout {
-		position:fixed;
+		position: fixed;
 		right: 0;
 		top: 1rem;
 		background-color: transparent;
@@ -49,6 +49,42 @@ export const NavBarStyles = styled.div`
 
 	Navbar.Brand a {
 		margin-left: 2rem;
+	}
+
+	.divMentorGuide {
+		align-items: center;
+	}
+
+	.mentorGuide {
+		font-size: 1.2rem;
+		color: #ff2626;
+		text-align: center;
+		position: fixed;
+		right: 5rem;
+		top: 2rem;
+		margin-right: 2rem;
+	}
+
+	.mentorGuide2 {
+		font-size: 1.2rem;
+		color: #ff2626;
+		text-align: center;
+		position: fixed;
+		right: 5rem;
+		top: 2rem;
+		margin-right: 2rem;
+	}
+
+	.mentorGuide:hover {
+		color: white;
+		background-color: #ff2626;
+		cursor: pointer;
+	}
+
+	.mentorGuide2:hover {
+		color: white;
+		background-color: #ff2626;
+		cursor: pointer;
 	}
 `;
 
