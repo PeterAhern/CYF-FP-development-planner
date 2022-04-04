@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom"; 
 import Navbar from "react-bootstrap/Navbar";
 import { Container, Nav } from "react-bootstrap";
 import Goal from "./Goal";
@@ -48,18 +47,11 @@ const NavigationMenu = () => {
 
 	console.log(mentorAccess);
 	const handleClick1 = () => {
-		
-			setDirect("/guide");
-	
+		setDirect("/guide");
 	};
 	const handleClick2 = () => {
-		
-			setDirect("/plan");
-		
+		setDirect("/plan");
 	};
-	useEffect((direct) => {
-		setDirect(direct);
-	}, []);
 
 	return (
 		<NavBarStyles>
