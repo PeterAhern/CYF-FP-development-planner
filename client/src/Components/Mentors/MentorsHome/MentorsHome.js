@@ -195,7 +195,6 @@ const MentorsHome = ({ user_email }) => {
 						gradList.Graduate2 !== null ||
 						gradList.Graduate3 !== null ? (
 							<section className="graduateElementsSection">
-
 								<button
 									value={user}
 									onClick={removeGraduate}
@@ -287,19 +286,19 @@ const MentorsHome = ({ user_email }) => {
 					</section>
 
 					<section className="graduateButtons">
-						<Components.GhostButton
+						<Components.Button
 							value={user}
 							onClick={removeGraduate}
 							className="removeGradButton"
 						>
 							Remove
-						</Components.GhostButton>
-						<Components.GhostButton
+						</Components.Button>
+						<Components.Button
 							className="viewFeedbackButton"
 							onClick={commentHandler}
 						>
 							Feedback
-						</Components.GhostButton>
+						</Components.Button>
 						<Components.Button
 							className="addNewTaskButton"
 							onClick={assignTaskHandler}

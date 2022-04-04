@@ -44,7 +44,7 @@ const GraduateTasks = ({ elementId, senderEmail }) => {
 			return "N/A";
 		}
 	};
-	let content = <p>Found no tasks.</p>;
+	let content = <p className="noTasks">No tasks in this element.</p>;
 
 	if (tasks.length > 0) {
 		content = tasks.map((task) => {
@@ -65,7 +65,7 @@ const GraduateTasks = ({ elementId, senderEmail }) => {
 					</section>
 					<section className="rightTaskDetails">
 						<section className="StatusShower">
-							<button>
+							<button className="statusShower" disabled>
 								{task.status_id ? statusShower(task.status_id) : ""}
 							</button>
 						</section>
