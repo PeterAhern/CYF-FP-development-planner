@@ -48,29 +48,35 @@ const NavigationMenu = () => {
 
 	console.log(mentorAccess);
 	const handleClick1 = () => {
+		
 			setDirect("/guide");
+	
 	};
 	const handleClick2 = () => {
+		
 			setDirect("/plan");
+		
 	};
 
 	return (
 		<NavBarStyles>
-			<Navbar className="navigationMenu" collapseOnSelect expand="lg">
-				<Container>
+			<Navbar className="navigationMenu" expand="lg">
+				<Container fluid>
 					<Navbar.Brand href="#">
-						<a href="https://codeyourfuture.io/">
+						<a href="https://syllabus.codeyourfuture.io/">
 							<img className="cyfLogo" src={cyfLogo} alt="CYF logo" />
 						</a>
 					</Navbar.Brand>
 					{/* <Goal graduateEmail={loginStatus.user_email} /> */}
 					<Navbar.Toggle
 						className="navbarToggle"
-						aria-controls="responsive-navbar-nav"
+						aria-controls="navbarScroll"
 					/>
-					<Navbar.Collapse id="responsive-navbar-nav">
+					<Navbar.Collapse id="navbarScroll">
 						<Nav
-							className="me-auto"
+							className="me-auto my-2 my-lg-0"
+							style={{ maxHeight: "100px" }}
+							navbarScroll
 						>
 							{mentorAccess && (
 								<>
