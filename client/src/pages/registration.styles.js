@@ -7,9 +7,10 @@ export const RegistrationStyles = styled.div`
 	margin: 0;
 	display: flex;
 	flex-flow: row wrap;
+	justify-content: center;
 
 	.upperPartLandingPage {
-		width: 100%;
+		width: 80%;
 		height: 90%;
 	}
 
@@ -32,7 +33,7 @@ export const RegistrationStyles = styled.div`
 	}
 
 	.landingHeader {
-		margin-bottom: 3rem;
+		margin-bottom: 1.5rem;
 		text-align: center;
 		color: black;
 		// font-family: Raleway, sans-serif;
@@ -41,6 +42,10 @@ export const RegistrationStyles = styled.div`
 		// -moz-animation: fadeIn 3s;
 		// -o-animation: fadeIn 3s;
 		// -ms-animation: fadeIn 3s;
+
+		@media (min-width: 500px) {
+			margin-bottom: 3rem;
+		}
 	}
 
 	.landingHeader h1 {
@@ -57,7 +62,9 @@ export const RegistrationStyles = styled.div`
 	}
 
 	.landingHeader h2 {
-		width: auto;
+		font-size: 1rem;
+		max-width: 90%;
+
 		opacity: 0;
 		overflow: hidden;
 		border-right: 0.15em solid #ff2626;
@@ -68,6 +75,16 @@ export const RegistrationStyles = styled.div`
 		animation: typing 2s steps(20, end), blink-caret 0.75s step-end 5;
 		animation-delay: 2.05s;
 		animation-fill-mode: forwards;
+
+		@media (min-width: 500px) {
+			font-size: 2rem;
+		}
+	}
+
+	.landingLoginAndSignupSection {
+		width: 100%;
+		display: flex;
+		justify-content: center;
 	}
 
 	/* The typing effect */
@@ -94,6 +111,7 @@ export const RegistrationStyles = styled.div`
 	}
 
 	.loginComp {
+		max-height: 100%;
 		animation: fadeIn ease 5s;
 		animation-delay: 2.2s;
 		opacity: 0;
@@ -109,6 +127,10 @@ export const RegistrationStyles = styled.div`
 		-ms-animation: fadeIn ease 3 s;
 		-ms-animation-delay: 4s;
 		-ms-animation-fill-mode: forwards;
+
+		@media (min-width: 500px) {
+			
+		}
 	}
 	@keyframes fadeIn {
 		0% {

@@ -164,7 +164,6 @@ const Login = ({ setLoginStatus }) => {
 	};
 
 	return (
-		<>
 			<Components.Form className="login" onSubmit={loginSubmitHandler}>
 				<Components.Title>Sign in</Components.Title>
 				<Components.Input
@@ -190,7 +189,7 @@ const Login = ({ setLoginStatus }) => {
 					Sign In
 				</Components.Button3>
 			</Components.Form>
-		</>
+
 	);
 };
 

@@ -3,6 +3,7 @@ import Axios from "axios";
 import { Navigate } from "react-router-dom";
 
 import { PlanStyles } from "./plan.styles";
+import Footer from "../Components/LandingComponents/Footer";
 
 import MyPlan from "../Components/Graduates/GraduatesPlan/MyPlan";
 import MentorsHome from "../Components/Mentors/MentorsHome/MentorsHome";
@@ -36,6 +37,10 @@ export default function Plan() {
 			{currUser.role === "mentor" && (
 				<MentorsHome user_email={currUser.user_email} />
 			)}
+
+			<div className="websiteFooter">
+				<Footer />
+			</div>
 		</PlanStyles>
 	);
 }
