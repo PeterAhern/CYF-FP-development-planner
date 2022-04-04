@@ -3,6 +3,8 @@ import styled from "styled-components";
 
 // /* Popup style */
 export const PopUpFormStyles = styled.div`
+	overflow-x: hidden;
+
 	.form {
 		display: flex;
 		flex-flow: row wrap;
@@ -18,6 +20,35 @@ export const PopUpFormStyles = styled.div`
 		height: 100vh;
 		top: 0;
 		left: 0;
+	}
+
+	ul {
+		width: 30%;
+		margin: 0;
+		left: 0;
+	}
+
+	.timeline {
+		position: fixed;
+		left: 0;
+		width: 100%;
+	}
+
+	.gradComments,
+	.mentorComments {
+		background-color: #c9e265;
+		border-radius: 5px;
+		padding: 10px 20px;
+		position: relative;
+		width: 80%;
+		box-sizing: border-box;
+		margin-right: auto;
+		margin-left: auto;
+	}
+
+	.mentorComments {
+		left: 2rem;
+		background-color: #38b6ff;
 	}
 
 	.box {
@@ -58,9 +89,6 @@ export const PopUpFormStyles = styled.div`
 	}
 	.blue {
 		background-color: rgb(123, 216, 216);
-	}
-
-	.green {
 	}
 
 	* {
