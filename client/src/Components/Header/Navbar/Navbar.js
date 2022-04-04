@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import { Link } from "react-router-dom"; 
 import Navbar from "react-bootstrap/Navbar";
 import { Container, Nav } from "react-bootstrap";
 import Goal from "./Goal";
@@ -57,6 +57,9 @@ const NavigationMenu = () => {
 			setDirect("/plan");
 		
 	};
+	useEffect((direct) => {
+		setDirect(direct);
+	}, []);
 
 	return (
 		<NavBarStyles>
@@ -81,7 +84,7 @@ const NavigationMenu = () => {
 							{mentorAccess && (
 								<>
 									{location.pathname !== "/guide" && (
-										<Nav.Link
+										<a
 											onClick={handleClick1}
 											href={direct}
 											className="divMentorGuide"
@@ -89,10 +92,10 @@ const NavigationMenu = () => {
 											<DropdownOption href={direct}>
 												<p className="mentorGuide">Mentor Guide</p>
 											</DropdownOption>
-										</Nav.Link>
+										</a>
 									)}
 									{location.pathname !== "/plan" && (
-										<Nav.Link
+										<a
 											onClick={handleClick2}
 											className="divMentorGuide"
 											href={direct}
@@ -100,7 +103,7 @@ const NavigationMenu = () => {
 											<DropdownOption href={direct}>
 												<p className="mentorGuide2">Home</p>
 											</DropdownOption>
-										</Nav.Link>
+										</a>
 									)}
 								</>
 							)}
