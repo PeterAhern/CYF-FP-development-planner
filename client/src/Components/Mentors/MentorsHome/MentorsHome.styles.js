@@ -32,15 +32,23 @@ export const MentorsHomeStyle = styled.div`
 		justify-content: center;
 		flex-flow: row wrap;
 		background-color: #ff2626;
-
+		align-content: center;
 		border-style: none;
 	}
 
 	.elementsText {
-		margin: 2rem;
+		margin: 1rem;
 		width: 60%;
 		height: 100px;
 		color: white;
+		padding-bottom: 2rem;
+	}
+
+	.title h2 {
+		color:white;
+  		text-decoration: underline;
+		  height: 20px;
+		  width: 100%
 	}
 
 	.gradButton {
@@ -49,7 +57,7 @@ export const MentorsHomeStyle = styled.div`
 		border-radius: 1.5rem;
 		margin-left: auto;
 		margin-right: auto;
-		margin-top: 0.3rem;
+		margin-top: auto;
 		margin-bottom: 0.3rem;
 		padding-left: 4rem;
 		padding-right: 4rem;
@@ -153,11 +161,12 @@ export const MentorsHomeStyle = styled.div`
 
 	.gradElement {
 		display: flex;
+		justify-content:space-evenly;
 		width: 100%:
 		height: 60px;
 		@media (min-width: 500px) {
 			height: 100%;
-			width: 50px;
+			// width: 50px;
 		}
 	}
 
