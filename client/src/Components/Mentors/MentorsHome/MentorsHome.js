@@ -149,8 +149,10 @@ const MentorsHome = ({ user_email }) => {
 						<div className="elementsText">
 							<p> Welcome Mentor!</p>
 							<p> Connect with graduates, give feedback, support growth!</p>
+							<div className="title">
+								<h2>Graduate Connections</h2>
+							</div>
 						</div>
-
 						{gradList.Graduate1 && (
 							<button
 								className="gradButton"
@@ -195,13 +197,6 @@ const MentorsHome = ({ user_email }) => {
 						gradList.Graduate2 !== null ||
 						gradList.Graduate3 !== null ? (
 							<section className="graduateElementsSection">
-								<button
-									value={user}
-									onClick={removeGraduate}
-									className="removeGraduateButton"
-								>
-									Remove
-								</button>
 								{fixedTasksSectionSelected && (
 									<button
 										className="returnToElementsButton"
@@ -337,11 +332,14 @@ const MentorsHome = ({ user_email }) => {
 					)}
 					<div className="tasksAddMentee">
 						<section className="graduateElementTasksDisplaySection">
-							{nameClicked && <GraduateTasks userEmail={user_email}
-								elementId={clicked}
-								className="elementTasksList"
-								senderEmail={user}
-							/>}
+							{nameClicked && (
+								<GraduateTasks
+									userEmail={user_email}
+									elementId={clicked}
+									className="elementTasksList"
+									senderEmail={user}
+								/>
+							)}
 						</section>
 
 						{windowDimension.winWidth > 500 && (
