@@ -36,13 +36,14 @@ export const MentorsHomeStyle = styled.div`
 		border-style: none;
 	}
 
-	.elementsText {
+	/* .elementsText {
 		margin: 1rem;
 		width: 60%;
 		height: 100px;
-		color: white;
-		padding-bottom: 2rem;
-	}
+		/* color: white; */
+		padding-bottom: 5rem;
+		margin-bottom:5rem
+	} */
 
 	.title h2 {
 		color:white;
@@ -145,7 +146,6 @@ export const MentorsHomeStyle = styled.div`
 		@media (min-width: 500px) {
 			width: 70%;
 			height: 50px;
-			/* background-color: blue; */
 			flex-flow: row wrap;
 		}
 		
@@ -300,17 +300,19 @@ export const MentorsHomeStyle = styled.div`
 
 	.elementsText {
 		width: 90%;
-		color: white;
-		height: 3rem;
-
-		font-size: 1rem;
+		 color: white;
+		/* height: 2rem; */
+         margin-bottom: 6rem; 
+		 padding-bottom: 5rem; 
+		font-size: 1rem; 
 
 		@media (min-width: 500px) {
-			background-color: #ff2626;
-			height: 5rem;
-			font-size: 1.5rem;
+			/* background-color: #ff2626; */
+			height: 2rem;
+			/* font-size: 1.5rem; */
+			font-size:medium;
 		}
-	}
+	} */
 
 	.elementsButtonsSection {
 		display: flex;

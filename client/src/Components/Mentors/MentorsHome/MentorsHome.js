@@ -109,7 +109,7 @@ const MentorsHome = ({ user_email }) => {
 
 	let gradListContent = (
 		<h1 className="message elementsText">
-			No graduate connections, search and add graduates
+			{/* No graduate connections, search and add graduates */}
 		</h1>
 	);
 
@@ -150,7 +150,7 @@ const MentorsHome = ({ user_email }) => {
 							<p> Welcome Mentor!</p>
 							<p> Connect with graduates, give feedback, support growth!</p>
 							<div className="title">
-								<h2>Graduate Connections</h2>
+								{/* <h4>Graduate Connections</h4> */}
 							</div>
 						</div>
 						{gradList.Graduate1 && (
@@ -274,7 +274,7 @@ const MentorsHome = ({ user_email }) => {
 							</section>
 						) : (
 							<div className="elementsSection">
-								<h1 className="message elementsText">Graduate Connections</h1>
+								{/* <h1 className="message elementsText">Graduate Connections</h1> */}
 								{gradListContent}
 							</div>
 						)}

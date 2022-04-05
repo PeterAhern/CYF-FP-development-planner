@@ -52,6 +52,12 @@ const NavigationMenu = () => {
 	const handleClick2 = () => {
 		setDirect("/plan");
 	};
+	useEffect(() => {
+		handleClick1();
+	}, []);
+	useEffect(() => {
+		handleClick2();
+	}, []);
 
 	return (
 		<NavBarStyles>
