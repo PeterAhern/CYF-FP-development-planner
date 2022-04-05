@@ -416,12 +416,12 @@ export const MentorsHomeStyle = styled.div`
 		cursor: pointer;
 	}
 
-	.elementTasksList {
+	/* .elementTasksList {
 		padding-top: 6rem;
 		width: 100%;
 		height: calc(100vh - 290px);
 		overflow: scroll;
-	}
+	} */
 
 	.elementTasksHeading {
 		width: 100%;

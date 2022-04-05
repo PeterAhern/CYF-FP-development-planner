@@ -340,6 +340,8 @@ const MentorsHome = ({ user_email }) => {
 									senderEmail={user}
 								/>
 							)}
+
+							{!nameClicked && gradList.length > 0 && <h1 >Select a Graduate to view their Elements and Tasks</h1>}
 						</section>
 
 						{windowDimension.winWidth > 500 && (

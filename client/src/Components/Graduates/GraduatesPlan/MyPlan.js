@@ -10,6 +10,7 @@ import TaskForm from "../../TaskForm/TaskForm";
 import PopUpForm from "../../Tasks/PopUpForm";
 import MentorsComment from "../../Mentors/MentorFeedback/MentorsComment";
 import * as Components from "../../UI/Button/Button";
+import Goal from "../../Header/Navbar/Goal";
 // import Back from "../../../Assets/svg/back.svg";
 
 
@@ -92,6 +93,7 @@ const MyPlan = ({ user_email }) => {
 	return (
 		<MyPlanStyles>
 			<Navbar graduateEmail={user_email} />
+			<Goal graduateEmail={user_email} />
 			<section className="gradPlanPage">
 				<main
 					role="main"

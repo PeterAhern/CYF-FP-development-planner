@@ -5,7 +5,7 @@ const Goal = ( { graduateEmail } ) => {
 	const [goal, setGoal] = useState("");
 
 	const fetchGradGoal = useCallback(async () => {
-		if (clicked) {
+
 			try {
 				// const graduate = graduateEmail;
 				const response = await fetch(
@@ -23,8 +23,8 @@ const Goal = ( { graduateEmail } ) => {
 			} catch (error) {
 				console.log(error.message);
 			}
-		}
-	}, [graduateEmail, clicked]);
+
+	}, [graduateEmail]);
 
 	useEffect(() => {
 		fetchGradGoal();

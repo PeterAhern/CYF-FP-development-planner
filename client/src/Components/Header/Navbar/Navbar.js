@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import { Container, Nav } from "react-bootstrap";
-import Goal from "./Goal";
+// import Goal from "./Goal";
 import DropdownOption from "./DropdownItem";
 import Axios from "axios";
 import { useLocation } from "react-router-dom";
 import { NavBarStyles } from "./NavBar.styles";
-import developmentSvg from "../../../Assets/svg/development.svg";
+// import developmentSvg from "../../../Assets/svg/development.svg";
 // import logInOutSvg from "../../../Assets/svg/login-out.svg";
 import cyfLogo from "../../../Assets/svg/cyfLogo.svg";
 import LogRed from "../../../Assets/svg/logoutRed.svg";
