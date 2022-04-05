@@ -3,24 +3,30 @@ import styled from "styled-components";
 export const GoalStyles = styled.div`
 	display: flex;
 	flex-flow: row;
-	width: 800px;
+	width: 100%;
+	
 
 	.goal {
-		max-width: 600px;
+		width: 90%;
 		height: 50px;
-		margin-right: 35%;
-		margin-top: 1%;
 		color: rgba(14, 13, 13, 0.685);
-		overflow: hidden;
+		display: flex;
+		justify-content: center;
 	}
 
 	.button {
-		width: 200px;
+		width: 10%;
 		height: 40px;
 		/* background-color: blue; */
+		color: red;
+		background-color: white;
 
 		border-style: none;
-		color: azure;
+	}
+
+	.button:hover {
+		color: white;
+		background-color: red;
 	}
 
 	.goalInput {
