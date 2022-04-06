@@ -59,8 +59,7 @@ router.post("/logout", (req, res) => {
 	req.session.user = "";
 
 	return res.redirect("/");
-} );
-
+});
 
 router.post("/login", (req, res) => {
 	const { user_email, password } = req.body;
@@ -266,10 +265,10 @@ router.get("/users/:user_email/:elementId/tasks", (req, res) => {
 		try {
 			// querying for the requested tasks in the specified element for the graduate
 			pool
-				.query("SELECT COUNT(*) FROM tasks WHERE user_email=$1 AND element_id=$2", [
-					user_email,
-					elementId,
-				])
+				.query(
+					"SELECT COUNT(*) FROM tasks WHERE user_email=$1 AND element_id=$2",
+					[user_email, elementId]
+				)
 				.then((result) => {
 					// if the graduate has any tasks in the specified element, we are returning them back
 					if (result.rows.length > 0) {
@@ -278,8 +277,7 @@ router.get("/users/:user_email/:elementId/tasks", (req, res) => {
 						// else we are concluding that the user has no tasks in the specified element and we share this information with them
 						return res.send({
 							success: true,
-							message:
-								"no tasks in this element, why not add some!",
+							message: "no tasks in this element, why not add some!",
 						});
 					}
 				})
@@ -296,7 +294,8 @@ router.get("/users/:user_email/:elementId/tasks", (req, res) => {
 		// if any of the params were not provided we are returning back a 400 request error
 		return res.status(400).send({
 			success: false,
-			message: "Something went wrong while getting the number of tasks for this Element",
+			message:
+				"Something went wrong while getting the number of tasks for this Element",
 		});
 	}
 });
@@ -430,31 +429,19 @@ router.put("/users/mentors/:mentor", async (req, res) => {
 			const Query =
 				"SELECT user_email,graduate_1, graduate_2,graduate_3 FROM users WHERE user_email =$1";
 			const result = await pool.query(Query, [params]);
-			if (
-				!result.rows[0].graduate_1 &&
-				(result.rows[0].graduate_2 || !result.rows[0].graduate_2) &&
-				(result.rows[0].graduate_3 || !result.rows[0].graduate_3)
-			) {
+			if (!result.rows[0].graduate_1) {
 				const result1 = await pool.query(
 					"UPDATE users SET graduate_1=$1 WHERE user_email=$2",
 					[graduate, params]
 				);
 				res.send(result1);
-			} else if (
-				result.rows[0].graduate_1 &&
-				!result.rows[0].graduate_2 &&
-				(!result.rows[0].graduate_3 || result.rows[0].graduate_3)
-			) {
+			} else if (!result.rows[0].graduate_2) {
 				const result2 = await pool.query(
 					"UPDATE users SET graduate_2=$1 WHERE user_email=$2",
 					[graduate, params]
 				);
 				res.send(result2);
-			} else if (
-				result.rows[0].graduate_1 &&
-				result.rows[0].graduate_2 &&
-				!result.rows[0].graduate_3
-			) {
+			} else if (!result.rows[0].graduate_3) {
 				const result3 = await pool.query(
 					"UPDATE users SET graduate_3=$1 WHERE user_email=$2",
 					[graduate, params]
@@ -553,7 +540,6 @@ router.put("/graduates/goal/:graduate", async (req, res) => {
 		res.status(500).send(error);
 	}
 });
-
 
 //Get all graduates
 router.get("/graduates", async (req, res) => {
